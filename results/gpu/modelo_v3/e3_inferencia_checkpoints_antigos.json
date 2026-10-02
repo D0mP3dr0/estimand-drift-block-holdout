@@ -1,0 +1,336 @@
+{
+  "tarefa": "A0-ter item 4 (E3): inferencia nos checkpoints antigos (SO inferencia, modelo ORIGINAL com PhysicsConstrainedDecoder, sem patch v3)",
+  "parecer": "forum-eng-ia_fanout_capacidade.md, secao 'Regra de avaliacao (3)'",
+  "checkpoints_usados": {
+    "bauru": {
+      "run_dir": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/gnn_rf_ieee_access/FIRST_RESPONSE_REVIEW_IEEE_ACESSES/EVIDENCIA_RESUBMISSAO/treinos/c0c1_bauru_s42_Q1_g10b2",
+      "substituicao": null
+    },
+    "lins": {
+      "run_dir": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/gnn_rf_ieee_access/FIRST_RESPONSE_REVIEW_IEEE_ACESSES/EVIDENCIA_RESUBMISSAO/treinos/c0c1v2_lins_s42_Q1_g10b2",
+      "substituicao": "c0c1_lins_s42_Q1_g10b2 nao existe neste disco (so ha variantes com sufixo). Usado c0c1v2_lins_s42_Q1_g10b2 -- MESMO dataset base (transfer_dataset_lins_v19_Q1_enriched_v2.pt, sem enriquecimento extra 'cf*') e MESMA arquitetura/config (GNNRFModel, hidden=256, heads=4, layers=4, dropout=0.1, n_params=1.812.515) do checkpoint de bauru usado acima; rejeitadas c0c1cf_lins_s42_Q1_g10b2 e cfslope_lins_s42_Q1_g10b2 por usarem dataset enriquecido '_cftudo'/'_cfslope' (feature set diferente do usado em bauru, quebraria a comparabilidade entre as duas cidades)."
+    }
+  },
+  "escala_declarada": "janela de 100000 nos (grafo Q1 completo tem 12.960.000 nos, nao cabe no teto de 25 min de GPU desta entrega); particao de teste desta janela e DIFERENTE da particao do run original (hash nao bate); normalizacao de distancia recalculada sobre o treino desta janela -- MAE absolutos NAO sao os de producao, validos so para a comparacao INTERNA entre as 12 avaliacoes de cada cidade (isolar sorteio e campo receptivo, conforme pedido).",
+  "grade_por_checkpoint": "A(loader original k=8/20 x5 ordens) + B(disjunto k=8/20 x5 ordens) + C(disjunto, vizinhanca completa, 1x) + D(nao disjunto, vizinhanca completa, 1x) = 12 avaliacoes/cidade, 24 no total",
+  "cidades": {
+    "bauru": {
+      "n_nos_teste": 8166,
+      "eval_batch_size": 8192,
+      "dp_por_no_entre_ordens": {
+        "grade_A_k8_nao_disjunta": {
+          "mediana": 0.012820707634091377,
+          "p95": 0.1294112503528595,
+          "max": 0.8547659516334534
+        },
+        "grade_B_k8_disjunta": {
+          "mediana": 0.03964456170797348,
+          "p95": 0.13937364518642426,
+          "max": 0.7522156238555908
+        }
+      },
+      "mae_rssi_por_populacao_por_ordem": {
+        "grade_A": {
+          "todos": {
+            "media": 1.607132174015162,
+            "dp": 0.000732664669917784,
+            "amplitude": 0.002155480535480425,
+            "valores_por_ordem": [
+              1.607630956473667,
+              1.6071854160896506,
+              1.6068763153651693,
+              1.6059063508059213,
+              1.6080618313414017
+            ]
+          },
+          "valido": {
+            "media": 1.607132174015162,
+            "dp": 0.000732664669917784,
+            "amplitude": 0.002155480535480425,
+            "valores_por_ordem": [
+              1.607630956473667,
+              1.6071854160896506,
+              1.6068763153651693,
+              1.6059063508059213,
+              1.6080618313414017
+            ]
+          },
+          "sentinela": {
+            "media": null,
+            "dp": 0.0,
+            "amplitude": null,
+            "valores_por_ordem": []
+          }
+        },
+        "grade_B": {
+          "todos": {
+            "media": 1.5312170106699559,
+            "dp": 0.000668906744672712,
+            "amplitude": 0.0020023199264074254,
+            "valores_por_ordem": [
+              1.530949844147334,
+              1.5310066152138655,
+              1.5302925025777376,
+              1.532294822504145,
+              1.5315412689066972
+            ]
+          },
+          "valido": {
+            "media": 1.5312170106699559,
+            "dp": 0.000668906744672712,
+            "amplitude": 0.0020023199264074254,
+            "valores_por_ordem": [
+              1.530949844147334,
+              1.5310066152138655,
+              1.5302925025777376,
+              1.532294822504145,
+              1.5315412689066972
+            ]
+          },
+          "sentinela": {
+            "media": null,
+            "dp": 0.0,
+            "amplitude": null,
+            "valores_por_ordem": []
+          }
+        }
+      },
+      "mae_rssi_por_populacao_C_completa_disjunta": {
+        "todos": {
+          "n": 8166,
+          "mae_rssi_db": 1.5806753871898105
+        },
+        "valido": {
+          "n": 8166,
+          "mae_rssi_db": 1.5806753871898105
+        },
+        "sentinela": {
+          "n": 0,
+          "mae_rssi_db": null
+        }
+      },
+      "mae_rssi_por_populacao_D_completa_nao_disjunta": {
+        "todos": {
+          "n": 8166,
+          "mae_rssi_db": 1.605123209246753
+        },
+        "valido": {
+          "n": 8166,
+          "mae_rssi_db": 1.605123209246753
+        },
+        "sentinela": {
+          "n": 0,
+          "mae_rssi_db": null
+        }
+      },
+      "mae_rssi_por_populacao_ensemble_5ordens_B": {
+        "todos": {
+          "n": 8166,
+          "mae_rssi_db": 1.5301681913758445
+        },
+        "valido": {
+          "n": 8166,
+          "mae_rssi_db": 1.5301681913758445
+        },
+        "sentinela": {
+          "n": 0,
+          "mae_rssi_db": null
+        }
+      },
+      "delta_penalidade_sorteio_B_menos_C": {
+        "todos": -0.04945837651985463,
+        "valido": -0.04945837651985463,
+        "sentinela": null
+      },
+      "delta_campo_receptivo_D_menos_C": {
+        "todos": 0.024447822056942403,
+        "valido": 0.024447822056942403,
+        "sentinela": null
+      },
+      "sinal_jensen_ensemble_B_vs_individual_vs_C": {
+        "todos": {
+          "mae_medio_individual_B": 1.5312170106699559,
+          "mae_do_ensemble_de_B": 1.5301681913758445,
+          "mae_C_referencia": 1.5806753871898105,
+          "ensemble_mais_proximo_de_C_que_individual": false
+        },
+        "valido": {
+          "mae_medio_individual_B": 1.5312170106699559,
+          "mae_do_ensemble_de_B": 1.5301681913758445,
+          "mae_C_referencia": 1.5806753871898105,
+          "ensemble_mais_proximo_de_C_que_individual": false
+        },
+        "sentinela": {
+          "mae_medio_individual_B": null,
+          "mae_do_ensemble_de_B": null,
+          "mae_C_referencia": null,
+          "ensemble_mais_proximo_de_C_que_individual": false
+        }
+      },
+      "criterio_dp_maior_1e-3_dB_indica_efeito": {
+        "todos": false,
+        "valido": false,
+        "sentinela": false
+      }
+    },
+    "lins": {
+      "n_nos_teste": 8054,
+      "eval_batch_size": 8192,
+      "dp_por_no_entre_ordens": {
+        "grade_A_k8_nao_disjunta": {
+          "mediana": 0.00724102184176445,
+          "p95": 0.04542312026023865,
+          "max": 0.19219490885734558
+        },
+        "grade_B_k8_disjunta": {
+          "mediana": 0.02032548375427723,
+          "p95": 0.051899924874305725,
+          "max": 0.20899294316768646
+        }
+      },
+      "mae_rssi_por_populacao_por_ordem": {
+        "grade_A": {
+          "todos": {
+            "media": 2.2972631590402477,
+            "dp": 0.00020287064947876394,
+            "amplitude": 0.0005279258726131886,
+            "valores_por_ordem": [
+              2.2970842087212584,
+              2.297292962748033,
+              2.2974447918672376,
+              2.2969829529960486,
+              2.297510878868662
+            ]
+          },
+          "valido": {
+            "media": 2.2972631590402477,
+            "dp": 0.00020287064947876394,
+            "amplitude": 0.0005279258726131886,
+            "valores_por_ordem": [
+              2.2970842087212584,
+              2.297292962748033,
+              2.2974447918672376,
+              2.2969829529960486,
+              2.297510878868662
+            ]
+          },
+          "sentinela": {
+            "media": null,
+            "dp": 0.0,
+            "amplitude": null,
+            "valores_por_ordem": []
+          }
+        },
+        "grade_B": {
+          "todos": {
+            "media": 2.6985515538592892,
+            "dp": 0.00040079275933136273,
+            "amplitude": 0.0011930160200384066,
+            "valores_por_ordem": [
+              2.698317376916628,
+              2.6984846599646115,
+              2.698688447401427,
+              2.6980371344968703,
+              2.6992301505169087
+            ]
+          },
+          "valido": {
+            "media": 2.6985515538592892,
+            "dp": 0.00040079275933136273,
+            "amplitude": 0.0011930160200384066,
+            "valores_por_ordem": [
+              2.698317376916628,
+              2.6984846599646115,
+              2.698688447401427,
+              2.6980371344968703,
+              2.6992301505169087
+            ]
+          },
+          "sentinela": {
+            "media": null,
+            "dp": 0.0,
+            "amplitude": null,
+            "valores_por_ordem": []
+          }
+        }
+      },
+      "mae_rssi_por_populacao_C_completa_disjunta": {
+        "todos": {
+          "n": 8054,
+          "mae_rssi_db": 2.7439488557067673
+        },
+        "valido": {
+          "n": 8054,
+          "mae_rssi_db": 2.7439488557067673
+        },
+        "sentinela": {
+          "n": 0,
+          "mae_rssi_db": null
+        }
+      },
+      "mae_rssi_por_populacao_D_completa_nao_disjunta": {
+        "todos": {
+          "n": 8054,
+          "mae_rssi_db": 2.2980662029257832
+        },
+        "valido": {
+          "n": 8054,
+          "mae_rssi_db": 2.2980662029257832
+        },
+        "sentinela": {
+          "n": 0,
+          "mae_rssi_db": null
+        }
+      },
+      "mae_rssi_por_populacao_ensemble_5ordens_B": {
+        "todos": {
+          "n": 8054,
+          "mae_rssi_db": 2.6984999424356784
+        },
+        "valido": {
+          "n": 8054,
+          "mae_rssi_db": 2.6984999424356784
+        },
+        "sentinela": {
+          "n": 0,
+          "mae_rssi_db": null
+        }
+      },
+      "delta_penalidade_sorteio_B_menos_C": {
+        "todos": -0.04539730184747803,
+        "valido": -0.04539730184747803,
+        "sentinela": null
+      },
+      "delta_campo_receptivo_D_menos_C": {
+        "todos": -0.44588265278098405,
+        "valido": -0.44588265278098405,
+        "sentinela": null
+      },
+      "sinal_jensen_ensemble_B_vs_individual_vs_C": {
+        "todos": {
+          "mae_medio_individual_B": 2.6985515538592892,
+          "mae_do_ensemble_de_B": 2.6984999424356784,
+          "mae_C_referencia": 2.7439488557067673,
+          "ensemble_mais_proximo_de_C_que_individual": false
+        },
+        "valido": {
+          "mae_medio_individual_B": 2.6985515538592892,
+          "mae_do_ensemble_de_B": 2.6984999424356784,
+          "mae_C_referencia": 2.7439488557067673,
+          "ensemble_mais_proximo_de_C_que_individual": false
+        },
+        "sentinela": {
+          "mae_medio_individual_B": null,
+          "mae_do_ensemble_de_B": null,
+          "mae_C_referencia": null,
+          "ensemble_mais_proximo_de_C_que_individual": false
+        }
+      },
+      "criterio_dp_maior_1e-3_dB_indica_efeito": {
+        "todos": false,
+        "valido": false,
+        "sentinela": false
+      }
+    }
+  }
+}

@@ -1,0 +1,95 @@
+{
+ "id": "A2",
+ "gravado_em": "2026-09-26 (agente oficina-experimento, PLANO A do dono D7, gate G1 reprodutibilidade)",
+ "autor": "oficina-experimento",
+ "alvo": "gpu/modelo_v3/{v3_common.py,train_gnn_v3.py,train_mlp_v3.py,rf_decoder_v3.py} -- codigo byte-identico ao aprovado pelo gate A1bis (criterio_A1bis.json, veredito=passa nos 9 criterios) e pelo gate de bug silencioso desta rodada (gpu/A2/ia-bug-silencioso.json, veredito=passa)",
+ "tipo": "confirmatorio",
+ "hipotese": "O pipeline modelo_v3 (GNN e MLP), rodado 2 vezes com a MESMA seed de treino (42) e o MESMO split_seed (42), sem cadeia, 8 epocas, produz o MESMO numero de MAE por populacao entre as 2 repeticoes (determinismo efetivo do treino nesta GPU/driver), dentro de uma tolerancia de piso numerico.",
+ "predicao": "Se a hipotese for verdadeira, a divergencia absoluta entre repeticao 1 e repeticao 2 no MAE por populacao (rssi_dbm, path_loss_total_dB e demais canais reportados) fica <= 1e-3 dB, tanto para GNN quanto para MLP, em Bauru Q1 e em Lins Q1.",
+ "criterio_aceite": "PASS se |MAE_rep1 - MAE_rep2| <= 1e-3 dB em TODAS as 4 combinacoes (bauru-GNN, bauru-MLP, lins-GNN, lins-MLP); FAIL (ramo declarado no protocolo) se qualquer combinacao divergir > 1e-3 dB -- nesse caso todo numero de modelo_v3 vira distribuicao por seed e o texto do artigo declara nao-determinismo em vez de valor pontual. Indeterminado (orcamento estourado antes de completar as 8 corridas) = abortado_por_orcamento, sem veredito de PASS/FAIL sobre a hipotese.",
+ "corridas": [
+  {
+   "run_label": "gnn_v3_a2_bauru_Q1_rep1",
+   "tipo": "gnn",
+   "cidade": "bauru",
+   "quadrante": "Q1",
+   "rep": 1
+  },
+  {
+   "run_label": "gnn_v3_a2_bauru_Q1_rep2",
+   "tipo": "gnn",
+   "cidade": "bauru",
+   "quadrante": "Q1",
+   "rep": 2
+  },
+  {
+   "run_label": "mlp_v3_a2_bauru_Q1_rep1",
+   "tipo": "mlp",
+   "cidade": "bauru",
+   "quadrante": "Q1",
+   "rep": 1
+  },
+  {
+   "run_label": "mlp_v3_a2_bauru_Q1_rep2",
+   "tipo": "mlp",
+   "cidade": "bauru",
+   "quadrante": "Q1",
+   "rep": 2
+  },
+  {
+   "run_label": "gnn_v3_a2_lins_Q1_rep1",
+   "tipo": "gnn",
+   "cidade": "lins",
+   "quadrante": "Q1",
+   "rep": 1
+  },
+  {
+   "run_label": "gnn_v3_a2_lins_Q1_rep2",
+   "tipo": "gnn",
+   "cidade": "lins",
+   "quadrante": "Q1",
+   "rep": 2
+  },
+  {
+   "run_label": "mlp_v3_a2_lins_Q1_rep1",
+   "tipo": "mlp",
+   "cidade": "lins",
+   "quadrante": "Q1",
+   "rep": 1
+  },
+  {
+   "run_label": "mlp_v3_a2_lins_Q1_rep2",
+   "tipo": "mlp",
+   "cidade": "lins",
+   "quadrante": "Q1",
+   "rep": 2
+  }
+ ],
+ "config_fixa_por_corrida": {
+  "seed_treino": 42,
+  "split_seed": 42,
+  "epochs": 8,
+  "max_nodes": 0,
+  "mmap": true,
+  "k_antenna": -1,
+  "k_terrain": -1,
+  "hidden_dim": 256,
+  "batch_size": 12288,
+  "lr": 0.001,
+  "sem_cadeia": true,
+  "transfer_from": ""
+ },
+ "gravidade": "divergencia > 1e-3 dB em qualquer combinacao = achado que muda o texto do artigo (distribuicao por seed em vez de valor pontual), nao bloqueia o roadmap por si so -- e a propria pergunta de saida deste bloco",
+ "dado": "Bauru Q1 e Lins Q1 REAIS (grafo inteiro, --mmap, sem --max-nodes), GPU RTX 5070 Ti (~8,5 GB livres no inicio desta rodada; motor de embeddings concorrente; abortar corrida se VRAM livre < 1 GB)",
+ "orcamento": "orcamento_gpu_min=180 (teto duro, protocolo PLANO A / item A2, ERRATA de custo estima ~2,5h para as 8 corridas); parar ao atingir o teto ou ao terminar as 8 corridas, o que vier primeiro",
+ "referencia_custo": "run full-graph do PhysicsConstrainedDecoder antigo (G0/ia-bug-silencioso_real.json): 2348.9 s / 20 epocas = 117.4 s/epoca; a 8 epocas, projecao ~15,7 min/corrida antes de overhead de carga+baselines+predicoes .npz",
+ "referencia_gate_anterior": "gpu/A2/ia-bug-silencioso.json (veredito=passa, reuso do gate A1bis sobre codigo hash-identico)",
+ "errata": [
+  {
+   "quando": "2026-09-26 01:32:07",
+   "autor": "sessao (chefe)",
+   "motivo": "CUDA OutOfMemoryError na 1a corrida (bs=24576, k=-1, grafo inteiro) ao lado do motor de embeddings (5,3 GB): ~10 GB reservados > 10,2 GB disponiveis; expandable_segments nao resolveu. batch_size 24576 -> 12288 ANTES de qualquer resultado (0/8 corridas concluidas). Todas as corridas do plano A usam 12288 (GNN e MLP), documentado no model card; difere da receita original (24576), o que e aceitavel porque os modelos do Artigo 2 sao proprios (D2).",
+   "batch_size_anterior": 24576
+  }
+ ]
+}

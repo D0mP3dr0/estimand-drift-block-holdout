@@ -1,0 +1,22 @@
+{
+ "veredito": "FINAL",
+ "data": "2026-10-01",
+ "script_corretor_sha256_prefixo": "ebeaf759",
+ "a_formula": {
+  "corr1": "declive: prepare_transfer_dataset_v19.py:141 (uniform 0.02-0.15) -> A_terrain em generate_realistic_coverage.py:107-116 (slope*20 +30*(slope-0.1)+, clip 0-30 dB; adimensional, 1=45 graus); altera col0 (perda total) +delta e col3 (potencia recebida) -delta, nos com cobertura; nao altera col1/col2/col4. Contrafactual:158-164",
+  "corr2": "coluna: enrich_rf_targets.py:446-448 (IDX_TRI=5; col5 do gerador de grafo e TPI, generate_graph_v19.py:478-480) -> tri_m=col5*elev_std (m) em :448, entra em compute_diffraction_loss :363-396 (h_obs=0.5*clamp(tri,0)+0.5*rug, :384); corrigido col6*elev_std (corretor:179). So col2 (difracao).",
+  "corr3": "unidade: enrich_rf_targets.py:384 e :524/:527 passa roughness=dem_feats[:,6] (normalizado, adimensional) somado a metros; corrigido col7*elev_std em metros (corretor:180). So col2. Obs: no gerador a rugosidade passada e col6 (TRI normalizado) e nao col7; o corretor reproduz isso (:176).",
+  "canais": "corr2 e corr3 so alteram col2 (difracao, dB, teto MAX_DIFFR_DB); nao entram em col0/col3 (ver teste independencia)."
+ },
+ "b_dado": {
+  "item2": "CONFIRMADO",
+  "item3": "CONFIRMADO",
+  "detalhe": "Em lins_Q1 e campinas_Q3 (3e6 nos centrais): col2 gravada == compute_diffraction_loss(col6*es, col7*es) com diferenca maxima 0.0 e 100% de nos iguais; versao original (col5*es, col6) difere em media 0.435 dB (lins) e 1.557 dB (campinas), max 8.14/13.40; so corr2 (tri*es, col6): media 0.109/0.389, max 11.6/12.4; so corr3 (col5*es, col7*es): 0.329/1.169, max 5.96/9.70. Coef. da regressao de d(alvo entre vizinhos) sobre d(versao) = 1.0000 (corr 1.0) so na versao corrigida; 0.77-1.00 e corr 0.35-0.77 na original. Ambas as correcoes sao necessarias: cada uma isolada nao reproduz o alvo. Termo afetado pela soma (3) e col2 apenas (h_obs).",
+  "independencia_col0": "CONFIRMADO: col0 vizinha regride sobre dA_terrain(declive local) com coef 1.0000 (R2 0.99999999 lins; 0.9959 campinas), coef de d col2 e d col1 ~ 0 (|coef|<8e-4). Difracao e shadow_margin sao canais separados, nao parcelas de col0."
+ },
+ "c_manuscrito": {
+  "item": "CONFIRMADO desvio",
+  "frases": "main.tex:610 'combines a base loss ... with terrain attenuation, diffraction and vegetation shadowing' e :611; :770 'total path loss, its vegetation and terrain components'. No dado col0 = base + A_veg(NDVI,dist) + A_terrain(declive local); difracao (col2, via TRI/rugosidade) e shadow_margin (col1, ITU P.833 por NDVI) sao canais de saida separados, nao somados a col0. :615 (declive local) esta correta.",
+  "proposta_pt": "A perda total do alvo soma a perda-base das familias Hata/COST-231, uma atenuacao de vegetacao funcao do indice de vegetacao e da distancia e uma atenuacao de terreno funcao do declive local de cada no; a margem de sombreamento por vegetacao e a perda por difracao em gume de faca (altura de obstaculo estimada pelo indice de rugosidade do terreno e pela rugosidade, ambos em metros) sao canais de saida distintos, calculados a partir dos atributos do proprio no e da distancia ao transmissor mais proximo, e nao parcelas da perda total."
+ }
+}

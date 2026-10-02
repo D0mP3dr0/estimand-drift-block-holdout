@@ -1,0 +1,66 @@
+{
+ "lins_Q1": {
+  "b0": {
+   "n_sorteios_com_valido": 58,
+   "dp_mae_const110": 6.597250347001207,
+   "dp_mae_const_mediana_treino": 6.597250347001207,
+   "dp_fracao_valida_todos": 0.05053832934921674,
+   "dp_fracao_valida_so_com_valido": 0.049597338635171836,
+   "media_n_teste": 1967140.2,
+   "json": {
+    "n_sorteios_com_no_valido": 58,
+    "dp_mae_constante_validos": 6.597250347001207,
+    "dp_fracao_valida_teste": 0.049597338635171836,
+    "dp_fracao_valida_teste_todos_os_sorteios": 0.05053832934921674,
+    "media_n_teste": 1967140.2
+   }
+  },
+  "b2": {
+   "n_sorteios_com_valido": 56,
+   "dp_mae_const110": 7.977808852754722,
+   "dp_mae_const_mediana_treino": 7.977808852754722,
+   "dp_fracao_valida_todos": 0.06144714321698822,
+   "dp_fracao_valida_so_com_valido": 0.060392410391473784,
+   "media_n_teste": 891582.1,
+   "json": {
+    "n_sorteios_com_no_valido": 56,
+    "dp_mae_constante_validos": 7.977808852754722,
+    "dp_fracao_valida_teste": 0.060392410391473784,
+    "dp_fracao_valida_teste_todos_os_sorteios": 0.06144714321698822,
+    "media_n_teste": 891582.1
+   }
+  }
+ },
+ "sorocaba_Q3": {
+  "b0": {
+   "n_sorteios_com_valido": 59,
+   "dp_mae_const110": 8.003330444462977,
+   "dp_mae_const_mediana_treino": 8.003330444462977,
+   "dp_fracao_valida_todos": 0.060649828713743546,
+   "dp_fracao_valida_so_com_valido": 0.0595458761430921,
+   "media_n_teste": 1963943.9666666666,
+   "json": {
+    "n_sorteios_com_no_valido": 59,
+    "dp_mae_constante_validos": 8.003330444462977,
+    "dp_fracao_valida_teste": 0.0595458761430921,
+    "dp_fracao_valida_teste_todos_os_sorteios": 0.060649828713743546,
+    "media_n_teste": 1963943.9666666666
+   }
+  },
+  "b2": {
+   "n_sorteios_com_valido": 55,
+   "dp_mae_const110": 8.668822526955049,
+   "dp_mae_const_mediana_treino": 8.668822526955049,
+   "dp_fracao_valida_todos": 0.06675359875578685,
+   "dp_fracao_valida_so_com_valido": 0.06265943726453448,
+   "media_n_teste": 887174.35,
+   "json": {
+    "n_sorteios_com_no_valido": 55,
+    "dp_mae_constante_validos": 8.668822526955049,
+    "dp_fracao_valida_teste": 0.06265943726453448,
+    "dp_fracao_valida_teste_todos_os_sorteios": 0.06675359875578685,
+    "media_n_teste": 887174.35
+   }
+  }
+ }
+}

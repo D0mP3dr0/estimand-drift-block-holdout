@@ -1,0 +1,327 @@
+{
+ "script_sha256": "622a02cc789c99385026409d690c4a1c4ddbad866ba569a7d099965a93ad0f9c",
+ "semente_amostra": 20260926,
+ "n_amostra": 20000,
+ "celulas": {
+  "lins_Q1": {
+   "caminho": "/trabalho/TOPO_RF_DOWNLOAD_DRIVE/graph_data_v3/transfer_dataset_lins_v19_Q1_enriched_cftudo.pt",
+   "n_nos_terreno": 12960000,
+   "n_antenas_tensor": 175,
+   "hipotese_a_todas_antenas_cidade": {
+    "n_torres": 175,
+    "max_abs_dif_m": 0.0,
+    "frac_dif_lt_1m": 1.0,
+    "mediana_d_km": 79.07875061035156
+   },
+   "hipotese_b_1800pm200": {
+    "n_torres": 30,
+    "max_abs_dif_m": 1325.7177734375,
+    "frac_dif_lt_1m": 0.5418,
+    "mediana_d_km": 79.17771911621094
+   },
+   "mediana_dist_nearest_tensor_km": 79.07875061035156,
+   "tempo_s": 5.3,
+   "sha256_tensor": "f23d15852f1d132eeb5412e194cb0d4251f88c6a0d32097cef08588835742cfc"
+  },
+  "bauru_Q1": {
+   "caminho": "/trabalho/TOPO_RF_DOWNLOAD_DRIVE/graph_data_v3/transfer_dataset_bauru_v19_Q1_enriched_cftudo.pt",
+   "n_nos_terreno": 12960000,
+   "n_antenas_tensor": 794,
+   "hipotese_a_todas_antenas_cidade": {
+    "n_torres": 794,
+    "max_abs_dif_m": 0.0,
+    "frac_dif_lt_1m": 1.0,
+    "mediana_d_km": 66.13656616210938
+   },
+   "hipotese_b_1800pm200": {
+    "n_torres": 154,
+    "max_abs_dif_m": 7109.2890625,
+    "frac_dif_lt_1m": 0.0163,
+    "mediana_d_km": 72.37582397460938
+   },
+   "mediana_dist_nearest_tensor_km": 66.13656616210938,
+   "tempo_s": 6.3,
+   "sha256_tensor": "33e8d57368920241fc289f8c939de35ece7178c316d2bf5488c3cdf98ff5fb5c"
+  },
+  "bauru_Q2": {
+   "caminho": "/trabalho/TOPO_RF_DOWNLOAD_DRIVE/graph_data_v3/transfer_dataset_bauru_v19_Q2_enriched_cftudo.pt",
+   "n_nos_terreno": 12960000,
+   "n_antenas_tensor": 794,
+   "hipotese_a_todas_antenas_cidade": {
+    "n_torres": 794,
+    "max_abs_dif_m": 0.0,
+    "frac_dif_lt_1m": 1.0,
+    "mediana_d_km": 77.42803192138672
+   },
+   "hipotese_b_1800pm200": {
+    "n_torres": 154,
+    "max_abs_dif_m": 3877.0,
+    "frac_dif_lt_1m": 0.2347,
+    "mediana_d_km": 78.10079193115234
+   },
+   "mediana_dist_nearest_tensor_km": 77.42803192138672,
+   "tempo_s": 6.1,
+   "sha256_tensor": "29bdc73e6f4bea464f2e3772670bef68febac95c21e18d66e0293dcd5f799163"
+  },
+  "bauru_Q3": {
+   "caminho": "/trabalho/TOPO_RF_DOWNLOAD_DRIVE/graph_data_v3/transfer_dataset_bauru_v19_Q3_enriched_cftudo.pt",
+   "n_nos_terreno": 12960000,
+   "n_antenas_tensor": 794,
+   "hipotese_a_todas_antenas_cidade": {
+    "n_torres": 794,
+    "max_abs_dif_m": 0.0,
+    "frac_dif_lt_1m": 1.0,
+    "mediana_d_km": 76.75157928466797
+   },
+   "hipotese_b_1800pm200": {
+    "n_torres": 154,
+    "max_abs_dif_m": 6292.40625,
+    "frac_dif_lt_1m": 0.6891,
+    "mediana_d_km": 78.59607696533203
+   },
+   "mediana_dist_nearest_tensor_km": 76.75157928466797,
+   "tempo_s": 6.6,
+   "sha256_tensor": "ef67c8c886b6c0cb7001a84f0316033699965d73961b6eca31ea66dd042f5264"
+  },
+  "bauru_Q4": {
+   "caminho": "/trabalho/TOPO_RF_DOWNLOAD_DRIVE/graph_data_v3/transfer_dataset_bauru_v19_Q4_enriched_cftudo.pt",
+   "n_nos_terreno": 12960000,
+   "n_antenas_tensor": 794,
+   "hipotese_a_todas_antenas_cidade": {
+    "n_torres": 794,
+    "max_abs_dif_m": 0.0,
+    "frac_dif_lt_1m": 1.0,
+    "mediana_d_km": 77.86309051513672
+   },
+   "hipotese_b_1800pm200": {
+    "n_torres": 154,
+    "max_abs_dif_m": 1145.3016357421875,
+    "frac_dif_lt_1m": 0.68365,
+    "mediana_d_km": 78.00991821289062
+   },
+   "mediana_dist_nearest_tensor_km": 77.86309051513672,
+   "tempo_s": 5.9,
+   "sha256_tensor": "0caa7c2c3a7412a4f7fbf39ce08cefffc6896f7efa9db376897df6438024db20"
+  },
+  "campinas_Q1": {
+   "caminho": "/trabalho/TOPO_RF_DOWNLOAD_DRIVE/graph_data_v3/transfer_dataset_campinas_v19_Q1_enriched_cftudo.pt",
+   "n_nos_terreno": 12960000,
+   "n_antenas_tensor": 4252,
+   "hipotese_a_todas_antenas_cidade": {
+    "n_torres": 4252,
+    "max_abs_dif_m": 0.0,
+    "frac_dif_lt_1m": 1.0,
+    "mediana_d_km": 69.94760131835938
+   },
+   "hipotese_b_1800pm200": {
+    "n_torres": 1852,
+    "max_abs_dif_m": 2180.678466796875,
+    "frac_dif_lt_1m": 0.98375,
+    "mediana_d_km": 69.94760131835938
+   },
+   "mediana_dist_nearest_tensor_km": 69.94760131835938,
+   "tempo_s": 8.1,
+   "sha256_tensor": "d3787cd087c1ded417da788a83bd048bcaafa347dcd6adc0e64a9fe1e405fe00"
+  },
+  "campinas_Q2": {
+   "caminho": "/trabalho/TOPO_RF_DOWNLOAD_DRIVE/graph_data_v3/transfer_dataset_campinas_v19_Q2_enriched_cftudo.pt",
+   "n_nos_terreno": 12960000,
+   "n_antenas_tensor": 4252,
+   "hipotese_a_todas_antenas_cidade": {
+    "n_torres": 4252,
+    "max_abs_dif_m": 0.0,
+    "frac_dif_lt_1m": 1.0,
+    "mediana_d_km": 68.82263946533203
+   },
+   "hipotese_b_1800pm200": {
+    "n_torres": 1852,
+    "max_abs_dif_m": 5250.18359375,
+    "frac_dif_lt_1m": 0.1216,
+    "mediana_d_km": 71.24186706542969
+   },
+   "mediana_dist_nearest_tensor_km": 68.82263946533203,
+   "tempo_s": 7.8,
+   "sha256_tensor": "c952a61cfcbeda2a042a6ba80f17ff73aabea5e42511a5614b0a7954321ef16c"
+  },
+  "campinas_Q3": {
+   "caminho": "/trabalho/TOPO_RF_DOWNLOAD_DRIVE/graph_data_v3/transfer_dataset_campinas_v19_Q3_enriched_cftudo.pt",
+   "n_nos_terreno": 12960000,
+   "n_antenas_tensor": 4252,
+   "hipotese_a_todas_antenas_cidade": {
+    "n_torres": 4252,
+    "max_abs_dif_m": 0.0,
+    "frac_dif_lt_1m": 1.0,
+    "mediana_d_km": 67.90367126464844
+   },
+   "hipotese_b_1800pm200": {
+    "n_torres": 1852,
+    "max_abs_dif_m": 2398.943359375,
+    "frac_dif_lt_1m": 0.979,
+    "mediana_d_km": 67.90367126464844
+   },
+   "mediana_dist_nearest_tensor_km": 67.90367126464844,
+   "tempo_s": 7.8,
+   "sha256_tensor": "8b7bacbcdb7d34bc8c0234554a1f1afd954a05773a61d1b79e53191687330bb5"
+  },
+  "campinas_Q4": {
+   "caminho": "/trabalho/TOPO_RF_DOWNLOAD_DRIVE/graph_data_v3/transfer_dataset_campinas_v19_Q4_enriched_cftudo.pt",
+   "n_nos_terreno": 12960000,
+   "n_antenas_tensor": 4252,
+   "hipotese_a_todas_antenas_cidade": {
+    "n_torres": 4252,
+    "max_abs_dif_m": 0.0,
+    "frac_dif_lt_1m": 1.0,
+    "mediana_d_km": 71.8049087524414
+   },
+   "hipotese_b_1800pm200": {
+    "n_torres": 1852,
+    "max_abs_dif_m": 2730.4267578125,
+    "frac_dif_lt_1m": 0.48135,
+    "mediana_d_km": 72.6579818725586
+   },
+   "mediana_dist_nearest_tensor_km": 71.8049087524414,
+   "tempo_s": 7.8,
+   "sha256_tensor": "7e9c4e41fc10078813afe081a436b88323532ff41282555232938f17913916dc"
+  },
+  "lins_Q2": {
+   "caminho": "/trabalho/TOPO_RF_DOWNLOAD_DRIVE/graph_data_v3/transfer_dataset_lins_v19_Q2_enriched_cftudo.pt",
+   "n_nos_terreno": 12960000,
+   "n_antenas_tensor": 175,
+   "hipotese_a_todas_antenas_cidade": {
+    "n_torres": 175,
+    "max_abs_dif_m": 0.0,
+    "frac_dif_lt_1m": 1.0,
+    "mediana_d_km": 68.04814147949219
+   },
+   "hipotese_b_1800pm200": {
+    "n_torres": 30,
+    "max_abs_dif_m": 1586.286376953125,
+    "frac_dif_lt_1m": 0.99055,
+    "mediana_d_km": 68.04814147949219
+   },
+   "mediana_dist_nearest_tensor_km": 68.04814147949219,
+   "tempo_s": 5.4,
+   "sha256_tensor": "64a48e1cb48287cf0753c04bb4934d65bf21144a084e1afe058161640a428249"
+  },
+  "lins_Q3": {
+   "caminho": "/trabalho/TOPO_RF_DOWNLOAD_DRIVE/graph_data_v3/transfer_dataset_lins_v19_Q3_enriched_cftudo.pt",
+   "n_nos_terreno": 12960000,
+   "n_antenas_tensor": 175,
+   "hipotese_a_todas_antenas_cidade": {
+    "n_torres": 175,
+    "max_abs_dif_m": 0.0,
+    "frac_dif_lt_1m": 1.0,
+    "mediana_d_km": 83.0096664428711
+   },
+   "hipotese_b_1800pm200": {
+    "n_torres": 30,
+    "max_abs_dif_m": 1998.5775146484375,
+    "frac_dif_lt_1m": 0.0,
+    "mediana_d_km": 83.7621078491211
+   },
+   "mediana_dist_nearest_tensor_km": 83.0096664428711,
+   "tempo_s": 5.5,
+   "sha256_tensor": "845b287a7b3d33e1b08670c0dad745c2b9f50628e2d38540553de73ed234a4f2"
+  },
+  "lins_Q4": {
+   "caminho": "/trabalho/TOPO_RF_DOWNLOAD_DRIVE/graph_data_v3/transfer_dataset_lins_v19_Q4_enriched_cftudo.pt",
+   "n_nos_terreno": 12960000,
+   "n_antenas_tensor": 175,
+   "hipotese_a_todas_antenas_cidade": {
+    "n_torres": 175,
+    "max_abs_dif_m": 0.0,
+    "frac_dif_lt_1m": 1.0,
+    "mediana_d_km": 82.81256866455078
+   },
+   "hipotese_b_1800pm200": {
+    "n_torres": 30,
+    "max_abs_dif_m": 575.48095703125,
+    "frac_dif_lt_1m": 0.93835,
+    "mediana_d_km": 82.81865692138672
+   },
+   "mediana_dist_nearest_tensor_km": 82.81256866455078,
+   "tempo_s": 5.5,
+   "sha256_tensor": "eb2974f829c149378d1025fca8fa51e3191e8a06ba0821cf8f1adc2712754744"
+  },
+  "sorocaba_Q1": {
+   "caminho": "/trabalho/TOPO_RF_DOWNLOAD_DRIVE/graph_data_v3/transfer_dataset_sorocaba_v19_Q1_enriched_cftudo.pt",
+   "n_nos_terreno": 12960000,
+   "n_antenas_tensor": 1398,
+   "hipotese_a_todas_antenas_cidade": {
+    "n_torres": 1398,
+    "max_abs_dif_m": 0.0,
+    "frac_dif_lt_1m": 1.0,
+    "mediana_d_km": 71.89279174804688
+   },
+   "hipotese_b_1800pm200": {
+    "n_torres": 507,
+    "max_abs_dif_m": 3757.426513671875,
+    "frac_dif_lt_1m": 0.6678,
+    "mediana_d_km": 72.3709487915039
+   },
+   "mediana_dist_nearest_tensor_km": 71.89279174804688,
+   "tempo_s": 6.1,
+   "sha256_tensor": "858293a658cddbf2b45ddf2673d46153108698b0d04c7b48f8d39d3bf8527919"
+  },
+  "sorocaba_Q2": {
+   "caminho": "/trabalho/TOPO_RF_DOWNLOAD_DRIVE/graph_data_v3/transfer_dataset_sorocaba_v19_Q2_enriched_cftudo.pt",
+   "n_nos_terreno": 12960000,
+   "n_antenas_tensor": 1398,
+   "hipotese_a_todas_antenas_cidade": {
+    "n_torres": 1398,
+    "max_abs_dif_m": 0.0,
+    "frac_dif_lt_1m": 1.0,
+    "mediana_d_km": 71.54766845703125
+   },
+   "hipotese_b_1800pm200": {
+    "n_torres": 507,
+    "max_abs_dif_m": 4712.98046875,
+    "frac_dif_lt_1m": 0.83195,
+    "mediana_d_km": 71.83912658691406
+   },
+   "mediana_dist_nearest_tensor_km": 71.54766845703125,
+   "tempo_s": 6.3,
+   "sha256_tensor": "5741e2b87fee80b15907aebee1122a5f12c992a66555a4b8b17282d384ab991d"
+  },
+  "sorocaba_Q3": {
+   "caminho": "/trabalho/TOPO_RF_DOWNLOAD_DRIVE/graph_data_v3/transfer_dataset_sorocaba_v19_Q3_enriched_cftudo.pt",
+   "n_nos_terreno": 12960000,
+   "n_antenas_tensor": 1398,
+   "hipotese_a_todas_antenas_cidade": {
+    "n_torres": 1398,
+    "max_abs_dif_m": 0.0,
+    "frac_dif_lt_1m": 1.0,
+    "mediana_d_km": 75.14470672607422
+   },
+   "hipotese_b_1800pm200": {
+    "n_torres": 507,
+    "max_abs_dif_m": 1388.60546875,
+    "frac_dif_lt_1m": 0.8263,
+    "mediana_d_km": 75.29693603515625
+   },
+   "mediana_dist_nearest_tensor_km": 75.14470672607422,
+   "tempo_s": 6.1,
+   "sha256_tensor": "aed5e373e11bc94650b1d944e03153cf58af07b1224884f2f011a14609db8f2a"
+  },
+  "sorocaba_Q4": {
+   "caminho": "/trabalho/TOPO_RF_DOWNLOAD_DRIVE/graph_data_v3/transfer_dataset_sorocaba_v19_Q4_enriched_cftudo.pt",
+   "n_nos_terreno": 12960000,
+   "n_antenas_tensor": 1398,
+   "hipotese_a_todas_antenas_cidade": {
+    "n_torres": 1398,
+    "max_abs_dif_m": 0.0,
+    "frac_dif_lt_1m": 1.0,
+    "mediana_d_km": 75.46630096435547
+   },
+   "hipotese_b_1800pm200": {
+    "n_torres": 507,
+    "max_abs_dif_m": 4859.5625,
+    "frac_dif_lt_1m": 0.2173,
+    "mediana_d_km": 78.28111267089844
+   },
+   "mediana_dist_nearest_tensor_km": 75.46630096435547,
+   "tempo_s": 6.0,
+   "sha256_tensor": "467a03166acd932abea979a48dded6ce51cf1c3d13992aa45ae4949c3737177a"
+  }
+ }
+}

@@ -1,0 +1,360 @@
+{
+  "manifest_validado": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/manifest_mathematics_v5.jsonl",
+  "nota": "validador v5 (copia declarada do v3): existencia+tamanho de todas as linhas; rehash de amostra de arquivos pequenos e de todos os scripts; arquivos com sha_recalculado=false so tem o tamanho conferido; conferencia dos digests do manuscrito",
+  "resultado_manifest_mathematics_v5": {
+    "caminhos_sem_rehash": [
+      "/trabalho/TOPO_RF_DOWNLOAD_DRIVE/graph_data_v3/transfer_dataset_bauru_v19_Q1_enriched_cftudo.pt",
+      "/trabalho/TOPO_RF_DOWNLOAD_DRIVE/graph_data_v3/transfer_dataset_bauru_v19_Q2_enriched_cftudo.pt",
+      "/trabalho/TOPO_RF_DOWNLOAD_DRIVE/graph_data_v3/transfer_dataset_bauru_v19_Q3_enriched_cftudo.pt",
+      "/trabalho/TOPO_RF_DOWNLOAD_DRIVE/graph_data_v3/transfer_dataset_bauru_v19_Q4_enriched_cftudo.pt",
+      "/trabalho/TOPO_RF_DOWNLOAD_DRIVE/graph_data_v3/transfer_dataset_campinas_v19_Q1_enriched_cftudo.pt",
+      "/trabalho/TOPO_RF_DOWNLOAD_DRIVE/graph_data_v3/transfer_dataset_campinas_v19_Q2_enriched_cftudo.pt",
+      "/trabalho/TOPO_RF_DOWNLOAD_DRIVE/graph_data_v3/transfer_dataset_campinas_v19_Q3_enriched_cftudo.pt",
+      "/trabalho/TOPO_RF_DOWNLOAD_DRIVE/graph_data_v3/transfer_dataset_campinas_v19_Q4_enriched_cftudo.pt",
+      "/trabalho/TOPO_RF_DOWNLOAD_DRIVE/graph_data_v3/transfer_dataset_lins_v19_Q1_enriched_cftudo.pt",
+      "/trabalho/TOPO_RF_DOWNLOAD_DRIVE/graph_data_v3/transfer_dataset_lins_v19_Q2_enriched_cftudo.pt",
+      "/trabalho/TOPO_RF_DOWNLOAD_DRIVE/graph_data_v3/transfer_dataset_lins_v19_Q3_enriched_cftudo.pt",
+      "/trabalho/TOPO_RF_DOWNLOAD_DRIVE/graph_data_v3/transfer_dataset_lins_v19_Q4_enriched_cftudo.pt",
+      "/trabalho/TOPO_RF_DOWNLOAD_DRIVE/graph_data_v3/transfer_dataset_sorocaba_v19_Q1_enriched_cftudo.pt",
+      "/trabalho/TOPO_RF_DOWNLOAD_DRIVE/graph_data_v3/transfer_dataset_sorocaba_v19_Q2_enriched_cftudo.pt",
+      "/trabalho/TOPO_RF_DOWNLOAD_DRIVE/graph_data_v3/transfer_dataset_sorocaba_v19_Q3_enriched_cftudo.pt",
+      "/trabalho/TOPO_RF_DOWNLOAD_DRIVE/graph_data_v3/transfer_dataset_sorocaba_v19_Q4_enriched_cftudo.pt"
+    ],
+    "detalhe_problemas": {
+      "caminho_duplicado": [],
+      "convencao_caminho": [],
+      "divergencia_real": [],
+      "drive_externo_nao_montado": [],
+      "raiz_rel_inconsistente": [],
+      "tamanho_diverge": []
+    },
+    "digests_manuscrito": {
+      "45c16d43": {
+        "caminhos": [
+          "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF_V2/01_data/prepare_transfer_dataset_v19.py"
+        ],
+        "linhas_no_manifesto": 1,
+        "rehash_no_disco_confere": true
+      },
+      "5d38012e": {
+        "caminhos": [
+          "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF_V2/data_raw/enrich_rf_targets.py"
+        ],
+        "linhas_no_manifesto": 1,
+        "rehash_no_disco_confere": true
+      },
+      "95ea0423": {
+        "caminhos": [
+          "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF_V2/generate_realistic_coverage.py"
+        ],
+        "linhas_no_manifesto": 1,
+        "rehash_no_disco_confere": true
+      },
+      "ebeaf759": {
+        "caminhos": [
+          "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/gnn_rf_ieee_access/FIRST_RESPONSE_REVIEW_IEEE_ACESSES/EVIDENCIA_RESUBMISSAO/scripts/contrafactual_alvo_completo.py"
+        ],
+        "linhas_no_manifesto": 1,
+        "rehash_no_disco_confere": true
+      }
+    },
+    "digests_manuscrito_ok": true,
+    "existentes_com_tamanho_confere": 2792,
+    "matriz_por_grupo": {
+      "E2_c0c1cf_controles": {
+        "linhas": 28,
+        "script_sha256_preenchido": 0,
+        "sha256_nulo": 0,
+        "sha_recalculado_false": 0,
+        "sha_recalculado_true": 28,
+        "tamanho_bytes": 10060474
+      },
+      "alvo_stats_e_controle_negativo": {
+        "linhas": 10,
+        "script_sha256_preenchido": 10,
+        "sha256_nulo": 0,
+        "sha_recalculado_false": 0,
+        "sha_recalculado_true": 10,
+        "tamanho_bytes": 67082
+      },
+      "baselines_v2": {
+        "linhas": 16,
+        "script_sha256_preenchido": 16,
+        "sha256_nulo": 0,
+        "sha_recalculado_false": 0,
+        "sha_recalculado_true": 16,
+        "tamanho_bytes": 647440
+      },
+      "checkpoints_treinos_evidencia": {
+        "linhas": 238,
+        "script_sha256_preenchido": 0,
+        "sha256_nulo": 0,
+        "sha_recalculado_false": 0,
+        "sha_recalculado_true": 238,
+        "tamanho_bytes": 5039404918
+      },
+      "dependencias_vivas": {
+        "linhas": 17,
+        "script_sha256_preenchido": 0,
+        "sha256_nulo": 0,
+        "sha_recalculado_false": 0,
+        "sha_recalculado_true": 17,
+        "tamanho_bytes": 297041
+      },
+      "draft_v2_figures": {
+        "linhas": 7,
+        "script_sha256_preenchido": 0,
+        "sha256_nulo": 0,
+        "sha_recalculado_false": 0,
+        "sha_recalculado_true": 7,
+        "tamanho_bytes": 491311
+      },
+      "draft_v2_tables": {
+        "linhas": 8,
+        "script_sha256_preenchido": 0,
+        "sha256_nulo": 0,
+        "sha_recalculado_false": 0,
+        "sha_recalculado_true": 8,
+        "tamanho_bytes": 16303
+      },
+      "fismat_carimbo_11_09": {
+        "linhas": 4,
+        "script_sha256_preenchido": 2,
+        "sha256_nulo": 0,
+        "sha_recalculado_false": 0,
+        "sha_recalculado_true": 4,
+        "tamanho_bytes": 129096
+      },
+      "graf_data_v3_manifesto": {
+        "linhas": 2,
+        "script_sha256_preenchido": 0,
+        "sha256_nulo": 0,
+        "sha_recalculado_false": 0,
+        "sha_recalculado_true": 2,
+        "tamanho_bytes": 10541
+      },
+      "grafos_gpu_arestas": {
+        "linhas": 16,
+        "script_sha256_preenchido": 0,
+        "sha256_nulo": 0,
+        "sha_recalculado_false": 0,
+        "sha_recalculado_true": 16,
+        "tamanho_bytes": 249258637712
+      },
+      "lista_fixa_tab_retention": {
+        "linhas": 20,
+        "script_sha256_preenchido": 20,
+        "sha256_nulo": 0,
+        "sha_recalculado_false": 0,
+        "sha_recalculado_true": 20,
+        "tamanho_bytes": 5231756
+      },
+      "logs_fila": {
+        "linhas": 2,
+        "script_sha256_preenchido": 0,
+        "sha256_nulo": 0,
+        "sha_recalculado_false": 0,
+        "sha_recalculado_true": 2,
+        "tamanho_bytes": 5008963
+      },
+      "mlpcf_t11_E2": {
+        "linhas": 40,
+        "script_sha256_preenchido": 0,
+        "sha256_nulo": 0,
+        "sha_recalculado_false": 0,
+        "sha_recalculado_true": 40,
+        "tamanho_bytes": 10454383
+      },
+      "r2_2026_09_24_artefatos": {
+        "linhas": 348,
+        "script_sha256_preenchido": 0,
+        "sha256_nulo": 0,
+        "sha_recalculado_false": 0,
+        "sha_recalculado_true": 348,
+        "tamanho_bytes": 1415414542
+      },
+      "rodadas_r1_r2_fio": {
+        "linhas": 53,
+        "script_sha256_preenchido": 4,
+        "sha256_nulo": 0,
+        "sha_recalculado_false": 0,
+        "sha_recalculado_true": 53,
+        "tamanho_bytes": 2918213
+      },
+      "run_c0c1_bauru_g5b2_s42": {
+        "linhas": 8,
+        "script_sha256_preenchido": 8,
+        "sha256_nulo": 0,
+        "sha_recalculado_false": 0,
+        "sha_recalculado_true": 8,
+        "tamanho_bytes": 2090318
+      },
+      "run_c0c1cf_g10b2": {
+        "linhas": 160,
+        "script_sha256_preenchido": 160,
+        "sha256_nulo": 0,
+        "sha_recalculado_false": 0,
+        "sha_recalculado_true": 160,
+        "tamanho_bytes": 41862212
+      },
+      "run_mlpcf": {
+        "linhas": 120,
+        "script_sha256_preenchido": 120,
+        "sha256_nulo": 0,
+        "sha_recalculado_false": 0,
+        "sha_recalculado_true": 120,
+        "tamanho_bytes": 31363949
+      },
+      "run_mlpcf_smoke": {
+        "linhas": 2,
+        "script_sha256_preenchido": 2,
+        "sha256_nulo": 0,
+        "sha_recalculado_false": 0,
+        "sha_recalculado_true": 2,
+        "tamanho_bytes": 83104
+      },
+      "scripts_artigo2": {
+        "linhas": 67,
+        "script_sha256_preenchido": 0,
+        "sha256_nulo": 0,
+        "sha_recalculado_false": 0,
+        "sha_recalculado_true": 67,
+        "tamanho_bytes": 1135455
+      },
+      "scripts_produtores": {
+        "linhas": 8,
+        "script_sha256_preenchido": 0,
+        "sha256_nulo": 0,
+        "sha_recalculado_false": 0,
+        "sha_recalculado_true": 8,
+        "tamanho_bytes": 144752
+      },
+      "tensores_cftudo": {
+        "linhas": 16,
+        "script_sha256_preenchido": 0,
+        "sha256_nulo": 0,
+        "sha_recalculado_false": 16,
+        "sha_recalculado_true": 0,
+        "tamanho_bytes": 452216678824
+      },
+      "v3_12_figuras": {
+        "linhas": 23,
+        "script_sha256_preenchido": 0,
+        "sha256_nulo": 0,
+        "sha_recalculado_false": 0,
+        "sha_recalculado_true": 23,
+        "tamanho_bytes": 928971
+      },
+      "v3_12_folha_de_fatos_adendo": {
+        "linhas": 2,
+        "script_sha256_preenchido": 0,
+        "sha256_nulo": 0,
+        "sha_recalculado_false": 0,
+        "sha_recalculado_true": 2,
+        "tamanho_bytes": 553517
+      },
+      "v3_12_tabelas": {
+        "linhas": 107,
+        "script_sha256_preenchido": 0,
+        "sha256_nulo": 0,
+        "sha_recalculado_false": 0,
+        "sha_recalculado_true": 107,
+        "tamanho_bytes": 1278322
+      },
+      "v3_2026_09_25_criterios": {
+        "linhas": 28,
+        "script_sha256_preenchido": 0,
+        "sha256_nulo": 0,
+        "sha_recalculado_false": 0,
+        "sha_recalculado_true": 28,
+        "tamanho_bytes": 109338
+      },
+      "v3_fase1": {
+        "linhas": 24,
+        "script_sha256_preenchido": 0,
+        "sha256_nulo": 0,
+        "sha_recalculado_false": 0,
+        "sha_recalculado_true": 24,
+        "tamanho_bytes": 2079481
+      },
+      "v3_fase2": {
+        "linhas": 34,
+        "script_sha256_preenchido": 0,
+        "sha256_nulo": 0,
+        "sha_recalculado_false": 0,
+        "sha_recalculado_true": 34,
+        "tamanho_bytes": 3847591
+      },
+      "v3_fase3": {
+        "linhas": 21,
+        "script_sha256_preenchido": 0,
+        "sha256_nulo": 0,
+        "sha_recalculado_false": 0,
+        "sha_recalculado_true": 21,
+        "tamanho_bytes": 499236
+      },
+      "v3_fase4": {
+        "linhas": 97,
+        "script_sha256_preenchido": 0,
+        "sha256_nulo": 0,
+        "sha_recalculado_false": 0,
+        "sha_recalculado_true": 97,
+        "tamanho_bytes": 7164577
+      },
+      "v3_gpu_agregados_scripts_logs": {
+        "linhas": 597,
+        "script_sha256_preenchido": 0,
+        "sha256_nulo": 0,
+        "sha_recalculado_false": 0,
+        "sha_recalculado_true": 597,
+        "tamanho_bytes": 21501377
+      },
+      "v3_gpu_checkpoints_pt": {
+        "linhas": 165,
+        "script_sha256_preenchido": 0,
+        "sha256_nulo": 0,
+        "sha_recalculado_false": 0,
+        "sha_recalculado_true": 165,
+        "tamanho_bytes": 3229017317
+      },
+      "v3_gpu_predicoes_npz": {
+        "linhas": 164,
+        "script_sha256_preenchido": 0,
+        "sha256_nulo": 0,
+        "sha_recalculado_false": 0,
+        "sha_recalculado_true": 164,
+        "tamanho_bytes": 1460470270
+      },
+      "v3_votos": {
+        "linhas": 340,
+        "script_sha256_preenchido": 0,
+        "sha256_nulo": 0,
+        "sha_recalculado_false": 0,
+        "sha_recalculado_true": 340,
+        "tamanho_bytes": 1965252
+      }
+    },
+    "n_caminhos_em_mais_de_um_grupo_informativo": 60,
+    "n_linhas": 2792,
+    "pendentes_de_hash_sha256_nulo": [],
+    "problemas_por_categoria": {
+      "caminho_duplicado": 0,
+      "convencao_caminho": 0,
+      "divergencia_real": 0,
+      "drive_externo_nao_montado": 0,
+      "raiz_rel_inconsistente": 0,
+      "tamanho_diverge": 0
+    },
+    "problemas_total": 0,
+    "rehash": {
+      "amostra_pequenos_pedida": 200,
+      "amostra_pequenos_usada": 200,
+      "rehash_ok": 435,
+      "scripts_rehash": 237,
+      "semente": 0,
+      "total_arquivos_rehash": 435
+    },
+    "segue_sem_cadeia_total": 2,
+    "sem_rehash_sha_recalculado_false": 16
+  }
+}

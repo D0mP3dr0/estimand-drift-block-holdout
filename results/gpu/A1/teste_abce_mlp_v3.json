@@ -1,0 +1,307 @@
+{
+  "teste": "A1_overfit_gradiente_saturacao_correlacao_1batch_REAL_mlp",
+  "decoder": "AffineDecoderV3",
+  "tipo_modelo": "mlp",
+  "device": "cuda",
+  "cidade": "bauru",
+  "quadrante": "Q2",
+  "max_nodes": 100000,
+  "n_steps": 300,
+  "lr": 0.003,
+  "batch_size_pedido": 8192,
+  "batch_size_real": 8192,
+  "n_params_treinaveis": 1812515,
+  "tempo_treino_300_passos_s": 2.839315371005796,
+  "a_overfit_1_batch": {
+    "loss_primeiros_5_media": 74.34064636230468,
+    "loss_ultimos_5_media": 0.9624857783317566,
+    "razao_final_sobre_inicial": 0.012946965427782406,
+    "criterio": "razao <= 0.10",
+    "passa": true,
+    "loss_trajetoria_amostrada": [
+      103.7036361694336,
+      8.543353080749512,
+      3.2926390171051025,
+      2.0777382850646973,
+      1.6952694654464722,
+      1.501462459564209,
+      1.383496642112732,
+      1.270092248916626,
+      1.1999931335449219,
+      1.1533809900283813,
+      1.1175559759140015,
+      1.06319260597229,
+      1.0344812870025635,
+      1.008065938949585,
+      0.9728327393531799,
+      0.9419753551483154
+    ]
+  },
+  "b_gradiente_por_camada": {
+    "passos_medidos": [
+      0,
+      20,
+      40,
+      60,
+      80,
+      100,
+      120,
+      140,
+      160,
+      180,
+      200,
+      220,
+      240,
+      260,
+      280,
+      299
+    ],
+    "grad_norm_por_parametro_ultimo_passo_medido": {
+      "encoder.0.weight": 3.5614829063415527,
+      "encoder.0.bias": 1.975625139039039e-07,
+      "encoder.1.weight": 0.039295658469200134,
+      "encoder.1.bias": 0.04870299622416496,
+      "encoder.4.weight": 0.3422622084617615,
+      "encoder.4.bias": 1.4919501190036044e-09,
+      "encoder.5.weight": 0.023539042100310326,
+      "encoder.5.bias": 0.03491801396012306,
+      "encoder.8.weight": 0.23505258560180664,
+      "encoder.8.bias": 1.4560550543052386e-09,
+      "encoder.9.weight": 0.016522221267223358,
+      "encoder.9.bias": 0.026028942316770554,
+      "encoder.12.weight": 0.18986299633979797,
+      "encoder.12.bias": 1.226811319199328e-09,
+      "encoder.13.weight": 0.012945865280926228,
+      "encoder.13.bias": 0.024663973599672318,
+      "encoder.16.weight": 0.24692955613136292,
+      "encoder.16.bias": 2.1473469669075484e-09,
+      "encoder.17.weight": 0.024299481883645058,
+      "encoder.17.bias": 0.04566146060824394,
+      "decoder.layers.0.weight": 0.3429069221019745,
+      "decoder.layers.0.bias": 0.036487262696027756,
+      "decoder.layers.3.weight": 1.111511468887329,
+      "decoder.layers.3.bias": 0.2346615046262741,
+      "decoder.layers.6.weight": 2.0418546199798584,
+      "decoder.layers.6.bias": 0.5788498520851135,
+      "decoder.path_loss_head.weight": null,
+      "decoder.path_loss_head.bias": null,
+      "decoder.rssi_head.weight": null,
+      "decoder.rssi_head.bias": null,
+      "decoder.coverage_head.weight": null,
+      "decoder.coverage_head.bias": null
+    },
+    "camadas_ATIVAS_com_gradiente_zero_em_todas_as_medicoes": [],
+    "camadas_mortas_conhecidas_confirmadas_zero": [],
+    "dead_heads_esperadas_por_design": [
+      "decoder.coverage_head.bias",
+      "decoder.coverage_head.weight",
+      "decoder.path_loss_head.bias",
+      "decoder.path_loss_head.weight",
+      "decoder.rssi_head.bias",
+      "decoder.rssi_head.weight"
+    ],
+    "gradiente_vivo_fora_das_cabecas_mortas": true,
+    "passa": true
+  },
+  "c_saturacao": {
+    "por_passo_amostrado": [
+      {
+        "step": 0,
+        "canal0_frac_pre_ativ_abs_gt4": 0.0,
+        "canal1_frac_pre_ativ_abs_gt4": 0.0,
+        "canal2_frac_pre_ativ_abs_gt4": 0.0,
+        "canal3_frac_pre_ativ_abs_gt4": 0.0,
+        "canal4_frac_sigmoid_saturado_lt01_ou_gt099": 0.0,
+        "canal4_min": 0.44918590784072876,
+        "canal4_max": 0.5500097274780273
+      },
+      {
+        "step": 20,
+        "canal0_frac_pre_ativ_abs_gt4": 0.0,
+        "canal1_frac_pre_ativ_abs_gt4": 0.0,
+        "canal2_frac_pre_ativ_abs_gt4": 0.0,
+        "canal3_frac_pre_ativ_abs_gt4": 0.0,
+        "canal4_frac_sigmoid_saturado_lt01_ou_gt099": 0.0,
+        "canal4_min": 0.2191256433725357,
+        "canal4_max": 0.5068913102149963
+      },
+      {
+        "step": 40,
+        "canal0_frac_pre_ativ_abs_gt4": 0.0,
+        "canal1_frac_pre_ativ_abs_gt4": 0.0,
+        "canal2_frac_pre_ativ_abs_gt4": 0.0,
+        "canal3_frac_pre_ativ_abs_gt4": 0.0,
+        "canal4_frac_sigmoid_saturado_lt01_ou_gt099": 0.0,
+        "canal4_min": 0.14139893651008606,
+        "canal4_max": 0.3223519027233124
+      },
+      {
+        "step": 60,
+        "canal0_frac_pre_ativ_abs_gt4": 0.0,
+        "canal1_frac_pre_ativ_abs_gt4": 0.0,
+        "canal2_frac_pre_ativ_abs_gt4": 0.0,
+        "canal3_frac_pre_ativ_abs_gt4": 0.0,
+        "canal4_frac_sigmoid_saturado_lt01_ou_gt099": 0.0,
+        "canal4_min": 0.10106154531240463,
+        "canal4_max": 0.2594054639339447
+      },
+      {
+        "step": 80,
+        "canal0_frac_pre_ativ_abs_gt4": 0.0,
+        "canal1_frac_pre_ativ_abs_gt4": 0.0,
+        "canal2_frac_pre_ativ_abs_gt4": 0.0,
+        "canal3_frac_pre_ativ_abs_gt4": 0.0,
+        "canal4_frac_sigmoid_saturado_lt01_ou_gt099": 0.0,
+        "canal4_min": 0.07929056137800217,
+        "canal4_max": 0.20990486443042755
+      },
+      {
+        "step": 100,
+        "canal0_frac_pre_ativ_abs_gt4": 0.0,
+        "canal1_frac_pre_ativ_abs_gt4": 0.0,
+        "canal2_frac_pre_ativ_abs_gt4": 0.0,
+        "canal3_frac_pre_ativ_abs_gt4": 0.0,
+        "canal4_frac_sigmoid_saturado_lt01_ou_gt099": 0.0,
+        "canal4_min": 0.0672590583562851,
+        "canal4_max": 0.1779441237449646
+      },
+      {
+        "step": 120,
+        "canal0_frac_pre_ativ_abs_gt4": 0.0,
+        "canal1_frac_pre_ativ_abs_gt4": 0.0,
+        "canal2_frac_pre_ativ_abs_gt4": 0.0,
+        "canal3_frac_pre_ativ_abs_gt4": 0.0,
+        "canal4_frac_sigmoid_saturado_lt01_ou_gt099": 0.0,
+        "canal4_min": 0.059279587119817734,
+        "canal4_max": 0.14896850287914276
+      },
+      {
+        "step": 140,
+        "canal0_frac_pre_ativ_abs_gt4": 0.0,
+        "canal1_frac_pre_ativ_abs_gt4": 0.0,
+        "canal2_frac_pre_ativ_abs_gt4": 0.0,
+        "canal3_frac_pre_ativ_abs_gt4": 0.0,
+        "canal4_frac_sigmoid_saturado_lt01_ou_gt099": 0.0,
+        "canal4_min": 0.052901990711688995,
+        "canal4_max": 0.13031789660453796
+      },
+      {
+        "step": 160,
+        "canal0_frac_pre_ativ_abs_gt4": 0.0,
+        "canal1_frac_pre_ativ_abs_gt4": 0.0,
+        "canal2_frac_pre_ativ_abs_gt4": 0.0,
+        "canal3_frac_pre_ativ_abs_gt4": 0.0,
+        "canal4_frac_sigmoid_saturado_lt01_ou_gt099": 0.0,
+        "canal4_min": 0.046958908438682556,
+        "canal4_max": 0.11499284952878952
+      },
+      {
+        "step": 180,
+        "canal0_frac_pre_ativ_abs_gt4": 0.0,
+        "canal1_frac_pre_ativ_abs_gt4": 0.0,
+        "canal2_frac_pre_ativ_abs_gt4": 0.0,
+        "canal3_frac_pre_ativ_abs_gt4": 0.0,
+        "canal4_frac_sigmoid_saturado_lt01_ou_gt099": 0.0,
+        "canal4_min": 0.042040131986141205,
+        "canal4_max": 0.11333607882261276
+      },
+      {
+        "step": 200,
+        "canal0_frac_pre_ativ_abs_gt4": 0.0,
+        "canal1_frac_pre_ativ_abs_gt4": 0.0,
+        "canal2_frac_pre_ativ_abs_gt4": 0.0,
+        "canal3_frac_pre_ativ_abs_gt4": 0.0,
+        "canal4_frac_sigmoid_saturado_lt01_ou_gt099": 0.0,
+        "canal4_min": 0.0367707833647728,
+        "canal4_max": 0.10413229465484619
+      },
+      {
+        "step": 220,
+        "canal0_frac_pre_ativ_abs_gt4": 0.0,
+        "canal1_frac_pre_ativ_abs_gt4": 0.0,
+        "canal2_frac_pre_ativ_abs_gt4": 0.0,
+        "canal3_frac_pre_ativ_abs_gt4": 0.0,
+        "canal4_frac_sigmoid_saturado_lt01_ou_gt099": 0.0,
+        "canal4_min": 0.033911753445863724,
+        "canal4_max": 0.10598582774400711
+      },
+      {
+        "step": 240,
+        "canal0_frac_pre_ativ_abs_gt4": 0.0,
+        "canal1_frac_pre_ativ_abs_gt4": 0.0,
+        "canal2_frac_pre_ativ_abs_gt4": 0.0,
+        "canal3_frac_pre_ativ_abs_gt4": 0.0,
+        "canal4_frac_sigmoid_saturado_lt01_ou_gt099": 0.0,
+        "canal4_min": 0.0319112129509449,
+        "canal4_max": 0.09457332640886307
+      },
+      {
+        "step": 260,
+        "canal0_frac_pre_ativ_abs_gt4": 0.0,
+        "canal1_frac_pre_ativ_abs_gt4": 0.0,
+        "canal2_frac_pre_ativ_abs_gt4": 0.0,
+        "canal3_frac_pre_ativ_abs_gt4": 0.0,
+        "canal4_frac_sigmoid_saturado_lt01_ou_gt099": 0.0,
+        "canal4_min": 0.030393309891223907,
+        "canal4_max": 0.09706360846757889
+      },
+      {
+        "step": 280,
+        "canal0_frac_pre_ativ_abs_gt4": 0.0,
+        "canal1_frac_pre_ativ_abs_gt4": 0.0,
+        "canal2_frac_pre_ativ_abs_gt4": 0.0,
+        "canal3_frac_pre_ativ_abs_gt4": 0.0,
+        "canal4_frac_sigmoid_saturado_lt01_ou_gt099": 0.0,
+        "canal4_min": 0.028728226199746132,
+        "canal4_max": 0.08775518089532852
+      },
+      {
+        "step": 299,
+        "canal0_frac_pre_ativ_abs_gt4": 0.0,
+        "canal1_frac_pre_ativ_abs_gt4": 0.0,
+        "canal2_frac_pre_ativ_abs_gt4": 0.0,
+        "canal3_frac_pre_ativ_abs_gt4": 0.0,
+        "canal4_frac_sigmoid_saturado_lt01_ou_gt099": 0.0,
+        "canal4_min": 0.027317548170685768,
+        "canal4_max": 0.08429540693759918
+      }
+    ],
+    "final": {
+      "canal0_frac_pre_ativ_abs_gt4": 0.0,
+      "canal1_frac_pre_ativ_abs_gt4": 0.0,
+      "canal2_frac_pre_ativ_abs_gt4": 0.0,
+      "canal3_frac_pre_ativ_abs_gt4": 0.0,
+      "canal4_frac_sigmoid_saturado_lt01_ou_gt099": 0.0,
+      "canal4_min": 0.027035929262638092,
+      "canal4_max": 0.07729082554578781
+    },
+    "fracao_no_clamp_fisico_final_por_canal": {
+      "path_loss_total": 0.0,
+      "path_loss_vegetation": 0.3299560546875,
+      "path_loss_terrain": 0.0,
+      "rssi": 0.0,
+      "coverage_prob": 0.0
+    },
+    "canais_0a3_pre_ativacao_ok_zero_saturado": true,
+    "canais_0a3_clamp_fisico_ok_quase_zero": false,
+    "criterio": "fracao saturada ~0 nos canais 0-3",
+    "passa": false
+  },
+  "e_correlacao_feature_x_alvo": {
+    "shape_features_x_alvos": [
+      18,
+      5
+    ],
+    "corr_max_abs": 0.8342026472091675,
+    "achados_corr_gt_0.98": [],
+    "criterio": "nenhum |corr| > 0.98 sem explicacao fisica",
+    "passa": true
+  },
+  "veredito_script": {
+    "a_overfit": "passa",
+    "b_gradiente": "passa",
+    "c_saturacao": "bloqueia",
+    "e_correlacao": "passa"
+  },
+  "tempo_total_s": 11.278518350998638
+}

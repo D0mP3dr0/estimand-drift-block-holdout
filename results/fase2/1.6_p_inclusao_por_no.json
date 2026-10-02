@@ -1,0 +1,1070 @@
+{
+ "id": "1.6",
+ "pergunta": "Qual e a probabilidade de inclusao por no p_i^te = P(i em V_te(sigma)) e p_i^va, e a versao condicional ao bloco de i ser sorteado teste p_i|te = P(i retido | bloco(i) em teste)? O perfil empirico por distancia a borda e por classe k(i) (numero de blocos vizinhos laterais dentro de b=2km) reproduz a forma fechada hipergeometrica (k_te-1)_k/(N-1)_k?",
+ "alegacao": "estimando formal do artigo (D6-i): base para 2.3 e para o par. de definicao no Sec.3",
+ "criterio": {
+  "id": "1.6",
+  "pergunta": "Qual e a probabilidade de inclusao por no p_i^te = P(i em V_te(sigma)) e p_i^va, e a versao condicional ao bloco de i ser sorteado teste p_i|te = P(i retido | bloco(i) em teste)? O perfil empirico por distancia a borda e por classe k(i) (numero de blocos vizinhos laterais dentro de b=2km) reproduz a forma fechada hipergeometrica (k_te-1)_k/(N-1)_k?",
+  "alegacao": "estimando formal do artigo (D6-i): base para 2.3 e para o par. de definicao no Sec.3",
+  "hipotese": "sob amostragem uniforme sem reposicao dos blocos (70/15/15) com apara por buffer b=2km, a retencao nodal condicional ao bloco ser teste segue a lei hipergeometrica dos vizinhos que tambem precisam ser teste para o no nao ser aparado; a media de p_i|te sobre os nos de blocos de teste reproduz a referencia nodal do teste 1.8 (200 seeds, 0.449-0.453)",
+  "metodo_fixado": "4 celulas (bauru,campinas,lins,sorocaba Q1, g10b2, N=132 blocos, k_te=20 blocos teste — reconstrucao identica ao 1.8 via build_synthetic_grid+assign_groups+split split_espacial_3vias, cKDTree exato); 100 seeds aleatorios RandomState(20260927).randint(1e6,size=100); por no: contadores int32 de retencao em teste e em validacao, e contador de quantas vezes o bloco do no foi sorteado teste (nunca guardar mascaras persistentes; so contadores). Classe k(i) = soma de 4 indicadores (dx<b, g-dx<b, dy<b, g-dy<b) restritos a existir bloco vizinho naquela direcao (looking up o id do bloco vizinho no conjunto de blocos existentes). Distancia a borda = min(dx,g-dx,dy,g-dy) em km, bins de 0.25 km de 0 a 5 km.",
+  "forma_fechada": "P(k vizinhos especificados de i todos teste | bloco de i teste) = perm(k_te-1,k)/perm(N-1,k) (fatorial decrescente, hipergeometrica); p_i^te = (k_te/N) x p_i|te (identidade exata pois P(bloco de i teste)=k_te/N e deterministico a cada sorteio)",
+  "limiar_aceitacao": "media de p_i|te sobre os nos de blocos de teste reproduz a retencao nodal do 1.8 (0.449-0.453) a <0.5% relativo; perfil empirico por classe k(i) fica a <2% absoluto (nao relativo) da forma fechada em k=0,1,2",
+  "refutacao": "se a media de p_i|te ficar fora de [0.449,0.453]*(1+-0.005) OU se |empirico(k)-forma_fechada(k)| >= 0.02 (2 pontos percentuais absolutos) em k=0, 1 ou 2 em qualquer das 4 celulas, o formalismo hipergeometrico e declarado insuficiente e a definicao do estimando (2.3) nao pode se apoiar nele sem nota",
+  "fixado_em": "2026-09-25T00:00:00-03:00 (antes de rodar scripts/v3_1.6_2.3_estimando_formal.py)"
+ },
+ "metodo": "4 celulas Q1 g10b2 (N=132,k_te=20), 100 seeds aleatorios RandomState(20260927), split_espacial_3vias identico ao 1.8 (cKDTree exato); contadores int32 por no; classe k(i)=vizinhos laterais existentes a <2km (existe() com checagem de limites, corrigida -- ver errata); forma fechada hipergeometrica perm(k_te-1,k)/perm(N-1,k) e sanduiche perm(k_te-1,k)/perm(N-1,k) <= p_i|te <= perm(N-1-k_tr,k)/perm(N-1,k)",
+ "insumos": [
+  {
+   "caminho": "/trabalho/TOPO_RF_DOWNLOAD_DRIVE/graph_data_v3/transfer_dataset_bauru_v19_Q1_enriched_cftudo.pt",
+   "sha256": "nao_recalculado_ja_verificado_em_2.1_3.1"
+  },
+  {
+   "caminho": "/trabalho/TOPO_RF_DOWNLOAD_DRIVE/graph_data_v3/transfer_dataset_campinas_v19_Q1_enriched_cftudo.pt",
+   "sha256": "nao_recalculado_ja_verificado_em_2.1_3.1"
+  },
+  {
+   "caminho": "/trabalho/TOPO_RF_DOWNLOAD_DRIVE/graph_data_v3/transfer_dataset_lins_v19_Q1_enriched_cftudo.pt",
+   "sha256": "nao_recalculado_ja_verificado_em_2.1_3.1"
+  },
+  {
+   "caminho": "/trabalho/TOPO_RF_DOWNLOAD_DRIVE/graph_data_v3/transfer_dataset_sorocaba_v19_Q1_enriched_cftudo.pt",
+   "sha256": "nao_recalculado_ja_verificado_em_2.1_3.1"
+  }
+ ],
+ "nota_seeds_compartilhados": "as 4 celulas usam a MESMA malha de N=132 blocos (mesmo assign_groups com grid_km=10) e os MESMOS 100 seeds (RandomState(20260927) gerado uma unica vez, reusado em processar_celula para cada cidade). A concordancia entre celulas nao mede erro Monte Carlo nem e replicacao independente; e a MESMA permutacao de blocos aplicada a 4 geometrias diferentes.",
+ "errata": {
+  "data": "2026-09-26",
+  "motivo": "parecer forum-fisico-matematico (fase2/fismat_secao3_formal.md, bloco 1/5): a primeira rodada de classe_k_e_dist_borda.existe(gx,gy) computava ids=gx*max_y+gy SEM checar 0<=gy<max_y (nem 0<=gx<max_x); nos da fileira inferior (gy=0) com dy<b 'encontravam' o bloco (gx-1,max_y-1) -- um VIZINHO FANTASMA -- inflando k(i) em 211.185 nos por celula (fismat_k_corrigido_bauru.json: 124.618 nos k=1 verdadeiros viravam k=2 e nos k=0 viravam k=1). Isso respondia por 69% do excesso em k=1 (0,0171 de 0,0246 pontos absolutos). Corrigido: existe() agora checa limites nas duas direcoes (gx e gy) antes de testar a existencia do bloco vizinho.",
+  "recomputado_nesta_rodada": true,
+  "limitacao_declarada": "k(i) aqui conta so os 4 vizinhos LATERAIS (nao diagonais); e um proxy de m(i) da Proposicao prop:inclusion do parecer (que conta blocos da vizinhanca-8 por distancia a NO, incluindo diagonais). Por isso o sanduiche (ii) (k_te-1)_k/(N-1)_k <= p_i|te <= (N-1-k_tr)_k/(N-1)_k usa k(i) lateral-only como aproximacao do m(i) geometrico exato; a parcela restante do excesso em k=1/k=2 (discretizacao da face e segunda ordem do vizinho de validacao) esta quantificada em fismat_k_corrigido_bauru.json / fismat_inclusao_decomp.json, nao recomputada aqui por escopo (seria preciso reclassificar por NO, com diagonais, o que muda o script alem do pedido de correcao).",
+  "residual_nao_explicado_aprox": "~0,0075 de 0,0246 (31%) em k=1, ver fismat_inclusao_decomp.json"
+ },
+ "por_celula": {
+  "bauru_Q1": {
+   "celula": "bauru_Q1",
+   "n_blocos": 132,
+   "k_te_blocos": 20,
+   "k_tr_blocos": 92,
+   "n_nos_dominio": 12960000,
+   "media_p_cond_te_geral": 0.44991645179917705,
+   "identidade_p_te_vs_k_sobre_N_vezes_p_cond": {
+    "k_te_sobre_N": 0.15151515151515152,
+    "p_te_medio_dominio": 0.06791308179012345,
+    "k_te_sobre_N_vezes_media_p_cond": 0.06816915936351167
+   },
+   "perfil_por_classe_k": {
+    "0": {
+     "n_nos": 4858142,
+     "frac_nos": 0.37485663580246914,
+     "media_p_cond_te": 1.0,
+     "forma_fechada": 1.0,
+     "cota_inferior": 1.0,
+     "cota_superior": 1.0,
+     "abs_diff": 0.0,
+     "dentro_do_sanduiche": true
+    },
+    "1": {
+     "n_nos": 6154301,
+     "frac_nos": 0.47486890432098766,
+     "media_p_cond_te": 0.15260690292897636,
+     "forma_fechada": 0.1450381679389313,
+     "cota_inferior": 0.1450381679389313,
+     "cota_superior": 0.29770992366412213,
+     "abs_diff": 0.007568734990045067,
+     "dentro_do_sanduiche": true
+    },
+    "2": {
+     "n_nos": 1947557,
+     "frac_nos": 0.1502744598765432,
+     "media_p_cond_te": 0.010555170373849418,
+     "forma_fechada": 0.02008220786846741,
+     "cota_inferior": 0.02008220786846741,
+     "cota_superior": 0.08702290076335878,
+     "abs_diff": 0.009527037494617993,
+     "dentro_do_sanduiche": false
+    },
+    "3": {
+     "n_nos": 0,
+     "media_p_cond_te": null,
+     "forma_fechada": null,
+     "cota_inferior": null,
+     "cota_superior": null,
+     "abs_diff": null,
+     "dentro_do_sanduiche": null
+    },
+    "4": {
+     "n_nos": 0,
+     "media_p_cond_te": null,
+     "forma_fechada": null,
+     "cota_inferior": null,
+     "cota_superior": null,
+     "abs_diff": null,
+     "dentro_do_sanduiche": null
+    }
+   },
+   "perfil_por_distancia_borda_km": [
+    {
+     "bin_km": [
+      0.0,
+      0.25
+     ],
+     "n_nos": 1303628,
+     "media_p_te": 0.01848400003682032,
+     "media_p_cond_te": 0.12021307436832789
+    },
+    {
+     "bin_km": [
+      0.25,
+      0.5
+     ],
+     "n_nos": 1221458,
+     "media_p_te": 0.01920941203054055,
+     "media_p_cond_te": 0.12504824030015346
+    },
+    {
+     "bin_km": [
+      0.5,
+      0.75
+     ],
+     "n_nos": 1163189,
+     "media_p_te": 0.02019682098094119,
+     "media_p_cond_te": 0.1315763559395464
+    },
+    {
+     "bin_km": [
+      0.75,
+      1.0
+     ],
+     "n_nos": 1095108,
+     "media_p_te": 0.021130947815192654,
+     "media_p_cond_te": 0.13791044610056533
+    },
+    {
+     "bin_km": [
+      1.0,
+      1.25
+     ],
+     "n_nos": 995292,
+     "media_p_te": 0.02272916892730978,
+     "media_p_cond_te": 0.14817915977992735
+    },
+    {
+     "bin_km": [
+      1.25,
+      1.5
+     ],
+     "n_nos": 939238,
+     "media_p_te": 0.02423796737355175,
+     "media_p_cond_te": 0.15810095535641613
+    },
+    {
+     "bin_km": [
+      1.5,
+      1.75
+     ],
+     "n_nos": 877550,
+     "media_p_te": 0.025564754145062957,
+     "media_p_cond_te": 0.16686261794951812
+    },
+    {
+     "bin_km": [
+      1.75,
+      2.0
+     ],
+     "n_nos": 799693,
+     "media_p_te": 0.03769450276543624,
+     "media_p_cond_te": 0.2464796585135924
+    },
+    {
+     "bin_km": [
+      2.0,
+      2.25
+     ],
+     "n_nos": 739029,
+     "media_p_te": 0.15095921810916757,
+     "media_p_cond_te": 1.0
+    },
+    {
+     "bin_km": [
+      2.25,
+      2.5
+     ],
+     "n_nos": 680570,
+     "media_p_te": 0.1510310181171665,
+     "media_p_cond_te": 1.0
+    },
+    {
+     "bin_km": [
+      2.5,
+      2.75
+     ],
+     "n_nos": 604823,
+     "media_p_te": 0.15093022256098063,
+     "media_p_cond_te": 1.0
+    },
+    {
+     "bin_km": [
+      2.75,
+      3.0
+     ],
+     "n_nos": 539842,
+     "media_p_te": 0.15076307512198014,
+     "media_p_cond_te": 1.0
+    },
+    {
+     "bin_km": [
+      3.0,
+      3.25
+     ],
+     "n_nos": 474944,
+     "media_p_te": 0.15034919906346852,
+     "media_p_cond_te": 1.0
+    },
+    {
+     "bin_km": [
+      3.25,
+      3.5
+     ],
+     "n_nos": 403078,
+     "media_p_te": 0.1504575293119446,
+     "media_p_cond_te": 1.0
+    },
+    {
+     "bin_km": [
+      3.5,
+      3.75
+     ],
+     "n_nos": 342740,
+     "media_p_te": 0.15044441850965745,
+     "media_p_cond_te": 1.0
+    },
+    {
+     "bin_km": [
+      3.75,
+      4.0
+     ],
+     "n_nos": 282296,
+     "media_p_te": 0.15059667866353046,
+     "media_p_cond_te": 1.0
+    },
+    {
+     "bin_km": [
+      4.0,
+      4.25
+     ],
+     "n_nos": 217076,
+     "media_p_te": 0.15046237262525566,
+     "media_p_cond_te": 1.0
+    },
+    {
+     "bin_km": [
+      4.25,
+      4.5
+     ],
+     "n_nos": 155316,
+     "media_p_te": 0.1503468412784259,
+     "media_p_cond_te": 1.0
+    },
+    {
+     "bin_km": [
+      4.5,
+      4.75
+     ],
+     "n_nos": 94295,
+     "media_p_te": 0.1504210191420542,
+     "media_p_cond_te": 1.0
+    },
+    {
+     "bin_km": [
+      4.75,
+      5.0
+     ],
+     "n_nos": 30835,
+     "media_p_te": 0.15058180638884386,
+     "media_p_cond_te": 1.0
+    }
+   ],
+   "variancia_entre_sorteios_n_te": {
+    "media": 880153.54,
+    "var": 9201660431.564041,
+    "dp": 95925.28567361184,
+    "n_sorteios": 100
+   },
+   "tempo_1_6_s": 409.68454122543335
+  },
+  "campinas_Q1": {
+   "celula": "campinas_Q1",
+   "n_blocos": 132,
+   "k_te_blocos": 20,
+   "k_tr_blocos": 92,
+   "n_nos_dominio": 12960000,
+   "media_p_cond_te_geral": 0.44804127508280606,
+   "identidade_p_te_vs_k_sobre_N_vezes_p_cond": {
+    "k_te_sobre_N": 0.15151515151515152,
+    "p_te_medio_dominio": 0.06759465895061728,
+    "k_te_sobre_N_vezes_media_p_cond": 0.06788504167921304
+   },
+   "perfil_por_classe_k": {
+    "0": {
+     "n_nos": 4845485,
+     "frac_nos": 0.37388001543209876,
+     "media_p_cond_te": 1.0,
+     "forma_fechada": 1.0,
+     "cota_inferior": 1.0,
+     "cota_superior": 1.0,
+     "abs_diff": 0.0,
+     "dentro_do_sanduiche": true
+    },
+    "1": {
+     "n_nos": 6158853,
+     "frac_nos": 0.47522013888888887,
+     "media_p_cond_te": 0.1510093577834541,
+     "forma_fechada": 0.1450381679389313,
+     "cota_inferior": 0.1450381679389313,
+     "cota_superior": 0.29770992366412213,
+     "abs_diff": 0.005971189844522801,
+     "dentro_do_sanduiche": true
+    },
+    "2": {
+     "n_nos": 1955662,
+     "frac_nos": 0.15089984567901235,
+     "media_p_cond_te": 0.0100254430006203,
+     "forma_fechada": 0.02008220786846741,
+     "cota_inferior": 0.02008220786846741,
+     "cota_superior": 0.08702290076335878,
+     "abs_diff": 0.010056764867847111,
+     "dentro_do_sanduiche": false
+    },
+    "3": {
+     "n_nos": 0,
+     "media_p_cond_te": null,
+     "forma_fechada": null,
+     "cota_inferior": null,
+     "cota_superior": null,
+     "abs_diff": null,
+     "dentro_do_sanduiche": null
+    },
+    "4": {
+     "n_nos": 0,
+     "media_p_cond_te": null,
+     "forma_fechada": null,
+     "cota_inferior": null,
+     "cota_superior": null,
+     "abs_diff": null,
+     "dentro_do_sanduiche": null
+    }
+   },
+   "perfil_por_distancia_borda_km": [
+    {
+     "bin_km": [
+      0.0,
+      0.25
+     ],
+     "n_nos": 1305798,
+     "media_p_te": 0.018443863445954122,
+     "media_p_cond_te": 0.12004549890156892
+    },
+    {
+     "bin_km": [
+      0.25,
+      0.5
+     ],
+     "n_nos": 1223805,
+     "media_p_te": 0.019136610816265665,
+     "media_p_cond_te": 0.1246210535729941
+    },
+    {
+     "bin_km": [
+      0.5,
+      0.75
+     ],
+     "n_nos": 1165263,
+     "media_p_te": 0.0201273103153537,
+     "media_p_cond_te": 0.13114436567938118
+    },
+    {
+     "bin_km": [
+      0.75,
+      1.0
+     ],
+     "n_nos": 1098753,
+     "media_p_te": 0.021240788421055506,
+     "media_p_cond_te": 0.13873488275503582
+    },
+    {
+     "bin_km": [
+      1.0,
+      1.25
+     ],
+     "n_nos": 994858,
+     "media_p_te": 0.022544222391537288,
+     "media_p_cond_te": 0.14703717755510914
+    },
+    {
+     "bin_km": [
+      1.25,
+      1.5
+     ],
+     "n_nos": 939749,
+     "media_p_te": 0.024145553759567718,
+     "media_p_cond_te": 0.15759575811228674
+    },
+    {
+     "bin_km": [
+      1.5,
+      1.75
+     ],
+     "n_nos": 878939,
+     "media_p_te": 0.02558483580771817,
+     "media_p_cond_te": 0.1669139693445392
+    },
+    {
+     "bin_km": [
+      1.75,
+      2.0
+     ],
+     "n_nos": 801468,
+     "media_p_te": 0.03587730264963792,
+     "media_p_cond_te": 0.23476915096187137
+    },
+    {
+     "bin_km": [
+      2.0,
+      2.25
+     ],
+     "n_nos": 739847,
+     "media_p_te": 0.15094668221943186,
+     "media_p_cond_te": 1.0
+    },
+    {
+     "bin_km": [
+      2.25,
+      2.5
+     ],
+     "n_nos": 675962,
+     "media_p_te": 0.15072538101254213,
+     "media_p_cond_te": 1.0
+    },
+    {
+     "bin_km": [
+      2.5,
+      2.75
+     ],
+     "n_nos": 598019,
+     "media_p_te": 0.150539146749518,
+     "media_p_cond_te": 1.0
+    },
+    {
+     "bin_km": [
+      2.75,
+      3.0
+     ],
+     "n_nos": 533545,
+     "media_p_te": 0.1505201248254599,
+     "media_p_cond_te": 1.0
+    },
+    {
+     "bin_km": [
+      3.0,
+      3.25
+     ],
+     "n_nos": 473098,
+     "media_p_te": 0.15029776071765255,
+     "media_p_cond_te": 1.0
+    },
+    {
+     "bin_km": [
+      3.25,
+      3.5
+     ],
+     "n_nos": 403915,
+     "media_p_te": 0.15053588007377788,
+     "media_p_cond_te": 1.0
+    },
+    {
+     "bin_km": [
+      3.5,
+      3.75
+     ],
+     "n_nos": 343640,
+     "media_p_te": 0.15046420672797114,
+     "media_p_cond_te": 1.0
+    },
+    {
+     "bin_km": [
+      3.75,
+      4.0
+     ],
+     "n_nos": 283698,
+     "media_p_te": 0.15047324972329731,
+     "media_p_cond_te": 1.0
+    },
+    {
+     "bin_km": [
+      4.0,
+      4.25
+     ],
+     "n_nos": 217978,
+     "media_p_te": 0.15044614594133354,
+     "media_p_cond_te": 1.0
+    },
+    {
+     "bin_km": [
+      4.25,
+      4.5
+     ],
+     "n_nos": 156178,
+     "media_p_te": 0.1504634455557121,
+     "media_p_cond_te": 1.0
+    },
+    {
+     "bin_km": [
+      4.5,
+      4.75
+     ],
+     "n_nos": 94427,
+     "media_p_te": 0.15045347199423895,
+     "media_p_cond_te": 1.0
+    },
+    {
+     "bin_km": [
+      4.75,
+      5.0
+     ],
+     "n_nos": 31060,
+     "media_p_te": 0.1503544752092724,
+     "media_p_cond_te": 1.0
+    }
+   ],
+   "variancia_entre_sorteios_n_te": {
+    "media": 876026.78,
+    "var": 9752442983.304647,
+    "dp": 98754.45804268609,
+    "n_sorteios": 100
+   },
+   "tempo_1_6_s": 410.156361579895
+  },
+  "lins_Q1": {
+   "celula": "lins_Q1",
+   "n_blocos": 132,
+   "k_te_blocos": 20,
+   "k_tr_blocos": 92,
+   "n_nos_dominio": 12960000,
+   "media_p_cond_te_geral": 0.45095126326496404,
+   "identidade_p_te_vs_k_sobre_N_vezes_p_cond": {
+    "k_te_sobre_N": 0.15151515151515152,
+    "p_te_medio_dominio": 0.06810704089506173,
+    "k_te_sobre_N_vezes_media_p_cond": 0.06832594897954
+   },
+   "perfil_por_classe_k": {
+    "0": {
+     "n_nos": 4872088,
+     "frac_nos": 0.3759327160493827,
+     "media_p_cond_te": 1.0,
+     "forma_fechada": 1.0,
+     "cota_inferior": 1.0,
+     "cota_superior": 1.0,
+     "abs_diff": 0.0,
+     "dentro_do_sanduiche": true
+    },
+    "1": {
+     "n_nos": 6148766,
+     "frac_nos": 0.4744418209876543,
+     "media_p_cond_te": 0.15244928872139832,
+     "forma_fechada": 0.1450381679389313,
+     "cota_inferior": 0.1450381679389313,
+     "cota_superior": 0.29770992366412213,
+     "abs_diff": 0.007411120782467029,
+     "dentro_do_sanduiche": true
+    },
+    "2": {
+     "n_nos": 1939146,
+     "frac_nos": 0.14962546296296297,
+     "media_p_cond_te": 0.01033028831990788,
+     "forma_fechada": 0.02008220786846741,
+     "cota_inferior": 0.02008220786846741,
+     "cota_superior": 0.08702290076335878,
+     "abs_diff": 0.00975191954855953,
+     "dentro_do_sanduiche": false
+    },
+    "3": {
+     "n_nos": 0,
+     "media_p_cond_te": null,
+     "forma_fechada": null,
+     "cota_inferior": null,
+     "cota_superior": null,
+     "abs_diff": null,
+     "dentro_do_sanduiche": null
+    },
+    "4": {
+     "n_nos": 0,
+     "media_p_cond_te": null,
+     "forma_fechada": null,
+     "cota_inferior": null,
+     "cota_superior": null,
+     "abs_diff": null,
+     "dentro_do_sanduiche": null
+    }
+   },
+   "perfil_por_distancia_borda_km": [
+    {
+     "bin_km": [
+      0.0,
+      0.25
+     ],
+     "n_nos": 1300707,
+     "media_p_te": 0.018548966062303038,
+     "media_p_cond_te": 0.12059498132965614
+    },
+    {
+     "bin_km": [
+      0.25,
+      0.5
+     ],
+     "n_nos": 1219583,
+     "media_p_te": 0.019243454525030276,
+     "media_p_cond_te": 0.12515052325577752
+    },
+    {
+     "bin_km": [
+      0.5,
+      0.75
+     ],
+     "n_nos": 1160943,
+     "media_p_te": 0.020239822282403182,
+     "media_p_cond_te": 0.13177926451637492
+    },
+    {
+     "bin_km": [
+      0.75,
+      1.0
+     ],
+     "n_nos": 1092377,
+     "media_p_te": 0.021106696680724697,
+     "media_p_cond_te": 0.13783097290305663
+    },
+    {
+     "bin_km": [
+      1.0,
+      1.25
+     ],
+     "n_nos": 995117,
+     "media_p_te": 0.0228848668046069,
+     "media_p_cond_te": 0.14895009032232612
+    },
+    {
+     "bin_km": [
+      1.25,
+      1.5
+     ],
+     "n_nos": 937707,
+     "media_p_te": 0.024274394880277106,
+     "media_p_cond_te": 0.15824933529840793
+    },
+    {
+     "bin_km": [
+      1.5,
+      1.75
+     ],
+     "n_nos": 874461,
+     "media_p_te": 0.025429721851517678,
+     "media_p_cond_te": 0.16586434940837871
+    },
+    {
+     "bin_km": [
+      1.75,
+      2.0
+     ],
+     "n_nos": 800493,
+     "media_p_te": 0.037464574955683554,
+     "media_p_cond_te": 0.2450801853335466
+    },
+    {
+     "bin_km": [
+      2.0,
+      2.25
+     ],
+     "n_nos": 739672,
+     "media_p_te": 0.15108919899631187,
+     "media_p_cond_te": 1.0
+    },
+    {
+     "bin_km": [
+      2.25,
+      2.5
+     ],
+     "n_nos": 678361,
+     "media_p_te": 0.15105496925678213,
+     "media_p_cond_te": 1.0
+    },
+    {
+     "bin_km": [
+      2.5,
+      2.75
+     ],
+     "n_nos": 605658,
+     "media_p_te": 0.15112050034838143,
+     "media_p_cond_te": 1.0
+    },
+    {
+     "bin_km": [
+      2.75,
+      3.0
+     ],
+     "n_nos": 544782,
+     "media_p_te": 0.15108362611099485,
+     "media_p_cond_te": 1.0
+    },
+    {
+     "bin_km": [
+      3.0,
+      3.25
+     ],
+     "n_nos": 481054,
+     "media_p_te": 0.15074147600893037,
+     "media_p_cond_te": 1.0
+    },
+    {
+     "bin_km": [
+      3.25,
+      3.5
+     ],
+     "n_nos": 408548,
+     "media_p_te": 0.15069913449582423,
+     "media_p_cond_te": 1.0
+    },
+    {
+     "bin_km": [
+      3.5,
+      3.75
+     ],
+     "n_nos": 344406,
+     "media_p_te": 0.15048201831559266,
+     "media_p_cond_te": 1.0
+    },
+    {
+     "bin_km": [
+      3.75,
+      4.0
+     ],
+     "n_nos": 280480,
+     "media_p_te": 0.15047154877353108,
+     "media_p_cond_te": 1.0
+    },
+    {
+     "bin_km": [
+      4.0,
+      4.25
+     ],
+     "n_nos": 216542,
+     "media_p_te": 0.1505701434363772,
+     "media_p_cond_te": 1.0
+    },
+    {
+     "bin_km": [
+      4.25,
+      4.5
+     ],
+     "n_nos": 154815,
+     "media_p_te": 0.1503877531246972,
+     "media_p_cond_te": 1.0
+    },
+    {
+     "bin_km": [
+      4.5,
+      4.75
+     ],
+     "n_nos": 93376,
+     "media_p_te": 0.15030521761480467,
+     "media_p_cond_te": 1.0
+    },
+    {
+     "bin_km": [
+      4.75,
+      5.0
+     ],
+     "n_nos": 30918,
+     "media_p_te": 0.15065528171291803,
+     "media_p_cond_te": 1.0
+    }
+   ],
+   "variancia_entre_sorteios_n_te": {
+    "media": 882667.25,
+    "var": 8698716156.128788,
+    "dp": 93266.90815143808,
+    "n_sorteios": 100
+   },
+   "tempo_1_6_s": 412.13137793540955
+  },
+  "sorocaba_Q1": {
+   "celula": "sorocaba_Q1",
+   "n_blocos": 132,
+   "k_te_blocos": 20,
+   "k_tr_blocos": 92,
+   "n_nos_dominio": 12960000,
+   "media_p_cond_te_geral": 0.44744521744208576,
+   "identidade_p_te_vs_k_sobre_N_vezes_p_cond": {
+    "k_te_sobre_N": 0.15151515151515152,
+    "p_te_medio_dominio": 0.06746741049382717,
+    "k_te_sobre_N_vezes_media_p_cond": 0.06779472991546755
+   },
+   "perfil_por_classe_k": {
+    "0": {
+     "n_nos": 4835160,
+     "frac_nos": 0.3730833333333333,
+     "media_p_cond_te": 1.0,
+     "forma_fechada": 1.0,
+     "cota_inferior": 1.0,
+     "cota_superior": 1.0,
+     "abs_diff": 0.0,
+     "dentro_do_sanduiche": true
+    },
+    "1": {
+     "n_nos": 6161780,
+     "frac_nos": 0.475445987654321,
+     "media_p_cond_te": 0.15153689102598092,
+     "forma_fechada": 0.1450381679389313,
+     "cota_inferior": 0.1450381679389313,
+     "cota_superior": 0.29770992366412213,
+     "abs_diff": 0.006498723087049629,
+     "dentro_do_sanduiche": true
+    },
+    "2": {
+     "n_nos": 1963060,
+     "frac_nos": 0.15147067901234568,
+     "media_p_cond_te": 0.010110996060877646,
+     "forma_fechada": 0.02008220786846741,
+     "cota_inferior": 0.02008220786846741,
+     "cota_superior": 0.08702290076335878,
+     "abs_diff": 0.009971211807589765,
+     "dentro_do_sanduiche": false
+    },
+    "3": {
+     "n_nos": 0,
+     "media_p_cond_te": null,
+     "forma_fechada": null,
+     "cota_inferior": null,
+     "cota_superior": null,
+     "abs_diff": null,
+     "dentro_do_sanduiche": null
+    },
+    "4": {
+     "n_nos": 0,
+     "media_p_cond_te": null,
+     "forma_fechada": null,
+     "cota_inferior": null,
+     "cota_superior": null,
+     "abs_diff": null,
+     "dentro_do_sanduiche": null
+    }
+   },
+   "perfil_por_distancia_borda_km": [
+    {
+     "bin_km": [
+      0.0,
+      0.25
+     ],
+     "n_nos": 1308872,
+     "media_p_te": 0.018409095771015044,
+     "media_p_cond_te": 0.11984227744428687
+    },
+    {
+     "bin_km": [
+      0.25,
+      0.5
+     ],
+     "n_nos": 1225968,
+     "media_p_te": 0.019105572086710255,
+     "media_p_cond_te": 0.12451157126698592
+    },
+    {
+     "bin_km": [
+      0.5,
+      0.75
+     ],
+     "n_nos": 1166768,
+     "media_p_te": 0.020111556024848126,
+     "media_p_cond_te": 0.1311423315616028
+    },
+    {
+     "bin_km": [
+      0.75,
+      1.0
+     ],
+     "n_nos": 1100470,
+     "media_p_te": 0.021279962197969956,
+     "media_p_cond_te": 0.1389237990512912
+    },
+    {
+     "bin_km": [
+      1.0,
+      1.25
+     ],
+     "n_nos": 998617,
+     "media_p_te": 0.02262201624847164,
+     "media_p_cond_te": 0.14764193647867238
+    },
+    {
+     "bin_km": [
+      1.25,
+      1.5
+     ],
+     "n_nos": 940059,
+     "media_p_te": 0.023980101248964162,
+     "media_p_cond_te": 0.15657446864252822
+    },
+    {
+     "bin_km": [
+      1.5,
+      1.75
+     ],
+     "n_nos": 879014,
+     "media_p_te": 0.025513416168570696,
+     "media_p_cond_te": 0.16669184066931847
+    },
+    {
+     "bin_km": [
+      1.75,
+      2.0
+     ],
+     "n_nos": 799605,
+     "media_p_te": 0.036542167695299554,
+     "media_p_cond_te": 0.23957763666002685
+    },
+    {
+     "bin_km": [
+      2.0,
+      2.25
+     ],
+     "n_nos": 732909,
+     "media_p_te": 0.1504890920973818,
+     "media_p_cond_te": 1.0
+    },
+    {
+     "bin_km": [
+      2.25,
+      2.5
+     ],
+     "n_nos": 668367,
+     "media_p_te": 0.1504948478904554,
+     "media_p_cond_te": 1.0
+    },
+    {
+     "bin_km": [
+      2.5,
+      2.75
+     ],
+     "n_nos": 593096,
+     "media_p_te": 0.15045657026855683,
+     "media_p_cond_te": 1.0
+    },
+    {
+     "bin_km": [
+      2.75,
+      3.0
+     ],
+     "n_nos": 533669,
+     "media_p_te": 0.15050692470426427,
+     "media_p_cond_te": 1.0
+    },
+    {
+     "bin_km": [
+      3.0,
+      3.25
+     ],
+     "n_nos": 474596,
+     "media_p_te": 0.15029899114193968,
+     "media_p_cond_te": 1.0
+    },
+    {
+     "bin_km": [
+      3.25,
+      3.5
+     ],
+     "n_nos": 405903,
+     "media_p_te": 0.15047513814876953,
+     "media_p_cond_te": 1.0
+    },
+    {
+     "bin_km": [
+      3.5,
+      3.75
+     ],
+     "n_nos": 345478,
+     "media_p_te": 0.15049514006680598,
+     "media_p_cond_te": 1.0
+    },
+    {
+     "bin_km": [
+      3.75,
+      4.0
+     ],
+     "n_nos": 284736,
+     "media_p_te": 0.15055289812317374,
+     "media_p_cond_te": 1.0
+    },
+    {
+     "bin_km": [
+      4.0,
+      4.25
+     ],
+     "n_nos": 219101,
+     "media_p_te": 0.15042044536537943,
+     "media_p_cond_te": 1.0
+    },
+    {
+     "bin_km": [
+      4.25,
+      4.5
+     ],
+     "n_nos": 156621,
+     "media_p_te": 0.15034612216752544,
+     "media_p_cond_te": 1.0
+    },
+    {
+     "bin_km": [
+      4.5,
+      4.75
+     ],
+     "n_nos": 95034,
+     "media_p_te": 0.15047488267356945,
+     "media_p_cond_te": 1.0
+    },
+    {
+     "bin_km": [
+      4.75,
+      5.0
+     ],
+     "n_nos": 31117,
+     "media_p_te": 0.15056303628241796,
+     "media_p_cond_te": 1.0
+    }
+   ],
+   "variancia_entre_sorteios_n_te": {
+    "media": 874377.64,
+    "var": 10288679548.35394,
+    "dp": 101433.12845591395,
+    "n_sorteios": 100
+   },
+   "tempo_1_6_s": 412.35143280029297
+  }
+ },
+ "resumo": {
+  "medias_p_cond_te_por_celula": [
+   0.44991645179917705,
+   0.44804127508280606,
+   0.45095126326496404,
+   0.44744521744208576
+  ],
+  "faixa_referencia_1_8": [
+   0.449,
+   0.453
+  ],
+  "max_abs_diff_perfil_k012": 0.010056764867847111
+ },
+ "veredito_vs_criterio": "criterio_cumprido",
+ "nao_verificado": [],
+ "comando_rodado": "v3_1.6_2.3_estimando_formal.py",
+ "timestamp_utc": "2026-09-26T01:38:18.694585+00:00"
+}

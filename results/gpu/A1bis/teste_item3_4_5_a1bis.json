@@ -1,0 +1,115 @@
+{
+  "teste": "A1bis_item3_4_5_contra_auditoria_independente",
+  "item3_except_edge_attr": {
+    "n_passos": 0,
+    "n_atualizacoes_efetivas": 0,
+    "n_pulados_total": 0,
+    "n_pulados_pos_aquecimento": 0,
+    "definicao_pos_aquecimento": "pulos apos o indice do 1o passo SEM pulo (1a atualizacao bem-sucedida)",
+    "indice_primeiro_passo_sem_pulo": null,
+    "indice_ultimo_pulo": null,
+    "escala_inicial": null,
+    "escala_final": null,
+    "escala_minima": null,
+    "norma_gradiente_pre_clip_p50": null,
+    "norma_gradiente_pre_clip_p99": null,
+    "n_normas_nao_finitas": 0,
+    "nota_normas_nao_finitas": "norma pre-clip nao-finita (inf/nan) ocorre nos passos que o GradScaler detecta e pula (P3 do parecer); excluidas do P50/P99, contadas aqui",
+    "fracao_passos_clipados": null,
+    "n_except_edge_attr_encoder": 0,
+    "passa": true
+  },
+  "item4_invariancia_e_rng": {
+    "teste_invariancia": {
+      "particao": "test",
+      "n_nos": 1713,
+      "regra": "vizinhanca COMPLETA (k_antenna=k_terrain=-1), disjoint=True, sempre",
+      "eval_batch_size_a": 24576,
+      "eval_batch_size_b": 1024,
+      "piso_numerico_medido_mesma_ordem_mesma_bs": {
+        "idx_global_identico": true,
+        "diff_max_afim": 7.62939453125e-06,
+        "diff_max_fisico": 7.62939453125e-06
+      },
+      "comparacoes_ordem_x_batch_size": {
+        "ordem1_bsA": {
+          "idx_global_identico": true,
+          "diff_max_afim": 1.52587890625e-05,
+          "diff_max_fisico": 1.52587890625e-05
+        },
+        "ordem1_bsB": {
+          "idx_global_identico": true,
+          "diff_max_afim": 1.52587890625e-05,
+          "diff_max_fisico": 1.52587890625e-05
+        },
+        "ordem2_bsA": {
+          "idx_global_identico": true,
+          "diff_max_afim": 1.52587890625e-05,
+          "diff_max_fisico": 1.52587890625e-05
+        },
+        "ordem2_bsB": {
+          "idx_global_identico": true,
+          "diff_max_afim": 1.52587890625e-05,
+          "diff_max_fisico": 1.52587890625e-05
+        }
+      },
+      "diff_max_fisico_entre_todas_combinacoes": 1.52587890625e-05,
+      "limiar_absoluto_dB": 0.0001,
+      "limiar_3x_piso_medido": 2.288818359375e-05,
+      "passou_criterio": true,
+      "nota": "com vizinhanca COMPLETA nao ha sorteio de vizinhos (grau real <= 9 em TT, <=5 em AT -- forum-eng-ia_grau_vizinhanca.json): a unica fonte de diferenca esperada e o ruido de reducao numerica da GPU (nao bit-exata entre chamadas), medido aqui pelo 'piso' e usado como referencia de escala do criterio."
+    },
+    "rng_estado_direto_antes_depois": {
+      "torch_cpu_identico": false,
+      "torch_cuda_identico": false,
+      "numpy_identico": true,
+      "python_random_identico": true
+    },
+    "nota_torch_cpu": "torch_cpu MUDA durante a avaliacao de vizinhanca completa (achado ja registrado no A0-ter), mas NAO afeta o resultado numerico -- confirmado aqui pela invariancia (diff_max == piso numerico) e por torch_cuda/numpy/python_random permanecerem IDENTICOS; registrado como NOTA, nao bloqueia.",
+    "passa": false
+  },
+  "item5_arestas_e_graus": {
+    "graus_por_relacao_test_recomputados": {
+      "AT": {
+        "min": 5,
+        "max": 5,
+        "media": 5.0,
+        "soma": 8565
+      },
+      "TT": {
+        "min": 4,
+        "max": 9,
+        "media": 8.363689422607422,
+        "soma": 14327
+      },
+      "TA": {
+        "min": 5,
+        "max": 5,
+        "media": 5.0,
+        "soma": 8565
+      },
+      "n_terrain": 1713,
+      "n_antenna": 794
+    },
+    "AT_grau_constante_5": true,
+    "TT_grau_maximo_9": true,
+    "arestas_recontadas_por_relacao": {
+      "AT": 8565,
+      "TT": 14327,
+      "TA": 0
+    },
+    "soma_graus_por_relacao": {
+      "AT": 8565,
+      "TT": 14327,
+      "TA": 8565
+    },
+    "arestas_bate_com_soma_graus": {
+      "AT": true,
+      "TT": true,
+      "TA": false
+    },
+    "nota_TA": "TA (terrain->antenna) sempre 0 arestas amostradas por razao ESTRUTURAL (nenhuma aresta desse tipo tem destino=fonte terrain sorteavel neste sentido no batch de sementes terrain) -- achado ja documentado, nao e falha deste item.",
+    "passa": true
+  },
+  "tempo_total_s": 16.519049440001254
+}

@@ -1,0 +1,12 @@
+{
+ "id": "R3_termo_desenho",
+ "roadmap": "B3.2",
+ "subclaim": "S2",
+ "origem": "revisor cego simulado F3(a)/E3, aceito pelo dono em 01/10/2026",
+ "pergunta": "Quanto vale, sem Monte Carlo sobre o erro, o termo de desenho do Corolario do vies (cor:bias, main.tex l.272): Sum_i p_i e_i / Sum_i p_i - mu_U, para o constante e o FSPL calibrado (b), nas populacoes 'todos' e 'validos', nas quatro celulas Q1?",
+ "metodo_fixado": "p_i (inclusao no teste) pela forma fechada da proposicao de probabilidade de inclusao (main.tex secao 4.4) onde ela e exata; onde a proposicao da so cotas, usar as duas cotas e reportar o intervalo [T_inf, T_sup] do termo; e_i fixado como em criterio_2.3. Conferencia: o termo calculado com a frequencia de inclusao de fase2/1.6 (100 sorteios) e a diferenca (b)-(a) de fase2/2.3 devem cair no intervalo ou a menos de 2 EP dele.",
+ "previsao": "termo pequeno frente ao dp entre sorteios (ordem de decimos de dB ou menos), com sinal definido pela covariancia entre distancia a borda do bloco e erro.",
+ "leitura": "qualquer desfecho REFORCA S2: o texto passa a dizer UMA vez quanto vale o termo de desenho neste caso (valor ou intervalo, em dB) em vez de repetir que cem sorteios nao o resolvem. Se o intervalo das cotas for mais largo que 2 EP do Monte Carlo, reporta-se o intervalo e a frase diz que as cotas nao o estreitam.",
+ "se_inverter": "se o termo fechado ficar a mais de 3 EP do valor Monte Carlo de fase2/2.3 em >= 2 celulas, ha erro na proposicao ou no codigo: bloqueia e vai ao forum-fisico-matematico antes de qualquer texto.",
+ "fixado_em": "2026-10-01T17:13:54-03:00 (antes de existir qualquer script ou resultado deste teste)"
+}

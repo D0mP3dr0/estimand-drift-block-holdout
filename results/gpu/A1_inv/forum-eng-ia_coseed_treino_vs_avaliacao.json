@@ -1,0 +1,41 @@
+{
+ "nn_kw": "ET_AT:[20], ET_TT:[8], ET_TA:[20]",
+ "regimes": {
+  "treino_shuffle_True_bs8192_gate": {
+   "particao": "train",
+   "n_nos_particao": 68961,
+   "batch_size": 8192,
+   "shuffle": true,
+   "n_batches_medidos": 8,
+   "frac_arestas_TT_com_origem_semente": 0.2171498314586193,
+   "frac_sementes_com_vizinho_semente": 0.584503173828125
+  },
+  "treino_shuffle_True_bs184_densidade_producao": {
+   "particao": "train",
+   "n_nos_particao": 68961,
+   "batch_size": 184,
+   "shuffle": true,
+   "n_batches_medidos": 40,
+   "frac_arestas_TT_com_origem_semente": 0.11409131418386234,
+   "frac_sementes_com_vizinho_semente": 0.015353260869565217
+  },
+  "avaliacao_shuffle_False_bs8192_particao_train": {
+   "particao": "train",
+   "n_nos_particao": 68961,
+   "batch_size": 8192,
+   "shuffle": false,
+   "n_batches_medidos": 8,
+   "frac_arestas_TT_com_origem_semente": 0.9803489672828757,
+   "frac_sementes_com_vizinho_semente": 1.0
+  },
+  "avaliacao_shuffle_False_bs8192_particao_test": {
+   "particao": "test",
+   "n_nos_particao": 1713,
+   "batch_size": 8192,
+   "shuffle": false,
+   "n_batches_medidos": 1,
+   "frac_arestas_TT_com_origem_semente": 1.0,
+   "frac_sementes_com_vizinho_semente": 1.0
+  }
+ }
+}

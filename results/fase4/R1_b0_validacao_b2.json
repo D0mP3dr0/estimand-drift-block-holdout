@@ -1,0 +1,45 @@
+{
+  "id": "R1_b0_validacao_b2",
+  "celula": "lins_Q1",
+  "buffer_km": 2.0,
+  "n_sorteios": 5,
+  "sementes": [
+    811474,
+    54892,
+    880099,
+    125243,
+    159513
+  ],
+  "referencia": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/fase2/_v3_2.1_3.1_parcial_16x60rnd.json",
+  "referencia_sha256": "c8bddfe828c583f7fca78f9d961fb2d502f5727956b78a2d9132598c1b42c5d1",
+  "criterio_de_aceite": "igualdade exata (==) de todos os campos por sorteio contra o parcial gravado",
+  "reproduz": true,
+  "n_numeros_comparados": 170,
+  "max_abs_diferenca": 0.0,
+  "divergentes": [],
+  "n_test_por_sorteio": [
+    907392,
+    1027978,
+    790499,
+    954223,
+    835143
+  ],
+  "n_validos_teste_por_sorteio": [
+    24570,
+    8956,
+    108308,
+    106296,
+    8956
+  ],
+  "mae_constante_validos_por_sorteio": [
+    19.78650246023598,
+    23.053656694344934,
+    16.974480362592175,
+    13.92634853017943,
+    23.053656694344934
+  ],
+  "script_sha256": "3525877ddd7eaa44689b254474ded0999e883c56e148bc6a94ae9d78192fff16",
+  "script_original_sha256": "9b9bcf91bab51621107a3d7978964d46dd16c5ec1a76a3789842ae1bce77f3bc",
+  "comando": "scripts/v3_12_R1_b0_deriva.py --validar",
+  "data_utc": "2026-10-01T20:17:17.173532+00:00"
+}

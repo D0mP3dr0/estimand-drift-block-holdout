@@ -1,0 +1,12 @@
+{
+ "id": "R2_referencia_desenho",
+ "roadmap": "B4.1",
+ "subclaim": "S2 (primeira frase do resumo) e S4",
+ "origem": "revisor cego simulado F4/E3, aceito pelo dono em 01/10/2026",
+ "pergunta": "Para preditores FIXOS (constante; FSPL calibrado (b)), em Bauru Q1, Campinas Q1, Lins Q1 e Sorocaba Q1, g=10 km, b=2 km, nos 200 sorteios de fase1/1.8_referencia_nodal_200seeds.json: qual e a distribuicao de (estimativa - media do dominio mu_U) para (H) o hold-out em blocos com buffer, (H0) o mesmo com b=0, (A) uma amostra aleatoria simples de nos, sem reposicao, do mesmo tamanho do teste retido em cada sorteio, e (J) o hold-out em blocos com buffer repesado por Hajek (1/p_i, p_i de fase2/1.6)? Populacoes: todos os nos e nos validos.",
+ "metodo_fixado": "e_i fixado como em criterios/criterio_2.3.json (calibracao unica no treino do split seed=42); mu_U = media de e_i em todos os nos da populacao; por estimador: vies = media das 200 estimativas - mu_U, erro-padrao MC do vies = dp/sqrt(n), REQM em torno de mu_U; efeito de desenho deff = Var(H)/Var(A). Semente da amostra aleatoria: RandomState(20261001 + indice do sorteio).",
+ "previsao": "(A) sem vies e com REQM muito menor; (H) com vies dentro de 2 erros-padrao e REQM dominado pela variancia entre sorteios; deff >> 1.",
+ "leitura": "deff >= 10 nos nos validos em >= 3 das 4 celulas E |vies(H)| <= 2 EP em >= 3 das 4 -> o texto afirma como resultado proprio: para preditor fixo, o hold-out em blocos estima a media do dominio com variancia deff vezes a de uma amostra probabilistica de mesmo tamanho e vies nao distinguido de zero em 200 sorteios; a primeira frase do resumo deixa de afirmar vies medido (o vies fica atribuido a literatura e a identidade exata). |vies(H)| > 2 EP em >= 3 das 4 -> REFORCA 'without removing its bias' com o valor. Hajek (J) so entra no texto se reduzir o REQM a menos da metade de (H) em >= 3 das 4 celulas; senao permanece a frase atual (sem correcao demonstravel).",
+ "se_inverter": "se deff < 2 nos validos em >= 3 das 4 celulas, a deriva do erro nao excede a de uma amostra aleatoria e S4 volta ao dono como decisao de reformular.",
+ "fixado_em": "2026-10-01T17:13:54-03:00 (antes de existir qualquer script ou resultado deste teste)"
+}

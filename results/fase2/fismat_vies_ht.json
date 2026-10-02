@@ -1,0 +1,560 @@
+{
+ "script": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/fase2/fismat_vies_ht.py",
+ "sha256_script": "5b376696034c6c1a72d65c1347c6c1285eec0bfefdb5ab4f027de40f79fa9469",
+ "insumos": {
+  "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/fase2/2.3_estimando_ht_baselines.json": "482d201dddf990d7b85c5e75583ea6e0283289ccee698df4228be3a7b8cfe96c",
+  "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/fase2/fismat_razao_cov.json": "303fe91eaeb8c1b3fc4697ffa9584f7f3c41f8806edb6e79ed2a3208f9208558"
+ },
+ "linhas": [
+  {
+   "celula": "bauru_Q1",
+   "preditor": "constante",
+   "populacao": "validos",
+   "a": 20.28,
+   "b": 20.64,
+   "c": 21.284,
+   "d": 20.608,
+   "termo_desenho_c_menos_a": 1.004,
+   "termo_razao_b_menos_c": -0.644,
+   "vies_total_b_menos_a": 0.36,
+   "vies_HT_d_menos_a": 0.327,
+   "dp_HT_por_sorteio": 7.89,
+   "SE_media_d": 0.801,
+   "vies_HT_em_SE": 0.41,
+   "dp_HT_sobre_abs_vies_total": 21.9,
+   "SE_b_indicativo_2.1": 0.663,
+   "vies_total_em_SE_b_indicativo": 0.54
+  },
+  {
+   "celula": "bauru_Q1",
+   "preditor": "constante",
+   "populacao": "todos",
+   "a": 3.289,
+   "b": 3.453,
+   "c": 3.437,
+   "d": 3.35,
+   "termo_desenho_c_menos_a": 0.148,
+   "termo_razao_b_menos_c": 0.017,
+   "vies_total_b_menos_a": 0.165,
+   "vies_HT_d_menos_a": 0.062,
+   "dp_HT_por_sorteio": 3.423,
+   "SE_media_d": 0.342,
+   "vies_HT_em_SE": 0.18,
+   "dp_HT_sobre_abs_vies_total": 20.7,
+   "SE_b_indicativo_2.1": 0.197,
+   "vies_total_em_SE_b_indicativo": 0.84
+  },
+  {
+   "celula": "bauru_Q1",
+   "preditor": "fspl_calibrado_b",
+   "populacao": "validos",
+   "a": 4.898,
+   "b": 4.903,
+   "c": 4.52,
+   "d": 4.988,
+   "termo_desenho_c_menos_a": -0.378,
+   "termo_razao_b_menos_c": 0.383,
+   "vies_total_b_menos_a": 0.005,
+   "vies_HT_d_menos_a": 0.09,
+   "dp_HT_por_sorteio": 3.687,
+   "SE_media_d": 0.374,
+   "vies_HT_em_SE": 0.24,
+   "dp_HT_sobre_abs_vies_total": 737.4
+  },
+  {
+   "celula": "bauru_Q1",
+   "preditor": "fspl_calibrado_b",
+   "populacao": "sentinela",
+   "a": 6.388,
+   "b": 6.336,
+   "c": 6.315,
+   "d": 6.366,
+   "termo_desenho_c_menos_a": -0.073,
+   "termo_razao_b_menos_c": 0.021,
+   "vies_total_b_menos_a": -0.052,
+   "vies_HT_d_menos_a": -0.022,
+   "dp_HT_por_sorteio": 1.315,
+   "SE_media_d": 0.132,
+   "vies_HT_em_SE": -0.17,
+   "dp_HT_sobre_abs_vies_total": 25.3
+  },
+  {
+   "celula": "bauru_Q1",
+   "preditor": "fspl_calibrado_b",
+   "populacao": "todos",
+   "a": 6.147,
+   "b": 6.022,
+   "c": 6.026,
+   "d": 6.049,
+   "termo_desenho_c_menos_a": -0.121,
+   "termo_razao_b_menos_c": -0.003,
+   "vies_total_b_menos_a": -0.125,
+   "vies_HT_d_menos_a": -0.097,
+   "dp_HT_por_sorteio": 1.245,
+   "SE_media_d": 0.125,
+   "vies_HT_em_SE": -0.78,
+   "dp_HT_sobre_abs_vies_total": 10.0
+  },
+  {
+   "celula": "campinas_Q1",
+   "preditor": "constante",
+   "populacao": "validos",
+   "a": 18.249,
+   "b": 17.942,
+   "c": 19.296,
+   "d": 17.719,
+   "termo_desenho_c_menos_a": 1.047,
+   "termo_razao_b_menos_c": -1.354,
+   "vies_total_b_menos_a": -0.307,
+   "vies_HT_d_menos_a": -0.53,
+   "dp_HT_por_sorteio": 9.136,
+   "SE_media_d": 0.923,
+   "vies_HT_em_SE": -0.57,
+   "dp_HT_sobre_abs_vies_total": 29.8,
+   "SE_b_indicativo_2.1": 0.892,
+   "vies_total_em_SE_b_indicativo": -0.34
+  },
+  {
+   "celula": "campinas_Q1",
+   "preditor": "constante",
+   "populacao": "todos",
+   "a": 2.544,
+   "b": 2.78,
+   "c": 2.754,
+   "d": 2.644,
+   "termo_desenho_c_menos_a": 0.21,
+   "termo_razao_b_menos_c": 0.026,
+   "vies_total_b_menos_a": 0.236,
+   "vies_HT_d_menos_a": 0.101,
+   "dp_HT_por_sorteio": 3.079,
+   "SE_media_d": 0.308,
+   "vies_HT_em_SE": 0.33,
+   "dp_HT_sobre_abs_vies_total": 13.0,
+   "SE_b_indicativo_2.1": 0.196,
+   "vies_total_em_SE_b_indicativo": 1.2
+  },
+  {
+   "celula": "campinas_Q1",
+   "preditor": "fspl_calibrado_b",
+   "populacao": "validos",
+   "a": 5.948,
+   "b": 6.375,
+   "c": 5.781,
+   "d": 6.751,
+   "termo_desenho_c_menos_a": -0.167,
+   "termo_razao_b_menos_c": 0.594,
+   "vies_total_b_menos_a": 0.428,
+   "vies_HT_d_menos_a": 0.803,
+   "dp_HT_por_sorteio": 3.906,
+   "SE_media_d": 0.395,
+   "vies_HT_em_SE": 2.04,
+   "dp_HT_sobre_abs_vies_total": 9.1
+  },
+  {
+   "celula": "campinas_Q1",
+   "preditor": "fspl_calibrado_b",
+   "populacao": "sentinela",
+   "a": 3.02,
+   "b": 2.95,
+   "c": 2.953,
+   "d": 2.957,
+   "termo_desenho_c_menos_a": -0.067,
+   "termo_razao_b_menos_c": -0.003,
+   "vies_total_b_menos_a": -0.069,
+   "vies_HT_d_menos_a": -0.063,
+   "dp_HT_por_sorteio": 1.153,
+   "SE_media_d": 0.115,
+   "vies_HT_em_SE": -0.55,
+   "dp_HT_sobre_abs_vies_total": 16.7
+  },
+  {
+   "celula": "campinas_Q1",
+   "preditor": "fspl_calibrado_b",
+   "populacao": "todos",
+   "a": 3.428,
+   "b": 3.343,
+   "c": 3.357,
+   "d": 3.345,
+   "termo_desenho_c_menos_a": -0.071,
+   "termo_razao_b_menos_c": -0.014,
+   "vies_total_b_menos_a": -0.085,
+   "vies_HT_d_menos_a": -0.083,
+   "dp_HT_por_sorteio": 1.257,
+   "SE_media_d": 0.126,
+   "vies_HT_em_SE": -0.66,
+   "dp_HT_sobre_abs_vies_total": 14.8
+  },
+  {
+   "celula": "lins_Q1",
+   "preditor": "constante",
+   "populacao": "validos",
+   "a": 20.366,
+   "b": 20.97,
+   "c": 21.515,
+   "d": 20.799,
+   "termo_desenho_c_menos_a": 1.149,
+   "termo_razao_b_menos_c": -0.545,
+   "vies_total_b_menos_a": 0.604,
+   "vies_HT_d_menos_a": 0.433,
+   "dp_HT_por_sorteio": 7.762,
+   "SE_media_d": 0.796,
+   "vies_HT_em_SE": 0.54,
+   "dp_HT_sobre_abs_vies_total": 12.9,
+   "SE_b_indicativo_2.1": 0.69,
+   "vies_total_em_SE_b_indicativo": 0.88
+  },
+  {
+   "celula": "lins_Q1",
+   "preditor": "constante",
+   "populacao": "todos",
+   "a": 1.74,
+   "b": 1.926,
+   "c": 1.897,
+   "d": 1.839,
+   "termo_desenho_c_menos_a": 0.157,
+   "termo_razao_b_menos_c": 0.029,
+   "vies_total_b_menos_a": 0.186,
+   "vies_HT_d_menos_a": 0.099,
+   "dp_HT_por_sorteio": 2.263,
+   "SE_media_d": 0.226,
+   "vies_HT_em_SE": 0.44,
+   "dp_HT_sobre_abs_vies_total": 12.2,
+   "SE_b_indicativo_2.1": 0.146,
+   "vies_total_em_SE_b_indicativo": 1.27
+  },
+  {
+   "celula": "lins_Q1",
+   "preditor": "fspl_calibrado_b",
+   "populacao": "validos",
+   "a": 2.591,
+   "b": 2.893,
+   "c": 2.732,
+   "d": 3.013,
+   "termo_desenho_c_menos_a": 0.141,
+   "termo_razao_b_menos_c": 0.161,
+   "vies_total_b_menos_a": 0.301,
+   "vies_HT_d_menos_a": 0.422,
+   "dp_HT_por_sorteio": 1.876,
+   "SE_media_d": 0.192,
+   "vies_HT_em_SE": 2.19,
+   "dp_HT_sobre_abs_vies_total": 6.2
+  },
+  {
+   "celula": "lins_Q1",
+   "preditor": "fspl_calibrado_b",
+   "populacao": "sentinela",
+   "a": 7.167,
+   "b": 7.084,
+   "c": 7.075,
+   "d": 7.092,
+   "termo_desenho_c_menos_a": -0.092,
+   "termo_razao_b_menos_c": 0.009,
+   "vies_total_b_menos_a": -0.083,
+   "vies_HT_d_menos_a": -0.076,
+   "dp_HT_por_sorteio": 1.323,
+   "SE_media_d": 0.132,
+   "vies_HT_em_SE": -0.57,
+   "dp_HT_sobre_abs_vies_total": 15.9
+  },
+  {
+   "celula": "lins_Q1",
+   "preditor": "fspl_calibrado_b",
+   "populacao": "todos",
+   "a": 6.776,
+   "b": 6.685,
+   "c": 6.692,
+   "d": 6.681,
+   "termo_desenho_c_menos_a": -0.084,
+   "termo_razao_b_menos_c": -0.007,
+   "vies_total_b_menos_a": -0.091,
+   "vies_HT_d_menos_a": -0.096,
+   "dp_HT_por_sorteio": 1.197,
+   "SE_media_d": 0.12,
+   "vies_HT_em_SE": -0.8,
+   "dp_HT_sobre_abs_vies_total": 13.2
+  },
+  {
+   "celula": "sorocaba_Q1",
+   "preditor": "constante",
+   "populacao": "validos",
+   "a": 15.683,
+   "b": 15.054,
+   "c": 16.495,
+   "d": 15.392,
+   "termo_desenho_c_menos_a": 0.812,
+   "termo_razao_b_menos_c": -1.441,
+   "vies_total_b_menos_a": -0.628,
+   "vies_HT_d_menos_a": -0.291,
+   "dp_HT_por_sorteio": 8.855,
+   "SE_media_d": 0.904,
+   "vies_HT_em_SE": -0.32,
+   "dp_HT_sobre_abs_vies_total": 14.1,
+   "SE_b_indicativo_2.1": 0.816,
+   "vies_total_em_SE_b_indicativo": -0.77
+  },
+  {
+   "celula": "sorocaba_Q1",
+   "preditor": "constante",
+   "populacao": "todos",
+   "a": 2.001,
+   "b": 2.168,
+   "c": 2.141,
+   "d": 2.12,
+   "termo_desenho_c_menos_a": 0.14,
+   "termo_razao_b_menos_c": 0.027,
+   "vies_total_b_menos_a": 0.166,
+   "vies_HT_d_menos_a": 0.119,
+   "dp_HT_por_sorteio": 2.732,
+   "SE_media_d": 0.273,
+   "vies_HT_em_SE": 0.44,
+   "dp_HT_sobre_abs_vies_total": 16.5,
+   "SE_b_indicativo_2.1": 0.178,
+   "vies_total_em_SE_b_indicativo": 0.93
+  },
+  {
+   "celula": "sorocaba_Q1",
+   "preditor": "fspl_calibrado_b",
+   "populacao": "validos",
+   "a": 6.654,
+   "b": 7.588,
+   "c": 7.076,
+   "d": 7.497,
+   "termo_desenho_c_menos_a": 0.422,
+   "termo_razao_b_menos_c": 0.512,
+   "vies_total_b_menos_a": 0.934,
+   "vies_HT_d_menos_a": 0.843,
+   "dp_HT_por_sorteio": 4.999,
+   "SE_media_d": 0.51,
+   "vies_HT_em_SE": 1.65,
+   "dp_HT_sobre_abs_vies_total": 5.4
+  },
+  {
+   "celula": "sorocaba_Q1",
+   "preditor": "fspl_calibrado_b",
+   "populacao": "sentinela",
+   "a": 2.404,
+   "b": 2.411,
+   "c": 2.414,
+   "d": 2.407,
+   "termo_desenho_c_menos_a": 0.01,
+   "termo_razao_b_menos_c": -0.003,
+   "vies_total_b_menos_a": 0.007,
+   "vies_HT_d_menos_a": 0.003,
+   "dp_HT_por_sorteio": 0.768,
+   "SE_media_d": 0.077,
+   "vies_HT_em_SE": 0.04,
+   "dp_HT_sobre_abs_vies_total": 109.7
+  },
+  {
+   "celula": "sorocaba_Q1",
+   "preditor": "fspl_calibrado_b",
+   "populacao": "todos",
+   "a": 2.946,
+   "b": 3.019,
+   "c": 3.019,
+   "d": 2.909,
+   "termo_desenho_c_menos_a": 0.073,
+   "termo_razao_b_menos_c": 0.001,
+   "vies_total_b_menos_a": 0.073,
+   "vies_HT_d_menos_a": -0.037,
+   "dp_HT_por_sorteio": 1.144,
+   "SE_media_d": 0.114,
+   "vies_HT_em_SE": -0.32,
+   "dp_HT_sobre_abs_vies_total": 15.7
+  }
+ ],
+ "faixas": {
+  "constante|validos": {
+   "termo_desenho_c_menos_a": [
+    0.812,
+    1.149
+   ],
+   "termo_razao_b_menos_c": [
+    -1.441,
+    -0.545
+   ],
+   "vies_total_b_menos_a": [
+    -0.628,
+    0.604
+   ],
+   "vies_HT_d_menos_a": [
+    -0.53,
+    0.433
+   ],
+   "dp_HT_por_sorteio": [
+    7.762,
+    9.136
+   ],
+   "SE_media_d": [
+    0.796,
+    0.923
+   ],
+   "vies_HT_em_SE": [
+    -0.57,
+    0.54
+   ],
+   "dp_HT_sobre_abs_vies_total": [
+    12.9,
+    29.8
+   ],
+   "SE_b_indicativo_2.1": [
+    0.663,
+    0.892
+   ],
+   "vies_total_em_SE_b_indicativo": [
+    -0.77,
+    0.88
+   ]
+  },
+  "constante|todos": {
+   "termo_desenho_c_menos_a": [
+    0.14,
+    0.21
+   ],
+   "termo_razao_b_menos_c": [
+    0.017,
+    0.029
+   ],
+   "vies_total_b_menos_a": [
+    0.165,
+    0.236
+   ],
+   "vies_HT_d_menos_a": [
+    0.062,
+    0.119
+   ],
+   "dp_HT_por_sorteio": [
+    2.263,
+    3.423
+   ],
+   "SE_media_d": [
+    0.226,
+    0.342
+   ],
+   "vies_HT_em_SE": [
+    0.18,
+    0.44
+   ],
+   "dp_HT_sobre_abs_vies_total": [
+    12.2,
+    20.7
+   ],
+   "SE_b_indicativo_2.1": [
+    0.146,
+    0.197
+   ],
+   "vies_total_em_SE_b_indicativo": [
+    0.84,
+    1.27
+   ]
+  },
+  "fspl_calibrado_b|validos": {
+   "termo_desenho_c_menos_a": [
+    -0.378,
+    0.422
+   ],
+   "termo_razao_b_menos_c": [
+    0.161,
+    0.594
+   ],
+   "vies_total_b_menos_a": [
+    0.005,
+    0.934
+   ],
+   "vies_HT_d_menos_a": [
+    0.09,
+    0.843
+   ],
+   "dp_HT_por_sorteio": [
+    1.876,
+    4.999
+   ],
+   "SE_media_d": [
+    0.192,
+    0.51
+   ],
+   "vies_HT_em_SE": [
+    0.24,
+    2.19
+   ],
+   "dp_HT_sobre_abs_vies_total": [
+    5.4,
+    737.4
+   ],
+   "SE_b_indicativo_2.1": null,
+   "vies_total_em_SE_b_indicativo": null
+  },
+  "fspl_calibrado_b|sentinela": {
+   "termo_desenho_c_menos_a": [
+    -0.092,
+    0.01
+   ],
+   "termo_razao_b_menos_c": [
+    -0.003,
+    0.021
+   ],
+   "vies_total_b_menos_a": [
+    -0.083,
+    0.007
+   ],
+   "vies_HT_d_menos_a": [
+    -0.076,
+    0.003
+   ],
+   "dp_HT_por_sorteio": [
+    0.768,
+    1.323
+   ],
+   "SE_media_d": [
+    0.077,
+    0.132
+   ],
+   "vies_HT_em_SE": [
+    -0.57,
+    0.04
+   ],
+   "dp_HT_sobre_abs_vies_total": [
+    15.9,
+    109.7
+   ],
+   "SE_b_indicativo_2.1": null,
+   "vies_total_em_SE_b_indicativo": null
+  },
+  "fspl_calibrado_b|todos": {
+   "termo_desenho_c_menos_a": [
+    -0.121,
+    0.073
+   ],
+   "termo_razao_b_menos_c": [
+    -0.014,
+    0.001
+   ],
+   "vies_total_b_menos_a": [
+    -0.125,
+    0.073
+   ],
+   "vies_HT_d_menos_a": [
+    -0.097,
+    -0.037
+   ],
+   "dp_HT_por_sorteio": [
+    1.144,
+    1.257
+   ],
+   "SE_media_d": [
+    0.114,
+    0.126
+   ],
+   "vies_HT_em_SE": [
+    -0.8,
+    -0.32
+   ],
+   "dp_HT_sobre_abs_vies_total": [
+    10.0,
+    15.7
+   ],
+   "SE_b_indicativo_2.1": null,
+   "vies_total_em_SE_b_indicativo": null
+  }
+ }
+}

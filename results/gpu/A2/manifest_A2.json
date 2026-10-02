@@ -1,0 +1,242 @@
+{
+  "gerado_em": "2026-09-26T05:41:22.967871+00:00",
+  "gerado_por": "gpu/A2/registrar_A2.py",
+  "source_root": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/gpu/A2",
+  "criterio_sha256": "4f9b173ffce0410795d7c7a9256893ec7b2adef620678a67b595401b5b21079a",
+  "ambiente_hash": "167b266ee0595f5dc508c6018c6d7ab1c38c046d8768d338ca1fb88590133059",
+  "artefatos": [
+    {
+      "arquivo": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/criterios/criterio_A2.json",
+      "sha256": "4f9b173ffce0410795d7c7a9256893ec7b2adef620678a67b595401b5b21079a",
+      "bytes": 4382,
+      "regeneravel_por": null
+    },
+    {
+      "arquivo": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/gpu/A2/lote_A2_status.json",
+      "sha256": "3f4d5342f82d205c097e73d37f5fff2c68cd2b18946ed480d4659e00d676490c",
+      "bytes": 9362,
+      "regeneravel_por": "gpu/A2/rodar_lote_A2.py (status) ou nao aplicavel (registro/criterio)"
+    },
+    {
+      "arquivo": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/gpu/A2/ambiente_freeze_A2.txt",
+      "sha256": "167b266ee0595f5dc508c6018c6d7ab1c38c046d8768d338ca1fb88590133059",
+      "bytes": 16512,
+      "regeneravel_por": "gpu/A2/rodar_lote_A2.py (status) ou nao aplicavel (registro/criterio)"
+    },
+    {
+      "arquivo": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/gpu/A2/ia-bug-silencioso.json",
+      "sha256": "50901d9cc1e1a14472d70b9d4fd014a76d12df646069a1c444bb180b578fe93b",
+      "bytes": 6464,
+      "regeneravel_por": null
+    },
+    {
+      "arquivo": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/gpu/A2/bug_silencioso_modelo_v3.json",
+      "sha256": "a1ebd139ad6d1e56897b9e4a63a3afea022fffca1b74c3f8bd14c30847bc266b",
+      "bytes": 8568,
+      "regeneravel_por": null
+    },
+    {
+      "arquivo": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/gpu/A2/rodar_lote_A2.py",
+      "sha256": "8a3aa819cfb28dcbdb6a958688fba11f8df8616d0c41824d1308ee5d767eff8d",
+      "bytes": 6239,
+      "regeneravel_por": "gpu/A2/rodar_lote_A2.py (status) ou nao aplicavel (registro/criterio)"
+    },
+    {
+      "arquivo": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/gpu/A2/log_gnn_v3_a2_bauru_Q1_rep1.txt",
+      "sha256": "1e0d87003200fee7ae9f45082015f42a609916bc360c168fae2b195e1a2f147d",
+      "bytes": 17197,
+      "regeneravel_por": "gpu/A2/rodar_lote_A2.py (nao determinístico se GPU mudar de estado)"
+    },
+    {
+      "arquivo": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/gpu/A2/gnn_v3_a2_bauru_Q1_rep1/run_gnn_v3_a2_bauru_Q1_rep1.json",
+      "sha256": "d5fd2001b9d0d47a049c1d57907681b7ab802a74eb2d31e4c47f29ca15fce518",
+      "bytes": 109117,
+      "regeneravel_por": "gpu/modelo_v3/train_gnn_v3.py --cidade bauru --quadrante Q1 --run-label gnn_v3_a2_bauru_Q1_rep1"
+    },
+    {
+      "arquivo": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/gpu/A2/gnn_v3_a2_bauru_Q1_rep1/checkpoints/checkpoint_best.pt",
+      "sha256": "1b2c718ebfa1382b5e4ae92aa3a976907fb24be8763da1c422b783c13c5f9f6e",
+      "bytes": 20845665,
+      "regeneravel_por": "gpu/modelo_v3/train_gnn_v3.py --cidade bauru --quadrante Q1 --run-label gnn_v3_a2_bauru_Q1_rep1 (SEM CADEIA, seed=42)"
+    },
+    {
+      "arquivo": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/gpu/A2/gnn_v3_a2_bauru_Q1_rep1/predicoes_gnn_v3_a2_bauru_Q1_rep1.npz",
+      "sha256": "bc34db5f8d49fdc8f2c33c2e56f389e952f4f81653a2f81cad83580d951b2b41",
+      "bytes": 9616180,
+      "regeneravel_por": "reconstrucao da particao de teste pelo mesmo wrapper, run-label gnn_v3_a2_bauru_Q1_rep1"
+    },
+    {
+      "arquivo": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/gpu/A2/log_gnn_v3_a2_bauru_Q1_rep2.txt",
+      "sha256": "741929a4eaeeb93e855711f59a4af8645f98ac0bdc43b1695509de9270eacdda",
+      "bytes": 17193,
+      "regeneravel_por": "gpu/A2/rodar_lote_A2.py (nao determinístico se GPU mudar de estado)"
+    },
+    {
+      "arquivo": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/gpu/A2/gnn_v3_a2_bauru_Q1_rep2/run_gnn_v3_a2_bauru_Q1_rep2.json",
+      "sha256": "61f1d1cb408bfd93f517fbbf6c664bae73a6e0519bb663bad9ae82135ce4c67c",
+      "bytes": 109183,
+      "regeneravel_por": "gpu/modelo_v3/train_gnn_v3.py --cidade bauru --quadrante Q1 --run-label gnn_v3_a2_bauru_Q1_rep2"
+    },
+    {
+      "arquivo": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/gpu/A2/gnn_v3_a2_bauru_Q1_rep2/checkpoints/checkpoint_best.pt",
+      "sha256": "03cc3b0e2f3243d90be2233e807f058549fd5c1b6d5bacc284e9cda8e1b0a11f",
+      "bytes": 20845665,
+      "regeneravel_por": "gpu/modelo_v3/train_gnn_v3.py --cidade bauru --quadrante Q1 --run-label gnn_v3_a2_bauru_Q1_rep2 (SEM CADEIA, seed=42)"
+    },
+    {
+      "arquivo": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/gpu/A2/gnn_v3_a2_bauru_Q1_rep2/predicoes_gnn_v3_a2_bauru_Q1_rep2.npz",
+      "sha256": "def838c5a956d2a61f299935dba2d09092448bc870c7b32f48fc4832de5643c5",
+      "bytes": 9616180,
+      "regeneravel_por": "reconstrucao da particao de teste pelo mesmo wrapper, run-label gnn_v3_a2_bauru_Q1_rep2"
+    },
+    {
+      "arquivo": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/gpu/A2/log_mlp_v3_a2_bauru_Q1_rep1.txt",
+      "sha256": "03fbf88c59d89fe02b9a9b02b20174eaf6b8db7576df70652b5503a4509f3e59",
+      "bytes": 15578,
+      "regeneravel_por": "gpu/A2/rodar_lote_A2.py (nao determinístico se GPU mudar de estado)"
+    },
+    {
+      "arquivo": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/gpu/A2/mlp_v3_a2_bauru_Q1_rep1/run_mlp_v3_a2_bauru_Q1_rep1.json",
+      "sha256": "bb0b43618c85ba1aaac33670acf108fbc0e48967a04f9fd307c0cc8da6a899d2",
+      "bytes": 105626,
+      "regeneravel_por": "gpu/modelo_v3/train_mlp_v3.py --cidade bauru --quadrante Q1 --run-label mlp_v3_a2_bauru_Q1_rep1"
+    },
+    {
+      "arquivo": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/gpu/A2/mlp_v3_a2_bauru_Q1_rep1/checkpoints/checkpoint_best.pt",
+      "sha256": "14f4f332fe420905d9b64090d946cb2223626aa3e823f80d0810fa157cf9fc10",
+      "bytes": 17870749,
+      "regeneravel_por": "gpu/modelo_v3/train_mlp_v3.py --cidade bauru --quadrante Q1 --run-label mlp_v3_a2_bauru_Q1_rep1 (SEM CADEIA, seed=42)"
+    },
+    {
+      "arquivo": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/gpu/A2/mlp_v3_a2_bauru_Q1_rep1/predicoes_mlp_v3_a2_bauru_Q1_rep1.npz",
+      "sha256": "53b8d81d16e8a4c438d3f8f6f07e681a76e1f605a70c38c988a25cc63db8a676",
+      "bytes": 9616180,
+      "regeneravel_por": "reconstrucao da particao de teste pelo mesmo wrapper, run-label mlp_v3_a2_bauru_Q1_rep1"
+    },
+    {
+      "arquivo": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/gpu/A2/log_mlp_v3_a2_bauru_Q1_rep2.txt",
+      "sha256": "e40f39bbb028c96d5d9ac4df607af5cdb197dfbf53f2e349561b4517efb44934",
+      "bytes": 15578,
+      "regeneravel_por": "gpu/A2/rodar_lote_A2.py (nao determinístico se GPU mudar de estado)"
+    },
+    {
+      "arquivo": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/gpu/A2/mlp_v3_a2_bauru_Q1_rep2/run_mlp_v3_a2_bauru_Q1_rep2.json",
+      "sha256": "482349124a81a73e4ab1d20e1254050cbb2c604ed7d58452073c9b308ef415ca",
+      "bytes": 105626,
+      "regeneravel_por": "gpu/modelo_v3/train_mlp_v3.py --cidade bauru --quadrante Q1 --run-label mlp_v3_a2_bauru_Q1_rep2"
+    },
+    {
+      "arquivo": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/gpu/A2/mlp_v3_a2_bauru_Q1_rep2/checkpoints/checkpoint_best.pt",
+      "sha256": "ea00dcbe5625307f4bac78c9e92181157cf1f50419ecb5ff94f44e629fca3b06",
+      "bytes": 17870749,
+      "regeneravel_por": "gpu/modelo_v3/train_mlp_v3.py --cidade bauru --quadrante Q1 --run-label mlp_v3_a2_bauru_Q1_rep2 (SEM CADEIA, seed=42)"
+    },
+    {
+      "arquivo": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/gpu/A2/mlp_v3_a2_bauru_Q1_rep2/predicoes_mlp_v3_a2_bauru_Q1_rep2.npz",
+      "sha256": "53b8d81d16e8a4c438d3f8f6f07e681a76e1f605a70c38c988a25cc63db8a676",
+      "bytes": 9616180,
+      "regeneravel_por": "reconstrucao da particao de teste pelo mesmo wrapper, run-label mlp_v3_a2_bauru_Q1_rep2"
+    },
+    {
+      "arquivo": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/gpu/A2/log_gnn_v3_a2_lins_Q1_rep1.txt",
+      "sha256": "a187d2df004731a7204f20a39ada68f5fa258f70b8d1cb311c15b2f8e03406eb",
+      "bytes": 16325,
+      "regeneravel_por": "gpu/A2/rodar_lote_A2.py (nao determinístico se GPU mudar de estado)"
+    },
+    {
+      "arquivo": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/gpu/A2/gnn_v3_a2_lins_Q1_rep1/run_gnn_v3_a2_lins_Q1_rep1.json",
+      "sha256": "3cb16dcbfeb5387aa087b75686b88be3f9ede3547d95e85434366338e0b22f84",
+      "bytes": 108344,
+      "regeneravel_por": "gpu/modelo_v3/train_gnn_v3.py --cidade lins --quadrante Q1 --run-label gnn_v3_a2_lins_Q1_rep1"
+    },
+    {
+      "arquivo": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/gpu/A2/gnn_v3_a2_lins_Q1_rep1/checkpoints/checkpoint_best.pt",
+      "sha256": "3d2e551212c6d18ce7549d2cfbeb69a1322e7a96a8e7faf921bb3d580452f913",
+      "bytes": 20845665,
+      "regeneravel_por": "gpu/modelo_v3/train_gnn_v3.py --cidade lins --quadrante Q1 --run-label gnn_v3_a2_lins_Q1_rep1 (SEM CADEIA, seed=42)"
+    },
+    {
+      "arquivo": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/gpu/A2/gnn_v3_a2_lins_Q1_rep1/predicoes_gnn_v3_a2_lins_Q1_rep1.npz",
+      "sha256": "467e8ea8bc74763cae0228bc5f08785e2ce13fcc5bc6243c61ef5a6de306cfb2",
+      "bytes": 9815757,
+      "regeneravel_por": "reconstrucao da particao de teste pelo mesmo wrapper, run-label gnn_v3_a2_lins_Q1_rep1"
+    },
+    {
+      "arquivo": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/gpu/A2/log_gnn_v3_a2_lins_Q1_rep2.txt",
+      "sha256": "cf893f7d334c410b3a71f4f1316482d46e6acc1957a56ce5d7f391e623e62207",
+      "bytes": 16403,
+      "regeneravel_por": "gpu/A2/rodar_lote_A2.py (nao determinístico se GPU mudar de estado)"
+    },
+    {
+      "arquivo": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/gpu/A2/gnn_v3_a2_lins_Q1_rep2/run_gnn_v3_a2_lins_Q1_rep2.json",
+      "sha256": "e10ceffcd0e8fc01aa6886b234151ce05fbcad5d3974540a1b00337a6afb268f",
+      "bytes": 108440,
+      "regeneravel_por": "gpu/modelo_v3/train_gnn_v3.py --cidade lins --quadrante Q1 --run-label gnn_v3_a2_lins_Q1_rep2"
+    },
+    {
+      "arquivo": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/gpu/A2/gnn_v3_a2_lins_Q1_rep2/checkpoints/checkpoint_best.pt",
+      "sha256": "fce9b12d2523f9362974429423bd369185d0996eabcd803c04c3ad27d9b0b23d",
+      "bytes": 20845665,
+      "regeneravel_por": "gpu/modelo_v3/train_gnn_v3.py --cidade lins --quadrante Q1 --run-label gnn_v3_a2_lins_Q1_rep2 (SEM CADEIA, seed=42)"
+    },
+    {
+      "arquivo": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/gpu/A2/gnn_v3_a2_lins_Q1_rep2/predicoes_gnn_v3_a2_lins_Q1_rep2.npz",
+      "sha256": "746f49774f7e99d2f6dd4088dd4106771a8b4f32650cdc3ef9895da86a6d0cb1",
+      "bytes": 9815757,
+      "regeneravel_por": "reconstrucao da particao de teste pelo mesmo wrapper, run-label gnn_v3_a2_lins_Q1_rep2"
+    },
+    {
+      "arquivo": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/gpu/A2/log_mlp_v3_a2_lins_Q1_rep1.txt",
+      "sha256": "661632ccd7ed1111841fec27c786c58111c06c2eb807678ccfb2aac88155dd5a",
+      "bytes": 14803,
+      "regeneravel_por": "gpu/A2/rodar_lote_A2.py (nao determinístico se GPU mudar de estado)"
+    },
+    {
+      "arquivo": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/gpu/A2/mlp_v3_a2_lins_Q1_rep1/run_mlp_v3_a2_lins_Q1_rep1.json",
+      "sha256": "2a8674046e092e269be4953b81e7e90b31226d73c25dd46a1f551ba89466d07f",
+      "bytes": 105402,
+      "regeneravel_por": "gpu/modelo_v3/train_mlp_v3.py --cidade lins --quadrante Q1 --run-label mlp_v3_a2_lins_Q1_rep1"
+    },
+    {
+      "arquivo": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/gpu/A2/mlp_v3_a2_lins_Q1_rep1/checkpoints/checkpoint_best.pt",
+      "sha256": "57daab6179dd54373c545e20faa99094f5ba740a2485b4eb91e4b4f66e16b7e5",
+      "bytes": 17870749,
+      "regeneravel_por": "gpu/modelo_v3/train_mlp_v3.py --cidade lins --quadrante Q1 --run-label mlp_v3_a2_lins_Q1_rep1 (SEM CADEIA, seed=42)"
+    },
+    {
+      "arquivo": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/gpu/A2/mlp_v3_a2_lins_Q1_rep1/predicoes_mlp_v3_a2_lins_Q1_rep1.npz",
+      "sha256": "d0d78be78334bfaa55560fce07f24ea826ed0204646f9e1179a25abe529ad801",
+      "bytes": 9815757,
+      "regeneravel_por": "reconstrucao da particao de teste pelo mesmo wrapper, run-label mlp_v3_a2_lins_Q1_rep1"
+    },
+    {
+      "arquivo": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/gpu/A2/log_mlp_v3_a2_lins_Q1_rep2.txt",
+      "sha256": "95eb6087ccd10d9bf7f3fbdb15d8bc0825d3258e573191826a3ae81b1c4aa0ec",
+      "bytes": 14804,
+      "regeneravel_por": "gpu/A2/rodar_lote_A2.py (nao determinístico se GPU mudar de estado)"
+    },
+    {
+      "arquivo": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/gpu/A2/mlp_v3_a2_lins_Q1_rep2/run_mlp_v3_a2_lins_Q1_rep2.json",
+      "sha256": "073ca070b706c73260a3f856b35012401a878afafa2de2b2de27392044a785bb",
+      "bytes": 105402,
+      "regeneravel_por": "gpu/modelo_v3/train_mlp_v3.py --cidade lins --quadrante Q1 --run-label mlp_v3_a2_lins_Q1_rep2"
+    },
+    {
+      "arquivo": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/gpu/A2/mlp_v3_a2_lins_Q1_rep2/checkpoints/checkpoint_best.pt",
+      "sha256": "08b981ffb97a6ce185bc2b16325603dc5d970f3316fa3c4e408f12a3f4d9e855",
+      "bytes": 17870749,
+      "regeneravel_por": "gpu/modelo_v3/train_mlp_v3.py --cidade lins --quadrante Q1 --run-label mlp_v3_a2_lins_Q1_rep2 (SEM CADEIA, seed=42)"
+    },
+    {
+      "arquivo": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/gpu/A2/mlp_v3_a2_lins_Q1_rep2/predicoes_mlp_v3_a2_lins_Q1_rep2.npz",
+      "sha256": "d0d78be78334bfaa55560fce07f24ea826ed0204646f9e1179a25abe529ad801",
+      "bytes": 9815757,
+      "regeneravel_por": "reconstrucao da particao de teste pelo mesmo wrapper, run-label mlp_v3_a2_lins_Q1_rep2"
+    }
+  ],
+  "custo": {
+    "orcamento_gpu_s_planejado": 10800,
+    "tempo_total_lote_s": 2018.7573904349993,
+    "veredito_lote": "concluido"
+  }
+}

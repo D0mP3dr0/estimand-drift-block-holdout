@@ -1,0 +1,63 @@
+{
+ "criterio_sha256": "d4bf44efef665ac70ecfcb5432e97b737beaafc91f025c71aabf91094694ad63",
+ "parcial": false,
+ "regra": "derivada de dado, por célula: dp entre as 5 seeds do MAE_sent do MLP na própria célula (o MLP é determinístico dado a seed; o dp mede a dispersão de receita). Se dp_MLP < 0,01 dB, usar o dp do GNN. A tolerância é registrada por célula ANTES de ler o contraste.",
+ "tolerancias": {
+  "bauru_Q1": {
+   "n_seeds_mlp": 5,
+   "dp_mlp_sentinela_db": 0.020819555358680582,
+   "fonte": "dp entre seeds do MAE_sent do MLP (criterio_A3_analise.H1.tolerancia)",
+   "usa_dp_gnn": false,
+   "tolerancia_db": 0.020819555358680582
+  },
+  "bauru_Q3": {
+   "n_seeds_mlp": 5,
+   "dp_mlp_sentinela_db": 0.01296967199786116,
+   "fonte": "dp entre seeds do MAE_sent do MLP (criterio_A3_analise.H1.tolerancia)",
+   "usa_dp_gnn": false,
+   "tolerancia_db": 0.01296967199786116
+  },
+  "campinas_Q1": {
+   "n_seeds_mlp": 5,
+   "dp_mlp_sentinela_db": 0.02984003619365696,
+   "fonte": "dp entre seeds do MAE_sent do MLP (criterio_A3_analise.H1.tolerancia)",
+   "usa_dp_gnn": false,
+   "tolerancia_db": 0.02984003619365696
+  },
+  "campinas_Q3": {
+   "n_seeds_mlp": 5,
+   "dp_mlp_sentinela_db": 0.022861696122332013,
+   "fonte": "dp entre seeds do MAE_sent do MLP (criterio_A3_analise.H1.tolerancia)",
+   "usa_dp_gnn": false,
+   "tolerancia_db": 0.022861696122332013
+  },
+  "lins_Q1": {
+   "n_seeds_mlp": 5,
+   "dp_mlp_sentinela_db": 0.04238189350839496,
+   "fonte": "dp entre seeds do MAE_sent do MLP (criterio_A3_analise.H1.tolerancia)",
+   "usa_dp_gnn": false,
+   "tolerancia_db": 0.04238189350839496
+  },
+  "lins_Q3": {
+   "n_seeds_mlp": 5,
+   "dp_mlp_sentinela_db": 0.013592712204598352,
+   "fonte": "dp entre seeds do MAE_sent do MLP (criterio_A3_analise.H1.tolerancia)",
+   "usa_dp_gnn": false,
+   "tolerancia_db": 0.013592712204598352
+  },
+  "sorocaba_Q1": {
+   "n_seeds_mlp": 5,
+   "dp_mlp_sentinela_db": 0.012840799988446519,
+   "fonte": "dp entre seeds do MAE_sent do MLP (criterio_A3_analise.H1.tolerancia)",
+   "usa_dp_gnn": false,
+   "tolerancia_db": 0.012840799988446519
+  },
+  "sorocaba_Q3": {
+   "n_seeds_mlp": 5,
+   "dp_mlp_sentinela_db": 0.02134188546927551,
+   "fonte": "dp entre seeds do MAE_sent do MLP (criterio_A3_analise.H1.tolerancia)",
+   "usa_dp_gnn": false,
+   "tolerancia_db": 0.02134188546927551
+  }
+ }
+}

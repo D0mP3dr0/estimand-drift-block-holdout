@@ -1,0 +1,191 @@
+{
+ "T2_contra_T2_retencao_v3.csv": {
+  "valores_comparados": 80,
+  "passou": true
+ },
+ "T3_rodape_dp_mae_constante_validos_b0": {
+  "resumo_R1_b0_ou_2.1": 7.0928559703037735,
+  "recontagem_direta": 7.0928559703037735,
+  "absdiff": 0.0,
+  "passou": true
+ },
+ "T3_rodape_dp_fracao_valida_teste_b0": {
+  "resumo_R1_b0_ou_2.1": 0.061260161758249485,
+  "recontagem_direta": 0.061260161758249485,
+  "absdiff": 0.0,
+  "passou": true
+ },
+ "T3_rodape_dp_fracao_valida_teste_b2": {
+  "resumo_R1_b0_ou_2.1": 0.07405487087989077,
+  "recontagem_direta": 0.07405487087989077,
+  "absdiff": 0.0,
+  "passou": true
+ },
+ "T3_rodape_dp_mae_constante_validos_b2": {
+  "resumo_R1_b0_ou_2.1": 8.016603526005728,
+  "recontagem_direta": 8.016603526005728,
+  "absdiff": 0.0,
+  "passou": true
+ },
+ "T3_contra_T3_deriva_erro_v3.csv": {
+  "valores_comparados": 112,
+  "passou": true
+ },
+ "T3_resumo_igual_as_linhas_resumo_da_T3": {
+  "linhas": 6,
+  "passou": true
+ },
+ "T4_recontagem_b2_antes_de_gravar": {
+  "fonte": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/fase2/_v3_2.1_3.1_parcial_16x60rnd.json",
+  "recontagem": {
+   "nv": 904,
+   "fa": 799,
+   "fb": 796,
+   "ca": 629,
+   "cb": 729
+  },
+  "esperado_T4_v3-11g_csv": {
+   "nv": 904,
+   "fa": 799,
+   "fb": 796,
+   "ca": 629,
+   "cb": 729
+  },
+  "esperado_enunciado_tarefa": "629/729 (constante menor em todos, a/b) e 799/796 (FSPL menor nos validos, a/b) de 904",
+  "esperado_R1_b0_resumo_b2": {
+   "fspl_menor_validos_a": 799,
+   "fspl_menor_validos_b": 796,
+   "constante_maior_todos_a": 275,
+   "constante_maior_todos_b": 175,
+   "n_nv": 904
+  },
+  "passou": true
+ },
+ "T4_recontagem_b0": {
+  "fonte": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/fase4/R1_b0_por_sorteio.json",
+  "recontagem": {
+   "nv": 938,
+   "fa": 844,
+   "fb": 847,
+   "ca": 691,
+   "cb": 801
+  },
+  "contra_R1_b0_resumo.inversoes_constante_gt_fspl.b0": {
+   "fspl_menor_validos_a": 844,
+   "fspl_menor_validos_b": 847,
+   "constante_maior_todos_a": 247,
+   "constante_maior_todos_b": 137,
+   "n_nv": 938
+  },
+  "passou": true
+ },
+ "T4_contra_T4_inversao_v3.csv": {
+  "valores_comparados": 128,
+  "passou": true
+ },
+ "T4_totais_e_S2": {
+  "totais_b2": {
+   "nv": 904,
+   "fa": 799,
+   "fb": 796,
+   "ca": 629,
+   "cb": 729
+  },
+  "totais_b0": {
+   "nv": 938,
+   "fa": 844,
+   "fb": 847,
+   "ca": 691,
+   "cb": 801
+  },
+  "mesmos_valores_que_a_T4": true,
+  "passou": true
+ },
+ "T6_n_sobre_deff_todos": {
+  "recomputado_min_max": [
+   14.881514669520206,
+   22.000215374509068
+  ],
+  "veredito_fismat": "14.9-22.0 (n medio=n_te_b2 ~0.88e6; deff 39.9e3-59.3e3)",
+  "passou": true
+ },
+ "T6_n_sobre_deff_validos": {
+  "recomputado_min_max": [
+   1.0976872493222933,
+   4.80052812876578
+  ],
+  "veredito_fismat": "1.1-4.8 (n=n_te_b2_validos; com n_A_validos 1.06-4.63)",
+  "passou": true
+ },
+ "T6_deff_contra_bc.json": {
+  "celulas_pred_pop_comparadas": 16,
+  "campos": "deff_calc, varH, varA",
+  "passou": true,
+  "nota": "o campo n_sobre_deff_nH de bc.json usa n = numero de sorteios (nH = 199 ou 200), nao o numero de nos; o n/deff desta tabela usa o numero medio de nos pontuados (n_te_b2; n_te_b2_validos de R2_por_sorteio.json), que reproduz as faixas do veredito.json (b): 14.9-22.0 (todos) e 1.1-4.8 (validos)"
+ },
+ "T7_contra_T7_deriva_modelo_A4_v3.csv": {
+  "valores_comparados": 52,
+  "passou": true
+ },
+ "T7b_contra_T7_deriva_modelo_A4_v3.csv": {
+  "valores_comparados": 16,
+  "passou": true
+ },
+ "TA1_guardas_texto_vs_folha_B7.2": {
+  "strings_da_folha_conferidas_por_assert": true,
+  "linhas": 40,
+  "grupos": [
+   "Architecture",
+   "Loss",
+   "Optimisation",
+   "Selection",
+   "Baselines",
+   "Hardware and cost"
+  ],
+  "valor_maximo_shadowing_ndvi_penalty_registrado": 0.0,
+  "fracao_de_passos_cortados_impressa": false,
+  "passou": true
+ },
+ "TN_copia_do_bloco_F-10_com_alteracoes_v3-12b": {
+  "linhas_de_simbolos": 25,
+  "linhas_antes_da_versao_enxuta_v3-12d": 32,
+  "linha_retirada_v3-12d": "$\\hat L$, $\\hat P$, $P_{\\mathrm{tx}}$, $L_{\\max}$",
+  "linha_acrescentada_v3-12h": "blocos vizinhos B_w..B_en (Equation~\\eqref{eq:area})",
+  "linha_retirada_v3-12g": "$\\ell_x$, $\\ell_y$ (sem ocorrencia no texto)",
+  "linhas_fundidas_v3-12d": [
+   {
+    "simbolos": "$D$, $V_T$, $V_A$, $E_{TT}$, $E_{AT}$",
+    "ref": "Section~\\ref{sec:setting}"
+   },
+   {
+    "simbolos": "$\\varpi(V)$, $\\bar\\varpi$, $\\psi(X)$",
+    "ref": "Equation~\\eqref{eq:pi}; Section~\\ref{sec:sentinel}"
+   },
+   {
+    "simbolos": "$g$, $b$, $\\beta(x)$, $N$, $n_1 \\times n_2$",
+    "ref": "Section~\\ref{sec:setting}"
+   },
+   {
+    "simbolos": "$k_{\\mathrm{tr}}, k_{\\mathrm{va}}, k_{\\mathrm{te}}$, $\\nu_{\\mathrm{tr}}, \\nu_{\\mathrm{va}}, \\nu_{\\mathrm{te}}$",
+    "ref": "Equation~\\eqref{eq:counts}; Section~\\ref{sec:setting}"
+   },
+   {
+    "simbolos": "$R_{\\mathrm{va}}(g,b)$, $R_{\\mathrm{te}}(g,b)$, $V_{\\mathrm{te}}(\\sigma)$",
+    "ref": "Section~\\ref{sec:setting}"
+   },
+   {
+    "simbolos": "$\\mathrm{MAE}$, $\\mathrm{MAE}_{\\mathrm{valid}}$, $\\mathrm{MAE}_{\\sigma}$",
+    "ref": "Equation~\\eqref{eq:mixture}; Proposition~\\ref{prop:drift}"
+   }
+  ],
+  "limite_de_linhas": 26,
+  "alteracoes": [
+   "- linha ell_x, ell_y (v3-12g: sem ocorrencia no texto)",
+   "+ linha d_max, \\bar d_V",
+   "+ linhas MAE/MAE_valid e MAE_sigma",
+   "+ linha dos blocos vizinhos B_w..B_en (v3-12h)"
+  ],
+  "bloco_gravado_contem_o_bloco_alterado": true,
+  "passou": true
+ }
+}

@@ -1,0 +1,12 @@
+{
+ "bauru_Q1": {
+  "mesma_ordem_desvio_max_m": 0.32521100140089915,
+  "nos_com_bloco_diferente_g10": 136,
+  "nos_com_bloco_diferente_g5": 250
+ },
+ "lins_Q3": {
+  "mesma_ordem_desvio_max_m": 0.32950657532145067,
+  "nos_com_bloco_diferente_g10": 115,
+  "nos_com_bloco_diferente_g5": 231
+ }
+}

@@ -1,0 +1,32 @@
+{
+  "teste": "metrica_no_split_correto (d)",
+  "comando": "/trabalho/ambientes/s33_amb_virtual/.venv/bin/python teste_d_split_correto.py",
+  "n_pontos_sinteticos": 20000,
+  "particoes_n": {
+    "train": 13998,
+    "val": 444,
+    "test": 392
+  },
+  "intersecoes": {
+    "train|val": 0,
+    "train|test": 0,
+    "val|test": 0
+  },
+  "sem_intersecao": true,
+  "buffer_respeitado_por_par": {
+    "train|val": true,
+    "train|test": true,
+    "val|test": true
+  },
+  "buffer_ok": true,
+  "sha256_por_particao": {
+    "train": "3c48f5acb4a0ab83c5a22e4a296d121c2a5b8a39eb24dc25aa9f43ce5dce6108",
+    "val": "442f2649c31290ccd6a3623aafea8facce143250a35ff5edc8965a95fa3c018f",
+    "test": "defa2e37b5ef5fce231a5002862fe744f00db82c7f46eaaec3f4904655c52e47"
+  },
+  "sha_distintos": true,
+  "guarda_selecionar_melhor_epoca_disparou_com_chave_test": true,
+  "selecao_normal_retornou_valor_correto": true,
+  "verificacao_ok_geral": true,
+  "passa": true
+}

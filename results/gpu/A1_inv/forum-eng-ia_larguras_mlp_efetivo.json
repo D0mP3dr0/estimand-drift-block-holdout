@@ -1,0 +1,18 @@
+{
+ "gnn_total": 1812515,
+ "gnn_efetivos_fanout1": 1484037,
+ "gnn_efetivos_se_ET_TA_povoado": 1680645,
+ "mlp_atual_total": 1812515,
+ "mlp_atual_efetivos": 1812485,
+ "razao_mlp_atual_efetivos_sobre_gnn_efetivos": 1.2213206274506634,
+ "frac_gnn_morta": 0.1812277415635181,
+ "mlp_novo_larguras": [
+  654,
+  654,
+  600,
+  636
+ ],
+ "mlp_novo_total": 1484067,
+ "mlp_novo_efetivos": 1484037,
+ "delta_mlp_novo_efetivos_menos_gnn_efetivos": 0
+}

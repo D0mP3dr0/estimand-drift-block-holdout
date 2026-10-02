@@ -1,0 +1,103 @@
+{
+  "teste": "A1bis_item1_overfit_item2_gradiente_reescrito_mlp",
+  "tipo_modelo": "mlp",
+  "device": "cuda",
+  "cidade": "bauru",
+  "quadrante": "Q2",
+  "max_nodes": 100000,
+  "n_steps": 200,
+  "lr": 0.003,
+  "batch_size_pedido": 8192,
+  "batch_size_real": 8192,
+  "n_params_treinaveis": 1484067,
+  "tempo_treino_s": 1.9039428410032997,
+  "item1_overfit_1_batch": {
+    "loss_primeiros_5_media": 61.642374420166014,
+    "loss_ultimos_5_media": 0.946726405620575,
+    "razao_final_sobre_inicial": 0.015358370188135677,
+    "criterio": "razao <= 0.10",
+    "passa": true,
+    "loss_trajetoria_amostrada": [
+      84.7352066040039,
+      16.456769943237305,
+      8.273249626159668,
+      4.7838592529296875,
+      2.8837239742279053,
+      2.224097967147827,
+      1.8701715469360352,
+      1.630311131477356,
+      1.462856411933899,
+      1.3595266342163086,
+      1.2900532484054565,
+      1.1995689868927002,
+      1.133315920829773,
+      1.1289857625961304,
+      1.0613948106765747,
+      1.0624252557754517,
+      1.033971905708313,
+      0.9897394776344299,
+      0.966191828250885,
+      0.9445613622665405,
+      0.9381645917892456
+    ]
+  },
+  "item2_gradiente_reescrito": {
+    "passos_medidos": [
+      0,
+      10,
+      20,
+      30,
+      40,
+      50,
+      60,
+      70,
+      80,
+      90,
+      100,
+      110,
+      120,
+      130,
+      140,
+      150,
+      160,
+      170,
+      180,
+      190,
+      199
+    ],
+    "params_mortos_por_arquitetura_esperados": [
+      "decoder.coverage_head.bias",
+      "decoder.coverage_head.weight",
+      "decoder.path_loss_head.bias",
+      "decoder.path_loss_head.weight",
+      "decoder.rssi_head.bias",
+      "decoder.rssi_head.weight"
+    ],
+    "ativos_com_gradiente_zero_em_todas_medicoes": [],
+    "mortos_esperados_confirmados_zero": [],
+    "mortos_esperados_NAO_confirmados_zero_ACHADO": [
+      "decoder.coverage_head.bias",
+      "decoder.coverage_head.weight",
+      "decoder.path_loss_head.bias",
+      "decoder.path_loss_head.weight",
+      "decoder.rssi_head.bias",
+      "decoder.rssi_head.weight"
+    ],
+    "gradiente_vivo_fora_da_lista_nomeada": true,
+    "controle_positivo_et_ta_povoado": {
+      "descricao": "controle positivo rodado so no braco GNN (MLP nao tem hetero-conv terrain->antenna)",
+      "controle_positivo_passou": true
+    },
+    "passa": true
+  },
+  "vazamento_correlacao_bonus": {
+    "corr_max_abs": 0.8342026472091675,
+    "achados_corr_gt_0.98": [],
+    "passa": true
+  },
+  "veredito_script": {
+    "item1_overfit": "passa",
+    "item2_gradiente": "passa"
+  },
+  "tempo_total_s": 10.469995522988029
+}

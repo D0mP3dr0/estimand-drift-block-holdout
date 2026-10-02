@@ -1,0 +1,21 @@
+{
+ "id": "A3_analise",
+ "gravado_em": "2026-09-26 06:50 (relógio da máquina)",
+ "autor": "sessao (chefe do fórum)",
+ "estado_no_momento_da_gravacao": "10 das 80 corridas do lote A3 concluídas (rc=0); NENHUMA predição .npz nem métrica de teste foi lida por ninguém antes desta gravação (só o log do driver: 'OK em Ns'). O criterio_A3.json da oficina cobre execução/proveniência e adiou a análise; este arquivo fixa a análise.",
+ "alegacao": "A4 (deflação/inversão sob alvo sentinela; paridade aproximada GNN×MLP na sentinela) e insumo de A3 (distribuições entre seeds)",
+ "unidade_de_analise": "célula (8) × seed de treino (5); contraste GNN−MLP pareado por seed dentro da célula; a cidade é a unidade de inferência entre células (EV-5); nenhum teste de sinais entre células",
+ "metricas": "MAE de RSSI (canal 3) no teste retido, por população: válido (target[:,0] < 299), sentinela (>= 299), todos; calculadas das predições .npz (pred físico via fisico()); também MAE de PL (canal 0) nos válidos",
+ "H1_paridade_sentinela": {
+  "estatistica": "mediana entre as 5 seeds de (MAE_sent_GNN − MAE_sent_MLP) por célula",
+  "tolerancia": "derivada de dado, por célula: dp entre as 5 seeds do MAE_sent do MLP na própria célula (o MLP é determinístico dado a seed; o dp mede a dispersão de receita). Se dp_MLP < 0,01 dB, usar o dp do GNN. A tolerância é registrada por célula ANTES de ler o contraste.",
+  "aceite": "paridade aproximada se |mediana| <= tolerância em >= 6 das 8 células; caso contrário, 'diferença sistemática' com o sinal e a magnitude reportados",
+  "proibido": "fixar 0,05 dB ou 0,25 dB a priori (v2); reportar 'consistent in direction' sem contar as seeds"
+ },
+ "contraste_GNN_menos_MLP": "distribuição por célula: mediana, mín, máx, nº de seeds com sinal negativo (GNN melhor) de 5; nas três populações; sem magnitude agregada entre células como resultado (só descrição)",
+ "regras_gradscaler": {"pulos_pos_aquecimento_max_pct": 1.0, "escala_minima_min": 1.0, "acao": "corrida sinalizada entra na distribuição com marcação; se > 20 % das corridas de uma célula forem sinalizadas, a célula é reportada à parte"},
+ "regras_canal_1": {"R-c0": "nenhum alvo fora da faixa do clamp (pré-condição)", "R-c1": "entre alvos > 0: <= 1 % fora da faixa e P99 do excesso <= 5 dB", "R-c2": "MAE bruto <= 1,05 × MAE após clamp", "R-c3": "contraste GNN−MLP com o mesmo sinal com e sem clamp", "nota": "canais 1–2 são componentes auxiliares derivadas do terreno (gerador); nenhum número do artigo depende deles; regras só sinalizam"},
+ "nao_determinismo": "A2/A2c mostraram GNN não determinística com a mesma seed (Δ até 0,13 dB no MAE agregado); nenhuma corrida individual é citável; só distribuições entre seeds; a seleção de checkpoint (melhor época na validação) é parte da variância",
+ "proveniencia": "todas as 80 com insumos.sha256_rf_data = manifest v4 e hash da partição de teste idêntico dentro da célula; corrida com rc=3 é achado, não dado",
+ "votos": "3 critico-verificador por número antes de qualquer alegação; o script de agregação (v3_A3_agregar.py, a escrever) é contra-auditado por quem não o escreveu"
+}

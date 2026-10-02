@@ -1,0 +1,19 @@
+{
+  "id": "A1",
+  "gravado_em": "2026-09-26 (agente ia-bug-silencioso, gate obrigatorio pre-treino-longo)",
+  "autor": "ia-bug-silencioso",
+  "alvo": "modelo_v3 (AffineDecoderV3 + train_gnn_v3.py + train_mlp_v3.py), gpu/modelo_v3/",
+  "pergunta": "Existe algum bug silencioso classico de treino (overfit que nao converge em 1 batch, gradiente que nao flui, normalizacao 2x, metrica no split errado, vazamento por correlacao) que nao aparece no log mas destroi a validade do numero do modelo_v3?",
+  "criterio_aceitacao": {
+    "a_overfit_1_batch": "razao loss_final(media 5 ultimos passos)/loss_inicial(media 5 primeiros) <= 0.10, sobre 300 passos de Adam em 1 batch REAL fixo (Bauru Q2, --mmap --max-nodes 100000), para GNN e para MLP",
+    "b_gradiente_vivo": "norma de gradiente > 0 em TODAS as camadas com parametros usados no forward, fora das 3 cabecas mortas por design (path_loss_head, rssi_head, coverage_head, que nunca entram no grafo computacional do AffineDecoderV3/RFDecoder base)",
+    "c_saturacao": "fracao de saidas saturadas (|pre-ativacao|>4 nos canais 0-3; fracao no clamp fisico() apos os 300 passos) aproximadamente 0 nos canais 0-3",
+    "d_split_correto": "selecao.test_no_melhor_ckpt do run JSON vem da particao de TESTE retida (nao validacao); hash sha256 dos indices ORDENADOS do .npz de predicoes bate com particoes.test.idx_sha256_global do run JSON e e DIFERENTE dos hashes de val/train; test_usado_na_selecao=false",
+    "e_vazamento_correlacao": "nenhuma correlacao de Pearson |corr| > 0.98 entre feature de entrada e alvo, sem explicacao fisica, no batch real",
+    "f_guarda_paridade_e_coerencia_fisica": "canal 4 (sigmoid) coerente com o que CurriculumRFLoss/PhysicsRFLoss espera (alvo coverage em [0,1], huber direto); fisico() NUNCA chamado dentro do loop de treino (nem dos congelados nem dos wrappers v3) -- so apos o treino, na reconstrucao das predicoes de teste"
+  },
+  "gravidade": "qualquer item (a)-(f) falhando = bloqueia (numero da run nao e confiavel ate corrigir); item nao rodado por falta de orcamento = atencao com o comando que o rodaria",
+  "dado": "Bauru Q2 real, --mmap --max-nodes 100000, GPU RTX 5070 Ti (~8,5 GB livres, motor de embeddings pid 1630 com 5,4 GB, abortar se VRAM livre < 1 GB)",
+  "orcamento": "40 chamadas de ferramenta, 20 min de GPU (protocolo PLANO A, gate A1)",
+  "referencia_gate_anterior": "gpu/G0/ia-bug-silencioso_real.json (PhysicsConstrainedDecoder antigo: overfit 0.132, saturacao ~100%, bloqueado)"
+}

@@ -1,0 +1,148 @@
+{
+  "item": "A1-b passo 2 (gradiente em epoca real) e A1-c (canais em epoca real, val+teste)",
+  "comando_reproduzido": "importlib de train_gnn_v3.py, main(['--cidade','bauru','--quadrante','Q2','--seed-treino','42','--split-seed','42','--epochs','1','--max-nodes','100000','--mmap','--evid-dir',...,'--run-label','A1_inv_epoca_real_gnn_bauru_Q2'])",
+  "run_json": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/gpu/A1_inv/epoca_real/A1_inv_epoca_real_gnn_bauru_Q2/run_A1_inv_epoca_real_gnn_bauru_Q2.json",
+  "checkpoint": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/gpu/A1_inv/epoca_real/A1_inv_epoca_real_gnn_bauru_Q2/checkpoints/checkpoint_best.pt",
+  "vram_livre_mib": {
+    "antes": 8274.375,
+    "apos_treino": 5863.5,
+    "apos_avaliacao": 5855.8125
+  },
+  "b_gradiente_epoca_real": {
+    "n_passos_medidos": 2,
+    "nomes_parametros_medidos": [
+      "encoder.convs.0.convs.<terrain___in_range_of___antenna>.lin_l.bias",
+      "encoder.convs.0.convs.<terrain___in_range_of___antenna>.lin_l.weight",
+      "encoder.convs.0.convs.<terrain___in_range_of___antenna>.lin_r.weight",
+      "encoder.convs.1.convs.<terrain___in_range_of___antenna>.lin_l.bias",
+      "encoder.convs.1.convs.<terrain___in_range_of___antenna>.lin_l.weight",
+      "encoder.convs.1.convs.<terrain___in_range_of___antenna>.lin_r.weight",
+      "encoder.convs.2.convs.<terrain___in_range_of___antenna>.lin_l.bias",
+      "encoder.convs.2.convs.<terrain___in_range_of___antenna>.lin_l.weight",
+      "encoder.convs.2.convs.<terrain___in_range_of___antenna>.lin_r.weight",
+      "encoder.convs.3.convs.<terrain___in_range_of___antenna>.lin_l.bias",
+      "encoder.convs.3.convs.<terrain___in_range_of___antenna>.lin_l.weight",
+      "encoder.convs.3.convs.<terrain___in_range_of___antenna>.lin_r.weight"
+    ],
+    "grad_norm_por_passo": [
+      {
+        "passo": 0,
+        "encoder.convs.0.convs.<terrain___in_range_of___antenna>.lin_l.weight": 0.0,
+        "encoder.convs.0.convs.<terrain___in_range_of___antenna>.lin_l.bias": 0.008025811053812504,
+        "encoder.convs.0.convs.<terrain___in_range_of___antenna>.lin_r.weight": 0.06508930027484894,
+        "encoder.convs.1.convs.<terrain___in_range_of___antenna>.lin_l.weight": 0.0,
+        "encoder.convs.1.convs.<terrain___in_range_of___antenna>.lin_l.bias": 0.004098780918866396,
+        "encoder.convs.1.convs.<terrain___in_range_of___antenna>.lin_r.weight": 0.04784747585654259,
+        "encoder.convs.2.convs.<terrain___in_range_of___antenna>.lin_l.weight": 0.0,
+        "encoder.convs.2.convs.<terrain___in_range_of___antenna>.lin_l.bias": 0.003318067407235503,
+        "encoder.convs.2.convs.<terrain___in_range_of___antenna>.lin_r.weight": 0.03728243336081505,
+        "encoder.convs.3.convs.<terrain___in_range_of___antenna>.lin_l.weight": null,
+        "encoder.convs.3.convs.<terrain___in_range_of___antenna>.lin_l.bias": null,
+        "encoder.convs.3.convs.<terrain___in_range_of___antenna>.lin_r.weight": null
+      },
+      {
+        "passo": 1,
+        "encoder.convs.0.convs.<terrain___in_range_of___antenna>.lin_l.weight": 0.0,
+        "encoder.convs.0.convs.<terrain___in_range_of___antenna>.lin_l.bias": 0.007628982421010733,
+        "encoder.convs.0.convs.<terrain___in_range_of___antenna>.lin_r.weight": 0.06289413571357727,
+        "encoder.convs.1.convs.<terrain___in_range_of___antenna>.lin_l.weight": 0.0,
+        "encoder.convs.1.convs.<terrain___in_range_of___antenna>.lin_l.bias": 0.003747285343706608,
+        "encoder.convs.1.convs.<terrain___in_range_of___antenna>.lin_r.weight": 0.05037462338805199,
+        "encoder.convs.2.convs.<terrain___in_range_of___antenna>.lin_l.weight": 0.0,
+        "encoder.convs.2.convs.<terrain___in_range_of___antenna>.lin_l.bias": 0.002775791333988309,
+        "encoder.convs.2.convs.<terrain___in_range_of___antenna>.lin_r.weight": 0.03986340016126633,
+        "encoder.convs.3.convs.<terrain___in_range_of___antenna>.lin_l.weight": null,
+        "encoder.convs.3.convs.<terrain___in_range_of___antenna>.lin_l.bias": null,
+        "encoder.convs.3.convs.<terrain___in_range_of___antenna>.lin_r.weight": null
+      }
+    ],
+    "parametros_com_gradiente_zero_em_TODOS_os_passos_reais": [
+      "encoder.convs.0.convs.<terrain___in_range_of___antenna>.lin_l.weight",
+      "encoder.convs.1.convs.<terrain___in_range_of___antenna>.lin_l.weight",
+      "encoder.convs.2.convs.<terrain___in_range_of___antenna>.lin_l.weight"
+    ],
+    "parametros_com_grad_None_em_TODOS_os_passos_reais_camada_nunca_usada": [
+      "encoder.convs.3.convs.<terrain___in_range_of___antenna>.lin_l.bias",
+      "encoder.convs.3.convs.<terrain___in_range_of___antenna>.lin_l.weight",
+      "encoder.convs.3.convs.<terrain___in_range_of___antenna>.lin_r.weight"
+    ],
+    "achado_b_confirmado_em_producao": true,
+    "nota": "mesma configuracao de fanout do gate (num_neighbors com lista de 1 elemento por tipo de aresta, {ET_AT:[k_antenna], ET_TT:[k_terrain], ET_TA:[k_antenna]}) e usada TAMBEM pelo script de PRODUCAO train_gnn_c0_spatial.py (linha nn_kw, identica); isto NAO e um artefato exclusivo do teste de overfit do gate."
+  },
+  "c_canais_epoca_real": {
+    "val": {
+      "n_nos": 2519,
+      "por_canal": {
+        "path_loss_total": {
+          "n": 2519,
+          "fracao_fora_da_faixa": 0.0,
+          "excesso_mediana_dB_dBm": 0.0,
+          "excesso_p95_dB_dBm": 0.0,
+          "excesso_max_dB_dBm": 0.0
+        },
+        "path_loss_vegetation": {
+          "n": 2519,
+          "fracao_fora_da_faixa": 0.0,
+          "excesso_mediana_dB_dBm": 0.0,
+          "excesso_p95_dB_dBm": 0.0,
+          "excesso_max_dB_dBm": 0.0,
+          "fracao_alvos_exatamente_zero": 0.7121873759428344
+        },
+        "path_loss_terrain": {
+          "n": 2519,
+          "fracao_fora_da_faixa": 0.0,
+          "excesso_mediana_dB_dBm": 0.0,
+          "excesso_p95_dB_dBm": 0.0,
+          "excesso_max_dB_dBm": 0.0
+        },
+        "rssi": {
+          "n": 2519,
+          "fracao_fora_da_faixa": 0.0,
+          "excesso_mediana_dB_dBm": 0.0,
+          "excesso_p95_dB_dBm": 0.0,
+          "excesso_max_dB_dBm": 0.0
+        }
+      }
+    },
+    "test": {
+      "n_nos": 1713,
+      "por_canal": {
+        "path_loss_total": {
+          "n": 1713,
+          "fracao_fora_da_faixa": 0.0,
+          "excesso_mediana_dB_dBm": 0.0,
+          "excesso_p95_dB_dBm": 0.0,
+          "excesso_max_dB_dBm": 0.0
+        },
+        "path_loss_vegetation": {
+          "n": 1713,
+          "fracao_fora_da_faixa": 0.0,
+          "excesso_mediana_dB_dBm": 0.0,
+          "excesso_p95_dB_dBm": 0.0,
+          "excesso_max_dB_dBm": 0.0,
+          "fracao_alvos_exatamente_zero": 0.6042031523642732
+        },
+        "path_loss_terrain": {
+          "n": 1713,
+          "fracao_fora_da_faixa": 0.0,
+          "excesso_mediana_dB_dBm": 0.0,
+          "excesso_p95_dB_dBm": 0.0,
+          "excesso_max_dB_dBm": 0.0
+        },
+        "rssi": {
+          "n": 1713,
+          "fracao_fora_da_faixa": 0.0,
+          "excesso_mediana_dB_dBm": 0.0,
+          "excesso_p95_dB_dBm": 0.0,
+          "excesso_max_dB_dBm": 0.0
+        }
+      }
+    }
+  },
+  "comparacao_com_gate_overfit_300passos": {
+    "gate_gnn_clamp_final_path_loss_vegetation": 0.3125219941139221,
+    "gate_mlp_clamp_final_path_loss_vegetation": 0.3299560546875,
+    "nota": "o gate mede fracao fora do clamp APOS 300 passos de Adam OVERFITANDO 1 SO batch fixo (lr=3e-3, 300 atualizacoes no MESMO batch); aqui medimos APOS 1 epoca real (poucos batches, lr=1e-3 default do wrapper, SEM overfit deliberado) sobre val/teste retidos (nunca vistos no treino)."
+  },
+  "tempo_total_s": 48.385997876001056
+}

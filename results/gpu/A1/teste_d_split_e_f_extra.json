@@ -1,0 +1,71 @@
+{
+  "teste": "A1_d_split_correto_e_f_extra_fisico_coverage",
+  "d_split_correto": {
+    "gnn_v3_smoke_bauru_Q2": {
+      "run_label": "gnn_v3_smoke_bauru_Q2",
+      "n_nos_npz": 1713,
+      "n_nos_particao_test_no_run_json": 1713,
+      "n_bate": true,
+      "hash_npz_idx_global_recomputado": "f24769fcf1eeb363d1ceb77e80eedd2811985f6366c67fd849003a2e8c5d4099",
+      "hash_gravado_particoes_test": "f24769fcf1eeb363d1ceb77e80eedd2811985f6366c67fd849003a2e8c5d4099",
+      "hash_gravado_particoes_val": "11b2f8c2f1d1037d6aa9051f3e193c691689884ee54e5b9ac5f0f20516c9755b",
+      "hash_gravado_particoes_train": "5d43ce3ed118e4be74460e9615cbc237f167caf46f34369c1c7616aa764a2a3f",
+      "npz_bate_com_particao_test": true,
+      "npz_bate_com_particao_val_FALSO_POSITIVO_SERIA_BUG": false,
+      "npz_bate_com_particao_train_FALSO_POSITIVO_SERIA_BUG": false,
+      "selecao_criterio": "menor mae_rssi_db em VAL",
+      "selecao_test_usado_na_selecao": false,
+      "selecao_tem_test_no_melhor_ckpt": true,
+      "coverage_prob_target_no_npz": {
+        "min": 0.0,
+        "max": 0.0,
+        "std": 0.0,
+        "constante": true
+      },
+      "passa_d": true
+    },
+    "mlp_v3_smoke_bauru_Q2": {
+      "run_label": "mlp_v3_smoke_bauru_Q2",
+      "n_nos_npz": 1713,
+      "n_nos_particao_test_no_run_json": 1713,
+      "n_bate": true,
+      "hash_npz_idx_global_recomputado": "f24769fcf1eeb363d1ceb77e80eedd2811985f6366c67fd849003a2e8c5d4099",
+      "hash_gravado_particoes_test": "f24769fcf1eeb363d1ceb77e80eedd2811985f6366c67fd849003a2e8c5d4099",
+      "hash_gravado_particoes_val": "11b2f8c2f1d1037d6aa9051f3e193c691689884ee54e5b9ac5f0f20516c9755b",
+      "hash_gravado_particoes_train": "5d43ce3ed118e4be74460e9615cbc237f167caf46f34369c1c7616aa764a2a3f",
+      "npz_bate_com_particao_test": true,
+      "npz_bate_com_particao_val_FALSO_POSITIVO_SERIA_BUG": false,
+      "npz_bate_com_particao_train_FALSO_POSITIVO_SERIA_BUG": false,
+      "selecao_criterio": "menor mae_rssi_db em VAL",
+      "selecao_test_usado_na_selecao": false,
+      "selecao_tem_test_no_melhor_ckpt": true,
+      "coverage_prob_target_no_npz": {
+        "min": 0.0,
+        "max": 0.0,
+        "std": 0.0,
+        "constante": true
+      },
+      "passa_d": true
+    }
+  },
+  "d_passa": true,
+  "f_fisico_fora_do_treino": {
+    "ocorrencias_grep_fisico_parenteses": {
+      "frozen_train_gnn_c0_spatial.py": 0,
+      "frozen_train_mlp_c0_spatial.py": 0,
+      "wrapper_train_gnn_v3.py": 0,
+      "wrapper_train_mlp_v3.py": 0,
+      "v3_common.py (esperado>0, so em gerar_predicoes_teste_*, POS-treino)": 2
+    },
+    "nota": "fisico() so pode aparecer nos WRAPPERS v3, e la e chamado depois de mod.main() terminar (reconstrucao de predicoes de teste), nunca dentro do loop de treino/loss dos congelados.",
+    "passa": true
+  },
+  "f_canal4_sigmoid_coerente_com_curriculumrfloss": {
+    "physics_loss_target_names_4": "coverage",
+    "physics_loss_forward": "huber_loss(predictions[:,4], targets[:,4]) direto, sem transformacao",
+    "rf_decoder_v3_canal4": "sigmoid(raw[:,4]) -- unico canal comprimido, produz [0,1]",
+    "conclusao": "coerente: alvo e probabilidade em [0,1], decoder entrega [0,1]",
+    "passa": true
+  },
+  "veredito_script": "passa"
+}

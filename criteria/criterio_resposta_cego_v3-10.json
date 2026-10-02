@@ -1,0 +1,14 @@
+{
+ "id": "resposta_cego_v3-10",
+ "data": "2026-09-27",
+ "natureza": "POST HOC descritivo, declarado antes do calculo; responde as criticas F1, F2 e F5 do revisor cego sobre o claim central (deriva do estimando com o sorteio; erro como estimador de razao). Nenhum numero decide aceitacao/rejeicao de hipotese.",
+ "F1": "Para o preditor constante, com os 60 sorteios aleatorios comuns as 16 celulas (fase2/_v3_2.1_3.1_parcial_16x60rnd.json): (i) por sorteio, dp entre as celulas com no valido do MAE nos validos e do MAE em todos os nos; reportar mediana, min e max sobre os 60; (ii) dp entre celulas das MEDIAS por celula; (iii) comparar com o dp entre sorteios por celula ja citado (8,02 dB nao ponderado, validos).",
+ "F2": "Por celula, com os mesmos 60 sorteios: MAE_todos = (1 - pi_te) * e_val, pois o constante e exato na sentinela (MAE sentinela = 0). Decompor Var(MAE_todos) entre sorteios em tres termos: composicao = E[e_val]^2 * Var(1 - pi_te); condicional = E[1 - pi_te]^2 * Var(e_val); resto = Var(MAE_todos) - composicao - condicional (covariancia e interacao). Reportar a fracao de cada termo por celula e a mediana sobre as 16. Sorteios sem no valido entram com e_val indefinido e ficam fora (declarar quantos).",
+ "F5": "Com o script v3_2.3b_por_sorteio.py (copia de v3_1.6_2.3_estimando_formal.py que so grava os valores por sorteio): por celula (bauru_Q1, campinas_Q1, lins_Q1, sorocaba_Q1) e populacao, n de sorteios, erro-padrao de Monte Carlo de Err(U) = dp(Err_sigma)/sqrt(n), e comparacao da diferenca b - c e do vies b - a com 2 erros-padrao. Conferencia obrigatoria: os agregados do 2.3b devem ser iguais aos do 2.3 original (|dif| < 1e-3 dB); senao nada e citavel.",
+ "script": "scripts/v3_resposta_cego_calculos.py (F1, F2, e F5 sobre o 2.3b)",
+ "G1_G2_adendo": {
+  "data": "2027-09-27 (tarde), antes do calculo",
+  "G1": "Retencao nodal de teste (fase1/1.8_referencia_nodal_200seeds.json, retencoes_te por celula alinhadas a lista comum de 200 seeds): por seed, dp entre as 16 celulas; reportar mediana, min, max; comparar com o dp entre seeds por celula (media dos nodal_te_dp) e com o dp entre as medias das celulas.",
+  "G2": "Lote A4 (gpu/A4/agregado_A4.json, mae_por_sorteio por celula e modelo, sorteios 101-105): por sorteio, dp entre as 4 celulas de Bauru do MAE nos validos, por modelo; reportar mediana, min, max sobre os 5 sorteios; comparar com o dp entre sorteios por celula e com o dp entre as medias das celulas (0,76 GNN; 1,85 MLP)."
+ }
+}

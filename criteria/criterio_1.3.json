@@ -1,0 +1,16 @@
+{
+  "id": "1.3",
+  "alegacao": "A1",
+  "pergunta": "A lacuna de 4-6% (teste) e 5-6% (validacao, g=5) entre o Monte Carlo de blocos inteiros (area continua, variante C de montecarlo_retencao_r3_g5.py) e a retencao nodal real (20 seeds, varredura_split_geometria.py/EDT) e 'granularidade' (efeito no vs bloco, nao medido) ou e a regra de aparo do protocolo (efeito ja capturado pelo aparo sequencial exato sobre nos reais)?",
+  "hipotese": "Um MC rodado sobre POSICOES DE NOS da malha real 3600x3600 (reconstruida do run JSON, split_espacial_3vias_exato/cKDTree, regra 70/15/resto ao teste, buffer b=2km, aparo sequencial val-primeiro-depois-teste, EXATAMENTE como o protocolo) converge, com N>=50 permutacoes, para a mesma retencao media que a retencao nodal real (20 seeds); a lacuna de 4-6%/5-6% fica inteira no lado do MC de blocos (aproximacao de area continua + geometria de bloco generico por cidade, sem a discretizacao real de no nem a regra sequencial aplicada por no).",
+  "limiar_de_aceitacao": "se |media(MC_nodal, N>=50) - media(nodal_real, 20 seeds)| / media(nodal_real) < 0.01 (1%) em TODAS as celulas testadas (g10: 4 cidades; g5: bauru + 3 cidades so geometria): a lacuna e atribuida a regra de aparo/abstracao de bloco do MC continuo, NAO a granularidade -- a frase de granularidade sai do texto.",
+  "o_que_refuta": "se em QUALQUER celula |MC_nodal - nodal_real|/nodal_real >= 0.01: a granularidade (ou outro efeito nao capturado pelo MC nodal com a mesma regra) continua sem explicacao medida e a lacuna correspondente permanece nao atribuida; a frase de granularidade so pode ser retirada, nao substituida, sem uma causa medida adicional.",
+  "metodo_declarado": {
+    "mc_nodal": "split_espacial_3vias_exato (copia literal train_gnn_c0_spatial.py:412-472, cKDTree exato, mesmo kw compact_nodes=False/balanced_tree=False) importado de scripts/varredura_split_geometria.py, aplicado a malha reconstruida (build_synthetic_grid + latlon_graus_para_metros) das 4 cidades x {g10b2, g5b2}, N_PERMUTACOES=50 seeds novas (1000..1049, fora das 20 seeds ja usadas em C-1/R3-a) por celula/config, media e dp da retencao val/teste reportadas",
+    "mc_blocos": "montecarlo_retencao_r3_g5.py, variante C (blocos gxg com bordas reais por cidade + regra assimetrica do codigo), 2500 trials, artefato ja existente RAW (reusado por import de leitura, nao recalculado)",
+    "nodal_real": "varredura_split_geometria.py, resumo por (cidade,Q,g,b) sobre as 20 seeds reais (42,1..19), metodo EDT ja validado <1e-3 contra cKDTree exato no portao; artefato ja existente (reusado por leitura)",
+    "n_permutacoes_mc_nodal": 50,
+    "regra_de_aparo_mc_nodal": "cKDTree exato: val aparado contra treino (d<b remove), depois teste aparado contra treino UNIAO val-ja-retido (d<b remove) -- sequencial, identica ao protocolo/codigo congelado",
+    "regra_de_aparo_mc_blocos": "geometria continua de blocos com bordas reais e regra assimetrica (test so aparado por vizinho val JA retido); NAO opera sobre nos individuais, opera sobre area de bloco"
+  }
+}

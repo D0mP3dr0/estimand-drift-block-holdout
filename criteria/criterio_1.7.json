@@ -1,0 +1,18 @@
+{
+  "id": "1.7",
+  "fase": 1,
+  "pergunta": "O subgrafo terreno-terreno induzido por particao (train/val/test, split_espacial_3vias real, buffer b) preserva o grau local dos nos retidos, ou a perda concentra-se estruturalmente em algum subconjunto?",
+  "alegacao": "A2 (Estrutura: o subgrafo induzido preserva o grau; P3, prop:degree)",
+  "hipotese": "malha regular 3600x3600 por celula; arestas terreno-terreno = (dem,adjacent_to,dem) do tensor *_gpu.pt real (adjacencia geometrica ja materializada, nao reconstruida); split_espacial_3vias identico ao codigo congelado (train_gnn_c0_spatial.py:412-472); fronteira de um no retido = distancia < 1 comprimento de aresta (~29,8 m) ate o complemento da mascara retida (scipy.ndimage.distance_transform_edt), incluindo a borda do dominio da celula.",
+  "criterio_de_aceitacao": "a razao grau_induzido/grau_original nos nos de INTERIOR e >= 0.995 em todas as celulas x sorteios executados, E a perda (razao<0.99) aparece SOMENTE em nos de fronteira; se a perda (razao<0.995) aparecer tambem no interior, P3 vira Remark (deixa de ser Proposicao com essa forma).",
+  "o_que_refuta": "qualquer celula x sorteio com razao media de interior < 0.995, OU nos de interior individuais com razao < 0.99 em fracao > ruido de arredondamento (>0.1% dos nos de interior).",
+  "arestas_cruzando_particao_esperado": 0,
+  "orcamento_declarado": "16 celulas (os 16 tensores *_gpu.pt reais existem localmente) x ate 20 sorteios se couber em 60 min CPU; caso contrario reduzir para 4 celulas (uma por cidade) x 5 sorteios, com a reducao declarada no artefato de saida",
+  "insumos": [
+    "*_gpu.pt (16 arquivos, /trabalho/TOPO_RF_DOWNLOAD_DRIVE/graph_data_v3/<cidade>_v19_<Q>_gpu.pt) -- campo (dem,adjacent_to,dem).edge_index e dem.pos (posicoes REAIS, nao sinteticas)",
+    "run_c0c1cf_<cidade>_s42_<Q>_g10b2.json (config: grid_km, buffer_km, split_frac, split_seed) -- TREINOS_DIR",
+    "train_gnn_c0_spatial.py:412-472 (split_espacial_3vias, copia literal)"
+  ],
+  "gravado_por": "matematica-grafos-espectral",
+  "data": "2026-09-25"
+}

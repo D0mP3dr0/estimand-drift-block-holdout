@@ -1,0 +1,11 @@
+{
+  "id": "2.1",
+  "pergunta": "O erro reportado (MAE do preditor constante e do FSPL calibrado) deriva com o split_seed nas 16 celulas g10b2?",
+  "alegacao": "A3 (deriva do estimando medida em ERRO)",
+  "hipotese": "sob alvo dominado por sentinela, o MAE por populacao no teste retido varia entre sorteios de forma nao desprezivel frente a variacao entre celulas",
+  "metodo_fixado": "16 celulas x 20 split_seeds (0..19 com 42 incluso), split_espacial_3vias (grid_km=10,buffer_km=2,fracs=0.70/0.15/0.15), constante = mediana(RSSI) do treino inteiro do sorteio, FSPL calibrado por offset em p_tx_eff=mediana(rssi_tr+FSPL(dist_tr,900MHz)) no treino inteiro do sorteio; MAE no teste retido por populacao (validos: PL<299; sentinela: PL>=299; todos)",
+  "limiar_aceitacao": "o MAE do preditor constante nos validos varia entre sorteios com desvio-padrao >= 0.1 dB em pelo menos 8 das 16 celulas",
+  "refutacao": "se em menos de 8 das 16 celulas o dp entre sorteios (validos, constante) atingir 0.1 dB, a deriva do erro e declarada pequena e o titulo 'estimand drift' e reconsiderado",
+  "comparacao_dp": "dp entre sorteios (por celula) vs dp entre celulas (media entre sorteios) -- ambos desvio-padrao, nunca dp x amplitude",
+  "fixado_em": "2026-09-25T00:00:00-03:00 (antes de rodar o script v3_2.1_3.1_deriva_calibracao.py)"
+}

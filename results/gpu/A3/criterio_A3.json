@@ -1,0 +1,591 @@
+{
+ "id": "A3",
+ "gravado_em": "2026-09-26 (agente oficina-experimento, PLANO A do dono D7, gate G2 paridade)",
+ "autor": "oficina-experimento",
+ "alvo": "gpu/modelo_v3/{v3_common.py,train_gnn_v3.py,train_mlp_v3.py,rf_decoder_v3.py} -- codigo byte-identico ao aprovado pelos gates A1bis (criterio_A1bis.json, veredito=passa, 9 criterios) e A3 (gpu/A3/ia-bug-silencioso.json, veredito=atencao, achados nao-bloqueantes explicitamente aceitos pelo chefe na secao 'DECISAO DO CHEFE (26/09 ~06:00)' do proprio protocolo).",
+ "tipo": "confirmatorio",
+ "hipotese": "O braco SEM CADEIA (init do zero) do pipeline modelo_v3 produz, nas 8 celulas (Q1,Q3 x 4 cidades) x 5 seeds de treino (42-46) x {GNN,MLP}, MAE por populacao comparavel ao braco encadeado existente (E3), com dispersao entre seeds mensuravel por celula.",
+ "predicao": "80 corridas completas com rc=0, run JSON + predicoes .npz por corrida; comparacao textual/estatistica fica para o rigor (forum-eng-ia/forum-fisico-matematico), nao para este agente.",
+ "criterio_aceite": "Corrida conta como concluida se rc=0 E o run JSON grava insumos.sha256_rf_data_bate_manifest_v4=true (prova de proveniencia). Corrida com rc=3 (sha256 nao bate) e achado de proveniencia, nao corrida valida. Corrida nao iniciada por orcamento = abortado_por_orcamento, sem veredito sobre a hipotese; documentar como cobertura parcial.",
+ "condicao_de_lancamento": "Gate ia-bug-silencioso do proprio gpu/A3 (veredito=atencao) aceito no protocolo (secao 'DECISAO DO CHEFE 26/09 ~06:00', que endereca especificamente os 2 achados de gravidade 'atencao' deste gate -- correlacao canal 2/roughness explicada fisicamente e fracao_passos_clipados=1.0 'nao bloqueia, regra do eng-IA') -- guarda de bug silencioso satisfeita para esta rodada.",
+ "corridas": [
+  {
+   "run_label": "gnn_v3_a3_bauru_Q1_s42",
+   "tipo": "gnn",
+   "cidade": "bauru",
+   "quadrante": "Q1",
+   "seed_treino": 42
+  },
+  {
+   "run_label": "mlp_v3_a3_bauru_Q1_s42",
+   "tipo": "mlp",
+   "cidade": "bauru",
+   "quadrante": "Q1",
+   "seed_treino": 42
+  },
+  {
+   "run_label": "gnn_v3_a3_bauru_Q1_s43",
+   "tipo": "gnn",
+   "cidade": "bauru",
+   "quadrante": "Q1",
+   "seed_treino": 43
+  },
+  {
+   "run_label": "mlp_v3_a3_bauru_Q1_s43",
+   "tipo": "mlp",
+   "cidade": "bauru",
+   "quadrante": "Q1",
+   "seed_treino": 43
+  },
+  {
+   "run_label": "gnn_v3_a3_bauru_Q1_s44",
+   "tipo": "gnn",
+   "cidade": "bauru",
+   "quadrante": "Q1",
+   "seed_treino": 44
+  },
+  {
+   "run_label": "mlp_v3_a3_bauru_Q1_s44",
+   "tipo": "mlp",
+   "cidade": "bauru",
+   "quadrante": "Q1",
+   "seed_treino": 44
+  },
+  {
+   "run_label": "gnn_v3_a3_bauru_Q1_s45",
+   "tipo": "gnn",
+   "cidade": "bauru",
+   "quadrante": "Q1",
+   "seed_treino": 45
+  },
+  {
+   "run_label": "mlp_v3_a3_bauru_Q1_s45",
+   "tipo": "mlp",
+   "cidade": "bauru",
+   "quadrante": "Q1",
+   "seed_treino": 45
+  },
+  {
+   "run_label": "gnn_v3_a3_bauru_Q1_s46",
+   "tipo": "gnn",
+   "cidade": "bauru",
+   "quadrante": "Q1",
+   "seed_treino": 46
+  },
+  {
+   "run_label": "mlp_v3_a3_bauru_Q1_s46",
+   "tipo": "mlp",
+   "cidade": "bauru",
+   "quadrante": "Q1",
+   "seed_treino": 46
+  },
+  {
+   "run_label": "gnn_v3_a3_bauru_Q3_s42",
+   "tipo": "gnn",
+   "cidade": "bauru",
+   "quadrante": "Q3",
+   "seed_treino": 42
+  },
+  {
+   "run_label": "mlp_v3_a3_bauru_Q3_s42",
+   "tipo": "mlp",
+   "cidade": "bauru",
+   "quadrante": "Q3",
+   "seed_treino": 42
+  },
+  {
+   "run_label": "gnn_v3_a3_bauru_Q3_s43",
+   "tipo": "gnn",
+   "cidade": "bauru",
+   "quadrante": "Q3",
+   "seed_treino": 43
+  },
+  {
+   "run_label": "mlp_v3_a3_bauru_Q3_s43",
+   "tipo": "mlp",
+   "cidade": "bauru",
+   "quadrante": "Q3",
+   "seed_treino": 43
+  },
+  {
+   "run_label": "gnn_v3_a3_bauru_Q3_s44",
+   "tipo": "gnn",
+   "cidade": "bauru",
+   "quadrante": "Q3",
+   "seed_treino": 44
+  },
+  {
+   "run_label": "mlp_v3_a3_bauru_Q3_s44",
+   "tipo": "mlp",
+   "cidade": "bauru",
+   "quadrante": "Q3",
+   "seed_treino": 44
+  },
+  {
+   "run_label": "gnn_v3_a3_bauru_Q3_s45",
+   "tipo": "gnn",
+   "cidade": "bauru",
+   "quadrante": "Q3",
+   "seed_treino": 45
+  },
+  {
+   "run_label": "mlp_v3_a3_bauru_Q3_s45",
+   "tipo": "mlp",
+   "cidade": "bauru",
+   "quadrante": "Q3",
+   "seed_treino": 45
+  },
+  {
+   "run_label": "gnn_v3_a3_bauru_Q3_s46",
+   "tipo": "gnn",
+   "cidade": "bauru",
+   "quadrante": "Q3",
+   "seed_treino": 46
+  },
+  {
+   "run_label": "mlp_v3_a3_bauru_Q3_s46",
+   "tipo": "mlp",
+   "cidade": "bauru",
+   "quadrante": "Q3",
+   "seed_treino": 46
+  },
+  {
+   "run_label": "gnn_v3_a3_campinas_Q1_s42",
+   "tipo": "gnn",
+   "cidade": "campinas",
+   "quadrante": "Q1",
+   "seed_treino": 42
+  },
+  {
+   "run_label": "mlp_v3_a3_campinas_Q1_s42",
+   "tipo": "mlp",
+   "cidade": "campinas",
+   "quadrante": "Q1",
+   "seed_treino": 42
+  },
+  {
+   "run_label": "gnn_v3_a3_campinas_Q1_s43",
+   "tipo": "gnn",
+   "cidade": "campinas",
+   "quadrante": "Q1",
+   "seed_treino": 43
+  },
+  {
+   "run_label": "mlp_v3_a3_campinas_Q1_s43",
+   "tipo": "mlp",
+   "cidade": "campinas",
+   "quadrante": "Q1",
+   "seed_treino": 43
+  },
+  {
+   "run_label": "gnn_v3_a3_campinas_Q1_s44",
+   "tipo": "gnn",
+   "cidade": "campinas",
+   "quadrante": "Q1",
+   "seed_treino": 44
+  },
+  {
+   "run_label": "mlp_v3_a3_campinas_Q1_s44",
+   "tipo": "mlp",
+   "cidade": "campinas",
+   "quadrante": "Q1",
+   "seed_treino": 44
+  },
+  {
+   "run_label": "gnn_v3_a3_campinas_Q1_s45",
+   "tipo": "gnn",
+   "cidade": "campinas",
+   "quadrante": "Q1",
+   "seed_treino": 45
+  },
+  {
+   "run_label": "mlp_v3_a3_campinas_Q1_s45",
+   "tipo": "mlp",
+   "cidade": "campinas",
+   "quadrante": "Q1",
+   "seed_treino": 45
+  },
+  {
+   "run_label": "gnn_v3_a3_campinas_Q1_s46",
+   "tipo": "gnn",
+   "cidade": "campinas",
+   "quadrante": "Q1",
+   "seed_treino": 46
+  },
+  {
+   "run_label": "mlp_v3_a3_campinas_Q1_s46",
+   "tipo": "mlp",
+   "cidade": "campinas",
+   "quadrante": "Q1",
+   "seed_treino": 46
+  },
+  {
+   "run_label": "gnn_v3_a3_campinas_Q3_s42",
+   "tipo": "gnn",
+   "cidade": "campinas",
+   "quadrante": "Q3",
+   "seed_treino": 42
+  },
+  {
+   "run_label": "mlp_v3_a3_campinas_Q3_s42",
+   "tipo": "mlp",
+   "cidade": "campinas",
+   "quadrante": "Q3",
+   "seed_treino": 42
+  },
+  {
+   "run_label": "gnn_v3_a3_campinas_Q3_s43",
+   "tipo": "gnn",
+   "cidade": "campinas",
+   "quadrante": "Q3",
+   "seed_treino": 43
+  },
+  {
+   "run_label": "mlp_v3_a3_campinas_Q3_s43",
+   "tipo": "mlp",
+   "cidade": "campinas",
+   "quadrante": "Q3",
+   "seed_treino": 43
+  },
+  {
+   "run_label": "gnn_v3_a3_campinas_Q3_s44",
+   "tipo": "gnn",
+   "cidade": "campinas",
+   "quadrante": "Q3",
+   "seed_treino": 44
+  },
+  {
+   "run_label": "mlp_v3_a3_campinas_Q3_s44",
+   "tipo": "mlp",
+   "cidade": "campinas",
+   "quadrante": "Q3",
+   "seed_treino": 44
+  },
+  {
+   "run_label": "gnn_v3_a3_campinas_Q3_s45",
+   "tipo": "gnn",
+   "cidade": "campinas",
+   "quadrante": "Q3",
+   "seed_treino": 45
+  },
+  {
+   "run_label": "mlp_v3_a3_campinas_Q3_s45",
+   "tipo": "mlp",
+   "cidade": "campinas",
+   "quadrante": "Q3",
+   "seed_treino": 45
+  },
+  {
+   "run_label": "gnn_v3_a3_campinas_Q3_s46",
+   "tipo": "gnn",
+   "cidade": "campinas",
+   "quadrante": "Q3",
+   "seed_treino": 46
+  },
+  {
+   "run_label": "mlp_v3_a3_campinas_Q3_s46",
+   "tipo": "mlp",
+   "cidade": "campinas",
+   "quadrante": "Q3",
+   "seed_treino": 46
+  },
+  {
+   "run_label": "gnn_v3_a3_sorocaba_Q1_s42",
+   "tipo": "gnn",
+   "cidade": "sorocaba",
+   "quadrante": "Q1",
+   "seed_treino": 42
+  },
+  {
+   "run_label": "mlp_v3_a3_sorocaba_Q1_s42",
+   "tipo": "mlp",
+   "cidade": "sorocaba",
+   "quadrante": "Q1",
+   "seed_treino": 42
+  },
+  {
+   "run_label": "gnn_v3_a3_sorocaba_Q1_s43",
+   "tipo": "gnn",
+   "cidade": "sorocaba",
+   "quadrante": "Q1",
+   "seed_treino": 43
+  },
+  {
+   "run_label": "mlp_v3_a3_sorocaba_Q1_s43",
+   "tipo": "mlp",
+   "cidade": "sorocaba",
+   "quadrante": "Q1",
+   "seed_treino": 43
+  },
+  {
+   "run_label": "gnn_v3_a3_sorocaba_Q1_s44",
+   "tipo": "gnn",
+   "cidade": "sorocaba",
+   "quadrante": "Q1",
+   "seed_treino": 44
+  },
+  {
+   "run_label": "mlp_v3_a3_sorocaba_Q1_s44",
+   "tipo": "mlp",
+   "cidade": "sorocaba",
+   "quadrante": "Q1",
+   "seed_treino": 44
+  },
+  {
+   "run_label": "gnn_v3_a3_sorocaba_Q1_s45",
+   "tipo": "gnn",
+   "cidade": "sorocaba",
+   "quadrante": "Q1",
+   "seed_treino": 45
+  },
+  {
+   "run_label": "mlp_v3_a3_sorocaba_Q1_s45",
+   "tipo": "mlp",
+   "cidade": "sorocaba",
+   "quadrante": "Q1",
+   "seed_treino": 45
+  },
+  {
+   "run_label": "gnn_v3_a3_sorocaba_Q1_s46",
+   "tipo": "gnn",
+   "cidade": "sorocaba",
+   "quadrante": "Q1",
+   "seed_treino": 46
+  },
+  {
+   "run_label": "mlp_v3_a3_sorocaba_Q1_s46",
+   "tipo": "mlp",
+   "cidade": "sorocaba",
+   "quadrante": "Q1",
+   "seed_treino": 46
+  },
+  {
+   "run_label": "gnn_v3_a3_sorocaba_Q3_s42",
+   "tipo": "gnn",
+   "cidade": "sorocaba",
+   "quadrante": "Q3",
+   "seed_treino": 42
+  },
+  {
+   "run_label": "mlp_v3_a3_sorocaba_Q3_s42",
+   "tipo": "mlp",
+   "cidade": "sorocaba",
+   "quadrante": "Q3",
+   "seed_treino": 42
+  },
+  {
+   "run_label": "gnn_v3_a3_sorocaba_Q3_s43",
+   "tipo": "gnn",
+   "cidade": "sorocaba",
+   "quadrante": "Q3",
+   "seed_treino": 43
+  },
+  {
+   "run_label": "mlp_v3_a3_sorocaba_Q3_s43",
+   "tipo": "mlp",
+   "cidade": "sorocaba",
+   "quadrante": "Q3",
+   "seed_treino": 43
+  },
+  {
+   "run_label": "gnn_v3_a3_sorocaba_Q3_s44",
+   "tipo": "gnn",
+   "cidade": "sorocaba",
+   "quadrante": "Q3",
+   "seed_treino": 44
+  },
+  {
+   "run_label": "mlp_v3_a3_sorocaba_Q3_s44",
+   "tipo": "mlp",
+   "cidade": "sorocaba",
+   "quadrante": "Q3",
+   "seed_treino": 44
+  },
+  {
+   "run_label": "gnn_v3_a3_sorocaba_Q3_s45",
+   "tipo": "gnn",
+   "cidade": "sorocaba",
+   "quadrante": "Q3",
+   "seed_treino": 45
+  },
+  {
+   "run_label": "mlp_v3_a3_sorocaba_Q3_s45",
+   "tipo": "mlp",
+   "cidade": "sorocaba",
+   "quadrante": "Q3",
+   "seed_treino": 45
+  },
+  {
+   "run_label": "gnn_v3_a3_sorocaba_Q3_s46",
+   "tipo": "gnn",
+   "cidade": "sorocaba",
+   "quadrante": "Q3",
+   "seed_treino": 46
+  },
+  {
+   "run_label": "mlp_v3_a3_sorocaba_Q3_s46",
+   "tipo": "mlp",
+   "cidade": "sorocaba",
+   "quadrante": "Q3",
+   "seed_treino": 46
+  },
+  {
+   "run_label": "gnn_v3_a3_lins_Q1_s42",
+   "tipo": "gnn",
+   "cidade": "lins",
+   "quadrante": "Q1",
+   "seed_treino": 42
+  },
+  {
+   "run_label": "mlp_v3_a3_lins_Q1_s42",
+   "tipo": "mlp",
+   "cidade": "lins",
+   "quadrante": "Q1",
+   "seed_treino": 42
+  },
+  {
+   "run_label": "gnn_v3_a3_lins_Q1_s43",
+   "tipo": "gnn",
+   "cidade": "lins",
+   "quadrante": "Q1",
+   "seed_treino": 43
+  },
+  {
+   "run_label": "mlp_v3_a3_lins_Q1_s43",
+   "tipo": "mlp",
+   "cidade": "lins",
+   "quadrante": "Q1",
+   "seed_treino": 43
+  },
+  {
+   "run_label": "gnn_v3_a3_lins_Q1_s44",
+   "tipo": "gnn",
+   "cidade": "lins",
+   "quadrante": "Q1",
+   "seed_treino": 44
+  },
+  {
+   "run_label": "mlp_v3_a3_lins_Q1_s44",
+   "tipo": "mlp",
+   "cidade": "lins",
+   "quadrante": "Q1",
+   "seed_treino": 44
+  },
+  {
+   "run_label": "gnn_v3_a3_lins_Q1_s45",
+   "tipo": "gnn",
+   "cidade": "lins",
+   "quadrante": "Q1",
+   "seed_treino": 45
+  },
+  {
+   "run_label": "mlp_v3_a3_lins_Q1_s45",
+   "tipo": "mlp",
+   "cidade": "lins",
+   "quadrante": "Q1",
+   "seed_treino": 45
+  },
+  {
+   "run_label": "gnn_v3_a3_lins_Q1_s46",
+   "tipo": "gnn",
+   "cidade": "lins",
+   "quadrante": "Q1",
+   "seed_treino": 46
+  },
+  {
+   "run_label": "mlp_v3_a3_lins_Q1_s46",
+   "tipo": "mlp",
+   "cidade": "lins",
+   "quadrante": "Q1",
+   "seed_treino": 46
+  },
+  {
+   "run_label": "gnn_v3_a3_lins_Q3_s42",
+   "tipo": "gnn",
+   "cidade": "lins",
+   "quadrante": "Q3",
+   "seed_treino": 42
+  },
+  {
+   "run_label": "mlp_v3_a3_lins_Q3_s42",
+   "tipo": "mlp",
+   "cidade": "lins",
+   "quadrante": "Q3",
+   "seed_treino": 42
+  },
+  {
+   "run_label": "gnn_v3_a3_lins_Q3_s43",
+   "tipo": "gnn",
+   "cidade": "lins",
+   "quadrante": "Q3",
+   "seed_treino": 43
+  },
+  {
+   "run_label": "mlp_v3_a3_lins_Q3_s43",
+   "tipo": "mlp",
+   "cidade": "lins",
+   "quadrante": "Q3",
+   "seed_treino": 43
+  },
+  {
+   "run_label": "gnn_v3_a3_lins_Q3_s44",
+   "tipo": "gnn",
+   "cidade": "lins",
+   "quadrante": "Q3",
+   "seed_treino": 44
+  },
+  {
+   "run_label": "mlp_v3_a3_lins_Q3_s44",
+   "tipo": "mlp",
+   "cidade": "lins",
+   "quadrante": "Q3",
+   "seed_treino": 44
+  },
+  {
+   "run_label": "gnn_v3_a3_lins_Q3_s45",
+   "tipo": "gnn",
+   "cidade": "lins",
+   "quadrante": "Q3",
+   "seed_treino": 45
+  },
+  {
+   "run_label": "mlp_v3_a3_lins_Q3_s45",
+   "tipo": "mlp",
+   "cidade": "lins",
+   "quadrante": "Q3",
+   "seed_treino": 45
+  },
+  {
+   "run_label": "gnn_v3_a3_lins_Q3_s46",
+   "tipo": "gnn",
+   "cidade": "lins",
+   "quadrante": "Q3",
+   "seed_treino": 46
+  },
+  {
+   "run_label": "mlp_v3_a3_lins_Q3_s46",
+   "tipo": "mlp",
+   "cidade": "lins",
+   "quadrante": "Q3",
+   "seed_treino": 46
+  }
+ ],
+ "config_fixa_por_corrida": {
+  "split_seed": 42,
+  "epochs": 8,
+  "max_nodes": 0,
+  "mmap": true,
+  "k_antenna": -1,
+  "k_terrain": -1,
+  "hidden_dim": 256,
+  "batch_size": 12288,
+  "lr": 0.001,
+  "sem_cadeia": true,
+  "transfer_from": ""
+ },
+ "gravidade": "80 corridas, 8 epocas, dataset canonico enriched_cftudo (unico default valido dos wrappers desde a correcao de proveniencia); nenhuma edicao de codigo congelado.",
+ "dado": "8 celulas (bauru/campinas/sorocaba/lins x Q1/Q3) REAIS, dataset CANONICO enriched_cftudo (grafo inteiro, --mmap, sem --max-nodes), GPU RTX 5070 Ti (~8,5 GB livres no inicio desta rodada; motor de embeddings concorrente ~5,4GB; abortar corrida se VRAM livre < 1 GB no repouso -- guarda do protocolo)",
+ "orcamento": "orcamento_gpu_min=840 (teto duro desta chamada); referencia de custo medido em A2c (mesmo modelo_v3, mesmo dataset cftudo, 8 epocas, grafo inteiro): GNN ~832-835s (~13,9min), MLP ~104-107s (~1,75min) por corrida -- 80 corridas = 40xGNN+40xMLP ~ 626 min (10,4h) se nenhuma corrida degradar; retomavel por corrida, para de iniciar NOVA corrida quando decorrido+estimativa > teto.",
+ "referencia_custo": "gpu/A2c/lote_A2c_status.json (8 corridas reais, mesmo codigo/dataset/epocas): gnn_v3_a2c_bauru_Q1_rep1=835.2s, rep2=834.1s, lins_rep1=834.7s, rep2=831.1s; mlp_bauru_rep1=104.2s, rep2=104.3s, lins_rep1=107.0s, rep2=104.5s.",
+ "referencia_gate": "gpu/A3/ia-bug-silencioso.json (veredito=atencao, achados nao-bloqueantes aceitos no protocolo); gpu/A2/ia-bug-silencioso.json e gpu/A2c (reuso, codigo hash-identico)."
+}

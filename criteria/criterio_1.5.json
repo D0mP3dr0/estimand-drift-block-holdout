@@ -1,0 +1,16 @@
+{
+  "id": "1.5",
+  "alegacao": "A1",
+  "pergunta": "A esperanca exata de retencao sem reposicao (dado que B e de teste, P(k vizinhos especificos sao todos de teste) = (k_te-1)_k/(N-1)_k, substituindo q^k na expansao polinomial da area por (k vizinhos)/(N total); para validacao, N-k_tr no lugar de k_te) reduz o erro contra a retencao nodal real em relacao ao campo medio (q^k com q constante = k/N) em TODAS as configuracoes (g10: 132 blocos, 92/20/20; g5: 483 blocos, 338/72/73)?",
+  "hipotese": "E[A]_exato (fatorial decrescente, hipergeometrico) por celula/configuracao erra menos que o campo medio (q^k) contra a retencao nodal real (20 seeds) em toda celula testada, porque captura a correlacao negativa introduzida pela amostragem SEM reposicao dos papeis dos blocos (um bloco retirado do universo N nao pode ser vizinho aparador duas vezes) que o campo medio i.i.d. ignora.",
+  "limiar_de_aceitacao": "erro_relativo(E[A]_exato, nodal_real) < erro_relativo(campo_medio, nodal_real) em TODAS as combinacoes (celula x config x papel teste/validacao) testadas; a Tabela 2 passa a reportar exato+nodal e o campo medio vira aproximacao declarada com o erro residual explicito.",
+  "o_que_refuta": "se em QUALQUER combinacao o erro do E[A]_exato for >= erro do campo medio (a correcao de amostragem sem reposicao piora ou nao muda a previsao), a Tabela 2 mantem o campo medio como aproximacao principal e declara a esperanca exata como alternativa sem ganho universal, citando a(s) combinacao(oes) em que isso ocorre.",
+  "metodo_declarado": {
+    "e_area_exato": "lattice_retention() de draft_v2/_pareceres_2026-09-25/fismat_sympy_eqR.py (reusada por import, sem editar o arquivo original), campo 'exato_permutacao': falling(N_nontrim-1,k)/falling(N-1,k) substituindo qmf**k na soma sum(ak[k]*prob(k)) sobre os 3x3=9 contadores de vizinhos aparadores por bloco (nucleo/lateral/canto), reticulado real (larguras de borda reais por cidade, bloco fino incluido)",
+    "campo_medio": "mesma funcao lattice_retention(), campo 'mean_field': qmf=N_nontrim/N constante substituindo q^k (aproximacao i.i.d. -- equivalente a eq:R avaliada em q=q_realizado, ja conferida por sympy_check_R_meanfield em montecarlo_retencao_r3_g5.py, diferenca simbolica=0)",
+    "q_realizado": "q_te = k_te/N (fracao de blocos de teste no universo); q_va = 1 - k_tr/N (fracao de NAO-treino, ja que o aparo de validacao conta blocos de treino como aparadores)",
+    "configuracoes": "g10: N=132 blocos (92 treino/20 val/20 teste); g5: N=483 blocos (338/72/73) -- contagem ja validada em montecarlo_retencao_r3_g5.py (validacao_contagem_blocos, bate exatamente com os runs reais)",
+    "comparadores": "nodal real (20 seeds, varredura_split_geometria.py, artefato existente reusado por leitura); MC de blocos (variante C, montecarlo_retencao_r3_g5.py, artefato existente reusado por leitura)",
+    "dominio_geometrico": "Lins Q1 (unico dominio com Wx,Wy ja derivados em fismat_sympy_eqR.py A4_reticulado_lins_Q1); reaplicado tambem as 4 cidades via CIDADES_EXT (ext_x_km, ext_y_km) de montecarlo_retencao_r3_g5.py para cobrir a comparacao por cidade pedida"
+  }
+}

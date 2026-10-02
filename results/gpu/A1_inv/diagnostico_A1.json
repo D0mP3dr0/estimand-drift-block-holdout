@@ -1,0 +1,117 @@
+{
+  "frente": "investigacao PLANO A, gate A1 bloqueado (dois achados novos, ia-bug-silencioso_v3.json)",
+  "protocolo": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/gpu/PROTOCOLO_GPU_v3_2026-09-25.md (PLANO A, item A1, decisao do dono D7, 25/09)",
+  "pasta_trabalho": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/gpu/A1_inv/",
+  "nao_edita": "modelo_v3/ e os congelados (train_gnn_c0_spatial.py, gnn_rf_model.py, gnn_rf_encoder.py, rf_decoder.py) permaneceram intocados; toda instrumentacao foi monkeypatch de METODO em memoria (mesma tecnica ja usada em v3_common.patch_decoder_gnn), nunca edicao de arquivo.",
+
+  "achado_b": {
+    "pergunta": "o gradiente exatamente 0.0 de encoder.convs.{0,1,2}.convs.<terrain___in_range_of___antenna>.lin_l.weight e artefato do teste de overfit de 1 batch do gate, ou existe tambem em treino real?",
+    "veredito": "NAO e artefato do gate -- e ESTRUTURAL: acontece em QUALQUER treino (gate OU producao) que use o mesmo NeighborLoader com fanout de 1 elemento por tipo de aresta para um encoder de 4 camadas, porque o edge type (terrain, in_range_of, antenna) tem DESTINO 'antenna' e o sampling parte de sementes 'terrain' com profundidade 1 -- as arestas cujo destino e 'antenna' nunca sao alcancadas pelo sampler nesse esquema, em NENHUM batch, para NENHUM numero de passos ou epocas.",
+    "passo_1_contagem_de_arestas": {
+      "reproduz": "gpu/A1/teste_abce_overfit_v3.py --tipo gnn (mesma carga real Bauru Q2, --mmap, --max-nodes 100000, split_seed=42, MESMO NeighborLoader nn_kw={ET_AT:[20], ET_TT:[8], ET_TA:[20]}, batch_size=8192, shuffle=False, input_nodes=('terrain',None))",
+      "script": "gpu/A1_inv/contar_arestas_batch_gate.py",
+      "comando": "/trabalho/ambientes/s33_amb_virtual/.venv/bin/python gpu/A1_inv/contar_arestas_batch_gate.py",
+      "saida": "gpu/A1_inv/contagem_arestas_batch_gate.json",
+      "arestas_terrain_in_range_of_antenna_ET_TA": {
+        "janela_completa_100k_nos": 498335,
+        "grafo_induzido_particao_train_inteira": 344805,
+        "PRIMEIRO_BATCH_amostrado_pelo_NeighborLoader_MESMO_do_gate": 0
+      },
+      "arestas_antenna_propagates_to_terrain_ET_AT_no_mesmo_batch": 40960,
+      "arestas_terrain_connects_to_terrain_ET_TT_no_mesmo_batch": 64712,
+      "n_antenas_no_batch": 15,
+      "n_antenas_destino_com_pelo_menos_1_aresta_ET_TA_no_batch": 0,
+      "features_de_antena_chegam_nao_zeradas": {
+        "resultado": true,
+        "shape_ctx_completo": [794, 6],
+        "shape_no_batch": [15, 6],
+        "norma_media_por_linha_ctx_completo": 1747.265,
+        "fracao_linhas_todas_zero": 0.0,
+        "nota": "as FEATURES de entrada das antenas (antenna_encoder) chegam corretamente e nao-zeradas; o que fica zerado e a AGREGACAO de vizinhos 'terrain' que o SAGEConv usa para lin_l, porque nenhuma aresta terrain->antenna e amostrada -- dois fenomenos distintos, so o segundo e o bug."
+      },
+      "causa_raiz_confirmada": "SAGEConv('terrain','in_range_of','antenna') em GNN_RF_V2/02_models/gnn_rf_encoder.py:140-144 tem lin_l aplicado a agregacao MEAN dos vizinhos 'terrain' (dst=antenna) e lin_r aplicado ao embedding proprio da antena (self/root). O NeighborLoader e configurado (tanto no gate quanto no script de PRODUCAO train_gnn_c0_spatial.py, MESMA linha 'nn_kw = {ET_AT:[k], ET_TT:[k], ET_TA:[k]}', fanout de comprimento 1 para os tres tipos) para amostrar so 1 hop a partir das sementes 'terrain'. Um hop so alcanca arestas cujo DESTINO e 'terrain' (ET_AT e ET_TT); arestas cujo destino e 'antenna' (ET_TA) exigiriam um SEGUNDO hop (explorar a partir dos nos 'antenna' recem-descobertos), que o fanout de comprimento 1 nunca faz. Resultado: 0 arestas ET_TA em QUALQUER batch amostrado dessa forma, sempre, estruturalmente -- nao e sorte do batch nem peculiaridade do teste de overfit."
+    },
+    "passo_2_epoca_real_com_ganchos_de_gradiente": {
+      "comando_reproduzido": "importlib de gpu/modelo_v3/train_gnn_v3.py, chamando main(['--cidade','bauru','--quadrante','Q2','--seed-treino','42','--split-seed','42','--epochs','1','--max-nodes','100000','--mmap','--smoke','--evid-dir','gpu/A1_inv/epoca_real','--run-label','A1_inv_epoca_real_gnn_bauru_Q2','--no-baselines']) -- '--smoke' foi necessario so para o ajuste de GEOMETRIA da janela pequena (grid/buffer), do contrario a particao de teste fica vazia com --max-nodes 100000; '--smoke' NAO reduz epochs (ja pedido =1) nem troca o decoder/config do modelo -- o restante do pipeline (split, induzir_particao, GNNRFModel, AdamW lr=1e-3, CurriculumRFLoss, AMP) e o MESMO caminho de codigo do congelado de producao.",
+      "script": "gpu/A1_inv/epoca_real_gradiente_canais.py",
+      "run_json": "gpu/A1_inv/epoca_real/A1_inv_epoca_real_gnn_bauru_Q2/run_A1_inv_epoca_real_gnn_bauru_Q2.json",
+      "checkpoint": "gpu/A1_inv/epoca_real/A1_inv_epoca_real_gnn_bauru_Q2/checkpoints/checkpoint_best.pt",
+      "saida_diagnostico": "gpu/A1_inv/epoca_real_gradiente_canais.json",
+      "instrumentacao": "monkeypatch de metodo (nao de arquivo): gnn_rf_model.GNNRFModel.__init__ (para capturar a instancia real do modelo) e torch.optim.AdamW.step (para ler p.grad.norm() de lin_l.weight/lin_l.bias/lin_r.weight do edge type terrain->antenna, camadas 0-3, IMEDIATAMENTE ANTES de cada atualizacao real de peso, apos backward+unscale+clip do AMP).",
+      "dado": "Bauru Q2 real, 99.667 nos na janela, split espacial 68.961 train / 2.519 val / 1.713 test, 9 batches de treino (bs=8192)",
+      "resultado_numerico": {
+        "n_batches_no_epoch": 9,
+        "n_passos_com_atualizacao_de_peso_REALMENTE_efetivada": 2,
+        "nota_sobre_a_diferenca_9_vs_2": "o GradScaler de AMP (torch.amp.GradScaler('cuda')) pode DETECTAR overflow (grad nao-finito em fp16) e PULAR a chamada real a optimizer.step() em alguns batches enquanto reduz a escala -- e um comportamento PADRAO de warmup de AMP, independente do bug de gradiente investigado aqui; nao foi aprofundado (fora do escopo de A1-b) porque nao muda a conclusao: NOS DOIS passos em que optimizer.step() de fato rodou, lin_l.weight ficou EXATAMENTE 0.0 nas 3 camadas, enquanto lin_l.bias e lin_r.weight das MESMAS camadas ficaram != 0 nos MESMOS passos.",
+        "encoder.convs.0.convs.<terrain___in_range_of___antenna>.lin_l.weight": [0.0, 0.0],
+        "encoder.convs.1.convs.<terrain___in_range_of___antenna>.lin_l.weight": [0.0, 0.0],
+        "encoder.convs.2.convs.<terrain___in_range_of___antenna>.lin_l.weight": [0.0, 0.0],
+        "encoder.convs.0.convs.<terrain___in_range_of___antenna>.lin_l.bias_passo0_passo1": [0.008025811, 0.007628982],
+        "encoder.convs.0.convs.<terrain___in_range_of___antenna>.lin_r.weight_passo0_passo1": [0.065089300, 0.062894136],
+        "encoder.convs.1.convs.<terrain___in_range_of___antenna>.lin_l.bias_passo0_passo1": [0.004098781, 0.003747285],
+        "encoder.convs.1.convs.<terrain___in_range_of___antenna>.lin_r.weight_passo0_passo1": [0.047847476, 0.050374623],
+        "encoder.convs.2.convs.<terrain___in_range_of___antenna>.lin_l.bias_passo0_passo1": [0.003318067, 0.002775791],
+        "encoder.convs.2.convs.<terrain___in_range_of___antenna>.lin_r.weight_passo0_passo1": [0.037282433, 0.039863400],
+        "camada_3_todas_grad_None_em_ambos_passos": true,
+        "camada_3_nota": "esperado -- o embedding de antena da camada 4 (ultima) e descartado, so terrain_embeddings alimenta o decoder (ja documentado no achado A1-b-1 original)."
+      },
+      "veredito_b": "achado A1-b-1 do gate CONFIRMADO em treino real de producao (nao e artefato do overfit de 1 batch): lin_l.weight desse edge type/camadas fica MORTO em qualquer configuracao que use o NeighborLoader de fanout 1-hop atual, gate ou producao, porque a causa e topologica/estrutural (0 arestas amostradas), nao estatistica.",
+      "vram_livre_mib": {"antes": 8274, "apos_treino_1_epoca": 5864, "apos_avaliacao": null}
+    }
+  },
+
+  "achado_c": {
+    "pergunta": "no smoke de 2 epocas ja gravado (clampado), o canal 1 fica fora do range fisico [0,50] dB em 31-33% das amostras apos o OVERFIT do gate; isso se repete numa EPOCA REAL (val/teste retidos, predicoes AFINS antes de fisico())? O excesso e de decimos de dB em alvos=0, ou dezenas de dB?",
+    "metodo": "MESMA epoca real do achado_b (1 epoca, Bauru Q2, 100k nos, checkpoint_best.pt da unica epoca rodada); reconstrucao das particoes VAL e TEST com as MESMAS funcoes do congelado (mod.induzir_particao + NeighborLoader), coletando out['predictions'] (saida AFIM do AffineDecoderV3, ANTES de fisico()) por no, sem aplicar nenhum clamp.",
+    "script": "gpu/A1_inv/epoca_real_gradiente_canais.py (mesma execucao do achado_b, secao (c))",
+    "saida_diagnostico": "gpu/A1_inv/epoca_real_gradiente_canais.json (campo c_canais_epoca_real)",
+    "resultado_por_canal": {
+      "val_n_nos": 2519,
+      "test_n_nos": 1713,
+      "path_loss_total": {"val_fracao_fora": 0.0, "test_fracao_fora": 0.0},
+      "path_loss_vegetation": {
+        "val_fracao_fora": 0.0, "test_fracao_fora": 0.0,
+        "val_excesso_mediana_dB": 0.0, "val_excesso_p95_dB": 0.0,
+        "test_excesso_mediana_dB": 0.0, "test_excesso_p95_dB": 0.0,
+        "val_fracao_alvos_exatamente_zero": 0.7121874,
+        "test_fracao_alvos_exatamente_zero": 0.6042032
+      },
+      "path_loss_terrain": {"val_fracao_fora": 0.0, "test_fracao_fora": 0.0},
+      "rssi": {"val_fracao_fora": 0.0, "test_fracao_fora": 0.0}
+    },
+    "comparacao_com_o_overfit_do_gate": {
+      "gate_1_batch_300_passos_lr_3e-3_gnn_canal1_clamp_final": 0.3125219941139221,
+      "gate_1_batch_300_passos_lr_3e-3_mlp_canal1_clamp_final": 0.3299560546875,
+      "aqui_1_epoca_real_9_batches_lr_1e-3_val_e_teste_retidos_canal1": 0.0,
+      "resposta_a_pergunta_do_chefe": "NAO se repete em treino real medido ate agora: 0% fora da faixa em val E em teste apos 1 epoca real (contra 31-33% no overfit de 300 passos do gate); ou seja, quando ocorre, o excesso do gate NAO e de decimos de dB -- e simplesmente AUSENTE nesta medicao real (0 amostras fora, logo nao ha excesso algum para medir mediana/P95 aqui)."
+    },
+    "ressalva_obrigatoria_NAO_e_a_ultima_palavra": "esta epoca REAL treinou so 9 batches (2 atualizacoes de peso efetivas, ver achado_b) -- a loss mal se moveu (91.47 -> 85.43, ~7% de queda, praticamente ainda proximo da INICIALIZACAO aleatoria do decoder afim). O overfit do gate FORCA 300 passos de Adam a lr 3e-3 sobre 1 SO batch fixo -- um regime deliberadamente extremo que NAO existe em 1 epoca real. A auditoria com dado real ainda NAO cobre o regime em que o excesso do gate apareceu (muitas atualizacoes concentradas). O proximo passo obrigatorio (ja apontado pelo proprio gate em 'nao_verificado') e medir fracao_no_clamp_fisico por canal no run de PRODUCAO de 8 epocas completas (A2/A3), no OS 1 epoca aqui rodada -- 1 epoca NAO decide se o canal 1 vai ou nao exceder apos 8 epocas de ajuste real; so decide que NAO excede ainda nos primeiros 9 batches.",
+    "regra_do_chefe_antes_de_A2": "'excesso com mediana > 1 dB sinaliza a corrida' -- nesta medicao de 1 epoca a mediana do excesso e 0 dB (nao ha excesso), logo esta medicao especifica NAO sinalizaria a corrida; mas essa regra so pode ser aplicada com confianca depois de medir o run de 8 epocas real (A2/A3), nao com 1 epoca de aquecimento."
+  },
+
+  "artefatos": [
+    "gpu/A1_inv/contar_arestas_batch_gate.py",
+    "gpu/A1_inv/contagem_arestas_batch_gate.json",
+    "gpu/A1_inv/epoca_real_gradiente_canais.py",
+    "gpu/A1_inv/epoca_real_gradiente_canais.json",
+    "gpu/A1_inv/epoca_real/A1_inv_epoca_real_gnn_bauru_Q2/run_A1_inv_epoca_real_gnn_bauru_Q2.json",
+    "gpu/A1_inv/epoca_real/A1_inv_epoca_real_gnn_bauru_Q2/training_log.csv",
+    "gpu/A1_inv/epoca_real/A1_inv_epoca_real_gnn_bauru_Q2/checkpoints/checkpoint_best.pt",
+    "gpu/A1_inv/epoca_real/A1_inv_epoca_real_gnn_bauru_Q2/predicoes_A1_inv_epoca_real_gnn_bauru_Q2.npz",
+    "gpu/A1_inv/diagnostico_A1.json"
+  ],
+
+  "custo": {
+    "gpu_tempo_s_aprox": "~33s de computo GPU real (1 epoca de treino Bauru Q2 100k nos + 1 avaliacao de val/teste); teto do protocolo era 20 min, uso real bem abaixo",
+    "vram_livre_antes_mib": 8274,
+    "vram_livre_min_durante": 5864,
+    "vram_livre_depois_mib": 8494,
+    "motor_embeddings_pid_1630_intacto": true,
+    "regra_abortar_vram_livre_lt_1gb": "nunca acionada (minimo observado 5864 MiB livres)"
+  },
+
+  "encaminhamento_para_o_chefe": {
+    "b": "o achado A1-b-1 NAO e artefato do gate -- e um bug/limitacao estrutural do encoder GNNRFEncoder (GNN_RF_V2/02_models/gnn_rf_encoder.py, config de NeighborLoader herdada IGUAL no gate e na producao): lin_l do SAGEConv(terrain->antenna) nunca recebe gradiente porque o fanout de 1 hop nunca amostra arestas cujo destino e 'antenna'. E PRE-EXISTENTE ao decoder v3 (nao foi introduzido pelo PLANO A) e afeta TODO treino ja rodado com esse encoder (incluindo, possivelmente, os resultados publicados antes do PLANO A). Nao decido correcao (fora do papel de oficina-pipeline); duas rotas possiveis para o forum-eng-ia decidir: (i) aumentar o fanout do NeighborLoader para 2+ hops nos tipos que alimentam 'antenna' (ET_TA), custo de amostragem maior; (ii) aceitar que o embedding de antena atualizado por lin_l nunca teve efeito pratico e documentar/journal isso como limitacao conhecida (a antena ainda recebe update via lin_r, self-loop, entao nao fica congelada, so nao agrega vizinhos terrain).",
+    "c": "0% de excesso em val/teste apos 1 epoca real NAO resolve a duvida do gate -- so a mede num regime de treino insuficiente (2 atualizacoes efetivas). Nao concluo que o canal 1 esta seguro; recomendo que a MESMA instrumentacao (script epoca_real_gradiente_canais.py, so trocando --epochs de 1 para 8 e removendo --smoke quando o grafo for o inteiro) rode dentro do proprio A2/A3 (ja e o proximo passo que o gate pediu em 'nao_verificado'), e que o resultado desse run de 8 epocas -- nao o de 1 epoca aqui -- seja o que decide a regra 'mediana > 1 dB sinaliza a corrida'."
+  }
+}

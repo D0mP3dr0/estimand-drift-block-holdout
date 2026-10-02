@@ -1,0 +1,68 @@
+{
+ "k": {
+  "TT": 8,
+  "AT": 20
+ },
+ "particoes": {
+  "train": {
+   "n_terreno": 68961,
+   "TT_autolacos_frac": 0.11249332875013351,
+   "TT": {
+    "media": 8.889415756732065,
+    "p50": 9.0,
+    "p90": 9.0,
+    "p99": 9.0,
+    "max": 9.0,
+    "frac_grau_gt_k": 0.9629645741796088,
+    "frac_grau_0": 0.0,
+    "media_vizinhos_amostrados": 7.926451182552457,
+    "media_vizinhos_descartados_por_no": 0.9629645741796088
+   },
+   "AT_autolacos_frac": 0.0,
+   "AT": {
+    "media": 5.0,
+    "p50": 5.0,
+    "p90": 5.0,
+    "p99": 5.0,
+    "max": 5.0,
+    "frac_grau_gt_k": 0.0,
+    "frac_grau_0": 0.0,
+    "media_vizinhos_amostrados": 5.0,
+    "media_vizinhos_descartados_por_no": 0.0
+   },
+   "nos_por_semente_completa": 14.889415756732065,
+   "nos_por_semente_amostrada": 13.926451182552457,
+   "razao_completa_sobre_amostrada": 1.0691464438109002
+  },
+  "test": {
+   "n_terreno": 1713,
+   "TT_autolacos_frac": 0.11956445872783661,
+   "TT": {
+    "media": 8.363689433741973,
+    "p50": 9.0,
+    "p90": 9.0,
+    "p99": 9.0,
+    "max": 9.0,
+    "frac_grau_gt_k": 0.7956800934033859,
+    "frac_grau_0": 0.0,
+    "media_vizinhos_amostrados": 7.5680093403385875,
+    "media_vizinhos_descartados_por_no": 0.7956800934033859
+   },
+   "AT_autolacos_frac": 0.0,
+   "AT": {
+    "media": 5.0,
+    "p50": 5.0,
+    "p90": 5.0,
+    "p99": 5.0,
+    "max": 5.0,
+    "frac_grau_gt_k": 0.0,
+    "frac_grau_0": 0.0,
+    "media_vizinhos_amostrados": 5.0,
+    "media_vizinhos_descartados_por_no": 0.0
+   },
+   "nos_por_semente_completa": 14.363689433741973,
+   "nos_por_semente_amostrada": 13.568009340338588,
+   "razao_completa_sobre_amostrada": 1.0586438344376559
+  }
+ }
+}

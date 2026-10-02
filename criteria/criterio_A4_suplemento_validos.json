@@ -1,0 +1,23 @@
+{
+  "id": "A4_suplemento_inversao_validos",
+  "data": "2026-09-27T09:20:00-03:00",
+  "natureza": "POST HOC (nao pre-registrado no criterio_A4). Declarado ANTES de qualquer numero de baseline nos sorteios 101-105 ser calculado; os MAE do modelo por sorteio ja eram conhecidos (agregado_A4.json).",
+  "motivo": "O criterio 3.3 do criterio_A4 compara MAE_validos(modelo) com baselines_analiticos.test.baseline_<b>_mae do run JSON. O verificador AD mostrou (train_gnn_c0_spatial.py:700-724 e chamador ~l.1205) que esse MAE e calculado sobre TODOS os nos de teste (alvo RSSI sentinela = -110 dBm constante), com P_tx calibrado pela mediana de todos os nos de treino. Populacoes diferentes: a comparacao pre-registrada nao mede inversao nos validos.",
+  "pergunta": "Nos mesmos 20 sorteios (Bauru Q1-Q4 x split seeds 101-105), em quantos o MAE_validos do modelo treinado (GNN, MLP) e menor que o MAE_validos de cada baseline analitica calibrada (a) na mediana do treino inteiro e (b) na mediana dos validos do treino?",
+  "calculo": {
+    "baselines_por_sorteio": "scripts/v3_2.1_3.1_deriva_calibracao.py (mesmo script da rodada de CPU, sem edicao) com --celula bauru_Qn --seeds 101,102,103,104,105 --sufixo-saida _A4sup_bauru_Qn --sem-sha; le mae_modelo_a/b[baseline][populacao] e n_test por sorteio",
+    "modelo_por_sorteio": "gpu/A4/agregado_A4.json -> celulas[c].por_modelo[m].mae_por_sorteio[seed].mae_rssi_validos_db (ja votado, A4-2/A4-4)",
+    "pareamento": "mesma celula e split_seed; conferencia obrigatoria n_test (script CPU) == n (npz A4) em todos os 20 sorteios; divergencia em qualquer sorteio = analise NAO citavel",
+    "saida": "contagem de sorteios com modelo melhor, por (modelo, baseline, calibracao), sobre 20 e por celula; sem magnitude agregada entre celulas",
+    "script": "scripts/v3_A4_suplemento_inversao_validos.py (a escrever antes de abrir os JSON de saida)"
+  },
+  "emenda_2026-09-27T09:50": {
+    "motivo": "A tentativa com v3_2.1_3.1_deriva_calibracao.py (grid 10 km, celula inteira) nao pareia com as particoes A4 (grid 5 km do script congelado: n_test 203.528 vs 844.076 em Bauru Q1 s101). Descartada ANTES de qualquer comparacao com o modelo.",
+    "calculo_substituto": "scripts/v3_A4_suplemento_inversao_validos.py: para cada corrida GNN A4 (a particao e identica a do MLP, A4-6), le idx_global e target[:,3] do .npz, dist_nearest_m[idx_global] do tensor da celula (graph_data_v3, mesmo arquivo do treino), formulas do script congelado baselines_v2_por_particao.py a 900 MHz, P_tx = baselines_analiticos.test.p_tx_eff_dbm do run JSON (calibracao (a), mediana de todos os nos de treino, a mesma do script congelado). MAE da baseline por populacao (validos, sentinela, todos) e comparacao MAE_validos(modelo) < MAE_validos(baseline) por (celula, sorteio, modelo, baseline).",
+    "autoverificacao_obrigatoria": "o MAE da baseline sobre TODOS os nos de teste recalculado deve reproduzir baselines_analiticos.test.baseline_<b>_mae do run JSON em 20/20 sorteios (|dif| < 1e-3 dB); falha em qualquer sorteio = analise NAO citavel.",
+    "calibracao_b": "NAO computavel: exige os indices de treino do sorteio A4, que nao estao gravados; so (a) e reportada. Isto e declarado antes do calculo.",
+    "leitura": "distribuicao de MAE_validos(baseline) por celula sobre 5 sorteios e contagens de inversao por modelo; comparar com o preditor constante nao faz parte (ja coberto pela rodada de CPU, 3.1)."
+  },
+  "o_que_entra_no_texto": "So se 3 votos; sempre com a palavra 'post hoc' / 'after the runs' e nunca no Abstract ou Conclusions. O resultado pre-registrado 3.3 (baseline sobre todos os nos) NAO entra como 'inversao'; fica na folha com a ressalva.",
+  "proibido": "ajustar calibracao ou populacao depois de ver a contagem; escolher entre (a) e (b) depois de ver o resultado: ambas sao reportadas."
+}

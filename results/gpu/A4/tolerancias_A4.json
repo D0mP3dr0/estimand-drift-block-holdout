@@ -1,0 +1,30 @@
+{
+ "criterio_sha256": "6a6ea4a98ed596380981948da1dee050eb9c2af8f078c4e5edc7309eb697e228",
+ "parcial": false,
+ "tolerancias": {
+  "bauru_Q1": {
+   "n": 5,
+   "dp_mlp_sentinela_db": 0.03475165654081004,
+   "usa_dp_gnn": false,
+   "tolerancia_db": 0.03475165654081004
+  },
+  "bauru_Q2": {
+   "n": 5,
+   "dp_mlp_sentinela_db": 0.03622253886418188,
+   "usa_dp_gnn": false,
+   "tolerancia_db": 0.03622253886418188
+  },
+  "bauru_Q3": {
+   "n": 5,
+   "dp_mlp_sentinela_db": 0.01564651318027509,
+   "usa_dp_gnn": false,
+   "tolerancia_db": 0.01564651318027509
+  },
+  "bauru_Q4": {
+   "n": 5,
+   "dp_mlp_sentinela_db": 0.03107058300809186,
+   "usa_dp_gnn": false,
+   "tolerancia_db": 0.03107058300809186
+  }
+ }
+}

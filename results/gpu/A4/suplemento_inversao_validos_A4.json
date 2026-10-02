@@ -1,0 +1,1097 @@
+{
+ "artefato": "suplemento POST HOC ao A4 (nao pre-registrado no criterio_A4)",
+ "criterio": "criterios/criterio_A4_suplemento_validos.json",
+ "criterio_sha256": "e0da62204d623cd1c5765e00d65d21b7a6d0af73cc2c49e8152090a6b48376d3",
+ "baselines_congelado_sha256": "6d5fde065f86c7bdf39465d49e93d8f4218332273d2efdd1580dfea3ac45063c",
+ "calibracao": "(a) P_tx_eff do run JSON (mediana sobre todos os nos de treino), unica computavel",
+ "autoverificacao_ok_todas": true,
+ "celulas": {
+  "bauru_Q1": {
+   "tensor": "/trabalho/TOPO_RF_DOWNLOAD_DRIVE/graph_data_v3/transfer_dataset_bauru_v19_Q1_enriched_cftudo.pt",
+   "por_sorteio": {
+    "101": {
+     "n": 203528,
+     "n_validos": 51634,
+     "freq_mhz": 900.0,
+     "baselines": {
+      "fspl": {
+       "mae_todos_db": 3.050245089029275,
+       "mae_todos_run_json_db": 3.050245087336095,
+       "autoverificacao_ok": true,
+       "mae_validos_db": 6.171353929696204,
+       "mae_sentinela_db": 1.9892727406876929
+      },
+      "hata_rural": {
+       "mae_todos_db": 5.4660841176671635,
+       "mae_todos_run_json_db": 5.466084103923484,
+       "autoverificacao_ok": true,
+       "mae_validos_db": 8.813676229682825,
+       "mae_sentinela_db": 4.328122308037971
+      },
+      "cost231_sub": {
+       "mae_todos_db": 5.4660841176671635,
+       "mae_todos_run_json_db": 5.466084103923484,
+       "autoverificacao_ok": true,
+       "mae_validos_db": 8.813676229682827,
+       "mae_sentinela_db": 4.328122308037971
+      }
+     },
+     "modelos": {
+      "gnn": {
+       "mae_validos_db": 2.3909875450833087,
+       "melhor_que": {
+        "fspl": true,
+        "hata_rural": true,
+        "cost231_sub": true
+       }
+      },
+      "mlp": {
+       "mae_validos_db": 4.634877742307646,
+       "melhor_que": {
+        "fspl": true,
+        "hata_rural": true,
+        "cost231_sub": true
+       }
+      }
+     }
+    },
+    "102": {
+     "n": 202964,
+     "n_validos": 25736,
+     "freq_mhz": 900.0,
+     "baselines": {
+      "fspl": {
+       "mae_todos_db": 2.68237705036662,
+       "mae_todos_run_json_db": 2.682376993037328,
+       "autoverificacao_ok": true,
+       "mae_validos_db": 8.688129748617385,
+       "mae_sentinela_db": 1.8102572304612903
+      },
+      "hata_rural": {
+       "mae_todos_db": 3.9155837930069612,
+       "mae_todos_run_json_db": 3.9155836773717874,
+       "autoverificacao_ok": true,
+       "mae_validos_db": 6.6685292240058,
+       "mae_sentinela_db": 3.5158173700253443
+      },
+      "cost231_sub": {
+       "mae_todos_db": 3.9155837930069612,
+       "mae_todos_run_json_db": 3.9155836773717874,
+       "autoverificacao_ok": true,
+       "mae_validos_db": 6.6685292240058,
+       "mae_sentinela_db": 3.5158173700253443
+      }
+     },
+     "modelos": {
+      "gnn": {
+       "mae_validos_db": 2.1091924842897507,
+       "melhor_que": {
+        "fspl": true,
+        "hata_rural": true,
+        "cost231_sub": true
+       }
+      },
+      "mlp": {
+       "mae_validos_db": 4.057069948133583,
+       "melhor_que": {
+        "fspl": true,
+        "hata_rural": true,
+        "cost231_sub": true
+       }
+      }
+     }
+    },
+    "103": {
+     "n": 218253,
+     "n_validos": 25594,
+     "freq_mhz": 900.0,
+     "baselines": {
+      "fspl": {
+       "mae_todos_db": 3.3602607744801647,
+       "mae_todos_run_json_db": 3.360260762626166,
+       "autoverificacao_ok": true,
+       "mae_validos_db": 5.435202183781714,
+       "mae_sentinela_db": 3.0846128658454064
+      },
+      "hata_rural": {
+       "mae_todos_db": 4.978231620782205,
+       "mae_todos_run_json_db": 4.978231585850976,
+       "autoverificacao_ok": true,
+       "mae_validos_db": 3.4357507953543838,
+       "mae_sentinela_db": 5.183144208546076
+      },
+      "cost231_sub": {
+       "mae_todos_db": 4.978231620782205,
+       "mae_todos_run_json_db": 4.978231585850976,
+       "autoverificacao_ok": true,
+       "mae_validos_db": 3.4357507953543838,
+       "mae_sentinela_db": 5.183144208546075
+      }
+     },
+     "modelos": {
+      "gnn": {
+       "mae_validos_db": 0.6779657038821088,
+       "melhor_que": {
+        "fspl": true,
+        "hata_rural": true,
+        "cost231_sub": true
+       }
+      },
+      "mlp": {
+       "mae_validos_db": 2.2400307003628455,
+       "melhor_que": {
+        "fspl": true,
+        "hata_rural": true,
+        "cost231_sub": true
+       }
+      }
+     }
+    },
+    "104": {
+     "n": 196018,
+     "n_validos": 23046,
+     "freq_mhz": 900.0,
+     "baselines": {
+      "fspl": {
+       "mae_todos_db": 3.7821735361387527,
+       "mae_todos_run_json_db": 3.7821734954753565,
+       "autoverificacao_ok": true,
+       "mae_validos_db": 9.617377892636641,
+       "mae_sentinela_db": 3.004717534012106
+      },
+      "hata_rural": {
+       "mae_todos_db": 4.436981310247103,
+       "mae_todos_run_json_db": 4.436981219487658,
+       "autoverificacao_ok": true,
+       "mae_validos_db": 3.9634137819718034,
+       "mae_sentinela_db": 4.500077286801878
+      },
+      "cost231_sub": {
+       "mae_todos_db": 4.436981310247106,
+       "mae_todos_run_json_db": 4.436981219487661,
+       "autoverificacao_ok": true,
+       "mae_validos_db": 3.963413781971816,
+       "mae_sentinela_db": 4.50007728680188
+      }
+     },
+     "modelos": {
+      "gnn": {
+       "mae_validos_db": 3.4131536988616973,
+       "melhor_que": {
+        "fspl": true,
+        "hata_rural": true,
+        "cost231_sub": true
+       }
+      },
+      "mlp": {
+       "mae_validos_db": 6.111356402440772,
+       "melhor_que": {
+        "fspl": true,
+        "hata_rural": false,
+        "cost231_sub": false
+       }
+      }
+     }
+    },
+    "105": {
+     "n": 224810,
+     "n_validos": 33016,
+     "freq_mhz": 900.0,
+     "baselines": {
+      "fspl": {
+       "mae_todos_db": 2.225488530520205,
+       "mae_todos_run_json_db": 2.2254884871208,
+       "autoverificacao_ok": true,
+       "mae_validos_db": 5.583889171090205,
+       "mae_sentinela_db": 1.6473632734784878
+      },
+      "hata_rural": {
+       "mae_todos_db": 4.194777070476926,
+       "mae_todos_run_json_db": 4.194776987466217,
+       "autoverificacao_ok": true,
+       "mae_validos_db": 6.055514691877163,
+       "mae_sentinela_db": 3.874464061164068
+      },
+      "cost231_sub": {
+       "mae_todos_db": 4.194777070476926,
+       "mae_todos_run_json_db": 4.194776987466217,
+       "autoverificacao_ok": true,
+       "mae_validos_db": 6.055514691877163,
+       "mae_sentinela_db": 3.8744640611640677
+      }
+     },
+     "modelos": {
+      "gnn": {
+       "mae_validos_db": 0.3935665877471399,
+       "melhor_que": {
+        "fspl": true,
+        "hata_rural": true,
+        "cost231_sub": true
+       }
+      },
+      "mlp": {
+       "mae_validos_db": 2.030085449736373,
+       "melhor_que": {
+        "fspl": true,
+        "hata_rural": true,
+        "cost231_sub": true
+       }
+      }
+     }
+    }
+   },
+   "distribuicao_mae_validos_baseline_db": {
+    "fspl": {
+     "mediana": 6.171353929696204,
+     "min": 5.435202183781714,
+     "max": 9.617377892636641
+    },
+    "hata_rural": {
+     "mediana": 6.055514691877163,
+     "min": 3.4357507953543838,
+     "max": 8.813676229682825
+    },
+    "cost231_sub": {
+     "mediana": 6.055514691877163,
+     "min": 3.4357507953543838,
+     "max": 8.813676229682827
+    }
+   },
+   "inversao_validos_por_modelo": {
+    "gnn": {
+     "fspl": 5,
+     "hata_rural": 5,
+     "cost231_sub": 5
+    },
+    "mlp": {
+     "fspl": 5,
+     "hata_rural": 4,
+     "cost231_sub": 4
+    }
+   }
+  },
+  "bauru_Q2": {
+   "tensor": "/trabalho/TOPO_RF_DOWNLOAD_DRIVE/graph_data_v3/transfer_dataset_bauru_v19_Q2_enriched_cftudo.pt",
+   "por_sorteio": {
+    "101": {
+     "n": 203600,
+     "n_validos": 21287,
+     "freq_mhz": 900.0,
+     "baselines": {
+      "fspl": {
+       "mae_todos_db": 2.8017579943599493,
+       "mae_todos_run_json_db": 2.8017579690138885,
+       "autoverificacao_ok": true,
+       "mae_validos_db": 8.447322336911784,
+       "mae_sentinela_db": 2.1425777485195487
+      },
+      "hata_rural": {
+       "mae_todos_db": 5.05406990302939,
+       "mae_todos_run_json_db": 5.054069869265585,
+       "autoverificacao_ok": true,
+       "mae_validos_db": 16.570371700225827,
+       "mae_sentinela_db": 3.7094180331302584
+      },
+      "cost231_sub": {
+       "mae_todos_db": 5.054069903029391,
+       "mae_todos_run_json_db": 5.054069869265585,
+       "autoverificacao_ok": true,
+       "mae_validos_db": 16.57037170022583,
+       "mae_sentinela_db": 3.7094180331302584
+      }
+     },
+     "modelos": {
+      "gnn": {
+       "mae_validos_db": 7.022251726065553,
+       "melhor_que": {
+        "fspl": true,
+        "hata_rural": true,
+        "cost231_sub": true
+       }
+      },
+      "mlp": {
+       "mae_validos_db": 12.081144626678793,
+       "melhor_que": {
+        "fspl": false,
+        "hata_rural": true,
+        "cost231_sub": true
+       }
+      }
+     }
+    },
+    "102": {
+     "n": 202967,
+     "n_validos": 16772,
+     "freq_mhz": 900.0,
+     "baselines": {
+      "fspl": {
+       "mae_todos_db": 3.367294326499999,
+       "mae_todos_run_json_db": 3.367294260979878,
+       "autoverificacao_ok": true,
+       "mae_validos_db": 10.393680661390022,
+       "mae_sentinela_db": 2.7343742609301636
+      },
+      "hata_rural": {
+       "mae_todos_db": 5.600134810627605,
+       "mae_todos_run_json_db": 5.600134682673657,
+       "autoverificacao_ok": true,
+       "mae_validos_db": 16.816663098731123,
+       "mae_sentinela_db": 4.589776785717848
+      },
+      "cost231_sub": {
+       "mae_todos_db": 5.600134810627613,
+       "mae_todos_run_json_db": 5.600134682673667,
+       "autoverificacao_ok": true,
+       "mae_validos_db": 16.81666309873115,
+       "mae_sentinela_db": 4.589776785717855
+      }
+     },
+     "modelos": {
+      "gnn": {
+       "mae_validos_db": 1.1844969334819566,
+       "melhor_que": {
+        "fspl": true,
+        "hata_rural": true,
+        "cost231_sub": true
+       }
+      },
+      "mlp": {
+       "mae_validos_db": 1.9295980370246566,
+       "melhor_que": {
+        "fspl": true,
+        "hata_rural": true,
+        "cost231_sub": true
+       }
+      }
+     }
+    },
+    "103": {
+     "n": 218250,
+     "n_validos": 13702,
+     "freq_mhz": 900.0,
+     "baselines": {
+      "fspl": {
+       "mae_todos_db": 3.309301540393204,
+       "mae_todos_run_json_db": 3.309301514781764,
+       "autoverificacao_ok": true,
+       "mae_validos_db": 2.954581608541349,
+       "mae_sentinela_db": 3.3330630658358094
+      },
+      "hata_rural": {
+       "mae_todos_db": 5.691822146959897,
+       "mae_todos_run_json_db": 5.691822102417793,
+       "autoverificacao_ok": true,
+       "mae_validos_db": 8.789386131585312,
+       "mae_sentinela_db": 5.484326489621094
+      },
+      "cost231_sub": {
+       "mae_todos_db": 5.691822146959904,
+       "mae_todos_run_json_db": 5.691822102417801,
+       "autoverificacao_ok": true,
+       "mae_validos_db": 8.789386131585328,
+       "mae_sentinela_db": 5.484326489621101
+      }
+     },
+     "modelos": {
+      "gnn": {
+       "mae_validos_db": 0.9568655860109097,
+       "melhor_que": {
+        "fspl": true,
+        "hata_rural": true,
+        "cost231_sub": true
+       }
+      },
+      "mlp": {
+       "mae_validos_db": 5.623190909750252,
+       "melhor_que": {
+        "fspl": false,
+        "hata_rural": true,
+        "cost231_sub": true
+       }
+      }
+     }
+    },
+    "104": {
+     "n": 196020,
+     "n_validos": 30886,
+     "freq_mhz": 900.0,
+     "baselines": {
+      "fspl": {
+       "mae_todos_db": 3.6933950068476653,
+       "mae_todos_run_json_db": 3.693394939958557,
+       "autoverificacao_ok": true,
+       "mae_validos_db": 6.6921036643389185,
+       "mae_sentinela_db": 3.1325285856668375
+      },
+      "hata_rural": {
+       "mae_todos_db": 6.567514463806714,
+       "mae_todos_run_json_db": 6.567514327145187,
+       "autoverificacao_ok": true,
+       "mae_validos_db": 13.399538799596465,
+       "mae_sentinela_db": 5.289680076974187
+      },
+      "cost231_sub": {
+       "mae_todos_db": 6.5675144638067255,
+       "mae_todos_run_json_db": 6.567514327145198,
+       "autoverificacao_ok": true,
+       "mae_validos_db": 13.399538799596495,
+       "mae_sentinela_db": 5.2896800769741965
+      }
+     },
+     "modelos": {
+      "gnn": {
+       "mae_validos_db": 0.5975438805740515,
+       "melhor_que": {
+        "fspl": true,
+        "hata_rural": true,
+        "cost231_sub": true
+       }
+      },
+      "mlp": {
+       "mae_validos_db": 2.3832395398338124,
+       "melhor_que": {
+        "fspl": true,
+        "hata_rural": true,
+        "cost231_sub": true
+       }
+      }
+     }
+    },
+    "105": {
+     "n": 224806,
+     "n_validos": 69249,
+     "freq_mhz": 900.0,
+     "baselines": {
+      "fspl": {
+       "mae_todos_db": 3.0558046953691207,
+       "mae_todos_run_json_db": 3.055804682513797,
+       "autoverificacao_ok": true,
+       "mae_validos_db": 4.419665845000289,
+       "mae_sentinela_db": 2.448657342625055
+      },
+      "hata_rural": {
+       "mae_todos_db": 8.744830725261734,
+       "mae_todos_run_json_db": 8.744830694342687,
+       "autoverificacao_ok": true,
+       "mae_validos_db": 18.72477721010626,
+       "mae_sentinela_db": 4.302077817138034
+      },
+      "cost231_sub": {
+       "mae_todos_db": 8.744830725261734,
+       "mae_todos_run_json_db": 8.744830694342689,
+       "autoverificacao_ok": true,
+       "mae_validos_db": 18.72477721010626,
+       "mae_sentinela_db": 4.302077817138034
+      }
+     },
+     "modelos": {
+      "gnn": {
+       "mae_validos_db": 4.760253568638607,
+       "melhor_que": {
+        "fspl": false,
+        "hata_rural": true,
+        "cost231_sub": true
+       }
+      },
+      "mlp": {
+       "mae_validos_db": 8.120025640840007,
+       "melhor_que": {
+        "fspl": false,
+        "hata_rural": true,
+        "cost231_sub": true
+       }
+      }
+     }
+    }
+   },
+   "distribuicao_mae_validos_baseline_db": {
+    "fspl": {
+     "mediana": 6.6921036643389185,
+     "min": 2.954581608541349,
+     "max": 10.393680661390022
+    },
+    "hata_rural": {
+     "mediana": 16.570371700225827,
+     "min": 8.789386131585312,
+     "max": 18.72477721010626
+    },
+    "cost231_sub": {
+     "mediana": 16.57037170022583,
+     "min": 8.789386131585328,
+     "max": 18.72477721010626
+    }
+   },
+   "inversao_validos_por_modelo": {
+    "gnn": {
+     "fspl": 4,
+     "hata_rural": 5,
+     "cost231_sub": 5
+    },
+    "mlp": {
+     "fspl": 2,
+     "hata_rural": 5,
+     "cost231_sub": 5
+    }
+   }
+  },
+  "bauru_Q3": {
+   "tensor": "/trabalho/TOPO_RF_DOWNLOAD_DRIVE/graph_data_v3/transfer_dataset_bauru_v19_Q3_enriched_cftudo.pt",
+   "por_sorteio": {
+    "101": {
+     "n": 200756,
+     "n_validos": 9469,
+     "freq_mhz": 900.0,
+     "baselines": {
+      "fspl": {
+       "mae_todos_db": 2.40180362743632,
+       "mae_todos_run_json_db": 2.4018036337177557,
+       "autoverificacao_ok": true,
+       "mae_validos_db": 4.1267131334912115,
+       "mae_sentinela_db": 2.3164179602825996
+      },
+      "hata_rural": {
+       "mae_todos_db": 4.157379876080376,
+       "mae_todos_run_json_db": 4.157379860690516,
+       "autoverificacao_ok": true,
+       "mae_validos_db": 5.106575350216326,
+       "mae_sentinela_db": 4.110393243718568
+      },
+      "cost231_sub": {
+       "mae_todos_db": 4.157379876080373,
+       "mae_todos_run_json_db": 4.157379860690512,
+       "autoverificacao_ok": true,
+       "mae_validos_db": 5.106575350216355,
+       "mae_sentinela_db": 4.110393243718563
+      }
+     },
+     "modelos": {
+      "gnn": {
+       "mae_validos_db": 1.201545019187045,
+       "melhor_que": {
+        "fspl": true,
+        "hata_rural": true,
+        "cost231_sub": true
+       }
+      },
+      "mlp": {
+       "mae_validos_db": 3.1777261646789237,
+       "melhor_que": {
+        "fspl": true,
+        "hata_rural": true,
+        "cost231_sub": true
+       }
+      }
+     }
+    },
+    "102": {
+     "n": 194311,
+     "n_validos": 25988,
+     "freq_mhz": 900.0,
+     "baselines": {
+      "fspl": {
+       "mae_todos_db": 2.275640636082744,
+       "mae_todos_run_json_db": 2.2756406312476907,
+       "autoverificacao_ok": true,
+       "mae_validos_db": 5.659579043132009,
+       "mae_sentinela_db": 1.7531820812661334
+      },
+      "hata_rural": {
+       "mae_todos_db": 3.8122949617350694,
+       "mae_todos_run_json_db": 3.8122949283213887,
+       "autoverificacao_ok": true,
+       "mae_validos_db": 7.60548199832354,
+       "mae_sentinela_db": 3.2266510229574745
+      },
+      "cost231_sub": {
+       "mae_todos_db": 3.8122949617350694,
+       "mae_todos_run_json_db": 3.8122949283213887,
+       "autoverificacao_ok": true,
+       "mae_validos_db": 7.60548199832354,
+       "mae_sentinela_db": 3.2266510229574745
+      }
+     },
+     "modelos": {
+      "gnn": {
+       "mae_validos_db": 1.8444745571077172,
+       "melhor_que": {
+        "fspl": true,
+        "hata_rural": true,
+        "cost231_sub": true
+       }
+      },
+      "mlp": {
+       "mae_validos_db": 2.61287235219203,
+       "melhor_que": {
+        "fspl": true,
+        "hata_rural": true,
+        "cost231_sub": true
+       }
+      }
+     }
+    },
+    "103": {
+     "n": 218010,
+     "n_validos": 23780,
+     "freq_mhz": 900.0,
+     "baselines": {
+      "fspl": {
+       "mae_todos_db": 2.0025380959845016,
+       "mae_todos_run_json_db": 2.0025381055929636,
+       "autoverificacao_ok": true,
+       "mae_validos_db": 3.9980549992197285,
+       "mae_sentinela_db": 1.7582226351446018
+      },
+      "hata_rural": {
+       "mae_todos_db": 3.7874108484836735,
+       "mae_todos_run_json_db": 3.7874108401866717,
+       "autoverificacao_ok": true,
+       "mae_validos_db": 4.929198339191564,
+       "mae_sentinela_db": 3.6476193305460036
+      },
+      "cost231_sub": {
+       "mae_todos_db": 3.787410848483683,
+       "mae_todos_run_json_db": 3.787410840186681,
+       "autoverificacao_ok": true,
+       "mae_validos_db": 4.929198339191536,
+       "mae_sentinela_db": 3.6476193305460183
+      }
+     },
+     "modelos": {
+      "gnn": {
+       "mae_validos_db": 1.1418941026179104,
+       "melhor_que": {
+        "fspl": true,
+        "hata_rural": true,
+        "cost231_sub": true
+       }
+      },
+      "mlp": {
+       "mae_validos_db": 0.9634544805682337,
+       "melhor_que": {
+        "fspl": true,
+        "hata_rural": true,
+        "cost231_sub": true
+       }
+      }
+     }
+    },
+    "104": {
+     "n": 194324,
+     "n_validos": 9999,
+     "freq_mhz": 900.0,
+     "baselines": {
+      "fspl": {
+       "mae_todos_db": 2.1901593970926636,
+       "mae_todos_run_json_db": 2.1901594048208333,
+       "autoverificacao_ok": true,
+       "mae_validos_db": 4.1598819415259065,
+       "mae_sentinela_db": 2.083308694682312
+      },
+      "hata_rural": {
+       "mae_todos_db": 4.330636795123248,
+       "mae_todos_run_json_db": 4.330636791482583,
+       "autoverificacao_ok": true,
+       "mae_validos_db": 4.445020438452601,
+       "mae_sentinela_db": 4.324431874197437
+      },
+      "cost231_sub": {
+       "mae_todos_db": 4.330636795123242,
+       "mae_todos_run_json_db": 4.330636791482576,
+       "autoverificacao_ok": true,
+       "mae_validos_db": 4.445020438452615,
+       "mae_sentinela_db": 4.32443187419743
+      }
+     },
+     "modelos": {
+      "gnn": {
+       "mae_validos_db": 0.6755721508735346,
+       "melhor_que": {
+        "fspl": true,
+        "hata_rural": true,
+        "cost231_sub": true
+       }
+      },
+      "mlp": {
+       "mae_validos_db": 0.7172268183544429,
+       "melhor_que": {
+        "fspl": true,
+        "hata_rural": true,
+        "cost231_sub": true
+       }
+      }
+     }
+    },
+    "105": {
+     "n": 223894,
+     "n_validos": 26300,
+     "freq_mhz": 900.0,
+     "baselines": {
+      "fspl": {
+       "mae_todos_db": 3.477633775003135,
+       "mae_todos_run_json_db": 3.4776337693280355,
+       "autoverificacao_ok": true,
+       "mae_validos_db": 9.15254136021197,
+       "mae_sentinela_db": 2.7222967228102934
+      },
+      "hata_rural": {
+       "mae_todos_db": 5.740959392626236,
+       "mae_todos_run_json_db": 5.740959368656766,
+       "autoverificacao_ok": true,
+       "mae_validos_db": 10.663752639889884,
+       "mae_sentinela_db": 5.085729667011926
+      },
+      "cost231_sub": {
+       "mae_todos_db": 5.740959392626241,
+       "mae_todos_run_json_db": 5.740959368656769,
+       "autoverificacao_ok": true,
+       "mae_validos_db": 10.663752639889857,
+       "mae_sentinela_db": 5.085729667011935
+      }
+     },
+     "modelos": {
+      "gnn": {
+       "mae_validos_db": 3.1980968390121887,
+       "melhor_que": {
+        "fspl": true,
+        "hata_rural": true,
+        "cost231_sub": true
+       }
+      },
+      "mlp": {
+       "mae_validos_db": 7.982699302012816,
+       "melhor_que": {
+        "fspl": true,
+        "hata_rural": true,
+        "cost231_sub": true
+       }
+      }
+     }
+    }
+   },
+   "distribuicao_mae_validos_baseline_db": {
+    "fspl": {
+     "mediana": 4.1598819415259065,
+     "min": 3.9980549992197285,
+     "max": 9.15254136021197
+    },
+    "hata_rural": {
+     "mediana": 5.106575350216326,
+     "min": 4.445020438452601,
+     "max": 10.663752639889884
+    },
+    "cost231_sub": {
+     "mediana": 5.106575350216355,
+     "min": 4.445020438452615,
+     "max": 10.663752639889857
+    }
+   },
+   "inversao_validos_por_modelo": {
+    "gnn": {
+     "fspl": 5,
+     "hata_rural": 5,
+     "cost231_sub": 5
+    },
+    "mlp": {
+     "fspl": 5,
+     "hata_rural": 5,
+     "cost231_sub": 5
+    }
+   }
+  },
+  "bauru_Q4": {
+   "tensor": "/trabalho/TOPO_RF_DOWNLOAD_DRIVE/graph_data_v3/transfer_dataset_bauru_v19_Q4_enriched_cftudo.pt",
+   "por_sorteio": {
+    "101": {
+     "n": 200756,
+     "n_validos": 31563,
+     "freq_mhz": 900.0,
+     "baselines": {
+      "fspl": {
+       "mae_todos_db": 2.5182158398359653,
+       "mae_todos_run_json_db": 2.518215851114039,
+       "autoverificacao_ok": true,
+       "mae_validos_db": 3.4975561515737215,
+       "mae_sentinela_db": 2.3355196392876043
+      },
+      "hata_rural": {
+       "mae_todos_db": 4.48541888228268,
+       "mae_todos_run_json_db": 4.4854188769087395,
+       "autoverificacao_ok": true,
+       "mae_validos_db": 6.494458767792247,
+       "mae_sentinela_db": 4.110631947206533
+      },
+      "cost231_sub": {
+       "mae_todos_db": 4.4854188822826835,
+       "mae_todos_run_json_db": 4.485418876908741,
+       "autoverificacao_ok": true,
+       "mae_validos_db": 6.494458767792277,
+       "mae_sentinela_db": 4.110631947206532
+      }
+     },
+     "modelos": {
+      "gnn": {
+       "mae_validos_db": 0.6014431785223575,
+       "melhor_que": {
+        "fspl": true,
+        "hata_rural": true,
+        "cost231_sub": true
+       }
+      },
+      "mlp": {
+       "mae_validos_db": 1.1957833713985564,
+       "melhor_que": {
+        "fspl": true,
+        "hata_rural": true,
+        "cost231_sub": true
+       }
+      }
+     }
+    },
+    "102": {
+     "n": 194311,
+     "n_validos": 14329,
+     "freq_mhz": 900.0,
+     "baselines": {
+      "fspl": {
+       "mae_todos_db": 2.742313327504648,
+       "mae_todos_run_json_db": 2.7423132821974208,
+       "autoverificacao_ok": true,
+       "mae_validos_db": 5.420803665901784,
+       "mae_sentinela_db": 2.5290692916627724
+      },
+      "hata_rural": {
+       "mae_todos_db": 4.647957944706461,
+       "mae_todos_run_json_db": 4.647957850074493,
+       "autoverificacao_ok": true,
+       "mae_validos_db": 12.133652284774854,
+       "mae_sentinela_db": 4.051995491800948
+      },
+      "cost231_sub": {
+       "mae_todos_db": 4.6479579447064685,
+       "mae_todos_run_json_db": 4.647957850074501,
+       "autoverificacao_ok": true,
+       "mae_validos_db": 12.133652284774882,
+       "mae_sentinela_db": 4.051995491800955
+      }
+     },
+     "modelos": {
+      "gnn": {
+       "mae_validos_db": 1.1803034438250977,
+       "melhor_que": {
+        "fspl": true,
+        "hata_rural": true,
+        "cost231_sub": true
+       }
+      },
+      "mlp": {
+       "mae_validos_db": 1.9436742495205956,
+       "melhor_que": {
+        "fspl": true,
+        "hata_rural": true,
+        "cost231_sub": true
+       }
+      }
+     }
+    },
+    "103": {
+     "n": 218010,
+     "n_validos": 12241,
+     "freq_mhz": 900.0,
+     "baselines": {
+      "fspl": {
+       "mae_todos_db": 2.317905304907971,
+       "mae_todos_run_json_db": 2.317905289210025,
+       "autoverificacao_ok": true,
+       "mae_validos_db": 3.839323756159367,
+       "mae_sentinela_db": 2.2273975838140823
+      },
+      "hata_rural": {
+       "mae_todos_db": 4.239898697174507,
+       "mae_todos_run_json_db": 4.239898664265293,
+       "autoverificacao_ok": true,
+       "mae_validos_db": 9.481726563978599,
+       "mae_sentinela_db": 3.9280673964559876
+      },
+      "cost231_sub": {
+       "mae_todos_db": 4.239898697174506,
+       "mae_todos_run_json_db": 4.239898664265293,
+       "autoverificacao_ok": true,
+       "mae_validos_db": 9.481726563978569,
+       "mae_sentinela_db": 3.928067396455989
+      }
+     },
+     "modelos": {
+      "gnn": {
+       "mae_validos_db": 0.623061137187326,
+       "melhor_que": {
+        "fspl": true,
+        "hata_rural": true,
+        "cost231_sub": true
+       }
+      },
+      "mlp": {
+       "mae_validos_db": 0.7720684677583993,
+       "melhor_que": {
+        "fspl": true,
+        "hata_rural": true,
+        "cost231_sub": true
+       }
+      }
+     }
+    },
+    "104": {
+     "n": 194324,
+     "n_validos": 7182,
+     "freq_mhz": 900.0,
+     "baselines": {
+      "fspl": {
+       "mae_todos_db": 2.288899109638014,
+       "mae_todos_run_json_db": 2.2888990905677935,
+       "autoverificacao_ok": true,
+       "mae_validos_db": 5.520124016263601,
+       "mae_sentinela_db": 2.164893502775926
+      },
+      "hata_rural": {
+       "mae_todos_db": 4.158068086281851,
+       "mae_todos_run_json_db": 4.1580680476036855,
+       "autoverificacao_ok": true,
+       "mae_validos_db": 12.23394437766251,
+       "mae_sentinela_db": 3.848137960897406
+      },
+      "cost231_sub": {
+       "mae_todos_db": 4.158068086281852,
+       "mae_todos_run_json_db": 4.1580680476036855,
+       "autoverificacao_ok": true,
+       "mae_validos_db": 12.233944377662539,
+       "mae_sentinela_db": 3.8481379608974047
+      }
+     },
+     "modelos": {
+      "gnn": {
+       "mae_validos_db": 0.8759870303437358,
+       "melhor_que": {
+        "fspl": true,
+        "hata_rural": true,
+        "cost231_sub": true
+       }
+      },
+      "mlp": {
+       "mae_validos_db": 1.5606507152875,
+       "melhor_que": {
+        "fspl": true,
+        "hata_rural": true,
+        "cost231_sub": true
+       }
+      }
+     }
+    },
+    "105": {
+     "n": 223894,
+     "n_validos": 12070,
+     "freq_mhz": 900.0,
+     "baselines": {
+      "fspl": {
+       "mae_todos_db": 2.425697435018751,
+       "mae_todos_run_json_db": 2.4256974245730594,
+       "autoverificacao_ok": true,
+       "mae_validos_db": 5.251327558045274,
+       "mae_sentinela_db": 2.264689449214828
+      },
+      "hata_rural": {
+       "mae_todos_db": 4.620073611712025,
+       "mae_todos_run_json_db": 4.620073585018998,
+       "autoverificacao_ok": true,
+       "mae_validos_db": 13.736898573301385,
+       "mae_sentinela_db": 4.100585370122858
+      },
+      "cost231_sub": {
+       "mae_todos_db": 4.6200736117120265,
+       "mae_todos_run_json_db": 4.620073585018998,
+       "autoverificacao_ok": true,
+       "mae_validos_db": 13.736898573301373,
+       "mae_sentinela_db": 4.10058537012286
+      }
+     },
+     "modelos": {
+      "gnn": {
+       "mae_validos_db": 2.2680571435203016,
+       "melhor_que": {
+        "fspl": true,
+        "hata_rural": true,
+        "cost231_sub": true
+       }
+      },
+      "mlp": {
+       "mae_validos_db": 2.371810010137297,
+       "melhor_que": {
+        "fspl": true,
+        "hata_rural": true,
+        "cost231_sub": true
+       }
+      }
+     }
+    }
+   },
+   "distribuicao_mae_validos_baseline_db": {
+    "fspl": {
+     "mediana": 5.251327558045274,
+     "min": 3.4975561515737215,
+     "max": 5.520124016263601
+    },
+    "hata_rural": {
+     "mediana": 12.133652284774854,
+     "min": 6.494458767792247,
+     "max": 13.736898573301385
+    },
+    "cost231_sub": {
+     "mediana": 12.133652284774882,
+     "min": 6.494458767792277,
+     "max": 13.736898573301373
+    }
+   },
+   "inversao_validos_por_modelo": {
+    "gnn": {
+     "fspl": 5,
+     "hata_rural": 5,
+     "cost231_sub": 5
+    },
+    "mlp": {
+     "fspl": 5,
+     "hata_rural": 5,
+     "cost231_sub": 5
+    }
+   }
+  }
+ },
+ "contagens_20": {
+  "gnn": {
+   "fspl": {
+    "n_sorteios_modelo_melhor": 19,
+    "n": 20
+   },
+   "hata_rural": {
+    "n_sorteios_modelo_melhor": 20,
+    "n": 20
+   },
+   "cost231_sub": {
+    "n_sorteios_modelo_melhor": 20,
+    "n": 20
+   }
+  },
+  "mlp": {
+   "fspl": {
+    "n_sorteios_modelo_melhor": 17,
+    "n": 20
+   },
+   "hata_rural": {
+    "n_sorteios_modelo_melhor": 19,
+    "n": 20
+   },
+   "cost231_sub": {
+    "n_sorteios_modelo_melhor": 19,
+    "n": 20
+   }
+  }
+ },
+ "citavel_apos_votos": true
+}

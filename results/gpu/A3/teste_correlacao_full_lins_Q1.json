@@ -1,0 +1,25 @@
+{
+  "corr_max_abs": 0.9910584092140198,
+  "achados_corr_gt_0.98": [
+    {
+      "feature_col": 6,
+      "feature_nome": "roughness",
+      "target_col": 2,
+      "target_nome": "path_loss_terrain",
+      "corr": 0.9910584092140198
+    },
+    {
+      "feature_col": 7,
+      "feature_nome": "flow_acc",
+      "target_col": 2,
+      "target_nome": "path_loss_terrain",
+      "corr": 0.9827000498771667
+    }
+  ],
+  "n": 67091,
+  "cidade": "lins",
+  "quadrante": "Q1",
+  "dataset": "transfer_dataset_lins_v19_Q1_enriched_cftudo.pt",
+  "populacao": "particao TREINO INTEIRA (nao 1 batch)",
+  "tempo_total_s": 8.403092606007704
+}

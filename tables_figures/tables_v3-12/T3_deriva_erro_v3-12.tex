@@ -1,0 +1,30 @@
+% gerado por scripts/v3_12_gerar_tabelas.py -- nao editar a mao
+% T3: MAE (dB) of the constant predictor over 60 random split draws (2.1_16x60rnd); footnote rows with b = 0 from fase4/R1_b0_resumo.json (sd ddof=1 between draws with a valid test node, mean of the 16 cells); FSPL (a) columns and sd (weighted) column removed
+\begin{tabular}{lcccccc}
+\toprule
+Cell & Draws & \celula{Constant, \\ \relax valid: \\ \relax median (dB)} & \celula{min--max \\ \relax (dB)} & sd (dB) & \celula{Constant, \\ \relax all: median \\ \relax (dB)} & sd (dB) \\
+\midrule
+Bauru Q1 & 59 & 18.101 & 4.528--38.790 & 7.034 & 2.347 & 1.890 \\
+Bauru Q2 & 56 & 15.080 & 2.727--41.293 & 7.244 & 1.222 & 1.767 \\
+Bauru Q3 & 56 & 17.826 & 8.526--42.721 & 7.724 & 1.569 & 1.356 \\
+Bauru Q4 & 56 & 15.492 & 3.637--44.562 & 8.243 & 1.794 & 1.808 \\
+Campinas Q1 & 59 & 14.114 & 5.620--52.960 & 10.398 & 1.357 & 2.015 \\
+Campinas Q2 & 59 & 16.940 & 2.782--48.900 & 9.064 & 2.797 & 2.570 \\
+Campinas Q3 & 57 & 15.767 & 6.329--41.073 & 8.575 & 1.984 & 1.760 \\
+Campinas Q4 & 58 & 15.512 & 5.701--51.511 & 8.458 & 2.137 & 2.107 \\
+Lins Q1 & 56 & 18.888 & 11.567--50.945 & 7.978 & 0.980 & 1.495 \\
+Lins Q2 & 59 & 21.220 & 12.531--36.935 & 5.745 & 3.614 & 2.397 \\
+Lins Q3 & 48 & 19.481 & 10.484--36.651 & 6.026 & 1.128 & 1.176 \\
+Lins Q4 & 53 & 19.775 & 6.212--38.030 & 7.447 & 1.630 & 1.629 \\
+Sorocaba Q1 & 58 & 11.665 & 6.127--52.529 & 10.512 & 0.980 & 1.773 \\
+Sorocaba Q2 & 59 & 14.749 & 6.371--55.171 & 8.818 & 2.328 & 2.381 \\
+Sorocaba Q3 & 55 & 20.172 & 6.030--40.337 & 8.669 & 1.839 & 1.321 \\
+Sorocaba Q4 & 56 & 14.598 & 6.904--37.403 & 6.331 & 1.802 & 1.601 \\
+\midrule
+\multicolumn{4}{p{0.5\linewidth}}{\raggedright All cells: sd between draws (mean of cells)} & 8.017 & & \\
+\multicolumn{4}{p{0.5\linewidth}}{\raggedright All cells: sd between draws, weighted by the valid test nodes of each draw (mean of cells)} & 7.227 & & \\
+\multicolumn{4}{p{0.5\linewidth}}{\raggedright All cells: sd between cells of the per-cell means} & 2.180 & & \\
+\multicolumn{4}{p{0.5\linewidth}}{\raggedright All cells, no buffer ($b=0$): sd between draws (mean of cells)} & 7.093 & & \\
+\multicolumn{4}{p{0.5\linewidth}}{\raggedright All cells: sd between draws of the valid fraction of the test set, $b=2$ / $b=0$ (mean of cells; unitless)} & 0.074 / 0.061 & & \\
+\bottomrule
+\end{tabular}

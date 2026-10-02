@@ -1,0 +1,61 @@
+{
+  "id": "A1bis",
+  "gravado_em": "2026-09-26 (agente ia-bug-silencioso, gate obrigatorio pre-treino-longo, PLANO A do dono D7)",
+  "autor": "ia-bug-silencioso",
+  "alvo": "modelo_v3 CORRIGIDO, gpu/modelo_v3/ (rf_decoder_v3.py, v3_common.py, train_gnn_v3.py, train_mlp_v3.py); NAO reusa oficina-pipeline_A0/A0bis/A0ter.json como numero final -- contra-auditoria por reexecucao independente, run-label proprio, pasta propria gpu/A1bis/",
+  "gate_anterior": "gpu/A1/ia-bug-silencioso_v3.json (bloqueou por b_gradiente e c_saturacao); lista bloqueante fixada pelo forum-eng-ia em gpu/A1_inv/forum-eng-ia_fanout_capacidade.md, secoes 'Recomendacao' item 2 e 'Regra de avaliacao' item 4",
+  "pergunta": "O modelo_v3 corrigido (decoder afim + ET_TA/camada3 mapeados + MLP repareado + avaliacao com vizinhanca completa) ainda esconde bug classico de treino que destroi a validade do numero antes do A2?",
+  "criterio_aceitacao": {
+    "1_overfit_1_batch_real": {
+      "descricao": "razao loss_final(media 5 ultimos passos)/loss_inicial(media 5 primeiros), sobre dezenas de passos de Adam em 1 batch REAL fixo (Bauru Q2, --mmap --max-nodes 100000), GNN e MLP separadamente",
+      "limiar": "razao <= 0.10 nos dois modelos",
+      "veredito_se_falhar": "bloqueia"
+    },
+    "2_gradiente_vivo_reescrito": {
+      "descricao": "gradiente > 0 (em algum passo medido) em TODO parametro treinavel, EXCETO a lista nomeada dos 328.478 parametros sem gradiente por arquitetura (gpu/A1_inv/forum-eng-ia_contagem_efetiva.json, campo fanout_1_salto_producao.mortos: lin_l.weight das 3 primeiras camadas da hetero-conv terrain->antenna + todo o modulo terrain->antenna da camada 3 + layer_norms.3.antenna + as 3 cabecas mortas do decoder); QUALQUER outro parametro ativo com norma de gradiente ~0 em TODAS as medicoes = achado novo",
+      "controle_positivo": "com a relacao terreno->antena (ET_TA) povoada num batch sintetico (mesma tecnica de forum-eng-ia_contagem_efetiva.py, reexecutada por script proprio), lin_l.weight das camadas 0-2 dessa hetero-conv GANHA gradiente nao-nulo -- sem isso a sonda de 'gradiente zero' nao prova nada (pode ser sonda cega)",
+      "veredito_se_falhar": "bloqueia (falha do criterio OU falha do controle positivo)"
+    },
+    "3_contador_except_edge_attr": {
+      "descricao": "contador do ramo except de tratamento de edge_attr no encoder (gnn_rf_encoder.py, HeteroConv.forward chamado com edge_attr_dict=None), instrumentado por monkeypatch de metodo (v3_common.InstrumentacaoTreino), durante um treino real (smoke completo, nao so 1 batch)",
+      "limiar": "contador == 0 (todas as relacoes com edge_attr entram pelo caminho normal)",
+      "veredito_se_falhar": "bloqueia"
+    },
+    "4_invariancia_avaliacao": {
+      "descricao": "predicao de teste invariante a ordem das sementes e ao eval_batch_size, com num_neighbors=-1 (vizinhanca completa) nas 3 relacoes e disjoint=True; piso numerico medido na mesma corrida (2 avaliacoes identicas); estado do RNG (torch cuda, numpy, python random) verificado antes/depois da avaliacao completa por comparacao DIRETA de estado (nao so hash) alem do hash de v3_common",
+      "limiar": "diff_max <= 1e-4 dB E <= 3x o piso numerico medido; RNG cuda/numpy/random idênticos antes/depois; se torch_cpu mudar sem alterar o resultado numerico, registrar como NOTA (nao bloqueia)",
+      "veredito_se_falhar": "bloqueia"
+    },
+    "5_contagem_arestas_por_grau": {
+      "descricao": "numero de arestas amostradas na avaliacao (num_neighbors=-1) por relacao == soma dos graus de entrada/saida das sementes no grafo INDUZIDO da particao, recomputado por script proprio (nao copiado do parecer)",
+      "limiar": "arestas_amostradas == soma_graus nas 3 relacoes (AT, TT, TA); grau AT == 5 em todos os nos (min=p50=p99=max=5); grau TT maximo == 9",
+      "veredito_se_falhar": "bloqueia"
+    },
+    "6_paridade_capacidade_efetiva": {
+      "descricao": "contagem de parametros EFETIVOS (com gradiente vivo, medida via forward+backward real sobre copia do modelo) para GNN e para MLP, calculada por script proprio (nao copiada do run JSON do A0ter)",
+      "limiar": "efetivos_GNN == efetivos_MLP == 1.484.037",
+      "veredito_se_falhar": "bloqueia"
+    },
+    "7_gradscaler_smoke": {
+      "descricao": "instrumentacao de torch.amp.GradScaler.update durante o smoke (monkeypatch, v3_common.InstrumentacaoTreino): pulos POS-aquecimento (apos o 1o passo com atualizacao efetiva) e escala minima atingida",
+      "limiar": "n_pulados_pos_aquecimento == 0 (ou <= 1% dos passos pos-aquecimento) E escala_minima >= 1",
+      "veredito_se_falhar": "bloqueia"
+    },
+    "8_saturacao_saida_e_canal1": {
+      "descricao": "fracao de saidas fora da faixa fisica (clamp) nos canais 0-3, em val/teste do smoke real (nao no overfit extremo de 1 batch); diagnostico R-c0..R-c3 do parecer forum-eng-ia (fracao_fora_da_faixa, p99 excesso, peso do clamp, MAE bruto vs pos-clamp por estrato alvo=0/alvo>0 no canal 1)",
+      "limiar": "SO REPORTAR -- o julgamento com limiares de R-c0..R-c3 entra em criterio_A2/A3, nao aqui; saturacao de pre-ativacao (canais 0-3) aproximadamente 0 e o unico numero deste item que este gate julga (bloqueia se >> 0 no treino real, nao no overfit deliberado)",
+      "veredito_se_falhar": "bloqueia SO se a saturacao de pre-ativacao (|raw|>4) for nao-trivial no smoke real; o restante (R-c0..R-c3) e nota informativa"
+    },
+    "9_metrica_no_split_retido": {
+      "descricao": "metrica reportada calculada sobre o split de TESTE declarado (nao val/train por engano de variavel); hash sha256 dos indices ORDENADOS da particao de teste igual entre a corrida GNN e a corrida MLP (mesmo split_seed=42, 'congelado' = fixo entre os dois bracos, independente do modelo)",
+      "limiar": "hash_test_GNN == hash_test_MLP; tamanho do array de predicoes/targets == particoes.test.n; hash_test != hash_val != hash_train",
+      "veredito_se_falhar": "bloqueia"
+    }
+  },
+  "gravidade_geral": "qualquer item 1-9 com veredito_se_falhar=bloqueia efetivamente falhando = bloqueia (numero da run nao e confiavel ate corrigir); item nao rodado por falta de orcamento/teto de GPU = atencao, com o comando exato que o rodaria",
+  "dado": "Bauru Q2 real, --mmap --max-nodes 100000, GPU RTX 5070 Ti; VRAM livre ~8,5 GB antes (motor de embeddings pid 1630 intocado, ~5,4 GB); abortar se VRAM livre < 1 GB",
+  "orcamento": "45 chamadas de ferramenta; teto de 25 min de GPU",
+  "referencia_correcoes_aplicadas_antes_deste_gate": [
+    "gpu/modelo_v3/oficina-pipeline_A0ter.json (item1: avaliacao com num_neighbors=-1/disjoint=True; item2: --k-terrain/--k-antenna default -1 no treino; item3: MLP repareado para 1.484.037 efetivos; item4: instrumentacao GradScaler+except+capacidade ja embutida em train_gnn_v3.py/train_mlp_v3.py via v3_common.InstrumentacaoTreino/contar_parametros_efetivos_via_backward/testar_invariancia_avaliacao_completa/_graus_por_relacao/diagnostico_saida_canais)"
+  ]
+}

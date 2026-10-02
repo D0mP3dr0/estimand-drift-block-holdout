@@ -1,0 +1,1415 @@
+{
+ "celula": "bauru_Q1",
+ "fidelidade": {
+  "retencao_teste_por_sorteio_igual_1_8_a_1e12_assert_no_motor": true,
+  "media_retencao_nodal_te": 0.45168989960339817,
+  "n_nos": 12960000,
+  "n_blocos": 132,
+  "k_te": 20,
+  "k_tr": 92,
+  "m_max_observado": 3,
+  "n_nos_por_m": [
+   4923709,
+   6131625,
+   396301,
+   1508365
+  ],
+  "n_nos_falha_iii_por_m": [
+   0,
+   5211,
+   396228,
+   0
+  ],
+  "frequencia_total_media_nodal_p_cond_te": 0.4512216344399806
+ },
+ "classes_nodais": [
+  {
+   "classe": "m=0|todas",
+   "definicao_m": "nodal",
+   "n_nos": 4923709,
+   "fracao_nos": 0.3799158179012346,
+   "m_valores": [
+    0
+   ],
+   "n_nos_cond_iii_falha": 0,
+   "frequencia_media_nodal": 1.0,
+   "ep_mc_bootstrap_sorteios": 0.0,
+   "ep_mc_por_sorteio_agregado": 0.0,
+   "frequencia_agregada_pooled": 1.0,
+   "n_blocos_com_a_classe": 121,
+   "ensaios_bloco_sorteio": 3673.0,
+   "retidos_bloco_sorteio_com_algum_no": 3673,
+   "cota_inferior_por_m": {
+    "0": 1.0
+   },
+   "cota_superior_por_m": {
+    "0": 1.0
+   },
+   "leituras": {
+    "L_no_a_no": {
+     "n_nos_so_cotas": 0,
+     "exato_em_toda_a_classe": true,
+     "valor_fechado": 1.0,
+     "cota_inferior_classe": 1.0,
+     "cota_superior_classe": 1.0,
+     "dif_freq_menos_inferior_em_EP": 0.0,
+     "ep_alternativo_por_blocos_binomial_nula": 0.0,
+     "dif_freq_menos_inferior_em_EP_alternativo": 0.0,
+     "dif_freq_ate_intervalo_em_EP": 0.0,
+     "dentro_do_intervalo": true,
+     "dentro_do_intervalo_ou_a_2EP": true,
+     "coincide_a_2EP_do_valor_fechado": true
+    },
+    "T_classe": {
+     "n_nos_so_cotas": 0,
+     "exato_em_toda_a_classe": true,
+     "valor_fechado": 1.0,
+     "cota_inferior_classe": 1.0,
+     "cota_superior_classe": 1.0,
+     "dif_freq_menos_inferior_em_EP": 0.0,
+     "ep_alternativo_por_blocos_binomial_nula": 0.0,
+     "dif_freq_menos_inferior_em_EP_alternativo": 0.0,
+     "dif_freq_ate_intervalo_em_EP": 0.0,
+     "dentro_do_intervalo": true,
+     "dentro_do_intervalo_ou_a_2EP": true,
+     "coincide_a_2EP_do_valor_fechado": true
+    },
+    "C_todas": {
+     "n_nos_so_cotas": 0,
+     "exato_em_toda_a_classe": true,
+     "valor_fechado": 1.0,
+     "cota_inferior_classe": 1.0,
+     "cota_superior_classe": 1.0,
+     "dif_freq_menos_inferior_em_EP": 0.0,
+     "ep_alternativo_por_blocos_binomial_nula": 0.0,
+     "dif_freq_menos_inferior_em_EP_alternativo": 0.0,
+     "dif_freq_ate_intervalo_em_EP": 0.0,
+     "dentro_do_intervalo": true,
+     "dentro_do_intervalo_ou_a_2EP": true,
+     "coincide_a_2EP_do_valor_fechado": true
+    },
+    "U_so_m0": {
+     "n_nos_so_cotas": 0,
+     "exato_em_toda_a_classe": true,
+     "valor_fechado": 1.0,
+     "cota_inferior_classe": 1.0,
+     "cota_superior_classe": 1.0,
+     "dif_freq_menos_inferior_em_EP": 0.0,
+     "ep_alternativo_por_blocos_binomial_nula": 0.0,
+     "dif_freq_menos_inferior_em_EP_alternativo": 0.0,
+     "dif_freq_ate_intervalo_em_EP": 0.0,
+     "dentro_do_intervalo": true,
+     "dentro_do_intervalo_ou_a_2EP": true,
+     "coincide_a_2EP_do_valor_fechado": true
+    }
+   }
+  },
+  {
+   "classe": "m=0|(iii) vale",
+   "definicao_m": "nodal",
+   "n_nos": 4923709,
+   "fracao_nos": 0.3799158179012346,
+   "m_valores": [
+    0
+   ],
+   "n_nos_cond_iii_falha": 0,
+   "frequencia_media_nodal": 1.0,
+   "ep_mc_bootstrap_sorteios": 0.0,
+   "ep_mc_por_sorteio_agregado": 0.0,
+   "frequencia_agregada_pooled": 1.0,
+   "n_blocos_com_a_classe": 121,
+   "ensaios_bloco_sorteio": 3673.0,
+   "retidos_bloco_sorteio_com_algum_no": 3673,
+   "cota_inferior_por_m": {
+    "0": 1.0
+   },
+   "cota_superior_por_m": {
+    "0": 1.0
+   },
+   "leituras": {
+    "L_no_a_no": {
+     "n_nos_so_cotas": 0,
+     "exato_em_toda_a_classe": true,
+     "valor_fechado": 1.0,
+     "cota_inferior_classe": 1.0,
+     "cota_superior_classe": 1.0,
+     "dif_freq_menos_inferior_em_EP": 0.0,
+     "ep_alternativo_por_blocos_binomial_nula": 0.0,
+     "dif_freq_menos_inferior_em_EP_alternativo": 0.0,
+     "dif_freq_ate_intervalo_em_EP": 0.0,
+     "dentro_do_intervalo": true,
+     "dentro_do_intervalo_ou_a_2EP": true,
+     "coincide_a_2EP_do_valor_fechado": true
+    },
+    "T_classe": {
+     "n_nos_so_cotas": 0,
+     "exato_em_toda_a_classe": true,
+     "valor_fechado": 1.0,
+     "cota_inferior_classe": 1.0,
+     "cota_superior_classe": 1.0,
+     "dif_freq_menos_inferior_em_EP": 0.0,
+     "ep_alternativo_por_blocos_binomial_nula": 0.0,
+     "dif_freq_menos_inferior_em_EP_alternativo": 0.0,
+     "dif_freq_ate_intervalo_em_EP": 0.0,
+     "dentro_do_intervalo": true,
+     "dentro_do_intervalo_ou_a_2EP": true,
+     "coincide_a_2EP_do_valor_fechado": true
+    },
+    "C_todas": {
+     "n_nos_so_cotas": 0,
+     "exato_em_toda_a_classe": true,
+     "valor_fechado": 1.0,
+     "cota_inferior_classe": 1.0,
+     "cota_superior_classe": 1.0,
+     "dif_freq_menos_inferior_em_EP": 0.0,
+     "ep_alternativo_por_blocos_binomial_nula": 0.0,
+     "dif_freq_menos_inferior_em_EP_alternativo": 0.0,
+     "dif_freq_ate_intervalo_em_EP": 0.0,
+     "dentro_do_intervalo": true,
+     "dentro_do_intervalo_ou_a_2EP": true,
+     "coincide_a_2EP_do_valor_fechado": true
+    },
+    "U_so_m0": {
+     "n_nos_so_cotas": 0,
+     "exato_em_toda_a_classe": true,
+     "valor_fechado": 1.0,
+     "cota_inferior_classe": 1.0,
+     "cota_superior_classe": 1.0,
+     "dif_freq_menos_inferior_em_EP": 0.0,
+     "ep_alternativo_por_blocos_binomial_nula": 0.0,
+     "dif_freq_menos_inferior_em_EP_alternativo": 0.0,
+     "dif_freq_ate_intervalo_em_EP": 0.0,
+     "dentro_do_intervalo": true,
+     "dentro_do_intervalo_ou_a_2EP": true,
+     "coincide_a_2EP_do_valor_fechado": true
+    }
+   }
+  },
+  {
+   "classe": "m=1|todas",
+   "definicao_m": "nodal",
+   "n_nos": 6131625,
+   "fracao_nos": 0.47311921296296294,
+   "m_valores": [
+    1
+   ],
+   "n_nos_cond_iii_falha": 5211,
+   "frequencia_media_nodal": 0.1485214131610027,
+   "ep_mc_bootstrap_sorteios": 0.00384819853504881,
+   "ep_mc_por_sorteio_agregado": 0.0038937947395876775,
+   "frequencia_agregada_pooled": 0.1496997428355786,
+   "n_blocos_com_a_classe": 132,
+   "ensaios_bloco_sorteio": 4000.0,
+   "retidos_bloco_sorteio_com_algum_no": 1758,
+   "cota_inferior_por_m": {
+    "1": 0.1450381679389313
+   },
+   "cota_superior_por_m": {
+    "1": 0.29770992366412213
+   },
+   "leituras": {
+    "L_no_a_no": {
+     "n_nos_so_cotas": 5211,
+     "exato_em_toda_a_classe": false,
+     "valor_fechado": null,
+     "cota_inferior_classe": 0.1450381679389313,
+     "cota_superior_classe": 0.1451679169889929,
+     "dif_freq_menos_inferior_em_EP": 0.9051625560236932,
+     "ep_alternativo_por_blocos_binomial_nula": 0.005978528317131894,
+     "dif_freq_menos_inferior_em_EP_alternativo": 0.5826258633065144,
+     "dif_freq_ate_intervalo_em_EP": 0.8714457275181285,
+     "dentro_do_intervalo": false,
+     "dentro_do_intervalo_ou_a_2EP": true,
+     "coincide_a_2EP_do_valor_fechado": null
+    },
+    "T_classe": {
+     "n_nos_so_cotas": 0,
+     "exato_em_toda_a_classe": true,
+     "valor_fechado": 0.1450381679389313,
+     "cota_inferior_classe": 0.1450381679389313,
+     "cota_superior_classe": 0.1450381679389313,
+     "dif_freq_menos_inferior_em_EP": 0.9051625560236932,
+     "ep_alternativo_por_blocos_binomial_nula": 0.005978528317131894,
+     "dif_freq_menos_inferior_em_EP_alternativo": 0.5826258633065144,
+     "dif_freq_ate_intervalo_em_EP": 0.9051625560236932,
+     "dentro_do_intervalo": false,
+     "dentro_do_intervalo_ou_a_2EP": true,
+     "coincide_a_2EP_do_valor_fechado": true
+    },
+    "C_todas": {
+     "n_nos_so_cotas": 0,
+     "exato_em_toda_a_classe": true,
+     "valor_fechado": 0.1450381679389313,
+     "cota_inferior_classe": 0.1450381679389313,
+     "cota_superior_classe": 0.1450381679389313,
+     "dif_freq_menos_inferior_em_EP": 0.9051625560236932,
+     "ep_alternativo_por_blocos_binomial_nula": 0.005978528317131894,
+     "dif_freq_menos_inferior_em_EP_alternativo": 0.5826258633065144,
+     "dif_freq_ate_intervalo_em_EP": 0.9051625560236932,
+     "dentro_do_intervalo": false,
+     "dentro_do_intervalo_ou_a_2EP": true,
+     "coincide_a_2EP_do_valor_fechado": true
+    },
+    "U_so_m0": {
+     "n_nos_so_cotas": 6131625,
+     "exato_em_toda_a_classe": false,
+     "valor_fechado": null,
+     "cota_inferior_classe": 0.1450381679389313,
+     "cota_superior_classe": 0.29770992366412213,
+     "dif_freq_menos_inferior_em_EP": 0.9051625560236932,
+     "ep_alternativo_por_blocos_binomial_nula": 0.005978528317131894,
+     "dif_freq_menos_inferior_em_EP_alternativo": 0.5826258633065144,
+     "dif_freq_ate_intervalo_em_EP": 0.0,
+     "dentro_do_intervalo": true,
+     "dentro_do_intervalo_ou_a_2EP": true,
+     "coincide_a_2EP_do_valor_fechado": null
+    }
+   }
+  },
+  {
+   "classe": "m=1|(iii) vale",
+   "definicao_m": "nodal",
+   "n_nos": 6126414,
+   "fracao_nos": 0.47271712962962964,
+   "m_valores": [
+    1
+   ],
+   "n_nos_cond_iii_falha": 0,
+   "frequencia_media_nodal": 0.14852523014110125,
+   "ep_mc_bootstrap_sorteios": 0.0038496535738724723,
+   "ep_mc_por_sorteio_agregado": 0.0038950268182433227,
+   "frequencia_agregada_pooled": 0.1497023677448414,
+   "n_blocos_com_a_classe": 132,
+   "ensaios_bloco_sorteio": 4000.0,
+   "retidos_bloco_sorteio_com_algum_no": 1713,
+   "cota_inferior_por_m": {
+    "1": 0.1450381679389313
+   },
+   "cota_superior_por_m": {
+    "1": 0.29770992366412213
+   },
+   "leituras": {
+    "L_no_a_no": {
+     "n_nos_so_cotas": 0,
+     "exato_em_toda_a_classe": true,
+     "valor_fechado": 0.1450381679389313,
+     "cota_inferior_classe": 0.1450381679389313,
+     "cota_superior_classe": 0.1450381679389313,
+     "dif_freq_menos_inferior_em_EP": 0.905811947816964,
+     "ep_alternativo_por_blocos_binomial_nula": 0.005978482449392913,
+     "dif_freq_menos_inferior_em_EP_alternativo": 0.5832687862994489,
+     "dif_freq_ate_intervalo_em_EP": 0.905811947816964,
+     "dentro_do_intervalo": false,
+     "dentro_do_intervalo_ou_a_2EP": true,
+     "coincide_a_2EP_do_valor_fechado": true
+    },
+    "T_classe": {
+     "n_nos_so_cotas": 0,
+     "exato_em_toda_a_classe": true,
+     "valor_fechado": 0.1450381679389313,
+     "cota_inferior_classe": 0.1450381679389313,
+     "cota_superior_classe": 0.1450381679389313,
+     "dif_freq_menos_inferior_em_EP": 0.905811947816964,
+     "ep_alternativo_por_blocos_binomial_nula": 0.005978482449392913,
+     "dif_freq_menos_inferior_em_EP_alternativo": 0.5832687862994489,
+     "dif_freq_ate_intervalo_em_EP": 0.905811947816964,
+     "dentro_do_intervalo": false,
+     "dentro_do_intervalo_ou_a_2EP": true,
+     "coincide_a_2EP_do_valor_fechado": true
+    },
+    "C_todas": {
+     "n_nos_so_cotas": 0,
+     "exato_em_toda_a_classe": true,
+     "valor_fechado": 0.1450381679389313,
+     "cota_inferior_classe": 0.1450381679389313,
+     "cota_superior_classe": 0.1450381679389313,
+     "dif_freq_menos_inferior_em_EP": 0.905811947816964,
+     "ep_alternativo_por_blocos_binomial_nula": 0.005978482449392913,
+     "dif_freq_menos_inferior_em_EP_alternativo": 0.5832687862994489,
+     "dif_freq_ate_intervalo_em_EP": 0.905811947816964,
+     "dentro_do_intervalo": false,
+     "dentro_do_intervalo_ou_a_2EP": true,
+     "coincide_a_2EP_do_valor_fechado": true
+    },
+    "U_so_m0": {
+     "n_nos_so_cotas": 6126414,
+     "exato_em_toda_a_classe": false,
+     "valor_fechado": null,
+     "cota_inferior_classe": 0.1450381679389313,
+     "cota_superior_classe": 0.29770992366412213,
+     "dif_freq_menos_inferior_em_EP": 0.905811947816964,
+     "ep_alternativo_por_blocos_binomial_nula": 0.005978482449392913,
+     "dif_freq_menos_inferior_em_EP_alternativo": 0.5832687862994489,
+     "dif_freq_ate_intervalo_em_EP": 0.0,
+     "dentro_do_intervalo": true,
+     "dentro_do_intervalo_ou_a_2EP": true,
+     "coincide_a_2EP_do_valor_fechado": null
+    }
+   }
+  },
+  {
+   "classe": "m=1|(iii) falha",
+   "definicao_m": "nodal",
+   "n_nos": 5211,
+   "fracao_nos": 0.00040208333333333334,
+   "m_valores": [
+    1
+   ],
+   "n_nos_cond_iii_falha": 5211,
+   "frequencia_media_nodal": 0.14403390590443596,
+   "ep_mc_bootstrap_sorteios": 0.014758749777826343,
+   "ep_mc_por_sorteio_agregado": 0.013889267774676948,
+   "frequencia_agregada_pooled": 0.14663578664945484,
+   "n_blocos_com_a_classe": 45,
+   "ensaios_bloco_sorteio": 1306.0,
+   "retidos_bloco_sorteio_com_algum_no": 269,
+   "cota_inferior_por_m": {
+    "1": 0.1450381679389313
+   },
+   "cota_superior_por_m": {
+    "1": 0.29770992366412213
+   },
+   "leituras": {
+    "L_no_a_no": {
+     "n_nos_so_cotas": 5211,
+     "exato_em_toda_a_classe": false,
+     "valor_fechado": null,
+     "cota_inferior_classe": 0.1450381679389313,
+     "cota_superior_classe": 0.29770992366412213,
+     "dif_freq_menos_inferior_em_EP": -0.0680451968908735,
+     "ep_alternativo_por_blocos_binomial_nula": 0.015088668029086486,
+     "dif_freq_menos_inferior_em_EP_alternativo": -0.06655736825539597,
+     "dif_freq_ate_intervalo_em_EP": -0.0680451968908735,
+     "dentro_do_intervalo": false,
+     "dentro_do_intervalo_ou_a_2EP": true,
+     "coincide_a_2EP_do_valor_fechado": null
+    },
+    "T_classe": {
+     "n_nos_so_cotas": 0,
+     "exato_em_toda_a_classe": true,
+     "valor_fechado": 0.1450381679389313,
+     "cota_inferior_classe": 0.1450381679389313,
+     "cota_superior_classe": 0.1450381679389313,
+     "dif_freq_menos_inferior_em_EP": -0.0680451968908735,
+     "ep_alternativo_por_blocos_binomial_nula": 0.015088668029086486,
+     "dif_freq_menos_inferior_em_EP_alternativo": -0.06655736825539597,
+     "dif_freq_ate_intervalo_em_EP": -0.0680451968908735,
+     "dentro_do_intervalo": false,
+     "dentro_do_intervalo_ou_a_2EP": true,
+     "coincide_a_2EP_do_valor_fechado": true
+    },
+    "C_todas": {
+     "n_nos_so_cotas": 0,
+     "exato_em_toda_a_classe": true,
+     "valor_fechado": 0.1450381679389313,
+     "cota_inferior_classe": 0.1450381679389313,
+     "cota_superior_classe": 0.1450381679389313,
+     "dif_freq_menos_inferior_em_EP": -0.0680451968908735,
+     "ep_alternativo_por_blocos_binomial_nula": 0.015088668029086486,
+     "dif_freq_menos_inferior_em_EP_alternativo": -0.06655736825539597,
+     "dif_freq_ate_intervalo_em_EP": -0.0680451968908735,
+     "dentro_do_intervalo": false,
+     "dentro_do_intervalo_ou_a_2EP": true,
+     "coincide_a_2EP_do_valor_fechado": true
+    },
+    "U_so_m0": {
+     "n_nos_so_cotas": 5211,
+     "exato_em_toda_a_classe": false,
+     "valor_fechado": null,
+     "cota_inferior_classe": 0.1450381679389313,
+     "cota_superior_classe": 0.29770992366412213,
+     "dif_freq_menos_inferior_em_EP": -0.0680451968908735,
+     "ep_alternativo_por_blocos_binomial_nula": 0.015088668029086486,
+     "dif_freq_menos_inferior_em_EP_alternativo": -0.06655736825539597,
+     "dif_freq_ate_intervalo_em_EP": -0.0680451968908735,
+     "dentro_do_intervalo": false,
+     "dentro_do_intervalo_ou_a_2EP": true,
+     "coincide_a_2EP_do_valor_fechado": null
+    }
+   }
+  },
+  {
+   "classe": "m=2|todas",
+   "definicao_m": "nodal",
+   "n_nos": 396301,
+   "fracao_nos": 0.03057878086419753,
+   "m_valores": [
+    2
+   ],
+   "n_nos_cond_iii_falha": 396228,
+   "frequencia_media_nodal": 0.027254055631791754,
+   "ep_mc_bootstrap_sorteios": 0.00170735975522256,
+   "ep_mc_por_sorteio_agregado": 0.0016624706139971581,
+   "frequencia_agregada_pooled": 0.027629167006257168,
+   "n_blocos_com_a_classe": 132,
+   "ensaios_bloco_sorteio": 4000.0,
+   "retidos_bloco_sorteio_com_algum_no": 577,
+   "cota_inferior_por_m": {
+    "2": 0.02008220786846741
+   },
+   "cota_superior_por_m": {
+    "2": 0.08702290076335878
+   },
+   "leituras": {
+    "L_no_a_no": {
+     "n_nos_so_cotas": 396228,
+     "exato_em_toda_a_classe": false,
+     "valor_fechado": null,
+     "cota_inferior_classe": 0.02008220786846741,
+     "cota_superior_classe": 0.08701057005871425,
+     "dif_freq_menos_inferior_em_EP": 4.2005486783829395,
+     "ep_alternativo_por_blocos_binomial_nula": 0.0024310374686486924,
+     "dif_freq_menos_inferior_em_EP_alternativo": 2.950118151535879,
+     "dif_freq_ate_intervalo_em_EP": 0.0,
+     "dentro_do_intervalo": true,
+     "dentro_do_intervalo_ou_a_2EP": true,
+     "coincide_a_2EP_do_valor_fechado": null
+    },
+    "T_classe": {
+     "n_nos_so_cotas": 396301,
+     "exato_em_toda_a_classe": false,
+     "valor_fechado": null,
+     "cota_inferior_classe": 0.02008220786846741,
+     "cota_superior_classe": 0.08702290076335877,
+     "dif_freq_menos_inferior_em_EP": 4.2005486783829395,
+     "ep_alternativo_por_blocos_binomial_nula": 0.0024310374686486924,
+     "dif_freq_menos_inferior_em_EP_alternativo": 2.950118151535879,
+     "dif_freq_ate_intervalo_em_EP": 0.0,
+     "dentro_do_intervalo": true,
+     "dentro_do_intervalo_ou_a_2EP": true,
+     "coincide_a_2EP_do_valor_fechado": null
+    },
+    "C_todas": {
+     "n_nos_so_cotas": 0,
+     "exato_em_toda_a_classe": true,
+     "valor_fechado": 0.02008220786846741,
+     "cota_inferior_classe": 0.02008220786846741,
+     "cota_superior_classe": 0.02008220786846741,
+     "dif_freq_menos_inferior_em_EP": 4.2005486783829395,
+     "ep_alternativo_por_blocos_binomial_nula": 0.0024310374686486924,
+     "dif_freq_menos_inferior_em_EP_alternativo": 2.950118151535879,
+     "dif_freq_ate_intervalo_em_EP": 4.2005486783829395,
+     "dentro_do_intervalo": false,
+     "dentro_do_intervalo_ou_a_2EP": false,
+     "coincide_a_2EP_do_valor_fechado": false
+    },
+    "U_so_m0": {
+     "n_nos_so_cotas": 396301,
+     "exato_em_toda_a_classe": false,
+     "valor_fechado": null,
+     "cota_inferior_classe": 0.02008220786846741,
+     "cota_superior_classe": 0.08702290076335877,
+     "dif_freq_menos_inferior_em_EP": 4.2005486783829395,
+     "ep_alternativo_por_blocos_binomial_nula": 0.0024310374686486924,
+     "dif_freq_menos_inferior_em_EP_alternativo": 2.950118151535879,
+     "dif_freq_ate_intervalo_em_EP": 0.0,
+     "dentro_do_intervalo": true,
+     "dentro_do_intervalo_ou_a_2EP": true,
+     "coincide_a_2EP_do_valor_fechado": null
+    }
+   }
+  },
+  {
+   "classe": "m=2|(iii) vale",
+   "definicao_m": "nodal",
+   "n_nos": 73,
+   "fracao_nos": 5.632716049382716e-06,
+   "m_valores": [
+    2
+   ],
+   "n_nos_cond_iii_falha": 0,
+   "frequencia_media_nodal": 0.019462564325578025,
+   "ep_mc_bootstrap_sorteios": 0.006448030433520602,
+   "ep_mc_por_sorteio_agregado": 0.004605378055491006,
+   "frequencia_agregada_pooled": 0.02025202520252025,
+   "n_blocos_com_a_classe": 13,
+   "ensaios_bloco_sorteio": 397.0,
+   "retidos_bloco_sorteio_com_algum_no": 10,
+   "cota_inferior_por_m": {
+    "2": 0.02008220786846741
+   },
+   "cota_superior_por_m": {
+    "2": 0.08702290076335878
+   },
+   "leituras": {
+    "L_no_a_no": {
+     "n_nos_so_cotas": 0,
+     "exato_em_toda_a_classe": true,
+     "valor_fechado": 0.02008220786846741,
+     "cota_inferior_classe": 0.02008220786846741,
+     "cota_superior_classe": 0.02008220786846741,
+     "dif_freq_menos_inferior_em_EP": -0.09609811077629524,
+     "ep_alternativo_por_blocos_binomial_nula": 0.00780443844766208,
+     "dif_freq_menos_inferior_em_EP_alternativo": -0.07939630084147925,
+     "dif_freq_ate_intervalo_em_EP": -0.09609811077629524,
+     "dentro_do_intervalo": false,
+     "dentro_do_intervalo_ou_a_2EP": true,
+     "coincide_a_2EP_do_valor_fechado": true
+    },
+    "T_classe": {
+     "n_nos_so_cotas": 73,
+     "exato_em_toda_a_classe": false,
+     "valor_fechado": null,
+     "cota_inferior_classe": 0.02008220786846741,
+     "cota_superior_classe": 0.08702290076335878,
+     "dif_freq_menos_inferior_em_EP": -0.09609811077629524,
+     "ep_alternativo_por_blocos_binomial_nula": 0.00780443844766208,
+     "dif_freq_menos_inferior_em_EP_alternativo": -0.07939630084147925,
+     "dif_freq_ate_intervalo_em_EP": -0.09609811077629524,
+     "dentro_do_intervalo": false,
+     "dentro_do_intervalo_ou_a_2EP": true,
+     "coincide_a_2EP_do_valor_fechado": null
+    },
+    "C_todas": {
+     "n_nos_so_cotas": 0,
+     "exato_em_toda_a_classe": true,
+     "valor_fechado": 0.02008220786846741,
+     "cota_inferior_classe": 0.02008220786846741,
+     "cota_superior_classe": 0.02008220786846741,
+     "dif_freq_menos_inferior_em_EP": -0.09609811077629524,
+     "ep_alternativo_por_blocos_binomial_nula": 0.00780443844766208,
+     "dif_freq_menos_inferior_em_EP_alternativo": -0.07939630084147925,
+     "dif_freq_ate_intervalo_em_EP": -0.09609811077629524,
+     "dentro_do_intervalo": false,
+     "dentro_do_intervalo_ou_a_2EP": true,
+     "coincide_a_2EP_do_valor_fechado": true
+    },
+    "U_so_m0": {
+     "n_nos_so_cotas": 73,
+     "exato_em_toda_a_classe": false,
+     "valor_fechado": null,
+     "cota_inferior_classe": 0.02008220786846741,
+     "cota_superior_classe": 0.08702290076335878,
+     "dif_freq_menos_inferior_em_EP": -0.09609811077629524,
+     "ep_alternativo_por_blocos_binomial_nula": 0.00780443844766208,
+     "dif_freq_menos_inferior_em_EP_alternativo": -0.07939630084147925,
+     "dif_freq_ate_intervalo_em_EP": -0.09609811077629524,
+     "dentro_do_intervalo": false,
+     "dentro_do_intervalo_ou_a_2EP": true,
+     "coincide_a_2EP_do_valor_fechado": null
+    }
+   }
+  },
+  {
+   "classe": "m=2|(iii) falha",
+   "definicao_m": "nodal",
+   "n_nos": 396228,
+   "fracao_nos": 0.030573148148148148,
+   "m_valores": [
+    2
+   ],
+   "n_nos_cond_iii_falha": 396228,
+   "frequencia_media_nodal": 0.02725549111556714,
+   "ep_mc_bootstrap_sorteios": 0.0017074083256121931,
+   "ep_mc_por_sorteio_agregado": 0.0016625056580382466,
+   "frequencia_agregada_pooled": 0.027630543140292136,
+   "n_blocos_com_a_classe": 132,
+   "ensaios_bloco_sorteio": 4000.0,
+   "retidos_bloco_sorteio_com_algum_no": 577,
+   "cota_inferior_por_m": {
+    "2": 0.02008220786846741
+   },
+   "cota_superior_por_m": {
+    "2": 0.08702290076335878
+   },
+   "leituras": {
+    "L_no_a_no": {
+     "n_nos_so_cotas": 396228,
+     "exato_em_toda_a_classe": false,
+     "valor_fechado": null,
+     "cota_inferior_classe": 0.02008220786846741,
+     "cota_superior_classe": 0.08702290076335877,
+     "dif_freq_menos_inferior_em_EP": 4.201269924420534,
+     "ep_alternativo_por_blocos_binomial_nula": 0.002431028886685292,
+     "dif_freq_menos_inferior_em_EP_alternativo": 2.950719050023507,
+     "dif_freq_ate_intervalo_em_EP": 0.0,
+     "dentro_do_intervalo": true,
+     "dentro_do_intervalo_ou_a_2EP": true,
+     "coincide_a_2EP_do_valor_fechado": null
+    },
+    "T_classe": {
+     "n_nos_so_cotas": 396228,
+     "exato_em_toda_a_classe": false,
+     "valor_fechado": null,
+     "cota_inferior_classe": 0.02008220786846741,
+     "cota_superior_classe": 0.08702290076335877,
+     "dif_freq_menos_inferior_em_EP": 4.201269924420534,
+     "ep_alternativo_por_blocos_binomial_nula": 0.002431028886685292,
+     "dif_freq_menos_inferior_em_EP_alternativo": 2.950719050023507,
+     "dif_freq_ate_intervalo_em_EP": 0.0,
+     "dentro_do_intervalo": true,
+     "dentro_do_intervalo_ou_a_2EP": true,
+     "coincide_a_2EP_do_valor_fechado": null
+    },
+    "C_todas": {
+     "n_nos_so_cotas": 0,
+     "exato_em_toda_a_classe": true,
+     "valor_fechado": 0.02008220786846741,
+     "cota_inferior_classe": 0.02008220786846741,
+     "cota_superior_classe": 0.02008220786846741,
+     "dif_freq_menos_inferior_em_EP": 4.201269924420534,
+     "ep_alternativo_por_blocos_binomial_nula": 0.002431028886685292,
+     "dif_freq_menos_inferior_em_EP_alternativo": 2.950719050023507,
+     "dif_freq_ate_intervalo_em_EP": 4.201269924420534,
+     "dentro_do_intervalo": false,
+     "dentro_do_intervalo_ou_a_2EP": false,
+     "coincide_a_2EP_do_valor_fechado": false
+    },
+    "U_so_m0": {
+     "n_nos_so_cotas": 396228,
+     "exato_em_toda_a_classe": false,
+     "valor_fechado": null,
+     "cota_inferior_classe": 0.02008220786846741,
+     "cota_superior_classe": 0.08702290076335877,
+     "dif_freq_menos_inferior_em_EP": 4.201269924420534,
+     "ep_alternativo_por_blocos_binomial_nula": 0.002431028886685292,
+     "dif_freq_menos_inferior_em_EP_alternativo": 2.950719050023507,
+     "dif_freq_ate_intervalo_em_EP": 0.0,
+     "dentro_do_intervalo": true,
+     "dentro_do_intervalo_ou_a_2EP": true,
+     "coincide_a_2EP_do_valor_fechado": null
+    }
+   }
+  },
+  {
+   "classe": "m=3|todas",
+   "definicao_m": "nodal",
+   "n_nos": 1508365,
+   "fracao_nos": 0.11638618827160493,
+   "m_valores": [
+    3
+   ],
+   "n_nos_cond_iii_falha": 0,
+   "frequencia_media_nodal": 0.0017535297278071533,
+   "ep_mc_bootstrap_sorteios": 0.0007932558000398814,
+   "ep_mc_por_sorteio_agregado": 0.0007814282244480129,
+   "frequencia_agregada_pooled": 0.0017860609598935576,
+   "n_blocos_com_a_classe": 132,
+   "ensaios_bloco_sorteio": 4000.0,
+   "retidos_bloco_sorteio_com_algum_no": 22,
+   "cota_inferior_por_m": {
+    "3": 0.002646492509798031
+   },
+   "cota_superior_por_m": {
+    "3": 0.024960056808095155
+   },
+   "leituras": {
+    "L_no_a_no": {
+     "n_nos_so_cotas": 0,
+     "exato_em_toda_a_classe": true,
+     "valor_fechado": 0.002646492509798031,
+     "cota_inferior_classe": 0.002646492509798031,
+     "cota_superior_classe": 0.002646492509798031,
+     "dif_freq_menos_inferior_em_EP": -1.1256933538285927,
+     "ep_alternativo_por_blocos_binomial_nula": 0.0008738427120448813,
+     "dif_freq_menos_inferior_em_EP_alternativo": -1.02188044791408,
+     "dif_freq_ate_intervalo_em_EP": -1.1256933538285927,
+     "dentro_do_intervalo": false,
+     "dentro_do_intervalo_ou_a_2EP": true,
+     "coincide_a_2EP_do_valor_fechado": true
+    },
+    "T_classe": {
+     "n_nos_so_cotas": 0,
+     "exato_em_toda_a_classe": true,
+     "valor_fechado": 0.002646492509798031,
+     "cota_inferior_classe": 0.002646492509798031,
+     "cota_superior_classe": 0.002646492509798031,
+     "dif_freq_menos_inferior_em_EP": -1.1256933538285927,
+     "ep_alternativo_por_blocos_binomial_nula": 0.0008738427120448813,
+     "dif_freq_menos_inferior_em_EP_alternativo": -1.02188044791408,
+     "dif_freq_ate_intervalo_em_EP": -1.1256933538285927,
+     "dentro_do_intervalo": false,
+     "dentro_do_intervalo_ou_a_2EP": true,
+     "coincide_a_2EP_do_valor_fechado": true
+    },
+    "C_todas": {
+     "n_nos_so_cotas": 0,
+     "exato_em_toda_a_classe": true,
+     "valor_fechado": 0.002646492509798031,
+     "cota_inferior_classe": 0.002646492509798031,
+     "cota_superior_classe": 0.002646492509798031,
+     "dif_freq_menos_inferior_em_EP": -1.1256933538285927,
+     "ep_alternativo_por_blocos_binomial_nula": 0.0008738427120448813,
+     "dif_freq_menos_inferior_em_EP_alternativo": -1.02188044791408,
+     "dif_freq_ate_intervalo_em_EP": -1.1256933538285927,
+     "dentro_do_intervalo": false,
+     "dentro_do_intervalo_ou_a_2EP": true,
+     "coincide_a_2EP_do_valor_fechado": true
+    },
+    "U_so_m0": {
+     "n_nos_so_cotas": 1508365,
+     "exato_em_toda_a_classe": false,
+     "valor_fechado": null,
+     "cota_inferior_classe": 0.002646492509798031,
+     "cota_superior_classe": 0.024960056808095155,
+     "dif_freq_menos_inferior_em_EP": -1.1256933538285927,
+     "ep_alternativo_por_blocos_binomial_nula": 0.0008738427120448813,
+     "dif_freq_menos_inferior_em_EP_alternativo": -1.02188044791408,
+     "dif_freq_ate_intervalo_em_EP": -1.1256933538285927,
+     "dentro_do_intervalo": false,
+     "dentro_do_intervalo_ou_a_2EP": true,
+     "coincide_a_2EP_do_valor_fechado": null
+    }
+   }
+  },
+  {
+   "classe": "m=3|(iii) vale",
+   "definicao_m": "nodal",
+   "n_nos": 1508365,
+   "fracao_nos": 0.11638618827160493,
+   "m_valores": [
+    3
+   ],
+   "n_nos_cond_iii_falha": 0,
+   "frequencia_media_nodal": 0.0017535297278071533,
+   "ep_mc_bootstrap_sorteios": 0.0007932558000398814,
+   "ep_mc_por_sorteio_agregado": 0.0007814282244480129,
+   "frequencia_agregada_pooled": 0.0017860609598935576,
+   "n_blocos_com_a_classe": 132,
+   "ensaios_bloco_sorteio": 4000.0,
+   "retidos_bloco_sorteio_com_algum_no": 22,
+   "cota_inferior_por_m": {
+    "3": 0.002646492509798031
+   },
+   "cota_superior_por_m": {
+    "3": 0.024960056808095155
+   },
+   "leituras": {
+    "L_no_a_no": {
+     "n_nos_so_cotas": 0,
+     "exato_em_toda_a_classe": true,
+     "valor_fechado": 0.002646492509798031,
+     "cota_inferior_classe": 0.002646492509798031,
+     "cota_superior_classe": 0.002646492509798031,
+     "dif_freq_menos_inferior_em_EP": -1.1256933538285927,
+     "ep_alternativo_por_blocos_binomial_nula": 0.0008738427120448813,
+     "dif_freq_menos_inferior_em_EP_alternativo": -1.02188044791408,
+     "dif_freq_ate_intervalo_em_EP": -1.1256933538285927,
+     "dentro_do_intervalo": false,
+     "dentro_do_intervalo_ou_a_2EP": true,
+     "coincide_a_2EP_do_valor_fechado": true
+    },
+    "T_classe": {
+     "n_nos_so_cotas": 0,
+     "exato_em_toda_a_classe": true,
+     "valor_fechado": 0.002646492509798031,
+     "cota_inferior_classe": 0.002646492509798031,
+     "cota_superior_classe": 0.002646492509798031,
+     "dif_freq_menos_inferior_em_EP": -1.1256933538285927,
+     "ep_alternativo_por_blocos_binomial_nula": 0.0008738427120448813,
+     "dif_freq_menos_inferior_em_EP_alternativo": -1.02188044791408,
+     "dif_freq_ate_intervalo_em_EP": -1.1256933538285927,
+     "dentro_do_intervalo": false,
+     "dentro_do_intervalo_ou_a_2EP": true,
+     "coincide_a_2EP_do_valor_fechado": true
+    },
+    "C_todas": {
+     "n_nos_so_cotas": 0,
+     "exato_em_toda_a_classe": true,
+     "valor_fechado": 0.002646492509798031,
+     "cota_inferior_classe": 0.002646492509798031,
+     "cota_superior_classe": 0.002646492509798031,
+     "dif_freq_menos_inferior_em_EP": -1.1256933538285927,
+     "ep_alternativo_por_blocos_binomial_nula": 0.0008738427120448813,
+     "dif_freq_menos_inferior_em_EP_alternativo": -1.02188044791408,
+     "dif_freq_ate_intervalo_em_EP": -1.1256933538285927,
+     "dentro_do_intervalo": false,
+     "dentro_do_intervalo_ou_a_2EP": true,
+     "coincide_a_2EP_do_valor_fechado": true
+    },
+    "U_so_m0": {
+     "n_nos_so_cotas": 1508365,
+     "exato_em_toda_a_classe": false,
+     "valor_fechado": null,
+     "cota_inferior_classe": 0.002646492509798031,
+     "cota_superior_classe": 0.024960056808095155,
+     "dif_freq_menos_inferior_em_EP": -1.1256933538285927,
+     "ep_alternativo_por_blocos_binomial_nula": 0.0008738427120448813,
+     "dif_freq_menos_inferior_em_EP_alternativo": -1.02188044791408,
+     "dif_freq_ate_intervalo_em_EP": -1.1256933538285927,
+     "dentro_do_intervalo": false,
+     "dentro_do_intervalo_ou_a_2EP": true,
+     "coincide_a_2EP_do_valor_fechado": null
+    }
+   }
+  },
+  {
+   "classe": "TOTAL|todos os nos",
+   "definicao_m": "nodal",
+   "n_nos": 12960000,
+   "fracao_nos": 1.0,
+   "m_valores": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ],
+   "n_nos_cond_iii_falha": 401439,
+   "frequencia_media_nodal": 0.4512216344399806,
+   "ep_mc_bootstrap_sorteios": 0.001889339317951485,
+   "ep_mc_por_sorteio_agregado": 0.0021179421119320776,
+   "frequencia_agregada_pooled": 0.4521763707075818,
+   "n_blocos_com_a_classe": 132,
+   "ensaios_bloco_sorteio": 4000.0,
+   "retidos_bloco_sorteio_com_algum_no": 3715,
+   "cota_inferior_por_m": {
+    "0": 1.0,
+    "1": 0.1450381679389313,
+    "2": 0.02008220786846741,
+    "3": 0.002646492509798031,
+    "4": 0.00033081156372475386
+   },
+   "cota_superior_por_m": {
+    "0": 1.0,
+    "1": 0.29770992366412213,
+    "2": 0.08702290076335878,
+    "3": 0.024960056808095155,
+    "4": 0.007020015977276762
+   },
+   "leituras": {
+    "L_no_a_no": {
+     "n_nos_so_cotas": 401439,
+     "exato_em_toda_a_classe": false,
+     "valor_fechado": null,
+     "cota_inferior_classe": 0.4494582663752756,
+     "cota_superior_classe": 0.4515662408647387,
+     "dif_freq_menos_inferior_em_EP": 0.9333252359438203,
+     "ep_alternativo_por_blocos_binomial_nula": 0.008477034132671906,
+     "dif_freq_menos_inferior_em_EP_alternativo": 0.20801710092315087,
+     "dif_freq_ate_intervalo_em_EP": 0.0,
+     "dentro_do_intervalo": true,
+     "dentro_do_intervalo_ou_a_2EP": true,
+     "coincide_a_2EP_do_valor_fechado": null
+    },
+    "T_classe": {
+     "n_nos_so_cotas": 396301,
+     "exato_em_toda_a_classe": false,
+     "valor_fechado": null,
+     "cota_inferior_classe": 0.4494582663752756,
+     "cota_superior_classe": 0.45150523115420604,
+     "dif_freq_menos_inferior_em_EP": 0.9333252359438203,
+     "ep_alternativo_por_blocos_binomial_nula": 0.008477034132671906,
+     "dif_freq_menos_inferior_em_EP_alternativo": 0.20801710092315087,
+     "dif_freq_ate_intervalo_em_EP": 0.0,
+     "dentro_do_intervalo": true,
+     "dentro_do_intervalo_ou_a_2EP": true,
+     "coincide_a_2EP_do_valor_fechado": null
+    },
+    "C_todas": {
+     "n_nos_so_cotas": 0,
+     "exato_em_toda_a_classe": true,
+     "valor_fechado": 0.4494582663752756,
+     "cota_inferior_classe": 0.4494582663752756,
+     "cota_superior_classe": 0.4494582663752756,
+     "dif_freq_menos_inferior_em_EP": 0.9333252359438203,
+     "ep_alternativo_por_blocos_binomial_nula": 0.008477034132671906,
+     "dif_freq_menos_inferior_em_EP_alternativo": 0.20801710092315087,
+     "dif_freq_ate_intervalo_em_EP": 0.9333252359438203,
+     "dentro_do_intervalo": false,
+     "dentro_do_intervalo_ou_a_2EP": true,
+     "coincide_a_2EP_do_valor_fechado": true
+    },
+    "U_so_m0": {
+     "n_nos_so_cotas": 8036291,
+     "exato_em_toda_a_classe": false,
+     "valor_fechado": null,
+     "cota_inferior_classe": 0.4494582663752756,
+     "cota_superior_classe": 0.5263341627600143,
+     "dif_freq_menos_inferior_em_EP": 0.9333252359438203,
+     "ep_alternativo_por_blocos_binomial_nula": 0.008477034132671906,
+     "dif_freq_menos_inferior_em_EP_alternativo": 0.20801710092315087,
+     "dif_freq_ate_intervalo_em_EP": 0.0,
+     "dentro_do_intervalo": true,
+     "dentro_do_intervalo_ou_a_2EP": true,
+     "coincide_a_2EP_do_valor_fechado": null
+    }
+   }
+  }
+ ],
+ "classes_geometricas": [
+  {
+   "classe": "mg=0",
+   "definicao_m": "geom",
+   "n_nos": 4858142,
+   "fracao_nos": 0.37485663580246914,
+   "m_valores": [
+    0
+   ],
+   "n_nos_cond_iii_falha": 0,
+   "frequencia_media_nodal": 1.0,
+   "ep_mc_bootstrap_sorteios": 0.0,
+   "ep_mc_por_sorteio_agregado": 0.0,
+   "frequencia_agregada_pooled": 1.0,
+   "n_blocos_com_a_classe": 121,
+   "ensaios_bloco_sorteio": 3673.0,
+   "retidos_bloco_sorteio_com_algum_no": 3673,
+   "cota_inferior_por_m": {
+    "0": 1.0
+   },
+   "cota_superior_por_m": {
+    "0": 1.0
+   },
+   "leituras": {
+    "T_classe": {
+     "n_nos_so_cotas": 0,
+     "exato_em_toda_a_classe": true,
+     "valor_fechado": 1.0,
+     "cota_inferior_classe": 1.0,
+     "cota_superior_classe": 1.0,
+     "dif_freq_menos_inferior_em_EP": 0.0,
+     "ep_alternativo_por_blocos_binomial_nula": 0.0,
+     "dif_freq_menos_inferior_em_EP_alternativo": 0.0,
+     "dif_freq_ate_intervalo_em_EP": 0.0,
+     "dentro_do_intervalo": true,
+     "dentro_do_intervalo_ou_a_2EP": true,
+     "coincide_a_2EP_do_valor_fechado": true
+    },
+    "C_todas": {
+     "n_nos_so_cotas": 0,
+     "exato_em_toda_a_classe": true,
+     "valor_fechado": 1.0,
+     "cota_inferior_classe": 1.0,
+     "cota_superior_classe": 1.0,
+     "dif_freq_menos_inferior_em_EP": 0.0,
+     "ep_alternativo_por_blocos_binomial_nula": 0.0,
+     "dif_freq_menos_inferior_em_EP_alternativo": 0.0,
+     "dif_freq_ate_intervalo_em_EP": 0.0,
+     "dentro_do_intervalo": true,
+     "dentro_do_intervalo_ou_a_2EP": true,
+     "coincide_a_2EP_do_valor_fechado": true
+    },
+    "U_so_m0": {
+     "n_nos_so_cotas": 0,
+     "exato_em_toda_a_classe": true,
+     "valor_fechado": 1.0,
+     "cota_inferior_classe": 1.0,
+     "cota_superior_classe": 1.0,
+     "dif_freq_menos_inferior_em_EP": 0.0,
+     "ep_alternativo_por_blocos_binomial_nula": 0.0,
+     "dif_freq_menos_inferior_em_EP_alternativo": 0.0,
+     "dif_freq_ate_intervalo_em_EP": 0.0,
+     "dentro_do_intervalo": true,
+     "dentro_do_intervalo_ou_a_2EP": true,
+     "coincide_a_2EP_do_valor_fechado": true
+    }
+   }
+  },
+  {
+   "classe": "mg=1",
+   "definicao_m": "geom",
+   "n_nos": 6154301,
+   "fracao_nos": 0.47486890432098766,
+   "m_valores": [
+    1
+   ],
+   "n_nos_cond_iii_falha": 0,
+   "frequencia_media_nodal": 0.1575549911956954,
+   "ep_mc_bootstrap_sorteios": 0.00382834252999797,
+   "ep_mc_por_sorteio_agregado": 0.0038535093251403224,
+   "frequencia_agregada_pooled": 0.15872583629407205,
+   "n_blocos_com_a_classe": 132,
+   "ensaios_bloco_sorteio": 4000.0,
+   "retidos_bloco_sorteio_com_algum_no": 3715,
+   "cota_inferior_por_m": {
+    "1": 0.1450381679389313
+   },
+   "cota_superior_por_m": {
+    "1": 0.29770992366412213
+   },
+   "leituras": {
+    "T_classe": {
+     "n_nos_so_cotas": 0,
+     "exato_em_toda_a_classe": true,
+     "valor_fechado": 0.1450381679389313,
+     "cota_inferior_classe": 0.1450381679389313,
+     "cota_superior_classe": 0.1450381679389313,
+     "dif_freq_menos_inferior_em_EP": 3.26951498166251,
+     "ep_alternativo_por_blocos_binomial_nula": 0.005979427343837065,
+     "dif_freq_menos_inferior_em_EP_alternativo": 2.0933147167788704,
+     "dif_freq_ate_intervalo_em_EP": 3.26951498166251,
+     "dentro_do_intervalo": false,
+     "dentro_do_intervalo_ou_a_2EP": false,
+     "coincide_a_2EP_do_valor_fechado": false
+    },
+    "C_todas": {
+     "n_nos_so_cotas": 0,
+     "exato_em_toda_a_classe": true,
+     "valor_fechado": 0.1450381679389313,
+     "cota_inferior_classe": 0.1450381679389313,
+     "cota_superior_classe": 0.1450381679389313,
+     "dif_freq_menos_inferior_em_EP": 3.26951498166251,
+     "ep_alternativo_por_blocos_binomial_nula": 0.005979427343837065,
+     "dif_freq_menos_inferior_em_EP_alternativo": 2.0933147167788704,
+     "dif_freq_ate_intervalo_em_EP": 3.26951498166251,
+     "dentro_do_intervalo": false,
+     "dentro_do_intervalo_ou_a_2EP": false,
+     "coincide_a_2EP_do_valor_fechado": false
+    },
+    "U_so_m0": {
+     "n_nos_so_cotas": 6154301,
+     "exato_em_toda_a_classe": false,
+     "valor_fechado": null,
+     "cota_inferior_classe": 0.1450381679389313,
+     "cota_superior_classe": 0.29770992366412213,
+     "dif_freq_menos_inferior_em_EP": 3.26951498166251,
+     "ep_alternativo_por_blocos_binomial_nula": 0.005979427343837065,
+     "dif_freq_menos_inferior_em_EP_alternativo": 2.0933147167788704,
+     "dif_freq_ate_intervalo_em_EP": 0.0,
+     "dentro_do_intervalo": true,
+     "dentro_do_intervalo_ou_a_2EP": true,
+     "coincide_a_2EP_do_valor_fechado": null
+    }
+   }
+  },
+  {
+   "classe": "mg=2",
+   "definicao_m": "geom",
+   "n_nos": 409957,
+   "fracao_nos": 0.031632484567901235,
+   "m_valores": [
+    2
+   ],
+   "n_nos_cond_iii_falha": 0,
+   "frequencia_media_nodal": 0.03898077699197389,
+   "ep_mc_bootstrap_sorteios": 0.0018461607317102361,
+   "ep_mc_por_sorteio_agregado": 0.0018075102047652094,
+   "frequencia_agregada_pooled": 0.03946979967888668,
+   "n_blocos_com_a_classe": 132,
+   "ensaios_bloco_sorteio": 4000.0,
+   "retidos_bloco_sorteio_com_algum_no": 3035,
+   "cota_inferior_por_m": {
+    "2": 0.02008220786846741
+   },
+   "cota_superior_por_m": {
+    "2": 0.08702290076335878
+   },
+   "leituras": {
+    "T_classe": {
+     "n_nos_so_cotas": 409957,
+     "exato_em_toda_a_classe": false,
+     "valor_fechado": null,
+     "cota_inferior_classe": 0.020082207868467407,
+     "cota_superior_classe": 0.08702290076335878,
+     "dif_freq_menos_inferior_em_EP": 10.236686762370537,
+     "ep_alternativo_por_blocos_binomial_nula": 0.002432873978761855,
+     "dif_freq_menos_inferior_em_EP_alternativo": 7.768001667363138,
+     "dif_freq_ate_intervalo_em_EP": 0.0,
+     "dentro_do_intervalo": true,
+     "dentro_do_intervalo_ou_a_2EP": true,
+     "coincide_a_2EP_do_valor_fechado": null
+    },
+    "C_todas": {
+     "n_nos_so_cotas": 0,
+     "exato_em_toda_a_classe": true,
+     "valor_fechado": 0.020082207868467407,
+     "cota_inferior_classe": 0.020082207868467407,
+     "cota_superior_classe": 0.020082207868467407,
+     "dif_freq_menos_inferior_em_EP": 10.236686762370537,
+     "ep_alternativo_por_blocos_binomial_nula": 0.002432873978761855,
+     "dif_freq_menos_inferior_em_EP_alternativo": 7.768001667363138,
+     "dif_freq_ate_intervalo_em_EP": 10.236686762370537,
+     "dentro_do_intervalo": false,
+     "dentro_do_intervalo_ou_a_2EP": false,
+     "coincide_a_2EP_do_valor_fechado": false
+    },
+    "U_so_m0": {
+     "n_nos_so_cotas": 409957,
+     "exato_em_toda_a_classe": false,
+     "valor_fechado": null,
+     "cota_inferior_classe": 0.020082207868467407,
+     "cota_superior_classe": 0.08702290076335878,
+     "dif_freq_menos_inferior_em_EP": 10.236686762370537,
+     "ep_alternativo_por_blocos_binomial_nula": 0.002432873978761855,
+     "dif_freq_menos_inferior_em_EP_alternativo": 7.768001667363138,
+     "dif_freq_ate_intervalo_em_EP": 0.0,
+     "dentro_do_intervalo": true,
+     "dentro_do_intervalo_ou_a_2EP": true,
+     "coincide_a_2EP_do_valor_fechado": null
+    }
+   }
+  },
+  {
+   "classe": "mg=3",
+   "definicao_m": "geom",
+   "n_nos": 1537600,
+   "fracao_nos": 0.11864197530864197,
+   "m_valores": [
+    3
+   ],
+   "n_nos_cond_iii_falha": 0,
+   "frequencia_media_nodal": 0.0026463970331640795,
+   "ep_mc_bootstrap_sorteios": 0.0008058822884585367,
+   "ep_mc_por_sorteio_agregado": 0.0007870064856297828,
+   "frequencia_agregada_pooled": 0.002688072800880667,
+   "n_blocos_com_a_classe": 132,
+   "ensaios_bloco_sorteio": 4000.0,
+   "retidos_bloco_sorteio_com_algum_no": 1588,
+   "cota_inferior_por_m": {
+    "3": 0.002646492509798031
+   },
+   "cota_superior_por_m": {
+    "3": 0.024960056808095155
+   },
+   "leituras": {
+    "T_classe": {
+     "n_nos_so_cotas": 0,
+     "exato_em_toda_a_classe": true,
+     "valor_fechado": 0.002646492509798031,
+     "cota_inferior_classe": 0.002646492509798031,
+     "cota_superior_classe": 0.002646492509798031,
+     "dif_freq_menos_inferior_em_EP": -0.00011847466474785677,
+     "ep_alternativo_por_blocos_binomial_nula": 0.000873972671086135,
+     "dif_freq_menos_inferior_em_EP_alternativo": -0.00010924441588397331,
+     "dif_freq_ate_intervalo_em_EP": -0.00011847466474785677,
+     "dentro_do_intervalo": false,
+     "dentro_do_intervalo_ou_a_2EP": true,
+     "coincide_a_2EP_do_valor_fechado": true
+    },
+    "C_todas": {
+     "n_nos_so_cotas": 0,
+     "exato_em_toda_a_classe": true,
+     "valor_fechado": 0.002646492509798031,
+     "cota_inferior_classe": 0.002646492509798031,
+     "cota_superior_classe": 0.002646492509798031,
+     "dif_freq_menos_inferior_em_EP": -0.00011847466474785677,
+     "ep_alternativo_por_blocos_binomial_nula": 0.000873972671086135,
+     "dif_freq_menos_inferior_em_EP_alternativo": -0.00010924441588397331,
+     "dif_freq_ate_intervalo_em_EP": -0.00011847466474785677,
+     "dentro_do_intervalo": false,
+     "dentro_do_intervalo_ou_a_2EP": true,
+     "coincide_a_2EP_do_valor_fechado": true
+    },
+    "U_so_m0": {
+     "n_nos_so_cotas": 1537600,
+     "exato_em_toda_a_classe": false,
+     "valor_fechado": null,
+     "cota_inferior_classe": 0.002646492509798031,
+     "cota_superior_classe": 0.024960056808095155,
+     "dif_freq_menos_inferior_em_EP": -0.00011847466474785677,
+     "ep_alternativo_por_blocos_binomial_nula": 0.000873972671086135,
+     "dif_freq_menos_inferior_em_EP_alternativo": -0.00010924441588397331,
+     "dif_freq_ate_intervalo_em_EP": -0.00011847466474785677,
+     "dentro_do_intervalo": false,
+     "dentro_do_intervalo_ou_a_2EP": true,
+     "coincide_a_2EP_do_valor_fechado": null
+    }
+   }
+  },
+  {
+   "classe": "TOTAL|todos os nos",
+   "definicao_m": "geom",
+   "n_nos": 12960000,
+   "fracao_nos": 1.0,
+   "m_valores": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ],
+   "n_nos_cond_iii_falha": 0,
+   "frequencia_media_nodal": 0.4512216344399806,
+   "ep_mc_bootstrap_sorteios": 0.0019023175569696411,
+   "ep_mc_por_sorteio_agregado": 0.0021179421119320776,
+   "frequencia_agregada_pooled": 0.4521763707075818,
+   "n_blocos_com_a_classe": 132,
+   "ensaios_bloco_sorteio": 4000.0,
+   "retidos_bloco_sorteio_com_algum_no": 3715,
+   "cota_inferior_por_m": {
+    "0": 1.0,
+    "1": 0.1450381679389313,
+    "2": 0.02008220786846741,
+    "3": 0.002646492509798031,
+    "4": 0.00033081156372475386
+   },
+   "cota_superior_por_m": {
+    "0": 1.0,
+    "1": 0.29770992366412213,
+    "2": 0.08702290076335878,
+    "3": 0.024960056808095155,
+    "4": 0.007020015977276762
+   },
+   "leituras": {
+    "T_classe": {
+     "n_nos_so_cotas": 409957,
+     "exato_em_toda_a_classe": false,
+     "valor_fechado": null,
+     "cota_inferior_classe": 0.44467998692584354,
+     "cota_superior_classe": 0.4467974873608058,
+     "dif_freq_menos_inferior_em_EP": 3.438777868694952,
+     "ep_alternativo_por_blocos_binomial_nula": 0.00846836517187874,
+     "dif_freq_menos_inferior_em_EP_alternativo": 0.772480565181598,
+     "dif_freq_ate_intervalo_em_EP": 2.3256616977358693,
+     "dentro_do_intervalo": false,
+     "dentro_do_intervalo_ou_a_2EP": false,
+     "coincide_a_2EP_do_valor_fechado": null
+    },
+    "C_todas": {
+     "n_nos_so_cotas": 0,
+     "exato_em_toda_a_classe": true,
+     "valor_fechado": 0.44467998692584354,
+     "cota_inferior_classe": 0.44467998692584354,
+     "cota_superior_classe": 0.44467998692584354,
+     "dif_freq_menos_inferior_em_EP": 3.438777868694952,
+     "ep_alternativo_por_blocos_binomial_nula": 0.00846836517187874,
+     "dif_freq_menos_inferior_em_EP_alternativo": 0.772480565181598,
+     "dif_freq_ate_intervalo_em_EP": 3.438777868694952,
+     "dentro_do_intervalo": false,
+     "dentro_do_intervalo_ou_a_2EP": false,
+     "coincide_a_2EP_do_valor_fechado": false
+    },
+    "U_so_m0": {
+     "n_nos_so_cotas": 8101858,
+     "exato_em_toda_a_classe": false,
+     "valor_fechado": null,
+     "cota_inferior_classe": 0.44467998692584354,
+     "cota_superior_classe": 0.521943882067315,
+     "dif_freq_menos_inferior_em_EP": 3.438777868694952,
+     "ep_alternativo_por_blocos_binomial_nula": 0.00846836517187874,
+     "dif_freq_menos_inferior_em_EP_alternativo": 0.772480565181598,
+     "dif_freq_ate_intervalo_em_EP": 0.0,
+     "dentro_do_intervalo": true,
+     "dentro_do_intervalo_ou_a_2EP": true,
+     "coincide_a_2EP_do_valor_fechado": null
+    }
+   }
+  }
+ ],
+ "cruzamento_m_nodal_x_m_geom": {
+  "m_nodal=0": {
+   "mg=0": 4858142,
+   "mg=1": 65362,
+   "mg=2": 205,
+   "mg=3": 0
+  },
+  "m_nodal=1": {
+   "mg=0": 0,
+   "mg=1": 6088939,
+   "mg=2": 38015,
+   "mg=3": 4671
+  },
+  "m_nodal=2": {
+   "mg=0": 0,
+   "mg=1": 0,
+   "mg=2": 371737,
+   "mg=3": 24564
+  },
+  "m_nodal=3": {
+   "mg=0": 0,
+   "mg=1": 0,
+   "mg=2": 0,
+   "mg=3": 1508365
+  }
+ },
+ "veredito_por_leitura": {
+  "nodal": {
+   "L_no_a_no": {
+    "criterio_cumprido": true,
+    "n_classes_avaliadas": 6,
+    "classes_que_falham": [],
+    "criterio_cumprido_com_EP_alternativo_por_blocos": true,
+    "classes_que_falham_com_EP_alternativo": []
+   },
+   "T_classe": {
+    "criterio_cumprido": true,
+    "n_classes_avaliadas": 4,
+    "classes_que_falham": [],
+    "criterio_cumprido_com_EP_alternativo_por_blocos": true,
+    "classes_que_falham_com_EP_alternativo": []
+   },
+   "C_todas": {
+    "criterio_cumprido": false,
+    "n_classes_avaliadas": 4,
+    "classes_que_falham": [
+     {
+      "classe": "m=2|todas",
+      "freq": 0.027254055631791754,
+      "ep": 0.00170735975522256,
+      "cota_inferior": 0.02008220786846741,
+      "cota_superior": 0.02008220786846741,
+      "exato": true,
+      "dif_lo_EP": 4.2005486783829395,
+      "dif_ate_intervalo_EP": 4.2005486783829395,
+      "n_nos": 396301
+     }
+    ],
+    "criterio_cumprido_com_EP_alternativo_por_blocos": false,
+    "classes_que_falham_com_EP_alternativo": [
+     "m=2|todas"
+    ]
+   },
+   "U_so_m0": {
+    "criterio_cumprido": true,
+    "n_classes_avaliadas": 4,
+    "classes_que_falham": [],
+    "criterio_cumprido_com_EP_alternativo_por_blocos": true,
+    "classes_que_falham_com_EP_alternativo": []
+   }
+  },
+  "geom": {
+   "T_classe": {
+    "criterio_cumprido": false,
+    "n_classes_avaliadas": 4,
+    "classes_que_falham": [
+     {
+      "classe": "mg=1",
+      "freq": 0.1575549911956954,
+      "ep": 0.00382834252999797,
+      "cota_inferior": 0.1450381679389313,
+      "cota_superior": 0.1450381679389313,
+      "exato": true,
+      "dif_lo_EP": 3.26951498166251,
+      "dif_ate_intervalo_EP": 3.26951498166251,
+      "n_nos": 6154301
+     }
+    ],
+    "criterio_cumprido_com_EP_alternativo_por_blocos": false,
+    "classes_que_falham_com_EP_alternativo": [
+     "mg=1"
+    ]
+   },
+   "C_todas": {
+    "criterio_cumprido": false,
+    "n_classes_avaliadas": 4,
+    "classes_que_falham": [
+     {
+      "classe": "mg=1",
+      "freq": 0.1575549911956954,
+      "ep": 0.00382834252999797,
+      "cota_inferior": 0.1450381679389313,
+      "cota_superior": 0.1450381679389313,
+      "exato": true,
+      "dif_lo_EP": 3.26951498166251,
+      "dif_ate_intervalo_EP": 3.26951498166251,
+      "n_nos": 6154301
+     },
+     {
+      "classe": "mg=2",
+      "freq": 0.03898077699197389,
+      "ep": 0.0018461607317102361,
+      "cota_inferior": 0.020082207868467407,
+      "cota_superior": 0.020082207868467407,
+      "exato": true,
+      "dif_lo_EP": 10.236686762370537,
+      "dif_ate_intervalo_EP": 10.236686762370537,
+      "n_nos": 409957
+     }
+    ],
+    "criterio_cumprido_com_EP_alternativo_por_blocos": false,
+    "classes_que_falham_com_EP_alternativo": [
+     "mg=1",
+     "mg=2"
+    ]
+   },
+   "U_so_m0": {
+    "criterio_cumprido": true,
+    "n_classes_avaliadas": 4,
+    "classes_que_falham": [],
+    "criterio_cumprido_com_EP_alternativo_por_blocos": true,
+    "classes_que_falham_com_EP_alternativo": []
+   }
+  }
+ },
+ "bootstrap_blocos_reamostra_sem_teste_acumulado": 0
+}

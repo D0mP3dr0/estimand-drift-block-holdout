@@ -1,0 +1,10 @@
+{
+ "R1": {
+  "veredito": "CONFIRMADO",
+  "motivo": "Particao independente reproduz por celula, ao dígito, dp MAE constante validos, dp fracao valida e n de sorteios: lins_Q1 b0 6,5973 (json 6,5973) b2 7,9778 (7,9778); sorocaba_Q3 b0 8,0033 (8,0033) b2 8,6688 (8,6688); fracao valida (so sorteios com valido) lins b0 0,0496 (0,0496) b2 0,0604 (0,0604); sorocaba b0 0,0595 (0,0595) b2 0,0627 (0,0627). Medias de 16 celulas (7,09/8,02; 0,0613/0,0741) NAO recalculadas (so 2 celulas); consistentes com os por_celula conferidos. Mediana(treino) = -110 em todos os casos."
+ },
+ "R2": {
+  "veredito": "CONFIRMADO",
+  "motivo": "bauru_Q1 constante, 200 sorteios: validos var(H) 51,740 (json 51,740), vies 0,362 (0,362) ep 0,510 (0,510) = 0,71 EP; var(A) simulada 9,707e-4 (9,705e-4), teorica linearizada 8,654e-4; deff 53301 simulado (json 53313), 59788 teorico. todos: var(H) 5,2734 (5,2736), vies 0,102 ep 0,162 = 0,63 EP, var(A) teorica SRS+fpc 8,18e-5, simulada 9,91e-5, deff 53214 sim / 64493 teorico. Dentro da faixa 16 mil a 71 mil; vies dentro de 2 EP. Outras 3 celulas nao recalculadas."
+ }
+}

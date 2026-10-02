@@ -1,0 +1,21 @@
+{
+  "id": "3.2",
+  "pergunta": "Sobre as 16 celulas (seed 42), as bordas Q1- e Q1+ da banda de P7 (prop:median), calculadas sobre os nos SENTINELA reais do treino (nao sobre distancia simulada U[1,140] km), com que largura elas ficam e onde caem as medianas calibradas (p_tx_eff publicados)?",
+  "alegacao": "A5 (P7): a calibracao pela mediana nao identifica o offset; banda de quantis nao trivial.",
+  "hipotese": "H0 (teorema, nao refutavel por dado): toda mediana theta_hat da mistura F = pi_bar*F1 + (1-pi_bar)*F0 satisfaz Q1-(1-1/(2*pi_bar)) <= theta_hat <= Q1+(1/(2*pi_bar)), com F1 = fda de W=RSSI+PL_modelo(dist) sobre os nos sentinela de treino e pi_bar = fracao sentinela do treino. H1 (empirica, alvo do artigo): a largura da banda real (nao simulada) e >= 1 dB em pelo menos 12 das celulas computadas.",
+  "criterio_de_aceitacao": "100% das medianas calibradas (p_tx_eff_dbm de baselines_analiticos.train, para fspl/hata_rural/cost231_sub) devem cair dentro de [Q1-, Q1+] por construcao (violacao = bug no script, nao achado cientifico). A alegacao 'nao identificavel' (largura pratica, nao so teorica) so e publicavel se a largura real da banda for >= 1 dB em >= 12 das celulas com dado disponivel.",
+  "o_que_refuta": "Se qualquer mediana calibrada cair fora da banda -> bug de implementacao (parar e corrigir, nao e achado de conteudo). Se a largura real for < 1 dB na maioria das celulas -> a alegacao 'a mediana nao identifica o offset' fica sem sustentacao quantitativa nesta base (embora o teorema continue valendo); registrar como achado que rebaixa a forca da alegacao A5.",
+  "populacao_e_definicoes": {
+    "W": "y[:,3] (RSSI observado, coluna 3 do tensor terrain.y) + PL_modelo(dist_nearest_m), calculado nos-a-no; RSSI sentinel = -110.0 dBm exato (saturado); dist_nearest_m = distancia geodesica-planar (equiretangular) ao antena mais proxima, em metros, campo terrain.dist_nearest_m",
+    "F1": "fda empirica de W restrita aos nos sentinela (y[:,0] >= 299.0) DENTRO da particao de treino da celula (split espacial 3 vias, split_seed=42, grid_km=10, buffer_km=2, fracs 0.70/0.15/0.15, logica identica a train_gnn_c0_spatial.py:412-472 / scripts/varredura_split_geometria.py)",
+    "pi_bar": "n_sentinela_treino / n_treino da mesma particao (nao o pi_bar publicado no run JSON, recalculado do dado bruto)",
+    "PL_modelo": "free_space_path_loss / okumura_hata_rural / cost231_hata(suburban) de GNN_RF_V2/04_baselines/empirical_models.py, freq_mhz=900.0 (config.freq_mhz do run JSON)",
+    "mediana_calibrada": "baselines_analiticos.train.p_tx_eff_dbm.<modelo> do run JSON congelado (definicao: train_gnn_c0_spatial.py:711, ptx=median(rssi_tgt+pl) SO no treino)"
+  },
+  "insumos_declarados_antes_de_rodar": [
+    "run JSON dos 20 treinos c0c1cf_*/c0c1_bauru_* (dados/treinos_c1) para geometria, config, baselines_analiticos.train.p_tx_eff_dbm",
+    "tensores leves *_enriched_v2_cftudo.pt (~1.7 GB cada) SO para as celulas com arquivo local: bauru Q1, bauru Q2, lins Q1-4 (6 de 16); as demais 10 celulas (campinas x4, sorocaba x4, bauru Q3/Q4) vao para nao_verificado por dado bruto indisponivel nesta maquina"
+  ],
+  "fixado_em": "2026-09-25T00:00:00-03:00 (antes de rodar o script de recomputo)",
+  "script_planejado": "scripts/v3_3.2_banda_p7_bordas_reais.py"
+}

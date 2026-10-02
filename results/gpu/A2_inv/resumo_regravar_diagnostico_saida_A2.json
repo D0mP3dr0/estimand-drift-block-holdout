@@ -1,0 +1,50 @@
+{
+  "gnn_v3_a2_bauru_Q1_rep1": {
+    "mae_pos_clamp_valido_test": 1.290473798859462,
+    "mae_pos_clamp_todos_com_sentinela_test": 87.1454469670794,
+    "frac_alvo_sentinela_test": 0.8697739364412825,
+    "mae_pl_db_producao_referencia": 1.2928946018218994
+  },
+  "gnn_v3_a2_bauru_Q1_rep2": {
+    "mae_pos_clamp_valido_test": 1.179017088974344,
+    "mae_pos_clamp_todos_com_sentinela_test": 87.13093239849384,
+    "frac_alvo_sentinela_test": 0.8697739364412825,
+    "mae_pl_db_producao_referencia": 1.1755571365356445
+  },
+  "gnn_v3_a2_lins_Q1_rep1": {
+    "mae_pos_clamp_valido_test": 3.958956006483904,
+    "mae_pos_clamp_todos_com_sentinela_test": 88.58493400255796,
+    "frac_alvo_sentinela_test": 0.8811438784629133,
+    "mae_pl_db_producao_referencia": 3.9451582431793213
+  },
+  "gnn_v3_a2_lins_Q1_rep2": {
+    "mae_pos_clamp_valido_test": 3.0273411122234473,
+    "mae_pos_clamp_todos_com_sentinela_test": 88.47420586945998,
+    "frac_alvo_sentinela_test": 0.8811438784629133,
+    "mae_pl_db_producao_referencia": 3.0006418228149414
+  },
+  "mlp_v3_a2_bauru_Q1_rep1": {
+    "mae_pos_clamp_valido_test": 32.62446334730191,
+    "mae_pos_clamp_todos_com_sentinela_test": 92.60251675429316,
+    "frac_alvo_sentinela_test": 0.8697739364412825,
+    "mae_pl_db_producao_referencia": 89.68962860107422
+  },
+  "mlp_v3_a2_bauru_Q1_rep2": {
+    "mae_pos_clamp_valido_test": 32.62446334730191,
+    "mae_pos_clamp_todos_com_sentinela_test": 92.60251675429316,
+    "frac_alvo_sentinela_test": 0.8697739364412825,
+    "mae_pl_db_producao_referencia": 89.68962860107422
+  },
+  "mlp_v3_a2_lins_Q1_rep1": {
+    "mae_pos_clamp_valido_test": 40.00073370118541,
+    "mae_pos_clamp_todos_com_sentinela_test": 93.29335426461861,
+    "frac_alvo_sentinela_test": 0.8811438784629133,
+    "mae_pl_db_producao_referencia": 121.39029693603516
+  },
+  "mlp_v3_a2_lins_Q1_rep2": {
+    "mae_pos_clamp_valido_test": 40.00073370118541,
+    "mae_pos_clamp_todos_com_sentinela_test": 93.29335426461861,
+    "frac_alvo_sentinela_test": 0.8811438784629133,
+    "mae_pl_db_producao_referencia": 121.39029693603516
+  }
+}

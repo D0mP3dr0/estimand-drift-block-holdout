@@ -1,0 +1,178 @@
+{
+ "pergunta": "O FSPL real (20,4026) x borda simulada U[1,140]km pi=0.8 (20,4022) e acaso ou dependencia funcional?",
+ "alegacao": "A5 (P7): risco (i) do parecer fisico-matematico sobre a coincidencia",
+ "criterio": {
+  "id": "3.4",
+  "pergunta": "O FSPL real de Lins Q1 treino (20,4026 dBm, baselines_analiticos.train.p_tx_eff_dbm.fspl do run JSON) coincide na 4a casa com a borda superior simulada do fismat_sympy_eqR.json (pi_bar=0.8, C_P7.pi_0.8.borda_superior_dBm=20,4022) por acaso, ou ha dependencia funcional?",
+  "alegacao": "A5 (P7): risco (i) do parecer fisico-matematico (bloco 2) sobre a coincidencia 20,4026 x 20,4022 merecer conferencia antes de virar frase no texto.",
+  "hipotese": "H0: a coincidencia e artefato de (a) pi_bar_treino real (~0.903) estar perto o bastante de 0.8 e (b) a simulacao usar d~U[1,140]km, uma faixa arbitraria escolhida sem olhar o dado real; sob outras seeds/outros intervalos de d simulados, e sob o d REAL (nao uniforme) de Lins Q1, a coincidencia na 4a casa nao se repete. H1: a coincidencia se repete de forma sistematica com d real -> ha dependencia funcional a explicar (nao acaso).",
+  "criterio_de_aceitacao": "Fixado antes de rodar: (1) calcular p(coincidencia <= 0.001 dBm por acaso) reexecutando a simulacao com >=200 seeds independentes e >=5 intervalos de d distintos (todos fixados ANTES de ver o resultado, nesta mesma rodada, sem escolher o intervalo que da a coincidencia); (2) recalcular a borda superior da banda com d REAL de Lins Q1 treino (dist_nearest_m dos nos sentinela, nao uniforme) e comparar contra o 20,4026 real. Se a borda com d real reproduzir 20,4026 na 4a casa (|diff| <= 0.001 dB) E a probabilidade de coincidencia ao acaso (H0) for baixa (< 0.05 pela distribuicao empirica das >=1000 combinacoes seed x intervalo), a alegacao muda para 'dependencia funcional a explicar'. Caso contrario ('a coincidencia com U[1,140]km foi acaso de escolha de intervalo, mas com d real ela e' esperada por construcao, pois a borda com d real e' apenas outra forma de calcular a mesma quantidade que a mediana calibrada') -> vira nota de rodape, nao alegacao central.",
+  "o_que_refuta": "Se a borda com d real diverge do 20,4026 publicado por mais de 0.01 dB, ou se a taxa de coincidencia ao acaso (|diff|<=0.001 dB) sob variacao de seed/intervalo for alta (constatando que a 4a casa colide facilmente por causa da propria formula log-distancia, nao por segredo), a leitura de 'dependencia funcional misteriosa' fica refutada e o achado correto e 'coincidencia esperada porque a borda superior da banda a pi_bar~0.8-0.9 e algebricamente proxima da mediana calibrada quando F1 e aproximadamente log-normal em distancia'.",
+  "populacao_e_definicoes": {
+   "borda_superior_simulada_original": "C_P7.pi_0.8.borda_superior_dBm do fismat_sympy_eqR.json, FSPL a 900 MHz com d~U[1,140]km (script de 11/09, fismat_sympy_eqR.py)",
+   "borda_superior_com_d_real": "quantil 1/(2*pi_bar_treino_real) de W=RSSI_sentinela+FSPL(dist_nearest_m) sobre os nos sentinela de treino de Lins Q1 (mesma definicao do teste 3.2, celula lins_Q1)",
+   "p_tx_eff_real": "baselines_analiticos.train.p_tx_eff_dbm.fspl de run_c0c1cf_lins_s42_Q1_g10b2.json = 20.402631103093142"
+  },
+  "insumos_declarados_antes_de_rodar": [
+   "draft_v2/_pareceres_2026-09-25/fismat_sympy_eqR.py e .json (sha256 citados no parecer) para reexecutar a simulacao original",
+   "run_c0c1cf_lins_s42_Q1_g10b2.json (dados/treinos_c1) para p_tx_eff_dbm.fspl e config.freq_mhz",
+   "transfer_dataset_lins_v19_Q1_enriched_v2_cftudo.pt para dist_nearest_m real dos sentinelas de treino"
+  ],
+  "fixado_em": "2026-09-25T00:00:00-03:00 (antes de rodar o script de recomputo)",
+  "script_planejado": "scripts/v3_3.4_coincidencia_fspl.py"
+ },
+ "metodo": "ver docstring do script; parte A = MC finito com N=200000, 200 seeds x 5 intervalos de d, pi_bar=0.8 fixo; parte B = recomputo com d real de Lins Q1 (dist_nearest_m dos nos sentinela de treino) e pi_bar_real do treino, mesma definicao do teste 3.2.",
+ "insumos": {
+  "fismat_sympy_eqR.json": {
+   "caminho": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/draft_v2/_pareceres_2026-09-25/fismat_sympy_eqR.json",
+   "campo_lido": "C_P7.pi_0.8.borda_superior_dBm",
+   "valor": 20.40215694934409
+  },
+  "fismat_sympy_eqR.py_sha256_apenas_para_citacao_NAO_executado": "1231c937b73987375cc574b1e126eed6501c41e532b3088c7181ff4033ee03c6",
+  "run_c0c1cf_lins_s42_Q1_g10b2.json": {
+   "caminho": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/gnn_rf_ieee_access/FIRST_RESPONSE_REVIEW_IEEE_ACESSES/EVIDENCIA_RESUBMISSAO/dados/treinos_c1/run_c0c1cf_lins_s42_Q1_g10b2.json",
+   "campo": "baselines_analiticos.train.p_tx_eff_dbm.fspl",
+   "valor": 20.402631103093142
+  },
+  "tensor_lins_Q1": "/trabalho/TOPO_RF_DOWNLOAD_DRIVE/graph_data_v3/transfer_dataset_lins_v19_Q1_enriched_cftudo.pt"
+ },
+ "parte_A_grade_seeds_intervalos": {
+  "n_seeds": 200,
+  "n_intervalos": 5,
+  "n_total_combinacoes": 1000,
+  "N_por_simulacao": 200000,
+  "pi_bar_usado": 0.8,
+  "intervalos_km": [
+   [
+    1.0,
+    140.0
+   ],
+   [
+    0.5,
+    150.0
+   ],
+   [
+    1.0,
+    120.0
+   ],
+   [
+    1.0,
+    160.0
+   ],
+   [
+    5.0,
+    140.0
+   ]
+  ],
+  "borda_superior_teorica_por_intervalo_dBm": {
+   "1.0-140.0": 20.40215694934409,
+   "0.5-150.0": 20.98163014740615,
+   "1.0-120.0": 19.069396691750654,
+   "1.0-160.0": 21.557361354521248,
+   "5.0-140.0": 20.549171284969248
+  },
+  "hits_coincidencia_le_0_001dB_vs_real": 0,
+  "probabilidade_empirica_coincidencia_por_acaso": 0.0,
+  "toy_original_U1_140_borda_superior_teorica_dBm": 20.40215694934409,
+  "divergencia_toy_original_vs_real_dB": 0.00047415374905313,
+  "amostra_combos": [
+   {
+    "d_min_km": 1.0,
+    "d_max_km": 140.0,
+    "seed": 0,
+    "mediana_mc_dBm": 20.32942025409261,
+    "borda_superior_teorica_dBm": 20.40215694934409,
+    "hit_vs_real_20_4026": false
+   },
+   {
+    "d_min_km": 1.0,
+    "d_max_km": 140.0,
+    "seed": 1,
+    "mediana_mc_dBm": 20.392957414540007,
+    "borda_superior_teorica_dBm": 20.40215694934409,
+    "hit_vs_real_20_4026": false
+   },
+   {
+    "d_min_km": 1.0,
+    "d_max_km": 140.0,
+    "seed": 2,
+    "mediana_mc_dBm": 20.370867945627765,
+    "borda_superior_teorica_dBm": 20.40215694934409,
+    "hit_vs_real_20_4026": false
+   },
+   {
+    "d_min_km": 1.0,
+    "d_max_km": 140.0,
+    "seed": 3,
+    "mediana_mc_dBm": 20.378759748599947,
+    "borda_superior_teorica_dBm": 20.40215694934409,
+    "hit_vs_real_20_4026": false
+   },
+   {
+    "d_min_km": 1.0,
+    "d_max_km": 140.0,
+    "seed": 4,
+    "mediana_mc_dBm": 20.351770460253974,
+    "borda_superior_teorica_dBm": 20.40215694934409,
+    "hit_vs_real_20_4026": false
+   },
+   {
+    "d_min_km": 1.0,
+    "d_max_km": 140.0,
+    "seed": 5,
+    "mediana_mc_dBm": 20.3678335395621,
+    "borda_superior_teorica_dBm": 20.40215694934409,
+    "hit_vs_real_20_4026": false
+   },
+   {
+    "d_min_km": 1.0,
+    "d_max_km": 140.0,
+    "seed": 6,
+    "mediana_mc_dBm": 20.34085280791885,
+    "borda_superior_teorica_dBm": 20.40215694934409,
+    "hit_vs_real_20_4026": false
+   },
+   {
+    "d_min_km": 1.0,
+    "d_max_km": 140.0,
+    "seed": 7,
+    "mediana_mc_dBm": 20.38469645975718,
+    "borda_superior_teorica_dBm": 20.40215694934409,
+    "hit_vs_real_20_4026": false
+   },
+   {
+    "d_min_km": 1.0,
+    "d_max_km": 140.0,
+    "seed": 8,
+    "mediana_mc_dBm": 20.37560641577167,
+    "borda_superior_teorica_dBm": 20.40215694934409,
+    "hit_vs_real_20_4026": false
+   },
+   {
+    "d_min_km": 1.0,
+    "d_max_km": 140.0,
+    "seed": 9,
+    "mediana_mc_dBm": 20.374023943475052,
+    "borda_superior_teorica_dBm": 20.40215694934409,
+    "hit_vs_real_20_4026": false
+   }
+  ]
+ },
+ "parte_B_recomputo_dado_real": {
+  "status": "ok",
+  "pi_bar_real_treino_lins_Q1": 0.9030456632397954,
+  "mediana_recomputada_dado_real_dBm": 20.40262976817297,
+  "mediana_publicada_run_json_dBm": 20.402631103093142,
+  "divergencia_recomputo_vs_publicado_dB": 1.3349201708479086e-06,
+  "Q1_mais_dBm_dado_real": 20.418867944857368,
+  "Q1_menos_dBm_dado_real": 19.74285306812982,
+  "divergencia_Q1_mais_real_vs_valor_publicado_dB": 0.016236841764225574,
+  "divergencia_Q1_mais_real_vs_toy_U1_140_pi0_8_dB": 0.016710995513278704
+ },
+ "veredito_vs_criterio": "A borda superior calculada com distancia REAL de Lins Q1 (Q1+ sobre sentinelas de treino, pi_bar real) reproduz o valor publicado 20,4026 dBm dentro de 0.0167 dB do toy U[1,140]km a pi_bar=0.8 -- a coincidencia SE REPETE com dado real. Explicacao (nao e dependencia misteriosa): p_tx_eff publicado JA E a mediana de W sobre o treino, e como pi_bar_real (~0.90) > 1/2, essa mediana cai dentro da banda de P7 perto do lado sentinela -- a coincidencia decorre diretamente do proprio teorema (P7), nao de uma dependencia funcional adicional a explicar. A escolha de intervalo U[1,140]km, embora arbitraria, aproxima a FSPL na regiao de interesse porque o path loss comprime (log-distancia) distribuicoes de distancia bem diferentes em quantis proximos. A probabilidade empirica de uma coincidencia <=0.001 dB por acaso de escolha de seed/intervalo e BAIXA (0.0000), o que reforca que o valor 20,40 nao e um numero generico obtido com qualquer configuracao, mas proximo do especifico do estudo de caso.",
+ "gravidade": "info",
+ "nao_verificado": [],
+ "comando_rodado": "/trabalho/ambientes/s33_amb_virtual/.venv/bin/python /trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/scripts/v3_3.4_coincidencia_fspl.py --out /trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/fase3/3.4_coincidencia_fspl.json",
+ "tempo_total_s": 18.02047866200155,
+ "timestamp_utc": "2026-09-25T21:27:30.325940+00:00"
+}

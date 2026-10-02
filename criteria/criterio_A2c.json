@@ -1,0 +1,104 @@
+{
+ "id": "A2c",
+ "gravado_em": "2026-09-26 (agente oficina-pipeline, PLANO A do dono D7, ERRATA DE PROVENIENCIA, item (3) das entregas)",
+ "autor": "oficina-pipeline",
+ "alvo": "gpu/modelo_v3/{v3_common.py,train_gnn_v3.py,train_mlp_v3.py,rf_decoder_v3.py} -- MESMO codigo do A2 (byte-identico ao aprovado pelo gate A1bis e pelo gate de bug silencioso), com a CORRECAO DE PROVENIENCIA (dataset default trocado de `_enriched_v2.pt`/`GNN_RF_V2/graph_data` para `_enriched_cftudo.pt`/`graph_data_v3`, com gate de sha256 contra o manifest v4 gravado em `insumos` do run JSON)",
+ "tipo": "confirmatorio",
+ "substitui": "criterio_A2.json -- as 8 corridas do A2 rodaram no dataset PRE-correcao do alvo (ERRATA DE PROVENIENCIA, PROTOCOLO_GPU_v3_2026-09-25.md); nenhum numero delas e citavel. A2c repete o MESMO desenho no dataset CANONICO.",
+ "nota_proveniencia": "dataset cftudo por sha: rf_data_file = transfer_dataset_<cidade>_v19_<Q>_enriched_cftudo.pt em /trabalho/TOPO_RF_DOWNLOAD_DRIVE/graph_data_v3, sha256 verificado a cada corrida contra /trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/manifest_mathematics_v4.jsonl (grupo tensores_cftudo, 16 entradas); corrida ABORTA (rc=3) se o sha nao bater. Ver campo insumos de cada run JSON.",
+ "manifest": "manifest_mathematics_v4.jsonl (grupo tensores_cftudo)",
+ "hipotese": "O pipeline modelo_v3 (GNN e MLP), no dataset CANONICO (enriched_cftudo), rodado 2 vezes com a MESMA seed de treino (42) e o MESMO split_seed (42), sem cadeia, 8 epocas, produz o MESMO numero de MAE por populacao entre as 2 repeticoes (determinismo efetivo do treino nesta GPU/driver), dentro de uma tolerancia de piso numerico.",
+ "predicao": "Se a hipotese for verdadeira, a divergencia absoluta entre repeticao 1 e repeticao 2 no MAE por populacao (rssi_dbm, path_loss_total_dB e demais canais reportados) fica <= 1e-3 dB, tanto para GNN quanto para MLP, em Bauru Q1 e em Lins Q1.",
+ "criterio_aceite": "PASS se |MAE_rep1 - MAE_rep2| <= 1e-3 dB em TODAS as 4 combinacoes (bauru-GNN, bauru-MLP, lins-GNN, lins-MLP); FAIL (ramo declarado no protocolo) se qualquer combinacao divergir > 1e-3 dB -- nesse caso todo numero de modelo_v3 vira distribuicao por seed e o texto do artigo declara nao-determinismo em vez de valor pontual. Indeterminado (orcamento estourado antes de completar as 8 corridas) = abortado_por_orcamento, sem veredito de PASS/FAIL sobre a hipotese.",
+ "condicao_de_lancamento": "so lancado se gpu/A2c/controle_cftudo_bauru_Q1.json (GNN e MLP, Bauru Q1, cftudo, mesma config) mostrar MAE_rssi sentinela < 1 dB e validos < 5 dB para os dois modelos (item (2)/(3) da entrega); senao o lote fica em espera e o diagnostico e gravado sem lancar corrida.",
+ "corridas": [
+  {
+   "run_label": "gnn_v3_a2c_bauru_Q1_rep1",
+   "tipo": "gnn",
+   "cidade": "bauru",
+   "quadrante": "Q1",
+   "rep": 1
+  },
+  {
+   "run_label": "gnn_v3_a2c_bauru_Q1_rep2",
+   "tipo": "gnn",
+   "cidade": "bauru",
+   "quadrante": "Q1",
+   "rep": 2
+  },
+  {
+   "run_label": "mlp_v3_a2c_bauru_Q1_rep1",
+   "tipo": "mlp",
+   "cidade": "bauru",
+   "quadrante": "Q1",
+   "rep": 1
+  },
+  {
+   "run_label": "mlp_v3_a2c_bauru_Q1_rep2",
+   "tipo": "mlp",
+   "cidade": "bauru",
+   "quadrante": "Q1",
+   "rep": 2
+  },
+  {
+   "run_label": "gnn_v3_a2c_lins_Q1_rep1",
+   "tipo": "gnn",
+   "cidade": "lins",
+   "quadrante": "Q1",
+   "rep": 1
+  },
+  {
+   "run_label": "gnn_v3_a2c_lins_Q1_rep2",
+   "tipo": "gnn",
+   "cidade": "lins",
+   "quadrante": "Q1",
+   "rep": 2
+  },
+  {
+   "run_label": "mlp_v3_a2c_lins_Q1_rep1",
+   "tipo": "mlp",
+   "cidade": "lins",
+   "quadrante": "Q1",
+   "rep": 1
+  },
+  {
+   "run_label": "mlp_v3_a2c_lins_Q1_rep2",
+   "tipo": "mlp",
+   "cidade": "lins",
+   "quadrante": "Q1",
+   "rep": 2
+  }
+ ],
+ "config_fixa_por_corrida": {
+  "seed_treino": 42,
+  "split_seed": 42,
+  "epochs": 8,
+  "max_nodes": 0,
+  "mmap": true,
+  "k_antenna": -1,
+  "k_terrain": -1,
+  "hidden_dim": 256,
+  "batch_size": 12288,
+  "lr": 0.001,
+  "sem_cadeia": true,
+  "transfer_from": ""
+ },
+ "gravidade": "divergencia > 1e-3 dB em qualquer combinacao = achado que muda o texto do artigo (distribuicao por seed em vez de valor pontual), nao bloqueia o roadmap por si so -- e a propria pergunta de saida deste bloco",
+ "dado": "Bauru Q1 e Lins Q1 REAIS, dataset CANONICO enriched_cftudo (grafo inteiro, --mmap, sem --max-nodes), GPU RTX 5070 Ti (~8,4 GB livres no inicio desta rodada; motor de embeddings concorrente; abortar corrida se VRAM livre < 1 GB)",
+ "orcamento": "orcamento_gpu_min=180 (teto duro, herdado do A2; ERRATA de custo estima ~2,5h para as 8 corridas -- dataset cftudo e ~16x maior em disco que o _v2 do A2, mas o numero de nos/epocas e identico, entao a projecao de tempo por corrida nao muda pelo mesmo raciocinio do A2); parar ao atingir o teto ou ao terminar as 8 corridas, o que vier primeiro",
+ "referencia_custo": "controle deste bloco (gpu/A2c/controle_cftudo_bauru_Q1.json) mede o tempo real de 1 corrida GNN + 1 MLP no dataset cftudo antes do lote; ver tambem A2/lote_A2_status.json (mesma config, dataset errado, GNN ~824s/~15,7min e MLP ~94s/~1,5min a 8 epocas)",
+ "referencia_gate_anterior": "gpu/A2/ia-bug-silencioso.json (veredito=passa, reuso do gate A1bis sobre codigo hash-identico); a correcao de proveniencia NAO muda o codigo do decoder/treino, so o dataset/graph_dir default e o gate de sha, entao o gate de bug silencioso do A2 continua valido para modelo_v3",
+ "errata": [
+  {
+   "quando": "2026-09-26 01:32:07",
+   "autor": "sessao (chefe)",
+   "motivo": "CUDA OutOfMemoryError na 1a corrida do A2 (bs=24576, k=-1, grafo inteiro) ao lado do motor de embeddings (5,3 GB): ~10 GB reservados > 10,2 GB disponiveis; expandable_segments nao resolveu. batch_size 24576 -> 12288 ANTES de qualquer resultado. Herdado por A2c (mesma config_fixa_por_corrida).",
+   "batch_size_anterior": 24576
+  },
+  {
+   "quando": "2026-09-26 (chefe, ~03:30)",
+   "autor": "sessao (chefe)",
+   "motivo": "ERRATA DE PROVENIENCIA: as 8 corridas do A2 usaram `transfer_dataset_<c>_v19_<Q>_enriched_v2.pt` (PRE-correcao do alvo) em vez do canonico `_enriched_cftudo.pt`; nenhum numero do A2 e citavel. A2c repete o desenho no dataset canonico, com gate de sha256 por corrida."
+  }
+ ]
+}

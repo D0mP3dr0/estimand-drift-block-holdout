@@ -1,0 +1,392 @@
+{
+ "gnn": {
+  "n_total": 60,
+  "n_A3": 40,
+  "n_A4": 20,
+  "n_main": 60,
+  "n_sens": 0,
+  "classe": [
+   "\"GNNRFModel\""
+  ],
+  "num_layers": [
+   "4"
+  ],
+  "heads": [
+   "4"
+  ],
+  "hidden": [
+   "256"
+  ],
+  "larguras": [
+   "null"
+  ],
+  "terrain_dim": [
+   "18"
+  ],
+  "antenna_dim": [
+   "6"
+  ],
+  "antenna_dim_nao_usado": [
+   "null"
+  ],
+  "output_dim": [
+   "5"
+  ],
+  "dropout": [
+   "0.1"
+  ],
+  "nominal": [
+   "1812515"
+  ],
+  "efetiva": [
+   "1484037"
+  ],
+  "n_sem_grad": [
+   "328478"
+  ],
+  "epochs": [
+   "8"
+  ],
+  "batch_size": [
+   "12288"
+  ],
+  "lr": [
+   "0.001"
+  ],
+  "max_norm": [
+   "0.5"
+  ],
+  "early_stopping_patience": [
+   "0"
+  ],
+  "variance_weight": [
+   "0.02"
+  ],
+  "ndvi_weight": [
+   "0.03"
+  ],
+  "dist_grad_weight": [
+   "0.05"
+  ],
+  "cosine_t0": [
+   "10"
+  ],
+  "scheduler": [
+   "\"cosine\""
+  ],
+  "freq_mhz": [
+   "900.0"
+  ],
+  "k_antenna": [
+   "-1"
+  ],
+  "k_terrain": [
+   "-1"
+  ],
+  "loss.distance_gradient_weight": [
+   "0.05"
+  ],
+  "loss.variance_weight": [
+   "0.02"
+  ],
+  "loss.shadowing_ndvi_weight": [
+   "0.03"
+  ],
+  "fracao_clip_min": 1.0,
+  "n_passos": [
+   5912.0,
+   5880,
+   5920
+  ],
+  "melhor_epoca": [
+   6.0,
+   2,
+   8
+  ],
+  "criterio": [
+   "\"menor mae_rssi_db em VAL\""
+  ],
+  "test_usado": [
+   "false"
+  ],
+  "pares_seed": [
+   [
+    42,
+    42
+   ],
+   [
+    42,
+    101
+   ],
+   [
+    42,
+    102
+   ],
+   [
+    42,
+    103
+   ],
+   [
+    42,
+    104
+   ],
+   [
+    42,
+    105
+   ],
+   [
+    43,
+    42
+   ],
+   [
+    44,
+    42
+   ],
+   [
+    45,
+    42
+   ],
+   [
+    46,
+    42
+   ]
+  ],
+  "cudnn": [
+   "[true, false]"
+  ],
+  "hw": [
+   "[\"NVIDIA GeForce RTX 5070 Ti\", \"2.10.0+cu128\", \"12.8\"]"
+  ],
+  "tempo": [
+   783.05,
+   775.9,
+   1141.3
+  ],
+  "vram": [
+   4159.9,
+   4140.7,
+   4187.6
+  ],
+  "escalas": [
+   "{\"coverage_prob\": \"sigmoid(raw) (unico canal comprimido; ver rf_decoder_v3.py)\", \"path_loss_terrain_dB\": \"raw*15+15 (clamp fisico [0,30])\", \"path_loss_total_dB\": \"raw*100+100 (clamp fisico [0,200])\", \"path_loss_vegetation_dB\": \"raw*25+25 (clamp fisico [0,50])\", \"rssi_dBm\": \"raw*75-75 (clamp fisico [-150,0])\"}"
+  ],
+  "freq_baseline": [
+   "900.0"
+  ],
+  "TA_amostradas": [
+   "[0, 0]"
+  ],
+  "regra_aval": [
+   "\"num_neighbors=-1 nas 3 relacoes (AT,TT,TA), disjoint=True, em val e teste\""
+  ],
+  "sens": [],
+  "fspl_keys": [
+   "frequency_mhz_loss_fspl"
+  ],
+  "loss_keys": [
+   "classe",
+   "distance_gradient_weight",
+   "fonte_de_distances",
+   "frequency_mhz_diagnostico",
+   "frequency_mhz_loss_fspl",
+   "nota_frequencia",
+   "shadowing_ndvi_weight",
+   "variance_weight"
+  ]
+ },
+ "mlp": {
+  "n_total": 70,
+  "n_A3": 40,
+  "n_A4": 30,
+  "n_main": 60,
+  "n_sens": 10,
+  "classe": [
+   "\"MLPRFModel\""
+  ],
+  "num_layers": [
+   "null"
+  ],
+  "heads": [
+   "null"
+  ],
+  "hidden": [
+   "null"
+  ],
+  "larguras": [
+   "[654, 654, 600, 636, 256]"
+  ],
+  "terrain_dim": [
+   "18"
+  ],
+  "antenna_dim": [
+   "null"
+  ],
+  "antenna_dim_nao_usado": [
+   "6"
+  ],
+  "output_dim": [
+   "5"
+  ],
+  "dropout": [
+   "0.1"
+  ],
+  "nominal": [
+   "1484067"
+  ],
+  "efetiva": [
+   "1484037"
+  ],
+  "n_sem_grad": [
+   "30"
+  ],
+  "epochs": [
+   "8"
+  ],
+  "batch_size": [
+   "12288"
+  ],
+  "lr": [
+   "0.001"
+  ],
+  "max_norm": [
+   "0.5"
+  ],
+  "early_stopping_patience": [
+   "0"
+  ],
+  "variance_weight": [
+   "0.02"
+  ],
+  "ndvi_weight": [
+   "0.03"
+  ],
+  "dist_grad_weight": [
+   "0.05"
+  ],
+  "cosine_t0": [
+   "10"
+  ],
+  "scheduler": [
+   "\"cosine\""
+  ],
+  "freq_mhz": [
+   "900.0"
+  ],
+  "k_antenna": [
+   "20"
+  ],
+  "k_terrain": [
+   "8"
+  ],
+  "loss.distance_gradient_weight": [
+   "0.05"
+  ],
+  "loss.variance_weight": [
+   "0.02"
+  ],
+  "loss.shadowing_ndvi_weight": [
+   "0.03"
+  ],
+  "fracao_clip_min": 1.0,
+  "n_passos": [
+   5912.0,
+   5880,
+   5920
+  ],
+  "melhor_epoca": [
+   6.0,
+   1,
+   8
+  ],
+  "criterio": [
+   "\"menor mae_rssi_db em VAL\""
+  ],
+  "test_usado": [
+   "false"
+  ],
+  "pares_seed": [
+   [
+    42,
+    42
+   ],
+   [
+    42,
+    101
+   ],
+   [
+    42,
+    102
+   ],
+   [
+    42,
+    103
+   ],
+   [
+    42,
+    104
+   ],
+   [
+    42,
+    105
+   ],
+   [
+    43,
+    42
+   ],
+   [
+    44,
+    42
+   ],
+   [
+    45,
+    42
+   ],
+   [
+    46,
+    42
+   ]
+  ],
+  "cudnn": [
+   "[true, false]"
+  ],
+  "hw": [
+   "[\"NVIDIA GeForce RTX 5070 Ti\", \"2.10.0+cu128\", \"12.8\"]"
+  ],
+  "tempo": [
+   84.55,
+   82.5,
+   192.2
+  ],
+  "vram": [
+   316.3,
+   316.3,
+   316.3
+  ],
+  "escalas": [
+   "{\"coverage_prob\": \"sigmoid(raw) (unico canal comprimido; ver rf_decoder_v3.py)\", \"path_loss_terrain_dB\": \"raw*15+15 (clamp fisico [0,30])\", \"path_loss_total_dB\": \"raw*100+100 (clamp fisico [0,200])\", \"path_loss_vegetation_dB\": \"raw*25+25 (clamp fisico [0,50])\", \"rssi_dBm\": \"raw*75-75 (clamp fisico [-150,0])\"}"
+  ],
+  "freq_baseline": [
+   "900.0"
+  ],
+  "TA_amostradas": null,
+  "regra_aval": [
+   "null"
+  ],
+  "sens": [
+   "{\"ef\": 1812485, \"larg\": [712, 712, 720, 688, 256], \"nom\": 1812515}"
+  ],
+  "fspl_keys": [
+   "frequency_mhz_loss_fspl"
+  ],
+  "loss_keys": [
+   "classe",
+   "distance_gradient_weight",
+   "fonte_de_distances",
+   "frequency_mhz_diagnostico",
+   "frequency_mhz_loss_fspl",
+   "nota_frequencia",
+   "shadowing_ndvi_weight",
+   "variance_weight"
+  ]
+ }
+}

@@ -1,0 +1,102 @@
+{
+ "R4": {
+  "veredito": "CONFIRMADO",
+  "numeros_meus_vs_json_lins_Q1": {
+   "m0": {
+    "fracao": [
+     0.38086,
+     0.38086
+    ],
+    "freq": [
+     1.0,
+     1.0
+    ]
+   },
+   "m1": {
+    "fracao": [
+     0.47257,
+     0.47257
+    ],
+    "freq_todas": [
+     0.14846,
+     0.14846
+    ],
+    "freq_iii_vale": [
+     0.14846,
+     0.14846
+    ],
+    "fechado_19_131": 0.14504,
+    "n_iii_falha": [
+     1704,
+     1704
+    ]
+   },
+   "m2": {
+    "fracao": [
+     0.03068,
+     0.03068
+    ],
+    "freq": [
+     0.02725,
+     0.02725
+    ],
+    "cotas": [
+     0.02008,
+     0.08702
+    ]
+   },
+   "m3": {
+    "fracao": [
+     0.11589,
+     0.11589
+    ],
+    "freq": [
+     0.001754,
+     0.001754
+    ],
+    "fechado": 0.002647
+   }
+  },
+  "origem_19_131": "N=132, k_tr=round(92.4)=92, k_va=round(19.8)=20, k_te=20; (k_te-1)/(N-1)=19/131=0.14504; cota sup (N-1-k_tr)/(N-1)=39/131. Reproduzido.",
+  "obs": "m=1 freq 0.14846 excede 19/131 em 0.0034 (2.4%); m=3 freq 0.00175 abaixo de 0.00265; ambos reproduzidos tal qual o JSON. Nota: m=2 iii_vale tem so ~24 nos (fracao 1.9e-6)."
+ },
+ "R3": {
+  "veredito": "CONFIRMADO (compativel)",
+  "mu_U": {
+   "todos": 1.74005,
+   "validos": 20.36589
+  },
+  "meu_termo_dB": {
+   "todos": {
+    "termo": 0.1365,
+    "ep_boot": 0.1143,
+    "ic95": [
+     -0.083,
+     0.367
+    ]
+   },
+   "validos": {
+    "termo": 0.8041,
+    "ep_boot": 0.4378,
+    "ic95": [
+     -0.035,
+     1.68
+    ]
+   }
+  },
+  "json_intervalo_dB": {
+   "todos": [
+    0.0389,
+    0.0531
+   ],
+   "validos": [
+    0.2219,
+    0.2437
+   ]
+  },
+  "nota": "mu_U e p_medio (0.068271/0.070832) identicos ao JSON. Meu ponto esta acima do intervalo (1.2 e 1.3 EP) mas o IC95 por bootstrap dos sorteios cobre o intervalo; o termo e pequeno frente ao EP (200 sorteios nao o resolvem). Ordem de grandeza: decimos de dB (todos) a ~1 dB (validos) por frequencia empirica."
+ },
+ "declarado_copiado": "malha 3600^2, conversao km, assign_groups, sentinela>=299, seeds 1.8, shuffle RandomState(seed). Proprios: vizinhanca, m(i), (iii), retencao, bootstrap.",
+ "script": "voto_R3R4_proprio.py",
+ "saida": "voto_R3R4_proprio_saida.json"
+}

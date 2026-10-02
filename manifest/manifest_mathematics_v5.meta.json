@@ -1,0 +1,1037 @@
+{
+  "comando": ".venv/bin/python scripts/gerar_manifest_mathematics_v5.py",
+  "conferencia_digests_manuscrito": {
+    "45c16d43": {
+      "aparece_no_manifesto": true,
+      "linhas": [
+        {
+          "caminho": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF_V2/01_data/prepare_transfer_dataset_v19.py",
+          "caminho_rel": "01_data/prepare_transfer_dataset_v19.py",
+          "grupo": "dependencias_vivas",
+          "raiz": "GNN_RF_V2",
+          "sha256": "45c16d43bc13a4bc10ae3e220376e8412734047c7384d7f5dc5894a5a201e554"
+        }
+      ],
+      "modulo_esperado": "prepare_transfer_dataset_v19.py",
+      "n_linhas": 1
+    },
+    "5d38012e": {
+      "aparece_no_manifesto": true,
+      "linhas": [
+        {
+          "caminho": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF_V2/data_raw/enrich_rf_targets.py",
+          "caminho_rel": "data_raw/enrich_rf_targets.py",
+          "grupo": "dependencias_vivas",
+          "raiz": "GNN_RF_V2",
+          "sha256": "5d38012ec66e842d2f9528ff36c1a7dd34c0d3779e0aa74d739e16fa3e7d603b"
+        }
+      ],
+      "modulo_esperado": "enrich_rf_targets.py",
+      "n_linhas": 1
+    },
+    "95ea0423": {
+      "aparece_no_manifesto": true,
+      "linhas": [
+        {
+          "caminho": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF_V2/generate_realistic_coverage.py",
+          "caminho_rel": "generate_realistic_coverage.py",
+          "grupo": "dependencias_vivas",
+          "raiz": "GNN_RF_V2",
+          "sha256": "95ea042332806fd6c2a01697c6e408cd272d1d91dd3493f8fefec71dfe02f0c7"
+        }
+      ],
+      "modulo_esperado": "generate_realistic_coverage.py",
+      "n_linhas": 1
+    },
+    "ebeaf759": {
+      "aparece_no_manifesto": true,
+      "linhas": [
+        {
+          "caminho": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/gnn_rf_ieee_access/FIRST_RESPONSE_REVIEW_IEEE_ACESSES/EVIDENCIA_RESUBMISSAO/scripts/contrafactual_alvo_completo.py",
+          "caminho_rel": "scripts/contrafactual_alvo_completo.py",
+          "grupo": "scripts_produtores",
+          "raiz": "EVIDENCIA_RESUBMISSAO",
+          "sha256": "ebeaf7592511fae37a6a1d3bd35ba4e2013049b84e4ae0194dc1e06e0ca0cf20"
+        }
+      ],
+      "modulo_esperado": "contrafactual_alvo_completo.py",
+      "n_linhas": 1
+    }
+  },
+  "conferencia_digests_ok": true,
+  "contagens_base_v4_originais": {
+    "E2_c0c1cf_controles": {
+      "assercao": "108 == 108; sha256 do run JSON recalculado == sha256 do cartao E2c; 80 juntadas + 28 no grupo novo",
+      "esperado_total_cartao": 108,
+      "grupo_novo_sem_correspondente": 28,
+      "juntadas_em_run_c0c1cf_g10b2": 80
+    },
+    "alvo_stats_e_controle_negativo": {
+      "assercao": "basenames == 10",
+      "encontrado": 10,
+      "esperado": 10
+    },
+    "baselines_v2": {
+      "assercao": "basenames == 16",
+      "encontrado": 16,
+      "esperado": 16
+    },
+    "draft_v2_figures": {
+      "encontrado": 7
+    },
+    "draft_v2_tables": {
+      "encontrado": 8
+    },
+    "fismat_carimbo_11_09": {
+      "assercao": "basenames == 4",
+      "encontrado": 4,
+      "esperado": 4
+    },
+    "lista_fixa_tab_retention": {
+      "assercao": "20 == 20; sha256 recalculado == sha256 da lista fixa (script_sha256 250d43ce... conferido)",
+      "encontrado": 20,
+      "esperado": 20
+    },
+    "logs_fila": {
+      "assercao": "2 == 2; log completo (campinas>0) x copia truncada de E (campinas==0)",
+      "encontrado": 2,
+      "esperado": 2
+    },
+    "mlpcf_t11_E2": {
+      "assercao": "40 == 40; sha256 do run JSON recalculado == sha256_run_json do gancho E2; parametro_invocacao + log_linhas conferidos por busca no log",
+      "encontrado": 40,
+      "esperado": 40
+    },
+    "r2_2026_09_24_artefatos": {
+      "encontrado": 348
+    },
+    "rodadas_r1_r2_fio": {
+      "assercao": "nenhuma -- grupo dinamico por construcao (glob dos artefatos do proprio fio, cresce a cada rodada)",
+      "encontrado": 53,
+      "esperado": null
+    },
+    "run_c0c1_bauru_g5b2_s42": {
+      "assercao": "basenames == 4",
+      "encontrado_arquivos": 8,
+      "encontrado_basenames": 4,
+      "esperado_basenames": 4,
+      "r6_entrada_sem_hash_marcadas": 8
+    },
+    "run_c0c1cf_g10b2": {
+      "assercao": "basenames == 80",
+      "encontrado_arquivos": 160,
+      "encontrado_basenames": 80,
+      "esperado_basenames": 80
+    },
+    "run_mlpcf": {
+      "assercao": "basenames == 80",
+      "encontrado_arquivos": 120,
+      "encontrado_basenames": 80,
+      "esperado_basenames": 80
+    },
+    "run_mlpcf_smoke": {
+      "assercao": "dinamico (sem assercao de contagem)",
+      "encontrado_arquivos": 2,
+      "encontrado_basenames": 1,
+      "esperado_basenames": null
+    },
+    "scripts_artigo2": {
+      "assercao": "nenhuma (aviso, nao aborto) -- glob dinamico conferido contra lista esperada desta rodada",
+      "avisos_faltando_na_lista": [],
+      "avisos_fora_da_lista": [
+        "gerar_manifest_mathematics_v5",
+        "v3_1.1_1.2_celulas_cadeia",
+        "v3_1.3_mc_nodal_vs_blocos",
+        "v3_1.4_varredura_b_lei_vs_nodal",
+        "v3_1.5_retencao_exata_vs_mc",
+        "v3_1.5b_exata_vs_nodal200",
+        "v3_1.6_2.3_estimando_formal",
+        "v3_1.7_grau_preservacao",
+        "v3_1.7b_grau_preservacao_errata",
+        "v3_1.8_referencia_nodal_200seeds",
+        "v3_1.8b_referencia_nodal_200seeds_g5",
+        "v3_11_conferir_encolhimento",
+        "v3_12_R1_b0_deriva",
+        "v3_12_R2_referencia_desenho",
+        "v3_12_R3R4_motor",
+        "v3_12_R3_termo_desenho",
+        "v3_12_R4_p_fechado_vs_frequencia",
+        "v3_12_fig1_block_erosion",
+        "v3_12_gerar_figuras",
+        "v3_12_gerar_folha_fatos",
+        "v3_12_gerar_tabelas",
+        "v3_12_montar_main",
+        "v3_2.1_3.1_deriva_calibracao",
+        "v3_2.3b_por_sorteio",
+        "v3_3.2_banda_p7_bordas_reais",
+        "v3_3.4_coincidencia_fspl",
+        "v3_3.7b_decomposicao_por_celula",
+        "v3_3.9_colunas_lidar",
+        "v3_A2_veredito",
+        "v3_A2c_veredito",
+        "v3_A3_agregar",
+        "v3_A4_agregar",
+        "v3_A4_suplemento_inversao_validos",
+        "v3_fig1_block_erosion",
+        "v3_gerar_figuras",
+        "v3_gerar_folha_fase1",
+        "v3_gerar_tabelas",
+        "v3_montar_main",
+        "v3_resposta_cego_G1G2",
+        "v3_resposta_cego_calculos",
+        "validar_manifest_mathematics_v5"
+      ],
+      "encontrado": 67,
+      "esperado": null,
+      "esperado_atualizado_v4": [
+        "blocos_efetivos_20celulas",
+        "e1_sinal_por_populacao",
+        "e2_cartao_corridas",
+        "e2_cartao_corridas_v2",
+        "e3_agregar",
+        "e3_agregar_v2",
+        "e3_inferencia_por_populacao",
+        "e3_registrar_oficina",
+        "gerar_manifest_mathematics",
+        "gerar_manifest_mathematics_v2",
+        "gerar_manifest_mathematics_v3",
+        "gerar_manifest_mathematics_v4",
+        "montecarlo_retencao",
+        "montecarlo_retencao_r3_g5",
+        "r3_alvo_pos_correcao_16celulas",
+        "r3_prova_antenas_bauru_q1",
+        "v2_gerar_figuras",
+        "v2_gerar_tabelas",
+        "v2_montar_main",
+        "v3_limpar_fonte",
+        "validar_manifest_mathematics",
+        "validar_manifest_mathematics_v2",
+        "validar_manifest_mathematics_v3",
+        "varredura_fracao_valida_estratificada",
+        "varredura_fracao_valida_r3",
+        "varredura_split_geometria"
+      ],
+      "lista_esperada_explicita": [
+        "blocos_efetivos_20celulas",
+        "e1_sinal_por_populacao",
+        "e2_cartao_corridas",
+        "e2_cartao_corridas_v2",
+        "e3_agregar",
+        "e3_agregar_v2",
+        "e3_inferencia_por_populacao",
+        "e3_registrar_oficina",
+        "gerar_manifest_mathematics",
+        "gerar_manifest_mathematics_v2",
+        "gerar_manifest_mathematics_v3",
+        "gerar_manifest_mathematics_v4",
+        "montecarlo_retencao",
+        "montecarlo_retencao_r3_g5",
+        "r3_alvo_pos_correcao_16celulas",
+        "r3_prova_antenas_bauru_q1",
+        "v2_gerar_figuras",
+        "v2_gerar_tabelas",
+        "v2_montar_main",
+        "v3_limpar_fonte",
+        "validar_manifest_mathematics",
+        "validar_manifest_mathematics_v2",
+        "validar_manifest_mathematics_v3",
+        "varredura_fracao_valida_estratificada",
+        "varredura_fracao_valida_r3",
+        "varredura_split_geometria"
+      ]
+    },
+    "scripts_produtores": {
+      "assercao": "sha256 de cada script == esperado declarado (proveniencia/coordenador R2), onde houver",
+      "encontrado": 8,
+      "esperado": 8
+    },
+    "tensores_cftudo": {
+      "assercao": "16 == 16; tamanho==rf_data_bytes e sha==rf_data_sha256 do run JSON; sha em E/manifest.jsonl",
+      "encontrado": 16,
+      "esperado": 16
+    },
+    "v3_2026_09_25_criterios": {
+      "encontrado": 28
+    }
+  },
+  "contagens_por_grupo": {
+    "E2_c0c1cf_controles": {
+      "linhas": 28,
+      "pendentes_de_hash": 0,
+      "sha_reaproveitado_v4": 0,
+      "sha_recalculado_v5": 28,
+      "tamanho_bytes": 10060474
+    },
+    "alvo_stats_e_controle_negativo": {
+      "linhas": 10,
+      "pendentes_de_hash": 0,
+      "sha_reaproveitado_v4": 0,
+      "sha_recalculado_v5": 10,
+      "tamanho_bytes": 67082
+    },
+    "baselines_v2": {
+      "linhas": 16,
+      "pendentes_de_hash": 0,
+      "sha_reaproveitado_v4": 0,
+      "sha_recalculado_v5": 16,
+      "tamanho_bytes": 647440
+    },
+    "checkpoints_treinos_evidencia": {
+      "linhas": 238,
+      "pendentes_de_hash": 0,
+      "sha_reaproveitado_v4": 0,
+      "sha_recalculado_v5": 238,
+      "tamanho_bytes": 5039404918
+    },
+    "dependencias_vivas": {
+      "linhas": 17,
+      "pendentes_de_hash": 0,
+      "sha_reaproveitado_v4": 0,
+      "sha_recalculado_v5": 17,
+      "tamanho_bytes": 297041
+    },
+    "draft_v2_figures": {
+      "linhas": 7,
+      "pendentes_de_hash": 0,
+      "sha_reaproveitado_v4": 0,
+      "sha_recalculado_v5": 7,
+      "tamanho_bytes": 491311
+    },
+    "draft_v2_tables": {
+      "linhas": 8,
+      "pendentes_de_hash": 0,
+      "sha_reaproveitado_v4": 0,
+      "sha_recalculado_v5": 8,
+      "tamanho_bytes": 16303
+    },
+    "fismat_carimbo_11_09": {
+      "linhas": 4,
+      "pendentes_de_hash": 0,
+      "sha_reaproveitado_v4": 0,
+      "sha_recalculado_v5": 4,
+      "tamanho_bytes": 129096
+    },
+    "graf_data_v3_manifesto": {
+      "linhas": 2,
+      "pendentes_de_hash": 0,
+      "sha_reaproveitado_v4": 0,
+      "sha_recalculado_v5": 2,
+      "tamanho_bytes": 10541
+    },
+    "grafos_gpu_arestas": {
+      "linhas": 16,
+      "pendentes_de_hash": 0,
+      "sha_reaproveitado_v4": 0,
+      "sha_recalculado_v5": 16,
+      "tamanho_bytes": 249258637712
+    },
+    "lista_fixa_tab_retention": {
+      "linhas": 20,
+      "pendentes_de_hash": 0,
+      "sha_reaproveitado_v4": 0,
+      "sha_recalculado_v5": 20,
+      "tamanho_bytes": 5231756
+    },
+    "logs_fila": {
+      "linhas": 2,
+      "pendentes_de_hash": 0,
+      "sha_reaproveitado_v4": 0,
+      "sha_recalculado_v5": 2,
+      "tamanho_bytes": 5008963
+    },
+    "mlpcf_t11_E2": {
+      "linhas": 40,
+      "pendentes_de_hash": 0,
+      "sha_reaproveitado_v4": 0,
+      "sha_recalculado_v5": 40,
+      "tamanho_bytes": 10454383
+    },
+    "r2_2026_09_24_artefatos": {
+      "linhas": 348,
+      "pendentes_de_hash": 0,
+      "sha_reaproveitado_v4": 0,
+      "sha_recalculado_v5": 348,
+      "tamanho_bytes": 1415414542
+    },
+    "rodadas_r1_r2_fio": {
+      "linhas": 53,
+      "pendentes_de_hash": 0,
+      "sha_reaproveitado_v4": 0,
+      "sha_recalculado_v5": 53,
+      "tamanho_bytes": 2918213
+    },
+    "run_c0c1_bauru_g5b2_s42": {
+      "linhas": 8,
+      "pendentes_de_hash": 0,
+      "sha_reaproveitado_v4": 0,
+      "sha_recalculado_v5": 8,
+      "tamanho_bytes": 2090318
+    },
+    "run_c0c1cf_g10b2": {
+      "linhas": 160,
+      "pendentes_de_hash": 0,
+      "sha_reaproveitado_v4": 0,
+      "sha_recalculado_v5": 160,
+      "tamanho_bytes": 41862212
+    },
+    "run_mlpcf": {
+      "linhas": 120,
+      "pendentes_de_hash": 0,
+      "sha_reaproveitado_v4": 0,
+      "sha_recalculado_v5": 120,
+      "tamanho_bytes": 31363949
+    },
+    "run_mlpcf_smoke": {
+      "linhas": 2,
+      "pendentes_de_hash": 0,
+      "sha_reaproveitado_v4": 0,
+      "sha_recalculado_v5": 2,
+      "tamanho_bytes": 83104
+    },
+    "scripts_artigo2": {
+      "linhas": 67,
+      "pendentes_de_hash": 0,
+      "sha_reaproveitado_v4": 0,
+      "sha_recalculado_v5": 67,
+      "tamanho_bytes": 1150656
+    },
+    "scripts_produtores": {
+      "linhas": 8,
+      "pendentes_de_hash": 0,
+      "sha_reaproveitado_v4": 0,
+      "sha_recalculado_v5": 8,
+      "tamanho_bytes": 144752
+    },
+    "tensores_cftudo": {
+      "linhas": 16,
+      "pendentes_de_hash": 0,
+      "sha_reaproveitado_v4": 16,
+      "sha_recalculado_v5": 0,
+      "tamanho_bytes": 452216678824
+    },
+    "v3_12_figuras": {
+      "linhas": 28,
+      "pendentes_de_hash": 0,
+      "sha_reaproveitado_v4": 0,
+      "sha_recalculado_v5": 28,
+      "tamanho_bytes": 1179557
+    },
+    "v3_12_folha_de_fatos_adendo": {
+      "linhas": 2,
+      "pendentes_de_hash": 0,
+      "sha_reaproveitado_v4": 0,
+      "sha_recalculado_v5": 2,
+      "tamanho_bytes": 553517
+    },
+    "v3_12_tabelas": {
+      "linhas": 136,
+      "pendentes_de_hash": 0,
+      "sha_reaproveitado_v4": 0,
+      "sha_recalculado_v5": 136,
+      "tamanho_bytes": 1489700
+    },
+    "v3_2026_09_25_criterios": {
+      "linhas": 28,
+      "pendentes_de_hash": 0,
+      "sha_reaproveitado_v4": 0,
+      "sha_recalculado_v5": 28,
+      "tamanho_bytes": 109338
+    },
+    "v3_fase1": {
+      "linhas": 24,
+      "pendentes_de_hash": 0,
+      "sha_reaproveitado_v4": 0,
+      "sha_recalculado_v5": 24,
+      "tamanho_bytes": 2079481
+    },
+    "v3_fase2": {
+      "linhas": 34,
+      "pendentes_de_hash": 0,
+      "sha_reaproveitado_v4": 0,
+      "sha_recalculado_v5": 34,
+      "tamanho_bytes": 3847591
+    },
+    "v3_fase3": {
+      "linhas": 21,
+      "pendentes_de_hash": 0,
+      "sha_reaproveitado_v4": 0,
+      "sha_recalculado_v5": 21,
+      "tamanho_bytes": 499236
+    },
+    "v3_fase4": {
+      "linhas": 112,
+      "pendentes_de_hash": 0,
+      "sha_reaproveitado_v4": 0,
+      "sha_recalculado_v5": 112,
+      "tamanho_bytes": 7210666
+    },
+    "v3_gpu_agregados_scripts_logs": {
+      "linhas": 597,
+      "pendentes_de_hash": 0,
+      "sha_reaproveitado_v4": 0,
+      "sha_recalculado_v5": 597,
+      "tamanho_bytes": 21501377
+    },
+    "v3_gpu_checkpoints_pt": {
+      "linhas": 165,
+      "pendentes_de_hash": 0,
+      "sha_reaproveitado_v4": 0,
+      "sha_recalculado_v5": 165,
+      "tamanho_bytes": 3229017317
+    },
+    "v3_gpu_predicoes_npz": {
+      "linhas": 164,
+      "pendentes_de_hash": 0,
+      "sha_reaproveitado_v4": 0,
+      "sha_recalculado_v5": 164,
+      "tamanho_bytes": 1460470270
+    },
+    "v3_votos": {
+      "linhas": 340,
+      "pendentes_de_hash": 0,
+      "sha_reaproveitado_v4": 0,
+      "sha_recalculado_v5": 340,
+      "tamanho_bytes": 1965252
+    }
+  },
+  "convencao_linha": "caminho (absoluto, compativel com validadores v1-v3), raiz + caminho_rel (relativo a uma raiz acima), tamanho_bytes, mtime (UTC), sha256, sha_origem, grupo",
+  "copia_declarada_de": {
+    "nota": "v4 nao alterado; v5 o importa e acrescenta grupos",
+    "script": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/scripts/gerar_manifest_mathematics_v4.py",
+    "sha256": "397add570fb726fd1faa5b9b28ece65a8a951016d5b73c9a490d30d6b9c9102e"
+  },
+  "copias_divergentes": [
+    {
+      "caminho": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/gnn_rf_ieee_access/PACOTE_REPOSITORIO_R3/generator/generate_realistic_coverage.py",
+      "nota": "copia no pacote de repositorio R3; sha DIFERENTE do modulo citado no manuscrito; nao entra no manifesto",
+      "sha256": "79b4076bfaf88fc113f904272f1cdf546280ae6ef71822db1893cb0450fcaf8f",
+      "tamanho_bytes": 10547
+    },
+    {
+      "caminho": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/gnn_rf_ieee_access/PACOTE_REPOSITORIO_R3/generator/prepare_transfer_dataset_v19.py",
+      "nota": "copia no pacote de repositorio R3; sha DIFERENTE do modulo citado no manuscrito; nao entra no manifesto",
+      "sha256": "702eadb94fc35e2c58c90cabfaecee1b5669c9a7b6ecdbad5a9b759c4d2bd218",
+      "tamanho_bytes": 19443
+    },
+    {
+      "caminho": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/gnn_rf_ieee_access/PACOTE_REPOSITORIO_R3/generator/enrich_rf_targets.py",
+      "nota": "copia no pacote de repositorio R3; sha DIFERENTE do modulo citado no manuscrito; nao entra no manifesto",
+      "sha256": "9f28779c5faa703105e3be52c65cb36c15a130d783bb66517720cf344242805f",
+      "tamanho_bytes": 21530
+    },
+    {
+      "caminho": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/gnn_rf_ieee_access/PACOTE_REPOSITORIO_R3/generator/contrafactual_alvo_completo.py",
+      "nota": "copia no pacote de repositorio R3; sha DIFERENTE do modulo citado no manuscrito; nao entra no manifesto",
+      "sha256": "a31e7dc179ecb0015cf169bbc6f694c4ebbf931df0c144e3cae6f6c158a5d1b3",
+      "tamanho_bytes": 6787
+    },
+    {
+      "caminho": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/gnn_rf_ieee_access/PACOTE_REPOSITORIO_R3/training/spatial_cv.py",
+      "nota": "copia no pacote de repositorio R3; sha DIFERENTE do modulo citado no manuscrito; nao entra no manifesto",
+      "sha256": "08b748949fec6c7dae6341ebbbf4e3ad481fc484e3b55614a92b14f57b55059a",
+      "tamanho_bytes": 6404
+    },
+    {
+      "caminho": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/gnn_rf_ieee_access/PACOTE_REPOSITORIO_R3/model/rf_decoder.py",
+      "nota": "copia no pacote de repositorio R3; sha DIFERENTE do modulo citado no manuscrito; nao entra no manifesto",
+      "sha256": "87496d2aac428ed8315de2b0b2f28ce195d2b81e3f03aeeb7ad13d326ae4b83e",
+      "tamanho_bytes": 7427
+    },
+    {
+      "caminho": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/gnn_rf_ieee_access/PACOTE_REPOSITORIO_R3/training/frozen/train_gnn_c0_spatial.py",
+      "nota": "copia no pacote de repositorio R3; sha DIFERENTE do modulo citado no manuscrito; nao entra no manifesto",
+      "sha256": "0e18039298dfc47cbf15caab6176afa548e99ab06491d2807f871d1df1f0c18d",
+      "tamanho_bytes": 57029
+    }
+  ],
+  "data": "2026-10-02",
+  "dependencias_vivas": [
+    {
+      "caminho_rel": "03_training/spatial_cv.py",
+      "grupo": "dependencias_vivas",
+      "papel": "particao_espacial (blocos+buffer); importa `config`",
+      "prefixo_confere": null,
+      "prefixo_esperado": null,
+      "raiz": "GNN_RF_V2",
+      "sha256": "9f9dc850ed4fcb227c60c91b1f5166fb5cf41b99a24da4b348c4ccc286ffa1aa"
+    },
+    {
+      "caminho_rel": "config/config.py",
+      "grupo": "dependencias_vivas",
+      "papel": "config importado por spatial_cv (`from config import config`)",
+      "prefixo_confere": null,
+      "prefixo_esperado": null,
+      "raiz": "GNN_RF_V2",
+      "sha256": "1322ef95ee4ef6b62c75fc601b64509ef61fdc9f3eb1f99d65f5ac43e7c07caa"
+    },
+    {
+      "caminho_rel": "config/__init__.py",
+      "grupo": "dependencias_vivas",
+      "papel": "pacote `config` (import de spatial_cv)",
+      "prefixo_confere": null,
+      "prefixo_esperado": null,
+      "raiz": "GNN_RF_V2",
+      "sha256": "99f1acb7264dc311b9e36272a4d35afec5b424179679b28f266f037c30bc25de"
+    },
+    {
+      "caminho_rel": "02_models/rf_decoder.py",
+      "grupo": "dependencias_vivas",
+      "papel": "decodificador RF das corridas publicadas",
+      "prefixo_confere": null,
+      "prefixo_esperado": null,
+      "raiz": "GNN_RF_V2",
+      "sha256": "ed272985228856d055a9587335aae48e9f20c5971198a148bb9a31208fd925c9"
+    },
+    {
+      "caminho_rel": "scripts/train_gnn_c0_spatial.py",
+      "grupo": "dependencias_vivas",
+      "papel": "treinador congelado (copia em scripts/; versao registrada nas corridas)",
+      "prefixo_confere": true,
+      "prefixo_esperado": "6f955629",
+      "raiz": "EVIDENCIA_RESUBMISSAO",
+      "sha256": "6f955629cde164f2843f454e1ebf6977292fd80647ef48ecd0df31e464c42445"
+    },
+    {
+      "caminho_rel": "dados/scripts_congelados/train_gnn_c0_spatial.py",
+      "grupo": "scripts_produtores",
+      "papel": "treinador congelado (copia em dados/scripts_congelados)",
+      "prefixo_confere": true,
+      "prefixo_esperado": "6f955629",
+      "raiz": "EVIDENCIA_RESUBMISSAO",
+      "sha256": "6f955629cde164f2843f454e1ebf6977292fd80647ef48ecd0df31e464c42445"
+    },
+    {
+      "caminho_rel": "generate_realistic_coverage.py",
+      "grupo": "dependencias_vivas",
+      "papel": "gerador: modulo 1 de 4 (digest do manuscrito 95ea0423)",
+      "prefixo_confere": true,
+      "prefixo_esperado": "95ea0423",
+      "raiz": "GNN_RF_V2",
+      "sha256": "95ea042332806fd6c2a01697c6e408cd272d1d91dd3493f8fefec71dfe02f0c7"
+    },
+    {
+      "caminho_rel": "01_data/prepare_transfer_dataset_v19.py",
+      "grupo": "dependencias_vivas",
+      "papel": "gerador: modulo 2 de 4 (digest do manuscrito 45c16d43)",
+      "prefixo_confere": true,
+      "prefixo_esperado": "45c16d43",
+      "raiz": "GNN_RF_V2",
+      "sha256": "45c16d43bc13a4bc10ae3e220376e8412734047c7384d7f5dc5894a5a201e554"
+    },
+    {
+      "caminho_rel": "data_raw/enrich_rf_targets.py",
+      "grupo": "dependencias_vivas",
+      "papel": "gerador: modulo 3 de 4 (digest do manuscrito 5d38012e)",
+      "prefixo_confere": true,
+      "prefixo_esperado": "5d38012e",
+      "raiz": "GNN_RF_V2",
+      "sha256": "5d38012ec66e842d2f9528ff36c1a7dd34c0d3779e0aa74d739e16fa3e7d603b"
+    },
+    {
+      "caminho_rel": "scripts/contrafactual_alvo_completo.py",
+      "grupo": "scripts_produtores",
+      "papel": "gerador: corretor contrafactual (declive local; digest do manuscrito ebeaf759)",
+      "prefixo_confere": true,
+      "prefixo_esperado": "ebeaf759",
+      "raiz": "EVIDENCIA_RESUBMISSAO",
+      "sha256": "ebeaf7592511fae37a6a1d3bd35ba4e2013049b84e4ae0194dc1e06e0ca0cf20"
+    },
+    {
+      "caminho_rel": "scripts/gerar_grafo_v19_mosaico_corrigido.py",
+      "grupo": "dependencias_vivas",
+      "papel": "cadeia do grafo: mosaico corrigido",
+      "prefixo_confere": null,
+      "prefixo_esperado": null,
+      "raiz": "EVIDENCIA_RESUBMISSAO",
+      "sha256": "e7a6611a20e6322d40c2c0e23fa4cb2162671cf2fca33c695560efe8de3b61fa"
+    },
+    {
+      "caminho_rel": "split_v19_quadrants.py",
+      "grupo": "dependencias_vivas",
+      "papel": "cadeia do grafo: divisao em quadrantes",
+      "prefixo_confere": null,
+      "prefixo_esperado": null,
+      "raiz": "GNN_RF_V2",
+      "sha256": "e4f028f4f09d376395ca42b9356754c85232b43fa4e5a92f6959fbeecbb9b2f8"
+    },
+    {
+      "caminho_rel": "scripts/preparar_transfer_seed42.py",
+      "grupo": "dependencias_vivas",
+      "papel": "cadeia do alvo: preparo do transfer (seed 42)",
+      "prefixo_confere": null,
+      "prefixo_esperado": null,
+      "raiz": "EVIDENCIA_RESUBMISSAO",
+      "sha256": "bdfd53e2e2841423f1e0b34af26938124d8b5756d26b3ce0dba1b1e78a6d4f59"
+    },
+    {
+      "caminho_rel": "data_raw/generate_graph_v19.py",
+      "grupo": "dependencias_vivas",
+      "papel": "[acrescentada] importada por gerar_grafo_v19_mosaico_corrigido.py (cadeia do grafo)",
+      "prefixo_confere": null,
+      "prefixo_esperado": null,
+      "raiz": "GNN_RF_V2",
+      "sha256": "f6ea152c09fffe28ce9d0f00f2136748df2aa6e6bf40e5b6717cad030c1aeb00"
+    },
+    {
+      "caminho_rel": "02_models/gnn_rf_model.py",
+      "grupo": "dependencias_vivas",
+      "papel": "[acrescentada] importada pelo treinador congelado (modelo GNN)",
+      "prefixo_confere": null,
+      "prefixo_esperado": null,
+      "raiz": "GNN_RF_V2",
+      "sha256": "fd679f38f343c7a94802d9c86bbe6714b5e94e00d4ebb506f95f717a33a09cd8"
+    },
+    {
+      "caminho_rel": "02_models/gnn_rf_encoder.py",
+      "grupo": "dependencias_vivas",
+      "papel": "[acrescentada] importada por gnn_rf_model.py",
+      "prefixo_confere": null,
+      "prefixo_esperado": null,
+      "raiz": "GNN_RF_V2",
+      "sha256": "f971f226c40072712ebf1a8ccc2c1c0782c87d7b8514aee1d28d830a4b4f525d"
+    },
+    {
+      "caminho_rel": "02_models/physics_loss.py",
+      "grupo": "dependencias_vivas",
+      "papel": "[acrescentada] importada pelo treinador congelado (perda fisica)",
+      "prefixo_confere": null,
+      "prefixo_esperado": null,
+      "raiz": "GNN_RF_V2",
+      "sha256": "fcd3dcf81df16607fb06349dedc3f205c91fbd0d04e492e773dbf31aeadd11b7"
+    },
+    {
+      "caminho_rel": "04_baselines/empirical_models.py",
+      "grupo": "dependencias_vivas",
+      "papel": "[acrescentada] importada pelo treinador congelado (baselines analiticos)",
+      "prefixo_confere": null,
+      "prefixo_esperado": null,
+      "raiz": "GNN_RF_V2",
+      "sha256": "e9999b5bb2ac6fe4d1bdc3a78ed84da87d6be5f2d30f5c844545a4f96b113c8a"
+    },
+    {
+      "caminho_rel": "03_training/rf_diagnostic_metrics.py",
+      "grupo": "dependencias_vivas",
+      "papel": "[acrescentada] importada pelo treinador congelado (metricas)",
+      "prefixo_confere": null,
+      "prefixo_esperado": null,
+      "raiz": "GNN_RF_V2",
+      "sha256": "204356af5570a1a46d0cd4419e1767f2298d2566e7fac8d7f10d6cead1d7c30f"
+    }
+  ],
+  "detalhe_grupos_novos": {
+    "checkpoints_treinos_evidencia": {
+      "hashes_calculados_agora": 0,
+      "ja_no_base_v4_nao_duplicadas": 0,
+      "linhas": 238,
+      "pendentes_de_hash": 0,
+      "segundos_hash": 0.0,
+      "tamanho_bytes": 5039404918
+    },
+    "dependencias_vivas": {
+      "hashes_calculados_agora": 0,
+      "ja_no_base_v4_nao_duplicadas": 2,
+      "linhas": 17,
+      "pendentes_de_hash": 0,
+      "segundos_hash": 0.0,
+      "tamanho_bytes": 297041
+    },
+    "graf_data_v3_manifesto": {
+      "hashes_calculados_agora": 0,
+      "ja_no_base_v4_nao_duplicadas": 0,
+      "linhas": 2,
+      "pendentes_de_hash": 0,
+      "segundos_hash": 0.0,
+      "tamanho_bytes": 10541
+    },
+    "grafos_gpu_arestas": {
+      "hashes_calculados_agora": 0,
+      "ja_no_base_v4_nao_duplicadas": 0,
+      "linhas": 16,
+      "pendentes_de_hash": 0,
+      "segundos_hash": 0.0,
+      "tamanho_bytes": 249258637712
+    },
+    "v3_12_figuras": {
+      "hashes_calculados_agora": 12,
+      "ja_no_base_v4_nao_duplicadas": 0,
+      "linhas": 28,
+      "pendentes_de_hash": 0,
+      "segundos_hash": 0.0,
+      "tamanho_bytes": 1179557
+    },
+    "v3_12_folha_de_fatos_adendo": {
+      "hashes_calculados_agora": 0,
+      "ja_no_base_v4_nao_duplicadas": 0,
+      "linhas": 2,
+      "pendentes_de_hash": 0,
+      "segundos_hash": 0.0,
+      "tamanho_bytes": 553517
+    },
+    "v3_12_tabelas": {
+      "hashes_calculados_agora": 128,
+      "ja_no_base_v4_nao_duplicadas": 0,
+      "linhas": 136,
+      "pendentes_de_hash": 0,
+      "segundos_hash": 0.1,
+      "tamanho_bytes": 1489700
+    },
+    "v3_criterios_demais": {
+      "hashes_calculados_agora": 0,
+      "ja_no_base_v4_nao_duplicadas": 28,
+      "linhas": 0,
+      "pendentes_de_hash": 0,
+      "segundos_hash": 0.0,
+      "tamanho_bytes": 0
+    },
+    "v3_fase1": {
+      "hashes_calculados_agora": 0,
+      "ja_no_base_v4_nao_duplicadas": 0,
+      "linhas": 24,
+      "pendentes_de_hash": 0,
+      "segundos_hash": 0.0,
+      "tamanho_bytes": 2079481
+    },
+    "v3_fase2": {
+      "hashes_calculados_agora": 0,
+      "ja_no_base_v4_nao_duplicadas": 0,
+      "linhas": 34,
+      "pendentes_de_hash": 0,
+      "segundos_hash": 0.0,
+      "tamanho_bytes": 3847591
+    },
+    "v3_fase3": {
+      "hashes_calculados_agora": 0,
+      "ja_no_base_v4_nao_duplicadas": 0,
+      "linhas": 21,
+      "pendentes_de_hash": 0,
+      "segundos_hash": 0.0,
+      "tamanho_bytes": 499236
+    },
+    "v3_fase4": {
+      "hashes_calculados_agora": 10,
+      "ja_no_base_v4_nao_duplicadas": 0,
+      "linhas": 112,
+      "pendentes_de_hash": 0,
+      "segundos_hash": 0.0,
+      "tamanho_bytes": 7210666
+    },
+    "v3_gpu_agregados_scripts_logs": {
+      "hashes_calculados_agora": 0,
+      "ja_no_base_v4_nao_duplicadas": 0,
+      "linhas": 597,
+      "pendentes_de_hash": 0,
+      "segundos_hash": 0.0,
+      "tamanho_bytes": 21501377
+    },
+    "v3_gpu_checkpoints_pt": {
+      "hashes_calculados_agora": 0,
+      "ja_no_base_v4_nao_duplicadas": 0,
+      "linhas": 165,
+      "pendentes_de_hash": 0,
+      "segundos_hash": 0.0,
+      "tamanho_bytes": 3229017317
+    },
+    "v3_gpu_predicoes_npz": {
+      "hashes_calculados_agora": 0,
+      "ja_no_base_v4_nao_duplicadas": 0,
+      "linhas": 164,
+      "pendentes_de_hash": 0,
+      "segundos_hash": 0.0,
+      "tamanho_bytes": 1460470270
+    },
+    "v3_votos": {
+      "hashes_calculados_agora": 0,
+      "ja_no_base_v4_nao_duplicadas": 0,
+      "linhas": 340,
+      "pendentes_de_hash": 0,
+      "segundos_hash": 0.0,
+      "tamanho_bytes": 1965252
+    }
+  },
+  "diferencas_contra_v4": {
+    "mudou_sha_ou_tamanho_ou_grupo": [
+      {
+        "caminho": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/scripts/v3_1.4_varredura_b_lei_vs_nodal.py",
+        "diferencas": {
+          "sha256": {
+            "v4": "09dbd168af6a3d70cd12b4d337feaa409d977229f0c79a18a0784529c170d56a",
+            "v5": "1d6211a8ca3eb3af15dc51961fdfde3c5a3362a25629e845a8fea5d2c19abd55"
+          },
+          "tamanho_bytes": {
+            "v4": 21894,
+            "v5": 26694
+          }
+        },
+        "grupo_v5": "scripts_artigo2"
+      },
+      {
+        "caminho": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/scripts/v3_2.1_3.1_deriva_calibracao.py",
+        "diferencas": {
+          "sha256": {
+            "v4": "ff618529f5e9ecb8cb8f9a4bae5e70d7a22b0fd71f168bbfa3e5d86f37a6ea33",
+            "v5": "9b9bcf91bab51621107a3d7978964d46dd16c5ec1a76a3789842ae1bce77f3bc"
+          },
+          "tamanho_bytes": {
+            "v4": 24949,
+            "v5": 30551
+          }
+        },
+        "grupo_v5": "scripts_artigo2"
+      },
+      {
+        "caminho": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/criterios/MANIFEST_criterios.jsonl",
+        "diferencas": {
+          "sha256": {
+            "v4": "82aa550427e8054bede9625c41498db4e9953ee5d29fc45875f06e45aec1d9e9",
+            "v5": "b3bb19875c0a4680dda66e889838c01808335e21e08378958b0f52ce2179913a"
+          },
+          "tamanho_bytes": {
+            "v4": 1326,
+            "v5": 7824
+          }
+        },
+        "grupo_v5": "v3_2026_09_25_criterios"
+      }
+    ],
+    "n_linhas_v4": 895,
+    "n_linhas_v5": 2841,
+    "novos_grupos_v5_contagem": {
+      "checkpoints_treinos_evidencia": 238,
+      "dependencias_vivas": 17,
+      "graf_data_v3_manifesto": 2,
+      "grafos_gpu_arestas": 16,
+      "v3_12_figuras": 28,
+      "v3_12_folha_de_fatos_adendo": 2,
+      "v3_12_tabelas": 136,
+      "v3_criterios_demais": 0,
+      "v3_fase1": 24,
+      "v3_fase2": 34,
+      "v3_fase3": 21,
+      "v3_fase4": 112,
+      "v3_gpu_agregados_scripts_logs": 597,
+      "v3_gpu_checkpoints_pt": 165,
+      "v3_gpu_predicoes_npz": 164,
+      "v3_votos": 340
+    },
+    "novos_nos_grupos_dinamicos_do_v4": [
+      "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/criterios/criterio_1.6.json",
+      "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/criterios/criterio_1.8.json",
+      "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/criterios/criterio_1.8b.json",
+      "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/criterios/criterio_2.3.json",
+      "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/criterios/criterio_A1.json",
+      "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/criterios/criterio_A1bis.json",
+      "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/criterios/criterio_A2.json",
+      "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/criterios/criterio_A2c.json",
+      "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/criterios/criterio_A3.json",
+      "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/criterios/criterio_A3_analise.json",
+      "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/criterios/criterio_A4.json",
+      "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/criterios/criterio_A4_suplemento_validos.json",
+      "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/criterios/criterio_R1_b0.json",
+      "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/criterios/criterio_R2_referencia_desenho.json",
+      "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/criterios/criterio_R3_termo_desenho.json",
+      "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/criterios/criterio_R4_p_fechado_vs_frequencia.json",
+      "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/criterios/criterio_resposta_cego_v3-10.json",
+      "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/scripts/gerar_manifest_mathematics_v5.py",
+      "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/scripts/v3_1.5b_exata_vs_nodal200.py",
+      "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/scripts/v3_1.6_2.3_estimando_formal.py",
+      "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/scripts/v3_1.7b_grau_preservacao_errata.py",
+      "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/scripts/v3_1.8_referencia_nodal_200seeds.py",
+      "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/scripts/v3_1.8b_referencia_nodal_200seeds_g5.py",
+      "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/scripts/v3_11_conferir_encolhimento.py",
+      "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/scripts/v3_12_R1_b0_deriva.py",
+      "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/scripts/v3_12_R2_referencia_desenho.py",
+      "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/scripts/v3_12_R3R4_motor.py",
+      "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/scripts/v3_12_R3_termo_desenho.py",
+      "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/scripts/v3_12_R4_p_fechado_vs_frequencia.py",
+      "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/scripts/v3_12_fig1_block_erosion.py",
+      "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/scripts/v3_12_gerar_figuras.py",
+      "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/scripts/v3_12_gerar_folha_fatos.py",
+      "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/scripts/v3_12_gerar_tabelas.py",
+      "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/scripts/v3_12_montar_main.py",
+      "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/scripts/v3_2.3b_por_sorteio.py",
+      "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/scripts/v3_3.7b_decomposicao_por_celula.py",
+      "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/scripts/v3_3.9_colunas_lidar.py",
+      "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/scripts/v3_A2_veredito.py",
+      "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/scripts/v3_A2c_veredito.py",
+      "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/scripts/v3_A3_agregar.py",
+      "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/scripts/v3_A4_agregar.py",
+      "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/scripts/v3_A4_suplemento_inversao_validos.py",
+      "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/scripts/v3_fig1_block_erosion.py",
+      "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/scripts/v3_gerar_figuras.py",
+      "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/scripts/v3_gerar_folha_fase1.py",
+      "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/scripts/v3_gerar_tabelas.py",
+      "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/scripts/v3_montar_main.py",
+      "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/scripts/v3_resposta_cego_G1G2.py",
+      "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/scripts/v3_resposta_cego_calculos.py",
+      "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/scripts/validar_manifest_mathematics_v5.py"
+    ],
+    "sumiu_da_cobertura_mas_existe_no_disco": [],
+    "sumiu_do_disco": []
+  },
+  "duracao_s": 3.3,
+  "excluidos_da_varredura": "__pycache__/ e *.pyc dentro de _v3_2026-09-25/",
+  "gerado_em": "2026-10-02T00:43:11.411949+00:00",
+  "grupos_pendentes_de_hash": [],
+  "localizado_com_ressalva": [
+    {
+      "item": "GNN_RF_V2/config.py",
+      "ressalva": "o arquivo existe em GNN_RF_V2/config/config.py (pacote `config`, com __init__.py); nao ha GNN_RF_V2/config.py; spatial_cv faz `from config import config`"
+    },
+    {
+      "item": "treinador congelado train_gnn_c0_spatial.py",
+      "ressalva": "sha 6f955629 em EVIDENCIA/scripts e EVIDENCIA/dados/scripts_congelados (identicos); a copia em PACOTE_REPOSITORIO_R3/training/frozen tem outro sha (0e180392) e nao e o das corridas"
+    },
+    {
+      "item": "modulos do gerador",
+      "ressalva": "os tres modulos citados estao em GNN_RF_V2 (shas conferem); as copias em PACOTE_REPOSITORIO_R3/generator e _publicar_2026-09-16/repo/generator tem shas DIFERENTES (ver copias_divergentes)"
+    },
+    {
+      "item": "dependencias acrescentadas",
+      "ressalva": "generate_graph_v19, gnn_rf_model, gnn_rf_encoder, physics_loss, empirical_models e rf_diagnostic_metrics nao estavam no pedido, mas o treinador congelado e o gerador do grafo os importam; entraram no grupo dependencias_vivas"
+    },
+    {
+      "item": "proveniencia dos modulos de GNN_RF_V2",
+      "ressalva": "os scripts congelados apontam para D:\\_ARQUIVO_SSD_F\\TOPO_RF\\GNN_RF_V2 (Windows); o manifesto registra o espelho do PC (mtimes de jan-mar/2026, anteriores as corridas de set/2026). Nao ha prova byte a byte de que sejam os lidos em D: nas corridas, exceto os quatro digests do manuscrito e o trainer (6f955629), que conferem com o que o texto e as corridas declaram"
+    },
+    {
+      "item": "indices de particao",
+      "ressalva": "nao existem como arquivo autonomo: sao recomputados por spatial_cv (sha no manifesto) a partir do tensor, grid_km/buffer_km e split_seed; cada run JSON registra `particoes.*.idx_sha256_global` e os .npz de predicao (R2 e3_predicoes, gpu/*) trazem `idx_global` dos nos de teste"
+    }
+  ],
+  "n_caminhos_distintos": 2781,
+  "n_caminhos_em_mais_de_um_grupo": 60,
+  "n_linhas": 2841,
+  "n_linhas_base_v4_reexecutado": 945,
+  "n_linhas_novas_v5": 1896,
+  "nao_localizado": [],
+  "nota_estado": "snapshot de redacao_v3-12 (tables/figures) e scripts/ em curso na data; mtime e sha registram o estado no momento da geracao",
+  "protocolo": "ROADMAP_v3-12_major_revision.md sec. 5 / D9; ordem do dono 01/10/2026 17:12; ata escritor_cientifico 2026-10-01 (Adendo 2)",
+  "python": "/trabalho/ambientes/s33_amb_virtual/.venv/bin/python",
+  "raizes": {
+    "EVIDENCIA_RESUBMISSAO": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/gnn_rf_ieee_access/FIRST_RESPONSE_REVIEW_IEEE_ACESSES/EVIDENCIA_RESUBMISSAO",
+    "FS": "/ (caminho absoluto sem a barra inicial)",
+    "GNN_RF": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF",
+    "GNN_RF_V2": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF_V2",
+    "GRAFOS_graph_data_v3": "/trabalho/TOPO_RF_DOWNLOAD_DRIVE/graph_data_v3",
+    "HERMES_AGENTES": "/trabalho/HERMES/AGENTES",
+    "MDPI_Mathematics": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics",
+    "TOPO_RF_PROJETO": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO"
+  },
+  "regra_arquivos_grandes": {
+    "limite_bytes": 104857600,
+    "reaproveitados_do_v4_mtime_e_tamanho_inalterados": 16,
+    "recalculados_por_mudanca_ou_novos": []
+  },
+  "saida": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/manifest_mathematics_v5.jsonl",
+  "saida_sha256": "0117001cad0a6d818f70e8819b45185d452cc2bf0f0fc44d1e83abd601c933f0",
+  "script": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/scripts/gerar_manifest_mathematics_v5.py",
+  "script_sha256": "40b3482027835b820a617bc1bedc9a87e5167b0e8487f5b0f58849d1ebab1bc1",
+  "scripts_v3_atuais_sem_linha": [],
+  "tamanho_total_bytes": 712772086892,
+  "v4_manifest_comparado": {
+    "caminho": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/manifest_mathematics_v4.jsonl",
+    "n_linhas": 895,
+    "sha256": "ba6ecfebff1a9901780d392103316f2478820aad72f38dfcafd49d7cdb4949c5"
+  },
+  "versao": "v5"
+}

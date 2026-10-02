@@ -1,0 +1,35 @@
+% Material suplementar (v3-12): Table S1, hiperparametros dos dois modelos treinados.
+% As duas metades vem de ../tables_v3-12/ (geradas por scripts/v3_12_gerar_tabelas.py, a partir de
+% fase4/B7.2_hiperparametros/b7_2_folha_hiperparametros.json); nada e digitado aqui.
+% Compilar com o diretorio atual = suplementar/:
+%   /trabalho/ambientes/texlive-2025/bin/x86_64-linux/pdflatex Table_S1.tex
+\documentclass[10pt,a4paper]{article}
+\usepackage[a4paper,margin=2.2cm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs,array}
+\usepackage{microtype}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\renewcommand{\arraystretch}{1.12}
+\begin{document}
+
+{\large\bfseries Table S1. Training settings of the two models}
+
+\medskip
+\small
+Graph regressor and perceptron, 60 runs each; ``same'' marks a value identical in the two models.
+Architecture and loss (first half; the optimisation, selection, baselines and cost follow on the next page).
+
+\medskip
+\input{../tables_v3-12/TA1a_hiperparametros_arquitetura_perda_v3-12.tex}
+
+\clearpage
+{\large\bfseries Table S1 (continued)}
+
+\medskip
+\small
+\input{../tables_v3-12/TA1b_hiperparametros_otimizacao_custo_v3-12.tex}
+
+\end{document}

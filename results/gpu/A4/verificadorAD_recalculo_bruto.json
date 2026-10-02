@@ -1,0 +1,86 @@
+{
+ "a4_3_inversao_por_sorteio_MAE_validos": {
+  "gnn": {
+   "fspl": {
+    "por_celula": {
+     "Q1": "5/5",
+     "Q2": "3/5",
+     "Q3": "5/5",
+     "Q4": "5/5"
+    },
+    "total": 18,
+    "n": 20
+   },
+   "hata_rural": {
+    "por_celula": {
+     "Q1": "5/5",
+     "Q2": "4/5",
+     "Q3": "5/5",
+     "Q4": "5/5"
+    },
+    "total": 19,
+    "n": 20
+   },
+   "cost231_sub": {
+    "por_celula": {
+     "Q1": "5/5",
+     "Q2": "4/5",
+     "Q3": "5/5",
+     "Q4": "5/5"
+    },
+    "total": 19,
+    "n": 20
+   }
+  },
+  "mlp": {
+   "fspl": {
+    "por_celula": {
+     "Q1": "2/5",
+     "Q2": "2/5",
+     "Q3": "2/5",
+     "Q4": "5/5"
+    },
+    "total": 11,
+    "n": 20
+   },
+   "hata_rural": {
+    "por_celula": {
+     "Q1": "3/5",
+     "Q2": "4/5",
+     "Q3": "4/5",
+     "Q4": "5/5"
+    },
+    "total": 16,
+    "n": 20
+   },
+   "cost231_sub": {
+    "por_celula": {
+     "Q1": "3/5",
+     "Q2": "4/5",
+     "Q3": "4/5",
+     "Q4": "5/5"
+    },
+    "total": 16,
+    "n": 20
+   }
+  }
+ },
+ "a4_4_contraste_pareado_MAE_validos": {
+  "por_celula": {
+   "Q1": "5/5",
+   "Q2": "5/5",
+   "Q3": "4/5",
+   "Q4": "5/5"
+  },
+  "total_gnn_melhor": 19,
+  "total_n": 20,
+  "mediana_por_celula_db": {
+   "Q1": -1.9478774638438319,
+   "Q2": -3.3597720722014,
+   "Q3": -0.7683977950843128,
+   "Q4": -0.5943401928761989
+  }
+ },
+ "hash_particao_test_gnn_vs_mlp_mismatch": [],
+ "n_combinacoes_por_bloco": 20
+}

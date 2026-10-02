@@ -1,0 +1,347 @@
+{
+ "votante": "voto2_independente",
+ "veredito_geral": "CONFERE: todos os campos avaliados bateram; nenhum erro numerico; 2 notas",
+ "n_campos_avaliados": 47,
+ "sem_conferir": [
+  "rf_decoder_v3.py (so JSON)",
+  "train_mlp:1415 AMP",
+  "linha residual do encoder",
+  "determinismo A2c (fonte fora de A3/A4)",
+  "causa do zero do termo NDVI"
+ ],
+ "notas": [
+  "nota CSV do FSPL condicional (\"se 0...\") deve ser lida com o NDVI como termo nulo; FSPL nao foi nulo (max 0.0826)",
+  "MLP guarda config.k_antenna=20/k_terrain=8 sem uso"
+ ],
+ "campos": [
+  {
+   "campo": "classe",
+   "valor_folha": "GNNRFModel/MLPRFModel",
+   "valor_lido": "run JSON modelo.classe: 60 GNN, 60 MLP (+10 sens. MLP)",
+   "veredito": "confere",
+   "nota": ""
+  },
+  {
+   "campo": "operador A->T",
+   "valor_folha": "GATv2Conv h/4,heads4,concat,edge_dim2,dropout,add_self_loops=False",
+   "valor_lido": "encoder.py:120-128 idem",
+   "veredito": "confere",
+   "nota": ""
+  },
+  {
+   "campo": "operador T->T",
+   "valor_folha": "GATv2Conv self-loop True",
+   "valor_lido": "encoder.py:130-138 idem",
+   "veredito": "confere",
+   "nota": ""
+  },
+  {
+   "campo": "operador T->A",
+   "valor_folha": "SAGEConv mean; sem gradiente",
+   "valor_lido": "encoder.py:140-144 idem; runs: TA amostradas val/test=[0,0]; parametros_sem_gradiente inclui lin_l TA",
+   "veredito": "confere",
+   "nota": ""
+  },
+  {
+   "campo": "agregacao",
+   "valor_folha": "soma",
+   "valor_lido": "encoder.py:145 aggr=sum",
+   "veredito": "confere",
+   "nota": ""
+  },
+  {
+   "campo": "por camada GNN",
+   "valor_folha": "LeakyReLU0.2+dropout+residual+LN",
+   "valor_lido": ":217 leaky 0.2; dropout :220; LayerNorm: layer_norms existem (:115); residual NAO lido linha a linha",
+   "veredito": "confere",
+   "nota": "residual nao lido por mim"
+  },
+  {
+   "campo": "por bloco MLP",
+   "valor_folha": "Linear+BN+LeakyReLU(+Dropout exceto ultimo)",
+   "valor_lido": "mlp:712-714 idem",
+   "veredito": "confere",
+   "nota": ""
+  },
+  {
+   "campo": "camadas",
+   "valor_folha": "4 / 5",
+   "valor_lido": "GNN num_layers=4 (60/60; script :1233); MLP larguras len=5 (60/60); num_layers null no JSON MLP, 5 e derivado",
+   "veredito": "confere",
+   "nota": ""
+  },
+  {
+   "campo": "cabecas",
+   "valor_folha": "4/null",
+   "valor_lido": "GNN 4; MLP null",
+   "veredito": "confere",
+   "nota": ""
+  },
+  {
+   "campo": "largura",
+   "valor_folha": "256 / [654,654,600,636,256]",
+   "valor_lido": "idem em 60/60",
+   "veredito": "confere",
+   "nota": ""
+  },
+  {
+   "campo": "entradas terreno/antena/saidas",
+   "valor_folha": "18/6/5",
+   "valor_lido": "18; antena 6 (MLP antenna_dim_nao_usado 6); output 5",
+   "veredito": "confere",
+   "nota": ""
+  },
+  {
+   "campo": "decodificador (limites)",
+   "valor_folha": "PL total raw*100+100 clamp[0,200]; RSSI raw*75-75 clamp[-150,0]; veg [0,50]; terr [0,30]",
+   "valor_lido": "modelo_v3.escalas igual nos dois bracos, 60/60 cada",
+   "veredito": "confere",
+   "nota": "conferido no JSON; rf_decoder_v3.py nao aberto"
+  },
+  {
+   "campo": "dropout",
+   "valor_folha": "0.1",
+   "valor_lido": "0.1 (modelo.dropout 60/60 e script :1234)",
+   "veredito": "confere",
+   "nota": ""
+  },
+  {
+   "campo": "params nominais",
+   "valor_folha": "1812515 / 1484067",
+   "valor_lido": "GNN 1812515 (60/60); MLP 1484067 (60/60)",
+   "veredito": "confere",
+   "nota": ""
+  },
+  {
+   "campo": "params efetivos",
+   "valor_folha": "1484037 / 1484037",
+   "valor_lido": "GNN efetiva 1484037, n_sem_gradiente 328478 (=1812515-1484037); MLP 1484037, n_sem_gradiente 30",
+   "veredito": "confere",
+   "nota": ""
+  },
+  {
+   "campo": "30 parametros de diferenca do MLP",
+   "valor_folha": "heads do decodificador sem gradiente",
+   "valor_lido": "checkpoint MLP: decoder.path_loss_head w(3,5)=15+b3, rssi_head w5+b1, coverage_head w5+b1 = 30; lista parametros_sem_gradiente do MLP = esses 6 tensores. Decoder afim v3 nao os usa",
+   "veredito": "confere",
+   "nota": ""
+  },
+  {
+   "campo": "braco sensibilidade",
+   "valor_folha": "larguras 712,712,720,688,256; nom 1812515; ef 1812485",
+   "valor_lido": "10 corridas, valores iguais",
+   "veredito": "confere",
+   "nota": ""
+  },
+  {
+   "campo": "vizinhanca treino",
+   "valor_folha": "num_neighbors [-1] por relacao, 1 salto",
+   "valor_lido": "script :1171 nn_kw={AT:[k_ant],TT:[k_ter],TA:[k_ant]} lista de tamanho 1; config k=-1 (60/60). Nota: 4 camadas sobre subgrafo de 1 salto",
+   "veredito": "confere",
+   "nota": "MLP: config.k_antenna=20,k_terrain=8 gravados no JSON mas MLP nao usa grafo; ruido, nao erro da folha"
+  },
+  {
+   "campo": "vizinhanca avaliacao",
+   "valor_folha": "-1 3 relacoes, disjoint=True",
+   "valor_lido": "diagnostico_avaliacao.regra identica 60/60; v3_common.py:443 default disjoint=True",
+   "veredito": "confere",
+   "nota": ""
+  },
+  {
+   "campo": "Huber delta 5, 5 canais, media",
+   "valor_folha": "delta=5",
+   "valor_lido": "physics_loss.py:38 huber_delta=5.0; :99 por canal; 5 canais :95-109",
+   "veredito": "confere",
+   "nota": ""
+  },
+  {
+   "campo": "pesos canais 1/5",
+   "valor_folha": "softmax(zeros(5))",
+   "valor_lido": "physics_loss.py:53/55,69; prediction_loss==media dos 5 canais em todas as epocas das 130 corridas (tol 1e-4 rel), 0 violacoes",
+   "veredito": "confere",
+   "nota": ""
+  },
+  {
+   "campo": "pen. grad. distancia peso 0.05",
+   "valor_folha": "0.05",
+   "valor_lido": "loss.distance_gradient_weight 0.05 (120/120)",
+   "veredito": "confere",
+   "nota": ""
+  },
+  {
+   "campo": "pen. grad. distancia expr.",
+   "valor_folha": "ReLU(rssi_j-rssi_i+1), K=min(512,N//2)",
+   "valor_lido": "physics_loss.py:237,255,258; n_pairs default 512 (:199)",
+   "veredito": "confere",
+   "nota": ""
+  },
+  {
+   "campo": "pen. variancia peso/expr.",
+   "valor_folha": "0.02; ReLU(std_y-std_hat)^2",
+   "valor_lido": "loss.variance_weight 0.02; physics_loss.py:282-286",
+   "veredito": "confere",
+   "nota": ""
+  },
+  {
+   "campo": "pen. sombra x NDVI peso/expr.",
+   "valor_folha": "0.03; ReLU(0.15-corr(PL_veg_hat,NDVI)), col 12",
+   "valor_lido": "0.03; :319 min_corr 0.15 (:202); shadow_pred=predictions[:,1]=path_loss_vegetation (:396; indice 1 = vegetation :59-60); NDVI col 12 (train script:212)",
+   "veredito": "confere",
+   "nota": ""
+  },
+  {
+   "campo": "termo identicamente nulo",
+   "valor_folha": "NDVI max 0.0; FSPL max 0.0826",
+   "valor_lido": "shadowing_ndvi_penalty: max|v|=0 em 480 epocas GNN e 560 MLP (130 runs). constraint_fspl nao nulo (max 0.0826 GNN, 0.0684 MLP). dist_grad e variancia nao nulos",
+   "veredito": "confere",
+   "nota": "a folha acerta que o nulo e o NDVI; a nota do CSV na linha FSPL (\"se 0 ... nunca atuou\") e condicional e fica enganosa; causa do zero (shadow_active/target_mask) nao rastreada: set_phase(5) :768 deveria ativar; nao investiguei"
+  },
+  {
+   "campo": "FSPL 0.05*mean ReLU(FSPL900-PL)",
+   "valor_folha": "",
+   "valor_lido": "physics_loss.py:131,178-183, fspl_weight 0.05 (:40); frequency 900 (loss.frequency_mhz_loss_fspl)",
+   "veredito": "confere",
+   "nota": ""
+  },
+  {
+   "campo": "otimizador",
+   "valor_folha": "AdamW wd 1e-5",
+   "valor_lido": "script :1245; mlp :1381",
+   "veredito": "confere",
+   "nota": ""
+  },
+  {
+   "campo": "taxa",
+   "valor_folha": "0.001",
+   "valor_lido": "config.lr 0.001 (120/120)",
+   "veredito": "confere",
+   "nota": ""
+  },
+  {
+   "campo": "agenda",
+   "valor_folha": "CosineAnnealingWarmRestarts T0=10,T_mult 2,eta_min 1e-6, por epoca; sem reinicio em 8",
+   "valor_lido": "script :1247-1248, :1373; config.scheduler cosine, cosine_t0 10; epochs 8 < T0 10; lr epoca1=0.00097555 coerente",
+   "veredito": "confere",
+   "nota": ""
+  },
+  {
+   "campo": "corte gradiente",
+   "valor_folha": "0.5",
+   "valor_lido": "config.max_norm 0.5; :1358; mlp :1494",
+   "veredito": "confere",
+   "nota": ""
+  },
+  {
+   "campo": "fracao passos cortados",
+   "valor_folha": "min 1.0",
+   "valor_lido": "min=1.0 nos dois bracos (60/60)",
+   "veredito": "confere",
+   "nota": ""
+  },
+  {
+   "campo": "lote",
+   "valor_folha": "12288",
+   "valor_lido": "config.batch_size 12288 (120/120)",
+   "veredito": "confere",
+   "nota": ""
+  },
+  {
+   "campo": "epocas",
+   "valor_folha": "8",
+   "valor_lido": "config.epochs 8; early stopping 0",
+   "veredito": "confere",
+   "nota": ""
+  },
+  {
+   "campo": "passos por corrida",
+   "valor_folha": "med 5912, 5880-5920, n=60",
+   "valor_lido": "mediana 5912.0, min 5880, max 5920 nos dois bracos",
+   "veredito": "confere",
+   "nota": ""
+  },
+  {
+   "campo": "regra selecao",
+   "valor_folha": "menor mae_rssi_db em VAL; teste nao usado",
+   "valor_lido": "selecao.criterio igual 60/60; test_usado False; script :1502-1503",
+   "veredito": "confere",
+   "nota": ""
+  },
+  {
+   "campo": "melhor epoca",
+   "valor_folha": "GNN med 6 [2,8]; MLP med 6 [1,8]",
+   "valor_lido": "GNN 6.0/2/8; MLP 6.0/1/8",
+   "veredito": "confere",
+   "nota": ""
+  },
+  {
+   "campo": "sementes",
+   "valor_folha": "10 pares",
+   "valor_lido": "pares (seed,split) lidos = os 10 listados, nos dois bracos",
+   "veredito": "confere",
+   "nota": ""
+  },
+  {
+   "campo": "determinismo",
+   "valor_folha": "[true,false]",
+   "valor_lido": "ambiente.cudnn_deterministic=true,benchmark=false 60/60; script :827-828",
+   "veredito": "confere",
+   "nota": "\"GNN nao determinista (A2c 0.132 dB)\" nao conferido: fora dos run JSON A3/A4"
+  },
+  {
+   "campo": "hardware",
+   "valor_folha": "RTX 5070 Ti, torch 2.10.0+cu128, cuda 12.8",
+   "valor_lido": "idem nos dois bracos",
+   "veredito": "confere",
+   "nota": ""
+  },
+  {
+   "campo": "tempo por corrida",
+   "valor_folha": "GNN 783.05 [775.9,1141.3]; MLP 84.55 [82.5,192.2]",
+   "valor_lido": "identico",
+   "veredito": "confere",
+   "nota": ""
+  },
+  {
+   "campo": "VRAM pico",
+   "valor_folha": "GNN 4159.9 [4140.7,4187.6]; MLP 316.3 constante",
+   "valor_lido": "identico",
+   "veredito": "confere",
+   "nota": ""
+  },
+  {
+   "campo": "precisao mista AMP",
+   "valor_folha": "autocast+GradScaler",
+   "valor_lido": "script :1279 GradScaler, :1298 autocast; mlp :1415 nao aberto",
+   "veredito": "confere",
+   "nota": "mlp nao aberto"
+  },
+  {
+   "campo": "frequencia baselines",
+   "valor_folha": "900",
+   "valor_lido": "run baselines_analiticos.train.freq_mhz 900 (60/60 cada); deriva :77 FREQ_MHZ=900",
+   "veredito": "confere",
+   "nota": ""
+  },
+  {
+   "campo": "alturas baselines",
+   "valor_folha": "30, 1.5",
+   "valor_lido": "baselines_v2:268-269,277 defaults h_tx=30,h_rx=1.5",
+   "veredito": "confere",
+   "nota": "ressalva da folha (deriva chama sem alturas) coerente; chamada em deriva nao inspecionada"
+  },
+  {
+   "campo": "COST-231 suburban C_m=0; distancia piso 1m; calibracao mediana",
+   "valor_folha": "",
+   "valor_lido": "deriva :99 suburban; baselines :282 C_m=0; :247 piso 0.001 km=1 m; deriva :298 median(rssi+pl)",
+   "veredito": "confere",
+   "nota": ""
+  },
+  {
+   "campo": "classe_mlp contagem de corridas",
+   "valor_folha": "A3 80, A4 50",
+   "valor_lido": "A3: 40 gnn+40 mlp=80; A4: 20 gnn+30 mlp(20+10 sens)=50",
+   "veredito": "confere",
+   "nota": ""
+  }
+ ]
+}

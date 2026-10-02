@@ -1,0 +1,5 @@
+{"id": "1.8", "alegacao": "A1", "gravado_em": "2026-09-26 00:50", "autor": "sessao (chefe)",
+ "pergunta": "Qual e a retencao nodal de referencia (teste e validacao) nas 16 celulas g10b2 com 200 seeds aleatorios, e qual e o erro da lei de campo medio contra ela, com IC95 de amostragem?",
+ "hipotese": "O erro da lei vs nodal com 200 seeds fica entre -2 % e -7 % no teste, e o intervalo de -6,2 a -6,9 % do rascunho (20 seeds da C-1) nao e um ponto robusto.",
+ "criterio_aceitacao": "O erro e reportado por celula com IC95; a Tabela 2 publica a media de 200 seeds e o IC; o ponto -6,2/-6,9 % e substituido. Refuta se o IC95 de 200 seeds contiver o valor de 20 seeds em >= 12 celulas (entao 20 seeds bastavam).",
+ "o_que_refuta": "IC95 (200 seeds) contendo a media de 20 seeds em >= 12/16 celulas."}

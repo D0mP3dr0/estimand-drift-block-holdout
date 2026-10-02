@@ -1,0 +1,23 @@
+{
+ "achado_id": "B3.4",
+ "P1": {
+  "veredito": "CONFIRMADO",
+  "diff_rel_pct": -1.69,
+  "ep_rel_pct": 1.04,
+  "z": -1.62,
+  "terceiro_conjunto_vs_1.3_pct": -1.31
+ },
+ "P2": {
+  "veredito": "CONFIRMADO",
+  "g10": {
+   "2x": -0.7,
+   "4x": -1.06,
+   "extrap": -1.41
+  },
+  "g5": {
+   "2x": -3.02,
+   "extrap": -6.0
+  },
+  "obs": "magnitude depende da malha; 1 celula"
+ }
+}

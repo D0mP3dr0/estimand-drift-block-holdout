@@ -1,0 +1,15 @@
+{
+  "id": "1.4",
+  "alegacao": "A1 (Geometria: a retencao de um bloco erodido segue lei fechada com correcoes de dominio finito)",
+  "pergunta": "A lei de retencao (eq:R, campo medio) prevista a retencao nodal REAL (val e teste) em mais de dois pontos de geometria (g,b)? Hoje so ha confronto em (g,b)=(10,2) e (5,2); este teste acrescenta b=1 e b=3 km com g=10km, nas 16 celulas g10, 20 split_seeds.",
+  "hipotese": "O erro relativo (lei_campo_medio(q_realizado) - retencao_nodal_real)/retencao_nodal_real, no TESTE, varia monotonicamente com b (b menor -> erro menor em modulo), sem trocar de sinal entre b=1,2,3, e a ordem de grandeza do erro em b=2 (ja publicado, -6.2% a -6.9%) se mantem nos pontos vizinhos (b=1 e b=3).",
+  "limiar_de_aceitacao": [
+    "sinal do erro relativo medio no teste (sobre as 20 seeds, por celula) e o MESMO nos tres pontos b=1,2,3 (g=10) -- nenhuma troca de sinal",
+    "|erro_relativo_teste(b=1)| <= |erro_relativo_teste(b=2)| <= |erro_relativo_teste(b=3)| (monotonia com b, tolerancia de violacao: no maximo 2/16 celulas fora da ordem, por rusdo amostral)",
+    "erro_relativo_teste(b=2) recalculado aqui fica dentro de [-6.9%, -6.2%] (ordem de grandeza do numero ja publicado); b=1 e b=3 ficam na mesma ordem de grandeza (fator <=3x em modulo)"
+  ],
+  "o_que_refuta": "troca de sinal do erro relativo entre b=1, b=2 e b=3 no teste; OU nao-monotonia grosseira (mais de 2/16 celulas fora da ordem esperada); OU erro relativo em b=2 fora de uma decada da faixa publicada (-6.2% a -6.9%) -- qualquer um desses derruba 'a lei prevalece em mais de dois pontos' e A1 fica sem sustentacao deste teste (vai para nota, nao para o artigo)",
+  "metodo_declarado": "para (g,b) em {(10,1),(10,2),(10,3)} nas 16 celulas g10 e (5,2) nas 4 celulas bauru g5, 20 split_seeds (SEEDS_20 de varredura_fracao_valida_r3.py), reconstruir particao real via split_e_metricas_edt (varredura_split_geometria.py, metodo EDT ja validado <1e-3 contra cKDTree exato no proprio modulo), fracoes 70/15/resto-teste (FRACS); calcular q_te=k_te/N, q_va=1-k_tr/N (k,N em pixels reais da celula); comparar retencao NODAL real (n_apos_buffer/n_antes_buffer) com eq:R avaliada em q realizado (formula fechada copiada, sem editar, de draft_v2/_pareceres_2026-09-25/fismat_sympy_eqR.py linhas 42 e 118-149 -- eqR_num e lattice_retention/raster_counts para a correcao de dominio finito, reimplementadas localmente por copia literal para nao executar o script alheio com efeitos colaterais de escrita fora da pasta_saida)",
+  "fixado_por": "convocacao do chefe (BRIEFING_FRENTES_CPU.md), 25/09/2026, ANTES de rodar o script v3_1.4_varredura_b_lei_vs_nodal.py",
+  "nao_amplia_a_varredura": "regra D5 do roadmap -- apenas os 4 pontos (g,b) listados; nenhuma grade adicional"
+}

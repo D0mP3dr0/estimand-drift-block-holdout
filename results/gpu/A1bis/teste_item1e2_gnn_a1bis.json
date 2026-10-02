@@ -1,0 +1,125 @@
+{
+  "teste": "A1bis_item1_overfit_item2_gradiente_reescrito_gnn",
+  "tipo_modelo": "gnn",
+  "device": "cuda",
+  "cidade": "bauru",
+  "quadrante": "Q2",
+  "max_nodes": 100000,
+  "n_steps": 200,
+  "lr": 0.003,
+  "batch_size_pedido": 8192,
+  "batch_size_real": 8192,
+  "n_params_treinaveis": 1812515,
+  "tempo_treino_s": 7.514868666999973,
+  "item1_overfit_1_batch": {
+    "loss_primeiros_5_media": 78.70063552856445,
+    "loss_ultimos_5_media": 1.3800399780273438,
+    "razao_final_sobre_inicial": 0.01753530919742646,
+    "criterio": "razao <= 0.10",
+    "passa": true,
+    "loss_trajetoria_amostrada": [
+      90.39811706542969,
+      23.233793258666992,
+      15.188597679138184,
+      13.462876319885254,
+      12.504720687866211,
+      12.128938674926758,
+      10.519221305847168,
+      8.435461044311523,
+      6.966964244842529,
+      5.105986595153809,
+      2.7792911529541016,
+      2.8284661769866943,
+      2.169985055923462,
+      1.941437005996704,
+      1.7541587352752686,
+      1.704620122909546,
+      1.589965581893921,
+      1.5779918432235718,
+      1.472942590713501,
+      1.3708555698394775,
+      1.3766740560531616
+    ]
+  },
+  "item2_gradiente_reescrito": {
+    "passos_medidos": [
+      0,
+      10,
+      20,
+      30,
+      40,
+      50,
+      60,
+      70,
+      80,
+      90,
+      100,
+      110,
+      120,
+      130,
+      140,
+      150,
+      160,
+      170,
+      180,
+      190,
+      199
+    ],
+    "params_mortos_por_arquitetura_esperados": [
+      "decoder.coverage_head.bias",
+      "decoder.coverage_head.weight",
+      "decoder.path_loss_head.bias",
+      "decoder.path_loss_head.weight",
+      "decoder.rssi_head.bias",
+      "decoder.rssi_head.weight",
+      "encoder.convs.0.convs.<terrain___in_range_of___antenna>.lin_l.weight",
+      "encoder.convs.1.convs.<terrain___in_range_of___antenna>.lin_l.weight",
+      "encoder.convs.2.convs.<terrain___in_range_of___antenna>.lin_l.weight",
+      "encoder.convs.3.convs.<terrain___in_range_of___antenna>.lin_l.bias",
+      "encoder.convs.3.convs.<terrain___in_range_of___antenna>.lin_l.weight",
+      "encoder.convs.3.convs.<terrain___in_range_of___antenna>.lin_r.weight",
+      "encoder.layer_norms.3.antenna.bias",
+      "encoder.layer_norms.3.antenna.weight"
+    ],
+    "ativos_com_gradiente_zero_em_todas_medicoes": [],
+    "mortos_esperados_confirmados_zero": [
+      "encoder.convs.0.convs.<terrain___in_range_of___antenna>.lin_l.weight",
+      "encoder.convs.1.convs.<terrain___in_range_of___antenna>.lin_l.weight",
+      "encoder.convs.2.convs.<terrain___in_range_of___antenna>.lin_l.weight"
+    ],
+    "mortos_esperados_NAO_confirmados_zero_ACHADO": [
+      "decoder.coverage_head.bias",
+      "decoder.coverage_head.weight",
+      "decoder.path_loss_head.bias",
+      "decoder.path_loss_head.weight",
+      "decoder.rssi_head.bias",
+      "decoder.rssi_head.weight",
+      "encoder.convs.3.convs.<terrain___in_range_of___antenna>.lin_l.bias",
+      "encoder.convs.3.convs.<terrain___in_range_of___antenna>.lin_l.weight",
+      "encoder.convs.3.convs.<terrain___in_range_of___antenna>.lin_r.weight",
+      "encoder.layer_norms.3.antenna.bias",
+      "encoder.layer_norms.3.antenna.weight"
+    ],
+    "gradiente_vivo_fora_da_lista_nomeada": true,
+    "controle_positivo_et_ta_povoado": {
+      "descricao": "batch sintetico CPU com ET_TA povoado (60 arestas terrain->antenna, sem edge_attr)",
+      "normas_lin_l_camadas_0a2": {
+        "encoder.convs.0.convs.<terrain___in_range_of___antenna>.lin_l.weight": 1085.825927734375,
+        "encoder.convs.1.convs.<terrain___in_range_of___antenna>.lin_l.weight": 595.2284545898438,
+        "encoder.convs.2.convs.<terrain___in_range_of___antenna>.lin_l.weight": 432.0751037597656
+      },
+      "controle_positivo_passou": true
+    },
+    "passa": true
+  },
+  "vazamento_correlacao_bonus": {
+    "corr_max_abs": 0.8342026472091675,
+    "achados_corr_gt_0.98": [],
+    "passa": true
+  },
+  "veredito_script": {
+    "item1_overfit": "passa",
+    "item2_gradiente": "passa"
+  },
+  "tempo_total_s": 23.636640105003607
+}

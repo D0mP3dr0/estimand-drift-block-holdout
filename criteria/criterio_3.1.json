@@ -1,0 +1,11 @@
+{
+  "id": "3.1",
+  "pergunta": "A inversao constante > FSPL (e Hata rural, COST-231) sobrevive a calibracao correta (offset so nos nos validos do treino) ou so ocorre com a mediana contaminada?",
+  "alegacao": "A4 (deflacao e inversao sob baseline calibrada corretamente)",
+  "hipotese": "a inversao constante>FSPL relatada hoje e um artefato da calibracao pela mediana contaminada (que inclui sentinela) e nao sobrevive quando o offset e calibrado so nos nos validos",
+  "metodo_fixado": "16 celulas x 20 split_seeds, mesmos splits de 2.1; FSPL/Hata_rural/COST231_suburbano calibrados por offset p_tx_eff=mediana(rssi_tr+PL_modelo(dist_tr,900MHz)) em duas populacoes de treino: (a) treino inteiro (contaminado, como hoje) e (b) so nos validos do treino (PL_tr<299); MAE por populacao no teste retido para cada modelo x calibracao; contagem de quantas celulas x sorteios (max 320) o constante vence cada modelo, separado por calibracao (a) e (b)",
+  "limiar_aceitacao": "se a inversao constante>FSPL nos validos ocorrer em >=50% das 320 combinacoes celula x sorteio SOB A CALIBRACAO (b), a alegacao A4 se sustenta com baseline calibrada corretamente",
+  "refutacao": "se a inversao so ocorrer em >=50% sob a calibracao (a) e cair abaixo de 50% sob (b), a alegacao muda de 'inversao com baseline correta' para 'a inversao e induzida pela calibracao contaminada'",
+  "verificacao_citacao": "conferir se os offsets p_tx_eff calibrados em (a) para Lins Q1 seed 42 reproduzem os valores citados no texto atual (20.4 / 55.2 / 83.3 dBm para fspl/hata_rural/cost231_sub)",
+  "fixado_em": "2026-09-25T00:00:00-03:00 (antes de rodar o script v3_2.1_3.1_deriva_calibracao.py)"
+}

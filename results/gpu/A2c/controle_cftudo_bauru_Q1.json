@@ -1,0 +1,168 @@
+{
+  "id": "controle_cftudo_bauru_Q1",
+  "gravado_em_utc": "2026-09-26",
+  "autor": "oficina-pipeline",
+  "protocolo": "PROTOCOLO_GPU_v3_2026-09-25.md (ERRATA DE PROVENIENCIA, item (2) das entregas)",
+  "config": {
+    "cidade": "bauru",
+    "quadrante": "Q1",
+    "grafo": "inteiro (max_nodes=0, --mmap)",
+    "dataset": "cftudo (transfer_dataset_bauru_v19_Q1_enriched_cftudo.pt, canonico)",
+    "split_seed": 42,
+    "seed_treino": 42,
+    "epochs": 8,
+    "batch_size": 12288,
+    "k_antenna": -1,
+    "k_terrain": -1,
+    "disjoint": true
+  },
+  "criterio_lancamento_A2c": "GNN e MLP com MAE_rssi sentinela < 1 dB E MAE_rssi validos < 5 dB (item (3) da entrega); PASS = lanca A2c, FAIL = para e diagnostica.",
+  "criterio_razoavel_gnn": {
+    "sentinela_menor_1dB": true,
+    "validos_menor_5dB": true
+  },
+  "criterio_razoavel_mlp": {
+    "sentinela_menor_1dB": true,
+    "validos_menor_5dB": true
+  },
+  "controle_razoavel": true,
+  "gnn": {
+    "run_label": "gnn_v3_controle_cftudo_bauru_Q1",
+    "run_json": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/gpu/A2c/gnn_v3_controle_cftudo_bauru_Q1/run_gnn_v3_controle_cftudo_bauru_Q1.json",
+    "npz": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/gpu/A2c/gnn_v3_controle_cftudo_bauru_Q1/predicoes_gnn_v3_controle_cftudo_bauru_Q1.npz",
+    "insumos": {
+      "rf_data_file": "/trabalho/TOPO_RF_DOWNLOAD_DRIVE/graph_data_v3/transfer_dataset_bauru_v19_Q1_enriched_cftudo.pt",
+      "graph_dir": "/trabalho/TOPO_RF_DOWNLOAD_DRIVE/graph_data_v3",
+      "graph_file": "/trabalho/TOPO_RF_DOWNLOAD_DRIVE/graph_data_v3/bauru_v19_Q1_gpu.pt",
+      "sha256_rf_data": "33e8d57368920241fc289f8c939de35ece7178c316d2bf5488c3cdf98ff5fb5c",
+      "sha256_graph": "99e49cb5306c682e5209a6f8273e0a27f2f851b1fb4b13a6c7b656ed86827607",
+      "manifest": "v4",
+      "manifest_path": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/manifest_mathematics_v4.jsonl",
+      "metodo_sha_rf_data": "reuso_manifest_v4_mtime_e_tamanho_identicos",
+      "metodo_sha_graph": "recomputado_sha256_arquivo_stream",
+      "sha256_rf_data_bate_manifest_v4": true,
+      "nota_graph_file": "_gpu.pt (arestas terreno-terreno) nao tem entrada propria no manifest v4/grupo tensores_cftudo (so os 16 .pt de dado canonico enriched_cftudo tem); sha256 gravado por proveniencia, sem gate sobre ele."
+    },
+    "melhor_epoca": 5,
+    "custo_tempo_total_s": 781.2,
+    "pred_rssi_min": -113.78970336914062,
+    "pred_rssi_max": -81.47305297851562,
+    "n_test_nos": 196228,
+    "mae_rssi_por_populacao": {
+      "todos": {
+        "n": 196228,
+        "mae_rssi_db": 0.22542195890016722
+      },
+      "valido": {
+        "n": 25554,
+        "mae_rssi_db": 0.5351532423095989
+      },
+      "sentinela": {
+        "n": 170674,
+        "mae_rssi_db": 0.1790477412908968
+      }
+    },
+    "curva_val_por_epoca_mae_rssi_db": [
+      0.9084550142288208,
+      0.4113287627696991,
+      0.3273558020591736,
+      0.2740543484687805,
+      0.2659890651702881,
+      0.4374020993709564,
+      0.2744740843772888,
+      0.28647032380104065
+    ],
+    "diagnostico_saida_canal3_test": {
+      "n": 196228,
+      "fracao_fora_da_faixa": 0.0,
+      "p99_excesso_dB_ou_dBm": 0.0,
+      "mae_bruto": 0.22542195890016722,
+      "mae_pos_clamp": 0.22542195890016722,
+      "peso_do_clamp_pct": 0.0
+    }
+  },
+  "mlp": {
+    "run_label": "mlp_v3_controle_cftudo_bauru_Q1",
+    "run_json": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/gpu/A2c/mlp_v3_controle_cftudo_bauru_Q1/run_mlp_v3_controle_cftudo_bauru_Q1.json",
+    "npz": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/gpu/A2c/mlp_v3_controle_cftudo_bauru_Q1/predicoes_mlp_v3_controle_cftudo_bauru_Q1.npz",
+    "insumos": {
+      "rf_data_file": "/trabalho/TOPO_RF_DOWNLOAD_DRIVE/graph_data_v3/transfer_dataset_bauru_v19_Q1_enriched_cftudo.pt",
+      "graph_dir": "/trabalho/TOPO_RF_DOWNLOAD_DRIVE/graph_data_v3",
+      "graph_file": "/trabalho/TOPO_RF_DOWNLOAD_DRIVE/graph_data_v3/bauru_v19_Q1_gpu.pt",
+      "sha256_rf_data": "33e8d57368920241fc289f8c939de35ece7178c316d2bf5488c3cdf98ff5fb5c",
+      "sha256_graph": "99e49cb5306c682e5209a6f8273e0a27f2f851b1fb4b13a6c7b656ed86827607",
+      "manifest": "v4",
+      "manifest_path": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/manifest_mathematics_v4.jsonl",
+      "metodo_sha_rf_data": "reuso_manifest_v4_mtime_e_tamanho_identicos",
+      "metodo_sha_graph": "recomputado_sha256_arquivo_stream",
+      "sha256_rf_data_bate_manifest_v4": true,
+      "nota_graph_file": "_gpu.pt (arestas terreno-terreno) nao tem entrada propria no manifest v4/grupo tensores_cftudo (so os 16 .pt de dado canonico enriched_cftudo tem); sha256 gravado por proveniencia, sem gate sobre ele. MLP nao usa arestas terreno-terreno (nao consome graph_file no treino/avaliacao); sha256_graph gravado so por paridade de proveniencia com o wrapper GNN."
+    },
+    "melhor_epoca": 5,
+    "custo_tempo_total_s": 83.1,
+    "pred_rssi_min": -114.4668960571289,
+    "pred_rssi_max": -77.35569763183594,
+    "n_test_nos": 196228,
+    "mae_rssi_por_populacao": {
+      "todos": {
+        "n": 196228,
+        "mae_rssi_db": 0.31610814109376273
+      },
+      "valido": {
+        "n": 25554,
+        "mae_rssi_db": 1.5336107882645764
+      },
+      "sentinela": {
+        "n": 170674,
+        "mae_rssi_db": 0.13381873177656753
+      }
+    },
+    "curva_val_por_epoca_mae_rssi_db": [
+      1.0277856588363647,
+      0.6360997557640076,
+      0.7378404140472412,
+      0.6877444982528687,
+      0.5810175538063049,
+      0.6368075609207153,
+      0.6342109441757202,
+      0.6006428003311157
+    ],
+    "diagnostico_saida_canal3_test": {
+      "n": 196228,
+      "fracao_fora_da_faixa": 0.0,
+      "p99_excesso_dB_ou_dBm": 0.0,
+      "mae_bruto": 0.31610814109376273,
+      "mae_pos_clamp": 0.31610814109376273,
+      "peso_do_clamp_pct": 0.0
+    }
+  },
+  "referencia_gnn_publicado_run_c0c1cf_bauru_s42_Q1_g10b2": {
+    "arquivo": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/gnn_rf_ieee_access/FIRST_RESPONSE_REVIEW_IEEE_ACESSES/EVIDENCIA_RESUBMISSAO/dados/treinos_c1/run_c0c1cf_bauru_s42_Q1_g10b2.json",
+    "melhor_epoca": 28,
+    "mae_rssi_db_agregado_todos": 0.7567873597145081,
+    "rmse_rssi_db_agregado_todos": 1.8857638835906982,
+    "mae_pl_db_agregado_todos": 1.9147636890411377,
+    "nota": "run original NAO reporta MAE por populacao (valido/sentinela); so o agregado 'todos' esta disponivel para comparacao direta."
+  },
+  "referencia_mlp_antigo_run_mlpcf_bauru_s42_Q1_g10b2": {
+    "arquivo": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/gnn_rf_ieee_access/FIRST_RESPONSE_REVIEW_IEEE_ACESSES/EVIDENCIA_RESUBMISSAO/dados/treinos_c1/run_mlpcf_bauru_s42_Q1_g10b2.json",
+    "melhor_epoca": 29,
+    "mae_rssi_db_agregado_todos": 0.9490293264389038,
+    "rmse_rssi_db_agregado_todos": 2.188976526260376,
+    "mae_pl_db_agregado_todos": 3.12615704536438,
+    "nota": "run original NAO reporta MAE por populacao (valido/sentinela); so o agregado 'todos' esta disponivel para comparacao direta."
+  },
+  "comparacao_agregada_todos": {
+    "gnn_controle_mae_rssi_todos_db": 0.22542195890016722,
+    "gnn_publicado_mae_rssi_todos_db": 0.7567873597145081,
+    "mlp_controle_mae_rssi_todos_db": 0.31610814109376273,
+    "mlp_antigo_mae_rssi_todos_db": 0.9490293264389038
+  },
+  "pergunta_saida": "o MLP em cftudo sai do colapso (sentinela ~ 0,1-0,3 dB)?",
+  "resposta_pergunta_saida": {
+    "mlp_sentinela_mae_rssi_db": 0.13381873177656753,
+    "dentro_da_faixa_0_1_a_0_3": true
+  },
+  "nota_gate_A1bis": "O gate A1-bis (overfit 1 batch, gradiente vivo) foi feito em `_v2` (Bauru Q2), dataset PRE-correcao. Overfit/gradiente sao propriedades do OTIMIZADOR/arquitetura e NAO dependem do alvo/dataset -- continuam validos. O DIAGNOSTICO DE SAIDA (diagnostico_saida_canais, mae_rssi_por_populacao, sentinela) DEPENDE do alvo e portanto PRECISA ser refeito em cftudo -- e o que este controle faz.",
+  "nota_disco": "GPU: 8,4-8,5 GB livres antes/depois de cada corrida (motor de embeddings pid 1630 intocado, ~5,3-5,4 GB)."
+}

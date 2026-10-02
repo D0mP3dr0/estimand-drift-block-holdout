@@ -1,0 +1,18 @@
+{
+  "corr_max_abs": 0.9822637438774109,
+  "achados_corr_gt_0.98": [
+    {
+      "feature_col": 6,
+      "feature_nome": "roughness",
+      "target_col": 2,
+      "target_nome": "path_loss_terrain",
+      "corr": 0.9822637438774109
+    }
+  ],
+  "n": 70434,
+  "cidade": "bauru",
+  "quadrante": "Q3",
+  "dataset": "transfer_dataset_bauru_v19_Q3_enriched_cftudo.pt",
+  "populacao": "particao TREINO INTEIRA (nao 1 batch)",
+  "tempo_total_s": 8.575773367003421
+}

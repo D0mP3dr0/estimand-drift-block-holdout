@@ -1,0 +1,35 @@
+{
+ "a": {
+  "veredito": "CONFIRMADO (Bauru e Lins; Campinas/Sorocaba nao recalculadas)",
+  "bauru": {
+   "vies_hold_out_b0": 0.434,
+   "termo_razao": 0.461,
+   "claim_razao": 0.46,
+   "corr": -0.353,
+   "ep_mc": 0.21
+  },
+  "lins": {
+   "vies_hold_out_b0": 0.449,
+   "termo_razao": 0.467,
+   "claim_razao": 0.47,
+   "corr": -0.34,
+   "ep_mc": 0.17
+  },
+  "identidade_E[S/M]-E[S]/E[M]=-Cov/E[M]": "diferenca <=2e-15 nas duas celulas",
+  "obs": "vies medido vale 0.43-0.45 (~2 EP MC); diferenca para o termo = theta-mu (-0.02/-0.03). Constante: Bauru corr +0.21, vies -0.18; Lins corr +0.01 mas vies +0.43 (o 'nao mostra o efeito' vale para o termo de razao, nao para o vies total). Particao propria (blocos 10 km, 132 blocos, permutacao propria), seeds de 1.8, e_i fixo calibrado numa permutacao propria seed 42."
+ },
+ "b": {
+  "veredito": "CONFIRMADO (numero); frase 'ordem do numero de blocos de teste' sustentada so para 'todos'",
+  "todos_n/deff": "14.9-22.0 (n medio=n_te_b2 ~0.88e6; deff 39.9e3-59.3e3)",
+  "validos_n/deff": "1.1-4.8 (n=n_te_b2_validos; com n_A_validos 1.06-4.63)",
+  "k_te": 20,
+  "obs": "todos ~ k_te=20 ok; validos 1-5 e 4-20x menor que k_te, entao 'da ordem' nao se sustenta nos validos (abaixo)."
+ },
+ "c": {
+  "veredito": "CONFIRMADO (numeros); m=3 exato pelo enunciado so sob (iii) por no",
+  "frac_exata": "96.82-96.92% (Bauru .9690, Campinas .9683, Lins .9692, Soroc .9686)",
+  "frac_cotas": "3.08-3.17% (m=2 ~3.06-3.12% + 0.01-0.05% nos m=1 com (iii) falso)",
+  "binom": "P(X<=1;95,0.0201)=0.4284 (=0.43 confirmado)",
+  "m3": "enunciado (iii) da a cota inferior atingida por condicao nodal, nao por classe; em m=3 falha_iii=0 nos 4 casos, logo exata; mas 'exata' = igual a cota inferior, nao 'forma fechada' isolada de m=0 (p=1). Fracoes dizem 96,8-96,9 vs 96.82-96.92: o texto '3,1-3,2' vs 3.08-3.17 ok arredondado."
+ }
+}

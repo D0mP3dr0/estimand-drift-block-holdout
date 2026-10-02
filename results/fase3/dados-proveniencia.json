@@ -1,0 +1,32 @@
+{
+ "frente": "dados-proveniencia",
+ "alvo": "Artigo 2 v3 (MDPI Mathematics) — D5 do parecer fisico_frequencia_gerador_baselines.md, secao R5: definicao de dist_nearest_m nas 16 celulas canonicas",
+ "veredito": "passa",
+ "achados": [
+  {
+   "id": "A1",
+   "gravidade": "atencao",
+   "descricao": "A definicao de dist_nearest_m (Haversine ate a antena mais proxima entre TODAS as antenas do inventario ANATEL da cidade, qualquer banda) e uniforme e reproduzivel nos 16 arquivos atuais, mas no codigo congelado (enrich_rf_targets.py:458-490) ela depende da AUSENCIA do CSV antenas_interior_sp_final.csv no caminho de busca no momento da geracao, e nao de um parametro explicito. Se o CSV estivesse presente, o filtro de 1800+-200 MHz teria precedencia e a distancia seria outra.",
+   "evidencia": {
+    "arquivo": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF_V2/data_raw/enrich_rf_targets.py",
+    "campo_ou_linha": "linhas 458-490 (precedencia CSV > antenna.pos > antenna.x)",
+    "comando": "/trabalho/ambientes/s33_amb_virtual/.venv/bin/python /trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/fase3/3.5_dist_nearest_definicao_16celulas.py <cidade> <Qn> (16 execucoes, uma por celula); resultado agregado em 3.5_dist_nearest_definicao_16celulas.json"
+   },
+   "correcao": "Documentar explicitamente no MANIFESTO.md de graph_data_v3 (ou em comentario no gerador) que a distancia dos 16 arquivos _cftudo e definida pelo fallback antenna.pos (todas as antenas da cidade, qualquer banda), para que uma regeneracao futura nao troque a definicao silenciosamente por celula."
+  }
+ ],
+ "cobertura": {
+  "verificado": [
+   "definicao de terrain.dist_nearest_m nas 16 celulas (bauru, campinas, lins, sorocaba x Q1-Q4) do dataset _enriched_cftudo.pt usado pelas baselines 3.1/3.2",
+   "sha256 dos 16 tensores de 28 GB conferido contra o MANIFESTO.md de graph_data_v3 (16/16 batem)",
+   "hipotese (a) -- Haversine ate a antena mais proxima entre TODAS as antenas do inventario da cidade -- confirmada nas 16/16 celulas, max_abs_dif_m=0.0 em amostra de 20000 nos por celula",
+   "hipotese (b) -- Haversine ate a mais proxima na faixa 1800+-200 MHz -- refutada nas 16/16 celulas (frac_dif_lt_1m entre 0.0 e 0.99055, nunca 1.0)"
+  ],
+  "nao_verificado": [
+   "proveniencia das fontes externas (FABDEM, Sentinel-1/2, cadastro ANATEL, LiDAR) -- fora de escopo desta demanda, ja registrada como pendencia E10 no MANIFESTO.md",
+   "por que o CSV antenas_interior_sp_final.csv nao estava no caminho de busca durante a geracao destes 16 arquivos (log de geracao/ambiente de execucao de 2026-09-07/08 nao foi auditado nesta frente)"
+  ],
+  "motivo": "escopo da demanda D5 e apenas a definicao de dist_nearest_m nas 16 celulas; as duas lacunas acima sao de outras frentes/demandas ja identificadas"
+ },
+ "arquivo": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/fase3/3.5_dist_nearest_definicao_16celulas.json"
+}

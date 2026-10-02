@@ -1,0 +1,477 @@
+{
+ "criterio": {
+  "id": "A2",
+  "gravado_em": "2026-09-26 (agente oficina-experimento, PLANO A do dono D7, gate G1 reprodutibilidade)",
+  "autor": "oficina-experimento",
+  "alvo": "gpu/modelo_v3/{v3_common.py,train_gnn_v3.py,train_mlp_v3.py,rf_decoder_v3.py} -- codigo byte-identico ao aprovado pelo gate A1bis (criterio_A1bis.json, veredito=passa nos 9 criterios) e pelo gate de bug silencioso desta rodada (gpu/A2/ia-bug-silencioso.json, veredito=passa)",
+  "tipo": "confirmatorio",
+  "hipotese": "O pipeline modelo_v3 (GNN e MLP), rodado 2 vezes com a MESMA seed de treino (42) e o MESMO split_seed (42), sem cadeia, 8 epocas, produz o MESMO numero de MAE por populacao entre as 2 repeticoes (determinismo efetivo do treino nesta GPU/driver), dentro de uma tolerancia de piso numerico.",
+  "predicao": "Se a hipotese for verdadeira, a divergencia absoluta entre repeticao 1 e repeticao 2 no MAE por populacao (rssi_dbm, path_loss_total_dB e demais canais reportados) fica <= 1e-3 dB, tanto para GNN quanto para MLP, em Bauru Q1 e em Lins Q1.",
+  "criterio_aceite": "PASS se |MAE_rep1 - MAE_rep2| <= 1e-3 dB em TODAS as 4 combinacoes (bauru-GNN, bauru-MLP, lins-GNN, lins-MLP); FAIL (ramo declarado no protocolo) se qualquer combinacao divergir > 1e-3 dB -- nesse caso todo numero de modelo_v3 vira distribuicao por seed e o texto do artigo declara nao-determinismo em vez de valor pontual. Indeterminado (orcamento estourado antes de completar as 8 corridas) = abortado_por_orcamento, sem veredito de PASS/FAIL sobre a hipotese.",
+  "corridas": [
+   {
+    "run_label": "gnn_v3_a2_bauru_Q1_rep1",
+    "tipo": "gnn",
+    "cidade": "bauru",
+    "quadrante": "Q1",
+    "rep": 1
+   },
+   {
+    "run_label": "gnn_v3_a2_bauru_Q1_rep2",
+    "tipo": "gnn",
+    "cidade": "bauru",
+    "quadrante": "Q1",
+    "rep": 2
+   },
+   {
+    "run_label": "mlp_v3_a2_bauru_Q1_rep1",
+    "tipo": "mlp",
+    "cidade": "bauru",
+    "quadrante": "Q1",
+    "rep": 1
+   },
+   {
+    "run_label": "mlp_v3_a2_bauru_Q1_rep2",
+    "tipo": "mlp",
+    "cidade": "bauru",
+    "quadrante": "Q1",
+    "rep": 2
+   },
+   {
+    "run_label": "gnn_v3_a2_lins_Q1_rep1",
+    "tipo": "gnn",
+    "cidade": "lins",
+    "quadrante": "Q1",
+    "rep": 1
+   },
+   {
+    "run_label": "gnn_v3_a2_lins_Q1_rep2",
+    "tipo": "gnn",
+    "cidade": "lins",
+    "quadrante": "Q1",
+    "rep": 2
+   },
+   {
+    "run_label": "mlp_v3_a2_lins_Q1_rep1",
+    "tipo": "mlp",
+    "cidade": "lins",
+    "quadrante": "Q1",
+    "rep": 1
+   },
+   {
+    "run_label": "mlp_v3_a2_lins_Q1_rep2",
+    "tipo": "mlp",
+    "cidade": "lins",
+    "quadrante": "Q1",
+    "rep": 2
+   }
+  ],
+  "config_fixa_por_corrida": {
+   "seed_treino": 42,
+   "split_seed": 42,
+   "epochs": 8,
+   "max_nodes": 0,
+   "mmap": true,
+   "k_antenna": -1,
+   "k_terrain": -1,
+   "hidden_dim": 256,
+   "batch_size": 12288,
+   "lr": 0.001,
+   "sem_cadeia": true,
+   "transfer_from": ""
+  },
+  "gravidade": "divergencia > 1e-3 dB em qualquer combinacao = achado que muda o texto do artigo (distribuicao por seed em vez de valor pontual), nao bloqueia o roadmap por si so -- e a propria pergunta de saida deste bloco",
+  "dado": "Bauru Q1 e Lins Q1 REAIS (grafo inteiro, --mmap, sem --max-nodes), GPU RTX 5070 Ti (~8,5 GB livres no inicio desta rodada; motor de embeddings concorrente; abortar corrida se VRAM livre < 1 GB)",
+  "orcamento": "orcamento_gpu_min=180 (teto duro, protocolo PLANO A / item A2, ERRATA de custo estima ~2,5h para as 8 corridas); parar ao atingir o teto ou ao terminar as 8 corridas, o que vier primeiro",
+  "referencia_custo": "run full-graph do PhysicsConstrainedDecoder antigo (G0/ia-bug-silencioso_real.json): 2348.9 s / 20 epocas = 117.4 s/epoca; a 8 epocas, projecao ~15,7 min/corrida antes de overhead de carga+baselines+predicoes .npz",
+  "referencia_gate_anterior": "gpu/A2/ia-bug-silencioso.json (veredito=passa, reuso do gate A1bis sobre codigo hash-identico)",
+  "errata": [
+   {
+    "quando": "2026-09-26 01:32:07",
+    "autor": "sessao (chefe)",
+    "motivo": "CUDA OutOfMemoryError na 1a corrida (bs=24576, k=-1, grafo inteiro) ao lado do motor de embeddings (5,3 GB): ~10 GB reservados > 10,2 GB disponiveis; expandable_segments nao resolveu. batch_size 24576 -> 12288 ANTES de qualquer resultado (0/8 corridas concluidas). Todas as corridas do plano A usam 12288 (GNN e MLP), documentado no model card; difere da receita original (24576), o que e aceitavel porque os modelos do Artigo 2 sao proprios (D2).",
+    "batch_size_anterior": 24576
+   }
+  ]
+ },
+ "pares": {
+  "bauru_Q1_gnn": {
+   "mae_rep1": {
+    "validos": 1.2305785417556763,
+    "sentinela": 0.1732621192932129,
+    "todos": 0.31095224618911743,
+    "n_validos": 25554,
+    "n": 196228
+   },
+   "mae_rep2": {
+    "validos": 1.1611762046813965,
+    "sentinela": 0.18873506784439087,
+    "todos": 0.3153722584247589,
+    "n_validos": 25554,
+    "n": 196228
+   },
+   "delta_abs_db": {
+    "validos": 0.06940233707427979,
+    "sentinela": 0.015472948551177979,
+    "todos": 0.0044200122356414795
+   },
+   "selecao_test": {
+    "mae_rssi_db": [
+     0.3114870488643646,
+     0.31628572940826416
+    ],
+    "mae_pl_db": [
+     1.2928946018218994,
+     1.1755571365356445
+    ]
+   },
+   "melhor_epoca": [
+    7,
+    7
+   ],
+   "gradscaler": [
+    {
+     "n_passos": 5912,
+     "n_atualizacoes_efetivas": 5904,
+     "n_pulados_total": 8,
+     "n_pulados_pos_aquecimento": 1,
+     "definicao_pos_aquecimento": "pulos apos o indice do 1o passo SEM pulo (1a atualizacao bem-sucedida)",
+     "indice_primeiro_passo_sem_pulo": 7,
+     "indice_ultimo_pulo": 12,
+     "escala_inicial": 65536.0,
+     "escala_final": 1024.0,
+     "escala_minima": 256.0,
+     "norma_gradiente_pre_clip_p50": 15.88326644897461,
+     "norma_gradiente_pre_clip_p99": 156.94759689331073,
+     "n_normas_nao_finitas": 8,
+     "nota_normas_nao_finitas": "norma pre-clip nao-finita (inf/nan) ocorre nos passos que o GradScaler detecta e pula (P3 do parecer); excluidas do P50/P99, contadas aqui",
+     "fracao_passos_clipados": 1.0,
+     "n_except_edge_attr_encoder": 0,
+     "vram_pico_mb": 4184.6,
+     "disjoint_treino": false,
+     "k_antenna_treino": -1,
+     "k_terrain_treino": -1,
+     "tempo_medio_por_epoca_s": 93.675,
+     "vram_pico_mb_max": 4184.9
+    },
+    {
+     "n_passos": 5912,
+     "n_atualizacoes_efetivas": 5904,
+     "n_pulados_total": 8,
+     "n_pulados_pos_aquecimento": 1,
+     "definicao_pos_aquecimento": "pulos apos o indice do 1o passo SEM pulo (1a atualizacao bem-sucedida)",
+     "indice_primeiro_passo_sem_pulo": 7,
+     "indice_ultimo_pulo": 12,
+     "escala_inicial": 65536.0,
+     "escala_final": 1024.0,
+     "escala_minima": 256.0,
+     "norma_gradiente_pre_clip_p50": 16.014586448669434,
+     "norma_gradiente_pre_clip_p99": 157.74959396362308,
+     "n_normas_nao_finitas": 8,
+     "nota_normas_nao_finitas": "norma pre-clip nao-finita (inf/nan) ocorre nos passos que o GradScaler detecta e pula (P3 do parecer); excluidas do P50/P99, contadas aqui",
+     "fracao_passos_clipados": 1.0,
+     "n_except_edge_attr_encoder": 0,
+     "vram_pico_mb": 4184.6,
+     "disjoint_treino": false,
+     "k_antenna_treino": -1,
+     "k_terrain_treino": -1,
+     "tempo_medio_por_epoca_s": 93.9125,
+     "vram_pico_mb_max": 4184.9
+    }
+   ],
+   "pulos_identicos": null,
+   "hash_particao_teste": [
+    "d9a857aa782666a7a54fbfed8ff9df39e5135a352e505a074011c720a3e9fd85",
+    "d9a857aa782666a7a54fbfed8ff9df39e5135a352e505a074011c720a3e9fd85"
+   ],
+   "hash_iguais": true,
+   "idx_npz_iguais": true,
+   "diagnostico_saida_rep1": null,
+   "tempo_s": [
+    782,
+    784
+   ],
+   "passa_1e-3_dB": false
+  },
+  "bauru_Q1_mlp": {
+   "mae_rep1": {
+    "validos": 12.716292381286621,
+    "sentinela": 1.0708974599838257,
+    "todos": 2.5874311923980713,
+    "n_validos": 25554,
+    "n": 196228
+   },
+   "mae_rep2": {
+    "validos": 12.716292381286621,
+    "sentinela": 1.0708974599838257,
+    "todos": 2.5874311923980713,
+    "n_validos": 25554,
+    "n": 196228
+   },
+   "delta_abs_db": {
+    "validos": 0.0,
+    "sentinela": 0.0,
+    "todos": 0.0
+   },
+   "selecao_test": {
+    "mae_rssi_db": [
+     2.5887417793273926,
+     2.5887417793273926
+    ],
+    "mae_pl_db": [
+     89.68962860107422,
+     89.68962860107422
+    ]
+   },
+   "melhor_epoca": [
+    7,
+    7
+   ],
+   "gradscaler": [
+    {
+     "n_passos": 5912,
+     "n_atualizacoes_efetivas": 5902,
+     "n_pulados_total": 10,
+     "n_pulados_pos_aquecimento": 3,
+     "definicao_pos_aquecimento": "pulos apos o indice do 1o passo SEM pulo (1a atualizacao bem-sucedida)",
+     "indice_primeiro_passo_sem_pulo": 7,
+     "indice_ultimo_pulo": 4801,
+     "escala_inicial": 65536.0,
+     "escala_final": 256.0,
+     "escala_minima": 256.0,
+     "norma_gradiente_pre_clip_p50": 76.30106735229492,
+     "norma_gradiente_pre_clip_p99": 194.37621200561523,
+     "n_normas_nao_finitas": 10,
+     "nota_normas_nao_finitas": "norma pre-clip nao-finita (inf/nan) ocorre nos passos que o GradScaler detecta e pula (P3 do parecer); excluidas do P50/P99, contadas aqui",
+     "fracao_passos_clipados": 1.0,
+     "n_except_edge_attr_encoder": 0,
+     "vram_pico_mb": 316.3
+    },
+    {
+     "n_passos": 5912,
+     "n_atualizacoes_efetivas": 5902,
+     "n_pulados_total": 10,
+     "n_pulados_pos_aquecimento": 3,
+     "definicao_pos_aquecimento": "pulos apos o indice do 1o passo SEM pulo (1a atualizacao bem-sucedida)",
+     "indice_primeiro_passo_sem_pulo": 7,
+     "indice_ultimo_pulo": 4801,
+     "escala_inicial": 65536.0,
+     "escala_final": 256.0,
+     "escala_minima": 256.0,
+     "norma_gradiente_pre_clip_p50": 76.30106735229492,
+     "norma_gradiente_pre_clip_p99": 194.37621200561523,
+     "n_normas_nao_finitas": 10,
+     "nota_normas_nao_finitas": "norma pre-clip nao-finita (inf/nan) ocorre nos passos que o GradScaler detecta e pula (P3 do parecer); excluidas do P50/P99, contadas aqui",
+     "fracao_passos_clipados": 1.0,
+     "n_except_edge_attr_encoder": 0,
+     "vram_pico_mb": 316.3
+    }
+   ],
+   "pulos_identicos": null,
+   "hash_particao_teste": [
+    "d9a857aa782666a7a54fbfed8ff9df39e5135a352e505a074011c720a3e9fd85",
+    "d9a857aa782666a7a54fbfed8ff9df39e5135a352e505a074011c720a3e9fd85"
+   ],
+   "hash_iguais": true,
+   "idx_npz_iguais": true,
+   "diagnostico_saida_rep1": null,
+   "tempo_s": [
+    81,
+    82
+   ],
+   "passa_1e-3_dB": true
+  },
+  "lins_Q1_gnn": {
+   "mae_rep1": {
+    "validos": 4.402408123016357,
+    "sentinela": 0.17811396718025208,
+    "todos": 0.6801970601081848,
+    "n_validos": 23807,
+    "n": 200301
+   },
+   "mae_rep2": {
+    "validos": 3.518216848373413,
+    "sentinela": 0.21684320271015167,
+    "todos": 0.6092316508293152,
+    "n_validos": 23807,
+    "n": 200301
+   },
+   "delta_abs_db": {
+    "validos": 0.8841912746429443,
+    "sentinela": 0.0387292355298996,
+    "todos": 0.07096540927886963
+   },
+   "selecao_test": {
+    "mae_rssi_db": [
+     0.6796848773956299,
+     0.6095552444458008
+    ],
+    "mae_pl_db": [
+     3.9451582431793213,
+     3.0006418228149414
+    ]
+   },
+   "melhor_epoca": [
+    4,
+    8
+   ],
+   "gradscaler": [
+    {
+     "n_passos": 5920,
+     "n_atualizacoes_efetivas": 5912,
+     "n_pulados_total": 8,
+     "n_pulados_pos_aquecimento": 1,
+     "definicao_pos_aquecimento": "pulos apos o indice do 1o passo SEM pulo (1a atualizacao bem-sucedida)",
+     "indice_primeiro_passo_sem_pulo": 7,
+     "indice_ultimo_pulo": 12,
+     "escala_inicial": 65536.0,
+     "escala_final": 1024.0,
+     "escala_minima": 256.0,
+     "norma_gradiente_pre_clip_p50": 14.794176578521729,
+     "norma_gradiente_pre_clip_p99": 171.21383193969746,
+     "n_normas_nao_finitas": 8,
+     "nota_normas_nao_finitas": "norma pre-clip nao-finita (inf/nan) ocorre nos passos que o GradScaler detecta e pula (P3 do parecer); excluidas do P50/P99, contadas aqui",
+     "fracao_passos_clipados": 1.0,
+     "n_except_edge_attr_encoder": 0,
+     "vram_pico_mb": 4153.0,
+     "disjoint_treino": false,
+     "k_antenna_treino": -1,
+     "k_terrain_treino": -1,
+     "tempo_medio_por_epoca_s": 93.025,
+     "vram_pico_mb_max": 4154.1
+    },
+    {
+     "n_passos": 5920,
+     "n_atualizacoes_efetivas": 5912,
+     "n_pulados_total": 8,
+     "n_pulados_pos_aquecimento": 1,
+     "definicao_pos_aquecimento": "pulos apos o indice do 1o passo SEM pulo (1a atualizacao bem-sucedida)",
+     "indice_primeiro_passo_sem_pulo": 7,
+     "indice_ultimo_pulo": 12,
+     "escala_inicial": 65536.0,
+     "escala_final": 1024.0,
+     "escala_minima": 256.0,
+     "norma_gradiente_pre_clip_p50": 15.595563888549805,
+     "norma_gradiente_pre_clip_p99": 178.06881851196374,
+     "n_normas_nao_finitas": 8,
+     "nota_normas_nao_finitas": "norma pre-clip nao-finita (inf/nan) ocorre nos passos que o GradScaler detecta e pula (P3 do parecer); excluidas do P50/P99, contadas aqui",
+     "fracao_passos_clipados": 1.0,
+     "n_except_edge_attr_encoder": 0,
+     "vram_pico_mb": 4153.0,
+     "disjoint_treino": false,
+     "k_antenna_treino": -1,
+     "k_terrain_treino": -1,
+     "tempo_medio_por_epoca_s": 93.41250000000001,
+     "vram_pico_mb_max": 4154.1
+    }
+   ],
+   "pulos_identicos": null,
+   "hash_particao_teste": [
+    "57a814e67453a63c6eca384c124cfacee1c485184c7a1b76699483594fe74676",
+    "57a814e67453a63c6eca384c124cfacee1c485184c7a1b76699483594fe74676"
+   ],
+   "hash_iguais": true,
+   "idx_npz_iguais": true,
+   "diagnostico_saida_rep1": null,
+   "tempo_s": [
+    776,
+    779
+   ],
+   "passa_1e-3_dB": false
+  },
+  "lins_Q1_mlp": {
+   "mae_rep1": {
+    "validos": 13.968759536743164,
+    "sentinela": 0.7131545543670654,
+    "todos": 2.2886643409729004,
+    "n_validos": 23807,
+    "n": 200301
+   },
+   "mae_rep2": {
+    "validos": 13.968759536743164,
+    "sentinela": 0.7131545543670654,
+    "todos": 2.2886643409729004,
+    "n_validos": 23807,
+    "n": 200301
+   },
+   "delta_abs_db": {
+    "validos": 0.0,
+    "sentinela": 0.0,
+    "todos": 0.0
+   },
+   "selecao_test": {
+    "mae_rssi_db": [
+     2.290048122406006,
+     2.290048122406006
+    ],
+    "mae_pl_db": [
+     121.39029693603516,
+     121.39029693603516
+    ]
+   },
+   "melhor_epoca": [
+    8,
+    8
+   ],
+   "gradscaler": [
+    {
+     "n_passos": 5920,
+     "n_atualizacoes_efetivas": 5911,
+     "n_pulados_total": 9,
+     "n_pulados_pos_aquecimento": 2,
+     "definicao_pos_aquecimento": "pulos apos o indice do 1o passo SEM pulo (1a atualizacao bem-sucedida)",
+     "indice_primeiro_passo_sem_pulo": 7,
+     "indice_ultimo_pulo": 3699,
+     "escala_inicial": 65536.0,
+     "escala_final": 512.0,
+     "escala_minima": 256.0,
+     "norma_gradiente_pre_clip_p50": 49.70046615600586,
+     "norma_gradiente_pre_clip_p99": 108.72192001342756,
+     "n_normas_nao_finitas": 9,
+     "nota_normas_nao_finitas": "norma pre-clip nao-finita (inf/nan) ocorre nos passos que o GradScaler detecta e pula (P3 do parecer); excluidas do P50/P99, contadas aqui",
+     "fracao_passos_clipados": 1.0,
+     "n_except_edge_attr_encoder": 0,
+     "vram_pico_mb": 316.3
+    },
+    {
+     "n_passos": 5920,
+     "n_atualizacoes_efetivas": 5911,
+     "n_pulados_total": 9,
+     "n_pulados_pos_aquecimento": 2,
+     "definicao_pos_aquecimento": "pulos apos o indice do 1o passo SEM pulo (1a atualizacao bem-sucedida)",
+     "indice_primeiro_passo_sem_pulo": 7,
+     "indice_ultimo_pulo": 3699,
+     "escala_inicial": 65536.0,
+     "escala_final": 512.0,
+     "escala_minima": 256.0,
+     "norma_gradiente_pre_clip_p50": 49.70046615600586,
+     "norma_gradiente_pre_clip_p99": 108.72192001342756,
+     "n_normas_nao_finitas": 9,
+     "nota_normas_nao_finitas": "norma pre-clip nao-finita (inf/nan) ocorre nos passos que o GradScaler detecta e pula (P3 do parecer); excluidas do P50/P99, contadas aqui",
+     "fracao_passos_clipados": 1.0,
+     "n_except_edge_attr_encoder": 0,
+     "vram_pico_mb": 316.3
+    }
+   ],
+   "pulos_identicos": null,
+   "hash_particao_teste": [
+    "57a814e67453a63c6eca384c124cfacee1c485184c7a1b76699483594fe74676",
+    "57a814e67453a63c6eca384c124cfacee1c485184c7a1b76699483594fe74676"
+   ],
+   "hash_iguais": true,
+   "idx_npz_iguais": true,
+   "diagnostico_saida_rep1": null,
+   "tempo_s": [
+    84,
+    84
+   ],
+   "passa_1e-3_dB": true
+  }
+ },
+ "resumo": {
+  "delta_abs_max_db": 0.8841912746429443,
+  "pares_que_passam_1e-3": 2,
+  "n_pares": 4,
+  "veredito": "REPRODUTIBILIDADE_NAO_ATINGIDA_NAO_DETERMINISMO"
+ }
+}

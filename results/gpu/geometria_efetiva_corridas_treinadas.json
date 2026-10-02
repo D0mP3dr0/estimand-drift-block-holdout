@@ -1,0 +1,33 @@
+{
+ "artefato": "geometria efetiva das corridas treinadas (A3+A4), lida de split/geometria dos run JSON",
+ "lotes": {
+  "A3": {
+   "n_runs": 80,
+   "combinacoes_grid_buffer_blocos": {
+    "(5.0, 2.0, 483, 338, 72, 73, False)": 80
+   },
+   "retencao_teste_apos_buffer": {
+    "min": 0.10065334507498251,
+    "max": 0.10667296511550499
+   },
+   "retencao_val_apos_buffer": {
+    "min": 0.20056877950804447,
+    "max": 0.20204148876627903
+   }
+  },
+  "A4": {
+   "n_runs": 50,
+   "combinacoes_grid_buffer_blocos": {
+    "(5.0, 2.0, 483, 338, 72, 73, False)": 50
+   },
+   "retencao_teste_apos_buffer": {
+    "min": 0.0990758986726081,
+    "max": 0.11570472520578107
+   },
+   "retencao_val_apos_buffer": {
+    "min": 0.16556976072418653,
+    "max": 0.20190782023022533
+   }
+  }
+ }
+}

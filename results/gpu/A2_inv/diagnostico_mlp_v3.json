@@ -1,0 +1,85 @@
+{
+  "tarefa": "Diagnostico do chefe/dono 26/09/2026, anomalia (2): MLP v3 fraco em A2 (val MAE_RSSI plato ~4-4.9 dB, test todos=2.59/valido=12.7/sentinela=1.07 dB, pred max -49.7 dBm contra alvos validos <= -82.5 dBm) vs MLP antigo E3 (sentinela~0.13-0.19, todos~0.33). NAO implementada nenhuma mudanca de receita -- so diagnostico + proposta para o chefe decidir, conforme instrucao.",
+  "protocolo": "PROTOCOLO_GPU_v3_2026-09-25.md (PLANO A, D7); gpu/A2/veredito_A2.json (reproducibilidade); gpu/A2/cartao_experimento_A2.md",
+  "pasta_trabalho": "gpu/modelo_v3/ (fix aplicado em v3_common.py) + gpu/A2_inv/ (scripts de diagnostico e controles)",
+
+  "pergunta_a_patch_de_larguras_preserva_in_channels_e_receita": {
+    "resposta": "SIM para in_channels; SIM para loss/lr/schedule.",
+    "evidencia_in_channels": "train_mlp_c0_spatial.py:706-718, MLPRFModel.__init__: `self.decoder = PhysicsConstrainedDecoder(in_channels=dims[-1], hidden_channels=256, ...)`. `dims[-1]` e o ULTIMO elemento da tupla `larguras` -- e SEMPRE 256 tanto nas larguras antigas (712,712,720,688,256) quanto nas novas efetivas (654,654,600,636,256, `v3_common.MLP_LARGURAS_NOVAS`). O patch de larguras (`patch_larguras_mlp`, monkeypatch de `mod.MLP_LARGURAS`/`mod.N_PARAMS_ALVO_GNN`) so muda as 4 larguras ESCONDIDAS antes do bottleneck; o in_channels do decoder nunca muda. CONFIRMADO, nao e a causa.",
+    "evidencia_receita": "train_mlp_v3.py so monkeypatcha `rf_decoder.PhysicsConstrainedDecoder` (classe do decodificador) e `mod.MLP_LARGURAS`/`mod.N_PARAMS_ALVO_GNN` (atributos de modulo) ANTES de chamar `mod.main(congelado_argv)`; `congelado_argv` repassa --lr/--epochs/--batch-size explicitos e deixa TODO o resto (scheduler=cosine, scheduler-patience=2, cosine-t0=10, max-norm=0.5, variance/ndvi/dist-grad-weight, CurriculumRFLoss inteira) no DEFAULT do proprio congelado -- nenhuma linha de perda/otimizador/scheduler e tocada. CONFIRMADO por leitura de codigo, nao e a causa."
+  },
+
+  "controles_rodados": [
+    {
+      "id": "B",
+      "descricao": "MLP CONGELADO ORIGINAL (train_mlp_c0_spatial.py chamado DIRETO, sem nenhum patch de decoder/larguras -- decoder = PhysicsConstrainedDecoder de fato, softplus+clamp/sigmoid)",
+      "comando": "cd EVIDENCIA_RESUBMISSAO/scripts && python train_mlp_c0_spatial.py --base-dir GNN_RF_V2 --graph-dir GNN_RF_V2/graph_data --rf-data-file transfer_dataset_bauru_v19_Q1_enriched_v2.pt --graph-file bauru_v19_Q1_gpu.pt --epochs 8 --seed 42 --split-seed 42 --evid-dir gpu/A2_inv/controles --run-label mlp_original_ctrl_b_bauru_Q1 --batch-size 12288 --mmap",
+      "tempo_s": 90.2,
+      "artefato": "gpu/A2_inv/controles/mlp_original_ctrl_b_bauru_Q1/run_mlp_original_ctrl_b_bauru_Q1.json + predicoes_mlp_original_ctrl_b_bauru_Q1.npz (gerado por inferencia separada, script nao salva .npz)",
+      "curva_val_mae_rssi_db_por_epoca": [5.0511, 7.225, 7.281, 5.285, 4.747, 5.247, 4.846, 4.236],
+      "test_final_mae_rssi_db_congelado": 2.8210,
+      "mae_por_populacao_test": {"todos": 2.820669506931552, "valido": 12.89736252147528, "sentinela": 1.3119463663615152},
+      "pred_rssi_dbm": {"min": -113.48013, "max": -41.125374, "mean": -108.46486}
+    },
+    {
+      "id": "C1",
+      "descricao": "MLP v3 (decoder afim AffineDecoderV3 + larguras efetivas 654,654,600,636,256), 20 epocas, lr default 1e-3",
+      "comando": "python train_mlp_v3.py --cidade bauru --quadrante Q1 --seed-treino 42 --split-seed 42 --epochs 20 --batch-size 12288 --mmap --evid-dir gpu/A2_inv/controles --run-label mlp_v3_ctrl_c1_20ep_bauru_Q1",
+      "tempo_s": 199.2,
+      "artefato": "gpu/A2_inv/controles/mlp_v3_ctrl_c1_20ep_bauru_Q1/run_....json + predicoes_....npz",
+      "curva_val_mae_rssi_db_por_epoca_amostra": {"epoch_1": null, "epoch_19": 4.213, "epoch_20": 4.063},
+      "test_final_mae_rssi_db_congelado": 2.6712,
+      "mae_por_populacao_test": {"todos": 2.673938873226941, "valido": 12.4128478930162, "sentinela": 1.2157901154097295},
+      "pred_rssi_dbm": {"min": -114.52279, "max": -46.219902, "mean": -108.27569}
+    },
+    {
+      "id": "C2",
+      "descricao": "MLP v3 (decoder afim + larguras efetivas), 8 epocas, lr=3e-3 (3x o default)",
+      "comando": "python train_mlp_v3.py --cidade bauru --quadrante Q1 --seed-treino 42 --split-seed 42 --epochs 8 --lr 3e-3 --batch-size 12288 --mmap --evid-dir gpu/A2_inv/controles --run-label mlp_v3_ctrl_c2_8ep_lr3e-3_bauru_Q1",
+      "tempo_s": 82.3,
+      "artefato": "gpu/A2_inv/controles/mlp_v3_ctrl_c2_8ep_lr3e-3_bauru_Q1/run_....json + predicoes_....npz",
+      "test_final_mae_rssi_db_congelado": 2.5667,
+      "mae_por_populacao_test": {"todos": 2.5698874973358006, "valido": 12.376327469565924, "sentinela": 1.1016277328118043},
+      "pred_rssi_dbm": {"min": -114.6337, "max": -51.122887, "mean": -108.411644}
+    },
+    {
+      "id": "A2_original_referencia",
+      "descricao": "corrida A2 ja existente (mlp_v3_a2_bauru_Q1_rep1: v3, 8 epocas, lr=1e-3 default) -- MESMOS numeros do relato do chefe, citados aqui so para comparacao lado a lado",
+      "artefato": "gpu/A2/mlp_v3_a2_bauru_Q1_rep1/predicoes_mlp_v3_a2_bauru_Q1_rep1.npz",
+      "mae_por_populacao_test": {"todos": 2.5874312360946172, "valido": 12.71629219416433, "sentinela": 1.0708973005068096},
+      "pred_rssi_dbm": {"min": null, "max": null, "mean": null}
+    }
+  ],
+
+  "resposta_c_e_o_problema_de_escala_epocas_ou_lr": {
+    "veredito": "NENHUM dos tres isoladamente. Os 4 numeros (A2 original 8ep/1e-3, C1 20ep/1e-3, C2 8ep/3e-3, e ATE o controle B com o DECODER ORIGINAL sem nenhum patch v3) convergem para o MESMO padrao: MAE todos entre 2.57 e 2.82 dB, MAE valido entre 12.4 e 12.9 dB, MAE sentinela entre 1.07 e 1.31 dB, e a predicao media de RSSI sempre em torno de -108 dBm (min -113/-114, max entre -41 e -51 dBm) -- ou seja, o MLP aprende a prever perto da CONSTANTE sentinela (-110 dBm, que e ~87% dos nos de teste) e mal se move para acompanhar a populacao 'valido' (alvo real medio -94,5 dBm, faixa -119 a -82,5 dBm). Trocar decoder (B vs A2/C1/C2), triplicar lr (C2) ou 2,5x epocas (C1) NAO mudou esse padrao -- todos ficam dentro de uma banda estreita (2,57-2,82 dB todos; 12,4-12,9 dB valido).",
+    "hipotese_suportada": "a huber_loss de producao (physics_loss.py) e calculada SEM peso/mascara por populacao, e ~87% dos nos de teste (e provavelmente do treino, mesma proporcao de sentinela ~0,87-0,88 medida no A2) tem RSSI=alvo sentinela CONSTANTE -110 dBm. Um regressor que so ve as 18 features ESTATICAS por no (sem grafo, sem vizinhanca -- 'sem_arestas': true, 'sem_passagem_de_mensagem': true no proprio run JSON) tem MENOS sinal espacial para diferenciar a populacao valido da sentinela do que a GNN (que agrega vizinhanca e chega a valido=1,23 dB, ~10x melhor que o MLP). O gradiente medio da huber loss e dominado pela maioria facil (sentinela), e o MLP converge rapido para 'sempre prever perto de -110' -- explica a predicao media ~-108 dBm em TODOS os controles, incluindo o decoder original.",
+    "achado_do_confundimento_com_a_referencia_E3": "o checkpoint antigo citado como referencia boa (mlpcf_bauru_s42_Q1_g10b2, EVIDENCIA_RESUBMISSAO/treinos/) NAO e comparavel diretamente: usou (1) `rf_data_file=transfer_dataset_bauru_v19_Q1_enriched_CFTUDO.pt` (dataset enriquecido DIFERENTE do `_v2.pt` usado por train_mlp_v3.py/A2 -- mais features, nome sugere 'com tudo'), (2) 35 epocas (nao 8-20) e batch_size=24576 (nao 12288), (3) uma curva de val MUITO ruidosa e NAO monotonica (val MAE_RSSI: ep1=5,93 -> ep5=2,90 -> ep10=1,56 -> ep15=2,68 -> ep20=1,40 -> ep25=1,97 -> ep29=0,68 [melhor] -> ep30=0,71 -> ep35=1,27 [piorou nao-trivialmente]) -- o numero bom (test=0,95 dB, 'todos'~0,33 citado) saiu de um MINIMO LOCAL sortudo na epoca 29 de uma curva que oscila por um fator de ate 4x entre epocas vizinhas, nao de uma convergencia estavel. Comparar A2 (8-20 epocas, dataset _v2) contra esse checkpoint (35 epocas ruidosas, dataset _cftudo) mistura DOIS fatores (dataset + duracao/estabilidade de treino) na mesma comparacao."
+  },
+
+  "resposta_d_mae_por_populacao_dos_controles": {
+    "nota": "tabela ja em controles_rodados[*].mae_por_populacao_test acima; resumo lado a lado (dB):",
+    "tabela": {
+      "todos":     {"B_original_8ep": 2.821, "A2_v3_8ep_lr1e-3": 2.587, "C1_v3_20ep": 2.674, "C2_v3_8ep_lr3e-3": 2.570},
+      "valido":    {"B_original_8ep": 12.897, "A2_v3_8ep_lr1e-3": 12.716, "C1_v3_20ep": 12.413, "C2_v3_8ep_lr3e-3": 12.376},
+      "sentinela": {"B_original_8ep": 1.312, "A2_v3_8ep_lr1e-3": 1.071, "C1_v3_20ep": 1.216, "C2_v3_8ep_lr3e-3": 1.102}
+    }
+  },
+
+  "proposta_para_o_chefe_decidir_NAO_IMPLEMENTADA": [
+    "1. Testar `rf_data_file=..._enriched_v2_cftudo.pt` (ja existe em GNN_RF_V2/graph_data para bauru e lins, todas as 4 cidades) no MLP v3, mantendo o resto igual -- isola se o dataset mais rico (mais features engenheiradas) fecha a maior parte do gap sozinho, ANTES de mexer em decoder/receita. Risco: muda o dataset usado por A2/A3 GNN tambem, para manter justica de comparacao -- decisao do dono/chefe, nao do executor.",
+    "2. Reponderar a huber loss por populacao (peso maior para nos 'valido', ou undersampling da populacao sentinela no batch) -- ataca diretamente a hipotese suportada (maioria facil dominando o gradiente). Precisa de decisao de FAIRNESS entre GNN e MLP (a GNN sofre do MESMO desbalanceamento? nao testado aqui).",
+    "3. Recentrar o offset do decoder afim do canal RSSI na mediana do alvo de TREINO (~-110 dBm, que e o proprio valor sentinela) em vez de -75 dBm -- e a proposta original do chefe. Os controles aqui mostram que o MLP JA CONVERGE para ~-108 dBm sozinho (a rede desloca o viés longe do -75 inicial sem ajuda), entao esta mudanca provavelmente SO acelera a convergencia inicial (menos passos para sair de -75), NAO resolve o desbalanceamento estrutural entre 'valido' e 'sentinela' -- proposta mantida na lista, mas com essa ressalva medida, nao suposta.",
+    "4. Mais epocas (30-35, como o antigo) SO com paciencia/scheduler revistos -- a curva antiga era ruidosa; sem mudar scheduler/paciencia de selecao de melhor epoca, mais epocas podem so encontrar outro minimo local por sorte, nao uma melhoria robusta. Se o chefe quiser esta rota, sugiro tambem gravar a curva completa (nao so o melhor val) para julgar estabilidade."
+  ],
+
+  "arquivos_alterados": [
+    "gpu/modelo_v3/v3_common.py (fix da anomalia 1 + fallback de decoder original em gerar_predicoes_teste_mlp, usado pelos controles deste diagnostico)",
+    "gpu/A2_inv/regravar_diagnostico_saida_A2.py (novo)",
+    "gpu/A2_inv/resumo_regravar_diagnostico_saida_A2.json (novo, saida do script acima)",
+    "gpu/A2/*/run_*.json (8 arquivos, diagnostico_saida corrigido, original preservado em diagnostico_saida_ANTES_correcao_sentinela_A2)",
+    "gpu/A2_inv/controles/ (3 corridas de controle: mlp_original_ctrl_b_bauru_Q1, mlp_v3_ctrl_c1_20ep_bauru_Q1, mlp_v3_ctrl_c2_8ep_lr3e-3_bauru_Q1, cada uma com run JSON + .npz + checkpoint)",
+    "gpu/A2_inv/diagnostico_mlp_v3.json (este arquivo)"
+  ],
+  "nao_implementado_por_instrucao": "nenhuma mudanca de receita/decoder/loss foi aplicada aos scripts de producao (v3_common.py/train_mlp_v3.py) alem do fix da anomalia 1 (mascaramento de sentinela no diagnostico_saida) e do fallback de decoder original (necessario so para RODAR os controles com o decoder congelado, nao muda nenhum comportamento de producao). As 4 propostas acima ficam para decisao do chefe/dono."
+}

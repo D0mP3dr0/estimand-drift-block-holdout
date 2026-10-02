@@ -1,0 +1,12 @@
+{
+ "id": "R1_b0",
+ "roadmap": "B1.3 (ROADMAP_v3-12_major_revision.md)",
+ "subclaim": "S4 (titulo)",
+ "origem": "revisor cego simulado F1/E1, aceito pelo dono em 01/10/2026",
+ "pergunta": "Com buffer b=0 (blocos sem erosao), nas mesmas 16 celulas, g=10 km e nos MESMOS 60 sorteios de fase2/2.1_deriva_erro_baselines_16x60rnd.json, quanto resta (i) do dp entre sorteios do MAE do preditor constante nos nos validos do teste, (ii) do dp entre sorteios da fracao valida do teste e (iii) da contagem de inversoes constante x FSPL calibrado (todos os nos e validos)?",
+ "previsao": "com b=0 toda probabilidade de inclusao no teste e k_te/N (termo de desenho nulo); a deriva de composicao persiste porque vem do sorteio de blocos.",
+ "metodo_fixado": "mesmo codigo de particao e mesmas regras de calibracao (a) e (b) de scripts/v3_2.1_3.1_deriva_calibracao.py, trocando apenas b=2 km por b=0; mesmas sementes; estatisticas identicas as de T3/T4 (dp ddof=1 por celula, media simples das 16 celulas; sorteios sem no valido no teste excluidos e contados). Razoes R_err = media16(dp_b0)/media16(dp_b2) e R_frac idem para a fracao valida.",
+ "leitura": "R_err >= 0,8 E R_frac >= 0,8 -> DELIMITA: a deriva e do sorteio de blocos; o buffer acrescenta inclusao desigual e reduz a populacao pontuada (o texto diz isso; titulo fica, pois nao afirma causa). R_err <= 0,5 OU R_frac <= 0,5 -> REFORCA: o buffer amplifica a deriva (uma frase com a razao). Entre 0,5 e 0,8 -> descritivo: reporta-se a razao. Em qualquer desfecho o numero entra em uma linha de tabela ou uma frase.",
+ "se_inverter": "nenhum desfecho inverte S4 (a deriva do erro reportado existe nos dois casos); o que pode mudar e a atribuicao ao buffer.",
+ "fixado_em": "2026-10-01T17:13:54-03:00 (antes de existir qualquer script ou resultado deste teste)"
+}

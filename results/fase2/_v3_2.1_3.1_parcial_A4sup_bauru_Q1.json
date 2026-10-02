@@ -1,0 +1,401 @@
+{
+  "script_caminho": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/scripts/v3_2.1_3.1_deriva_calibracao.py",
+  "script_sha256": "9b9bcf91bab51621107a3d7978964d46dd16c5ec1a76a3789842ae1bce77f3bc",
+  "baselines_congelado_path": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/gnn_rf_ieee_access/FIRST_RESPONSE_REVIEW_IEEE_ACESSES/EVIDENCIA_RESUBMISSAO/dados/scripts_congelados/baselines_v2_por_particao.py",
+  "baselines_congelado_sha256": "6d5fde065f86c7bdf39465d49e93d8f4218332273d2efdd1580dfea3ac45063c",
+  "seeds_usados": [
+    101,
+    102,
+    103,
+    104,
+    105
+  ],
+  "seeds_descricao": "explicita_5_seeds",
+  "timestamp_utc_inicio": "2026-09-27T11:51:39.558117+00:00",
+  "celulas": {
+    "bauru_Q1": {
+      "cidade": "bauru",
+      "quadrante": "Q1",
+      "celula": "bauru_Q1",
+      "tensor_path": "/trabalho/TOPO_RF_DOWNLOAD_DRIVE/graph_data_v3/transfer_dataset_bauru_v19_Q1_enriched_cftudo.pt",
+      "run_path": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/gnn_rf_ieee_access/FIRST_RESPONSE_REVIEW_IEEE_ACESSES/EVIDENCIA_RESUBMISSAO/treinos/c0c1cf_bauru_s42_Q1_g10b2/run_c0c1cf_bauru_s42_Q1_g10b2.json",
+      "timestamp_utc_inicio": "2026-09-27T11:51:39.558172+00:00",
+      "sha256_manifest": "33e8d57368920241fc289f8c939de35ece7178c316d2bf5488c3cdf98ff5fb5c",
+      "sha256_ok": "nao_recalculado_nesta_rodada",
+      "modo_carga": "mmap",
+      "tempo_load_s": 7.969291261018952,
+      "n_nodes_total": 12960000,
+      "status": "ok",
+      "por_sorteio": [
+        {
+          "split_seed": 101,
+          "status": "ok",
+          "n_train": 9261366,
+          "n_test": 844076,
+          "n_pop_teste": {
+            "validos": 213818,
+            "sentinela": 630258,
+            "todos": 844076
+          },
+          "constante_treino_mediana_rssi": -110.0,
+          "mae_constante_teste": {
+            "validos": 14.665259176950086,
+            "sentinela": 0.0,
+            "todos": 3.714945557861038
+          },
+          "offset_p_tx_eff_a_contaminado": {
+            "fspl": 18.95633441119861,
+            "hata_rural": 51.95003380480435,
+            "cost231_sub": 80.05548804292243
+          },
+          "mae_modelo_a_contaminado_teste": {
+            "fspl": {
+              "validos": 5.810956524975344,
+              "sentinela": 3.440387725318634,
+              "todos": 4.0408908549005655
+            },
+            "hata_rural": {
+              "validos": 6.864050788852929,
+              "sentinela": 6.022911079827882,
+              "todos": 6.235985270190264
+            },
+            "cost231_sub": {
+              "validos": 6.864050788852931,
+              "sentinela": 6.022911079827882,
+              "todos": 6.235985270190264
+            }
+          },
+          "offset_p_tx_eff_b_validos": {
+            "fspl": 23.767148315007205,
+            "hata_rural": 47.85976167418907,
+            "cost231_sub": 75.96521591230717
+          },
+          "mae_modelo_b_validos_teste": {
+            "fspl": {
+              "validos": 4.669410162542087,
+              "sentinela": 6.37574255228405,
+              "todos": 5.9435011677288125
+            },
+            "hata_rural": {
+              "validos": 4.220405536407359,
+              "sentinela": 6.601088527352222,
+              "todos": 5.9980233107629
+            },
+            "cost231_sub": {
+              "validos": 4.220405536407359,
+              "sentinela": 6.60108852735222,
+              "todos": 5.998023310762899
+            }
+          },
+          "inversao_constante_gt_fspl": {
+            "a_contaminada": {
+              "validos": true,
+              "sentinela": false,
+              "todos": false
+            },
+            "b_validos": {
+              "validos": true,
+              "sentinela": false,
+              "todos": false
+            }
+          }
+        },
+        {
+          "split_seed": 102,
+          "status": "ok",
+          "n_train": 9100956,
+          "n_test": 997070,
+          "n_pop_teste": {
+            "validos": 267840,
+            "sentinela": 729230,
+            "todos": 997070
+          },
+          "constante_treino_mediana_rssi": -110.0,
+          "mae_constante_teste": {
+            "validos": 17.831627869463592,
+            "sentinela": 0.0,
+            "todos": 4.790058078727801
+          },
+          "offset_p_tx_eff_a_contaminado": {
+            "fspl": 19.27255755572986,
+            "hata_rural": 52.39064324934827,
+            "cost231_sub": 80.49609748746639
+          },
+          "mae_modelo_a_contaminado_teste": {
+            "fspl": {
+              "validos": 7.922300132808221,
+              "sentinela": 2.3328365640240207,
+              "todos": 3.8343178263859015
+            },
+            "hata_rural": {
+              "validos": 4.339385864069661,
+              "sentinela": 4.210504056892541,
+              "todos": 4.24512520007639
+            },
+            "cost231_sub": {
+              "validos": 4.339385864069685,
+              "sentinela": 4.210504056892538,
+              "todos": 4.245125200076394
+            }
+          },
+          "offset_p_tx_eff_b_validos": {
+            "fspl": 23.581775962407107,
+            "hata_rural": 47.64375902873903,
+            "cost231_sub": 75.74921326685711
+          },
+          "mae_modelo_b_validos_teste": {
+            "fspl": {
+              "validos": 5.758015745495454,
+              "sentinela": 5.317708699111412,
+              "todos": 5.435987094112266
+            },
+            "hata_rural": {
+              "validos": 4.896597533905826,
+              "sentinela": 6.107115799426983,
+              "todos": 5.781937815697468
+            },
+            "cost231_sub": {
+              "validos": 4.896597533905826,
+              "sentinela": 6.107115799426983,
+              "todos": 5.781937815697468
+            }
+          },
+          "inversao_constante_gt_fspl": {
+            "a_contaminada": {
+              "validos": true,
+              "sentinela": false,
+              "todos": true
+            },
+            "b_validos": {
+              "validos": true,
+              "sentinela": false,
+              "todos": false
+            }
+          }
+        },
+        {
+          "split_seed": 103,
+          "status": "ok",
+          "n_train": 8993794,
+          "n_test": 832382,
+          "n_pop_teste": {
+            "validos": 151058,
+            "sentinela": 681324,
+            "todos": 832382
+          },
+          "constante_treino_mediana_rssi": -110.0,
+          "mae_constante_teste": {
+            "validos": 25.493575634186012,
+            "sentinela": 0.0,
+            "todos": 4.626491860887033
+          },
+          "offset_p_tx_eff_a_contaminado": {
+            "fspl": 18.93960314899158,
+            "hata_rural": 51.695410086428524,
+            "cost231_sub": 79.80086432454658
+          },
+          "mae_modelo_a_contaminado_teste": {
+            "fspl": {
+              "validos": 6.4803163452590535,
+              "sentinela": 1.9495066034357207,
+              "todos": 2.7717433384688532
+            },
+            "hata_rural": {
+              "validos": 6.571216419038506,
+              "sentinela": 4.2234110147525215,
+              "todos": 4.649483165232268
+            },
+            "cost231_sub": {
+              "validos": 6.571216419038493,
+              "sentinela": 4.223411014752536,
+              "todos": 4.649483165232278
+            }
+          },
+          "offset_p_tx_eff_b_validos": {
+            "fspl": 23.14357501178455,
+            "hata_rural": 47.59015488100977,
+            "cost231_sub": 75.69560911912785
+          },
+          "mae_modelo_b_validos_teste": {
+            "fspl": {
+              "validos": 3.5791058838229546,
+              "sentinela": 3.951397506325009,
+              "todos": 3.883835223728899
+            },
+            "hata_rural": {
+              "validos": 7.181163270880498,
+              "sentinela": 7.048204215236247,
+              "todos": 7.072333195713372
+            },
+            "cost231_sub": {
+              "validos": 7.181163270880498,
+              "sentinela": 7.048204215236247,
+              "todos": 7.072333195713372
+            }
+          },
+          "inversao_constante_gt_fspl": {
+            "a_contaminada": {
+              "validos": true,
+              "sentinela": false,
+              "todos": true
+            },
+            "b_validos": {
+              "validos": true,
+              "sentinela": false,
+              "todos": true
+            }
+          }
+        },
+        {
+          "split_seed": 104,
+          "status": "ok",
+          "n_train": 9232023,
+          "n_test": 781032,
+          "n_pop_teste": {
+            "validos": 205373,
+            "sentinela": 575659,
+            "todos": 781032
+          },
+          "constante_treino_mediana_rssi": -110.0,
+          "mae_constante_teste": {
+            "validos": 14.020545041267766,
+            "sentinela": 0.0,
+            "todos": 3.6867137284519518
+          },
+          "offset_p_tx_eff_a_contaminado": {
+            "fspl": 19.50879031329822,
+            "hata_rural": 52.28774933451672,
+            "cost231_sub": 80.3932035726348
+          },
+          "mae_modelo_a_contaminado_teste": {
+            "fspl": {
+              "validos": 7.069609516718287,
+              "sentinela": 3.153327230638398,
+              "todos": 4.183116844814367
+            },
+            "hata_rural": {
+              "validos": 9.925006802204054,
+              "sentinela": 5.085949092492255,
+              "todos": 6.358383255262333
+            },
+            "cost231_sub": {
+              "validos": 9.925006802204054,
+              "sentinela": 5.085949092492255,
+              "todos": 6.358383255262333
+            }
+          },
+          "offset_p_tx_eff_b_validos": {
+            "fspl": 23.931213676030154,
+            "hata_rural": 49.262467026352965,
+            "cost231_sub": 77.36792126447106
+          },
+          "mae_modelo_b_validos_teste": {
+            "fspl": {
+              "validos": 7.174425318278566,
+              "sentinela": 6.802916111975371,
+              "todos": 6.9006047601051606
+            },
+            "hata_rural": {
+              "validos": 7.063710700099811,
+              "sentinela": 5.918627955605428,
+              "todos": 6.219728395132932
+            },
+            "cost231_sub": {
+              "validos": 7.063710700099825,
+              "sentinela": 5.918627955605423,
+              "todos": 6.219728395132932
+            }
+          },
+          "inversao_constante_gt_fspl": {
+            "a_contaminada": {
+              "validos": true,
+              "sentinela": false,
+              "todos": false
+            },
+            "b_validos": {
+              "validos": true,
+              "sentinela": false,
+              "todos": false
+            }
+          }
+        },
+        {
+          "split_seed": 105,
+          "status": "ok",
+          "n_train": 8962297,
+          "n_test": 920799,
+          "n_pop_teste": {
+            "validos": 41225,
+            "sentinela": 879574,
+            "todos": 920799
+          },
+          "constante_treino_mediana_rssi": -110.0,
+          "mae_constante_teste": {
+            "validos": 16.350985482923186,
+            "sentinela": 0.0,
+            "todos": 0.7320483368612567
+          },
+          "offset_p_tx_eff_a_contaminado": {
+            "fspl": 18.792939483220096,
+            "hata_rural": 51.53943760051055,
+            "cost231_sub": 79.64489183862864
+          },
+          "mae_modelo_a_contaminado_teste": {
+            "fspl": {
+              "validos": 6.058216029688255,
+              "sentinela": 1.9537959600355446,
+              "todos": 2.1375545407588437
+            },
+            "hata_rural": {
+              "validos": 0.6746372001086863,
+              "sentinela": 4.4570915626108345,
+              "todos": 4.287747676383601
+            },
+            "cost231_sub": {
+              "validos": 0.6746372001086863,
+              "sentinela": 4.4570915626108345,
+              "todos": 4.287747676383601
+            }
+          },
+          "offset_p_tx_eff_b_validos": {
+            "fspl": 23.382333098942752,
+            "hata_rural": 47.22529031805681,
+            "cost231_sub": 75.33074455617488
+          },
+          "mae_modelo_b_validos_teste": {
+            "fspl": {
+              "validos": 1.7135688781275613,
+              "sentinela": 4.4407278633108564,
+              "todos": 4.318630500950362
+            },
+            "hata_rural": {
+              "validos": 4.56287891707378,
+              "sentinela": 7.016798414451863,
+              "todos": 6.906934229891051
+            },
+            "cost231_sub": {
+              "validos": 4.562878917073794,
+              "sentinela": 7.016798414451873,
+              "todos": 6.906934229891061
+            }
+          },
+          "inversao_constante_gt_fspl": {
+            "a_contaminada": {
+              "validos": true,
+              "sentinela": false,
+              "todos": false
+            },
+            "b_validos": {
+              "validos": true,
+              "sentinela": false,
+              "todos": false
+            }
+          }
+        }
+      ],
+      "timestamp_utc_fim": "2026-09-27T11:52:08.398208+00:00",
+      "tempo_total_s": 28.85252052100259
+    }
+  },
+  "timestamp_utc_ultima_gravacao": "2026-09-27T11:52:08.410681+00:00"
+}

@@ -1,0 +1,70 @@
+{
+  "teste": "A3gate_overfit_gradiente_cftudo_mlp",
+  "tipo_modelo": "mlp",
+  "device": "cuda",
+  "cidade": "bauru",
+  "quadrante": "Q3",
+  "max_nodes": 100000,
+  "dataset": "transfer_dataset_bauru_v19_Q3_enriched_cftudo.pt",
+  "proveniencia_sha256_bate_manifest_v4": true,
+  "n_steps": 100,
+  "lr": 0.003,
+  "batch_size_pedido": 8192,
+  "batch_size_real": 8192,
+  "n_params_treinaveis": 1484067,
+  "tempo_treino_s": 1.1457267210062128,
+  "item1_overfit_1_batch": {
+    "loss_primeiros_5_media": 40.19380111694336,
+    "loss_ultimos_5_media": 1.762654995918274,
+    "razao_final_sobre_inicial": 0.04385390152053177,
+    "criterio": "razao <= 0.10",
+    "passa": true,
+    "loss_trajetoria_amostrada": [
+      61.39734649658203,
+      5.687358856201172,
+      3.5755250453948975,
+      3.0973596572875977,
+      2.8070952892303467,
+      2.687713861465454,
+      2.5365283489227295,
+      2.332219123840332,
+      2.1143627166748047,
+      1.9249435663223267,
+      1.7211945056915283
+    ]
+  },
+  "item2_gradiente": {
+    "params_mortos_por_arquitetura_esperados": [
+      "decoder.coverage_head.bias",
+      "decoder.coverage_head.weight",
+      "decoder.path_loss_head.bias",
+      "decoder.path_loss_head.weight",
+      "decoder.rssi_head.bias",
+      "decoder.rssi_head.weight"
+    ],
+    "ativos_com_gradiente_zero_em_todas_medicoes": [],
+    "passa": true
+  },
+  "item3_vazamento_correlacao": {
+    "corr_max_abs": 0.9889905452728271,
+    "achados_corr_gt_0.98": [
+      {
+        "feature_col": 6,
+        "target_col": 2,
+        "corr": 0.9889905452728271
+      },
+      {
+        "feature_col": 7,
+        "target_col": 2,
+        "corr": 0.9833930134773254
+      }
+    ],
+    "passa": false
+  },
+  "veredito_script": {
+    "item1_overfit": "passa",
+    "item2_gradiente": "passa",
+    "item3_correlacao": "bloqueia"
+  },
+  "tempo_total_s": 17.30375041598745
+}

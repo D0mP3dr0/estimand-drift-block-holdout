@@ -1,0 +1,20 @@
+{
+  "id": "3.4",
+  "pergunta": "O FSPL real de Lins Q1 treino (20,4026 dBm, baselines_analiticos.train.p_tx_eff_dbm.fspl do run JSON) coincide na 4a casa com a borda superior simulada do fismat_sympy_eqR.json (pi_bar=0.8, C_P7.pi_0.8.borda_superior_dBm=20,4022) por acaso, ou ha dependencia funcional?",
+  "alegacao": "A5 (P7): risco (i) do parecer fisico-matematico (bloco 2) sobre a coincidencia 20,4026 x 20,4022 merecer conferencia antes de virar frase no texto.",
+  "hipotese": "H0: a coincidencia e artefato de (a) pi_bar_treino real (~0.903) estar perto o bastante de 0.8 e (b) a simulacao usar d~U[1,140]km, uma faixa arbitraria escolhida sem olhar o dado real; sob outras seeds/outros intervalos de d simulados, e sob o d REAL (nao uniforme) de Lins Q1, a coincidencia na 4a casa nao se repete. H1: a coincidencia se repete de forma sistematica com d real -> ha dependencia funcional a explicar (nao acaso).",
+  "criterio_de_aceitacao": "Fixado antes de rodar: (1) calcular p(coincidencia <= 0.001 dBm por acaso) reexecutando a simulacao com >=200 seeds independentes e >=5 intervalos de d distintos (todos fixados ANTES de ver o resultado, nesta mesma rodada, sem escolher o intervalo que da a coincidencia); (2) recalcular a borda superior da banda com d REAL de Lins Q1 treino (dist_nearest_m dos nos sentinela, nao uniforme) e comparar contra o 20,4026 real. Se a borda com d real reproduzir 20,4026 na 4a casa (|diff| <= 0.001 dB) E a probabilidade de coincidencia ao acaso (H0) for baixa (< 0.05 pela distribuicao empirica das >=1000 combinacoes seed x intervalo), a alegacao muda para 'dependencia funcional a explicar'. Caso contrario ('a coincidencia com U[1,140]km foi acaso de escolha de intervalo, mas com d real ela e' esperada por construcao, pois a borda com d real e' apenas outra forma de calcular a mesma quantidade que a mediana calibrada') -> vira nota de rodape, nao alegacao central.",
+  "o_que_refuta": "Se a borda com d real diverge do 20,4026 publicado por mais de 0.01 dB, ou se a taxa de coincidencia ao acaso (|diff|<=0.001 dB) sob variacao de seed/intervalo for alta (constatando que a 4a casa colide facilmente por causa da propria formula log-distancia, nao por segredo), a leitura de 'dependencia funcional misteriosa' fica refutada e o achado correto e 'coincidencia esperada porque a borda superior da banda a pi_bar~0.8-0.9 e algebricamente proxima da mediana calibrada quando F1 e aproximadamente log-normal em distancia'.",
+  "populacao_e_definicoes": {
+    "borda_superior_simulada_original": "C_P7.pi_0.8.borda_superior_dBm do fismat_sympy_eqR.json, FSPL a 900 MHz com d~U[1,140]km (script de 11/09, fismat_sympy_eqR.py)",
+    "borda_superior_com_d_real": "quantil 1/(2*pi_bar_treino_real) de W=RSSI_sentinela+FSPL(dist_nearest_m) sobre os nos sentinela de treino de Lins Q1 (mesma definicao do teste 3.2, celula lins_Q1)",
+    "p_tx_eff_real": "baselines_analiticos.train.p_tx_eff_dbm.fspl de run_c0c1cf_lins_s42_Q1_g10b2.json = 20.402631103093142"
+  },
+  "insumos_declarados_antes_de_rodar": [
+    "draft_v2/_pareceres_2026-09-25/fismat_sympy_eqR.py e .json (sha256 citados no parecer) para reexecutar a simulacao original",
+    "run_c0c1cf_lins_s42_Q1_g10b2.json (dados/treinos_c1) para p_tx_eff_dbm.fspl e config.freq_mhz",
+    "transfer_dataset_lins_v19_Q1_enriched_v2_cftudo.pt para dist_nearest_m real dos sentinelas de treino"
+  ],
+  "fixado_em": "2026-09-25T00:00:00-03:00 (antes de rodar o script de recomputo)",
+  "script_planejado": "scripts/v3_3.4_coincidencia_fspl.py"
+}

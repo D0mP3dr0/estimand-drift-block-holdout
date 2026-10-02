@@ -1,0 +1,215 @@
+{
+ "frente": "matematica-grafos-espectral",
+ "teste": "1.7",
+ "alegacao": "A2 / P3 (prop:degree)",
+ "criterio": {
+  "id": "1.7",
+  "fase": 1,
+  "pergunta": "O subgrafo terreno-terreno induzido por particao (train/val/test, split_espacial_3vias real, buffer b) preserva o grau local dos nos retidos, ou a perda concentra-se estruturalmente em algum subconjunto?",
+  "alegacao": "A2 (Estrutura: o subgrafo induzido preserva o grau; P3, prop:degree)",
+  "hipotese": "malha regular 3600x3600 por celula; arestas terreno-terreno = (dem,adjacent_to,dem) do tensor *_gpu.pt real (adjacencia geometrica ja materializada, nao reconstruida); split_espacial_3vias identico ao codigo congelado (train_gnn_c0_spatial.py:412-472); fronteira de um no retido = distancia < 1 comprimento de aresta (~29,8 m) ate o complemento da mascara retida (scipy.ndimage.distance_transform_edt), incluindo a borda do dominio da celula.",
+  "criterio_de_aceitacao": "a razao grau_induzido/grau_original nos nos de INTERIOR e >= 0.995 em todas as celulas x sorteios executados, E a perda (razao<0.99) aparece SOMENTE em nos de fronteira; se a perda (razao<0.995) aparecer tambem no interior, P3 vira Remark (deixa de ser Proposicao com essa forma).",
+  "o_que_refuta": "qualquer celula x sorteio com razao media de interior < 0.995, OU nos de interior individuais com razao < 0.99 em fracao > ruido de arredondamento (>0.1% dos nos de interior).",
+  "arestas_cruzando_particao_esperado": 0,
+  "orcamento_declarado": "16 celulas (os 16 tensores *_gpu.pt reais existem localmente) x ate 20 sorteios se couber em 60 min CPU; caso contrario reduzir para 4 celulas (uma por cidade) x 5 sorteios, com a reducao declarada no artefato de saida",
+  "insumos": [
+   "*_gpu.pt (16 arquivos, /trabalho/TOPO_RF_DOWNLOAD_DRIVE/graph_data_v3/<cidade>_v19_<Q>_gpu.pt) -- campo (dem,adjacent_to,dem).edge_index e dem.pos (posicoes REAIS, nao sinteticas)",
+   "run_c0c1cf_<cidade>_s42_<Q>_g10b2.json (config: grid_km, buffer_km, split_frac, split_seed) -- TREINOS_DIR",
+   "train_gnn_c0_spatial.py:412-472 (split_espacial_3vias, copia literal)"
+  ],
+  "gravado_por": "matematica-grafos-espectral",
+  "data": "2026-09-25"
+ },
+ "script_sha256": "b17d1d3f45695e8fec0c672cd2acec4b266acb147ee687e0ddc4b9959360ebc5",
+ "status": "em_andamento",
+ "timing_probe": {
+  "cidade": "bauru",
+  "q": "Q1",
+  "tempo_carga_s": 11.146848678588867,
+  "tempo_um_sorteio_s": 13.044855833053589,
+  "tempo_simetria_amostra_s": 7.311288595199585,
+  "simetria_amostra": {
+   "n_amostra": 500000,
+   "n_simetricas": 500000,
+   "frac_simetrica": 1.0
+  },
+  "amostra_resultado": {
+   "cidade": "bauru",
+   "q": "Q1",
+   "split_seed": 42,
+   "n_arestas_cruzando_particao_ambas_pontas_retidas": 0,
+   "particoes": {
+    "train": {
+     "n_retidos": 9188831,
+     "n_interior": 9174664,
+     "n_fronteira": 14167,
+     "frac_fronteira": 0.00154176303819278,
+     "grau_antes_retidos": {
+      "media": 8.996590752403652,
+      "p5": 9.0,
+      "p50": 9.0,
+      "p95": 9.0,
+      "n": 9188831
+     },
+     "grau_depois_retidos": {
+      "media": 8.98681225065517,
+      "p5": 9.0,
+      "p50": 9.0,
+      "p95": 9.0,
+      "n": 9188831
+     },
+     "grau_antes_interior": {
+      "media": 8.996588757909826,
+      "p5": 9.0,
+      "p50": 9.0,
+      "p95": 9.0,
+      "n": 9174664
+     },
+     "grau_depois_interior": {
+      "media": 8.991425953037627,
+      "p5": 9.0,
+      "p50": 9.0,
+      "p95": 9.0,
+      "n": 9174664
+     },
+     "grau_antes_fronteira": {
+      "media": 8.997882402766994,
+      "p5": 9.0,
+      "p50": 9.0,
+      "p95": 9.0,
+      "n": 14167
+     },
+     "grau_depois_fronteira": {
+      "media": 5.998941201383497,
+      "p5": 6.0,
+      "p50": 6.0,
+      "p95": 6.0,
+      "n": 14167
+     },
+     "razao_media_interior": 0.9994262823503217,
+     "razao_p5_interior": 1.0,
+     "frac_interior_razao_abaixo_0995": 0.0017301996018600791,
+     "frac_interior_razao_abaixo_099": 0.0017301996018600791,
+     "razao_media_fronteira": 0.6667058814302409,
+     "razao_p5_fronteira": 0.6666666666666666,
+     "frac_fronteira_razao_abaixo_099": 1.0,
+     "razao_media_geral_retidos": 0.9989133063341307
+    },
+    "val": {
+     "n_retidos": 1033370,
+     "n_interior": 1026138,
+     "n_fronteira": 7232,
+     "frac_fronteira": 0.006998461344920019,
+     "grau_antes_retidos": {
+      "media": 8.996614958824042,
+      "p5": 9.0,
+      "p50": 9.0,
+      "p95": 9.0,
+      "n": 1033370
+     },
+     "grau_depois_retidos": {
+      "media": 8.953987439155386,
+      "p5": 9.0,
+      "p50": 9.0,
+      "p95": 9.0,
+      "n": 1033370
+     },
+     "grau_antes_interior": {
+      "media": 8.996608643281897,
+      "p5": 9.0,
+      "p50": 9.0,
+      "p95": 9.0,
+      "n": 1026138
+     },
+     "grau_depois_interior": {
+      "media": 8.974941966869952,
+      "p5": 9.0,
+      "p50": 9.0,
+      "p95": 9.0,
+      "n": 1026138
+     },
+     "grau_antes_fronteira": {
+      "media": 8.997511061946902,
+      "p5": 9.0,
+      "p50": 9.0,
+      "p95": 9.0,
+      "n": 7232
+     },
+     "grau_depois_fronteira": {
+      "media": 5.980779867256637,
+      "p5": 6.0,
+      "p50": 6.0,
+      "p95": 6.0,
+      "n": 7232
+     },
+     "razao_media_interior": 0.9975921042458876,
+     "razao_p5_interior": 1.0,
+     "frac_interior_razao_abaixo_0995": 0.0073089584441858695,
+     "frac_interior_razao_abaixo_099": 0.0073089584441858695,
+     "razao_media_fronteira": 0.6647077802359881,
+     "razao_p5_fronteira": 0.6666666666666666,
+     "frac_fronteira_razao_abaixo_099": 1.0,
+     "razao_media_geral_retidos": 0.9952624261719745
+    },
+    "test": {
+     "n_retidos": 828243,
+     "n_interior": 822214,
+     "n_fronteira": 6029,
+     "frac_fronteira": 0.007279264660250675,
+     "grau_antes_retidos": {
+      "media": 8.996328372228923,
+      "p5": 9.0,
+      "p50": 9.0,
+      "p95": 9.0,
+      "n": 828243
+     },
+     "grau_depois_retidos": {
+      "media": 8.953564352490755,
+      "p5": 9.0,
+      "p50": 9.0,
+      "p95": 9.0,
+      "n": 828243
+     },
+     "grau_antes_interior": {
+      "media": 8.996312395556387,
+      "p5": 9.0,
+      "p50": 9.0,
+      "p95": 9.0,
+      "n": 822214
+     },
+     "grau_depois_interior": {
+      "media": 8.975379888934025,
+      "p5": 9.0,
+      "p50": 9.0,
+      "p95": 9.0,
+      "n": 822214
+     },
+     "grau_antes_fronteira": {
+      "media": 8.998507215126887,
+      "p5": 9.0,
+      "p50": 9.0,
+      "p95": 9.0,
+      "n": 6029
+     },
+     "grau_depois_fronteira": {
+      "media": 5.978437551832808,
+      "p5": 6.0,
+      "p50": 6.0,
+      "p95": 6.0,
+      "n": 6029
+     },
+     "razao_media_interior": 0.9976737605213889,
+     "razao_p5_interior": 1.0,
+     "frac_interior_razao_abaixo_0995": 0.007131963211524007,
+     "frac_interior_razao_abaixo_099": 0.007131963211524007,
+     "razao_media_fronteira": 0.6643814157498019,
+     "razao_p5_fronteira": 0.6666666666666666,
+     "frac_fronteira_razao_abaixo_099": 1.0,
+     "razao_media_geral_retidos": 0.9952476373345611
+    }
+   }
+  },
+  "estimativa_16x20_min": 72.54505742390951,
+  "estimativa_4x5_min": 5.091408522923787
+ }
+}

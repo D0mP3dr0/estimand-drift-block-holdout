@@ -1,0 +1,53 @@
+{
+  "item": "A1-b, passo 1: contagem de arestas no batch do gate (reproducao fiel)",
+  "reproduz": "gpu/A1/teste_abce_overfit_v3.py --tipo gnn (mesma carga/split/loader/batch, sem treinar)",
+  "edge_type_do_parametro_morto": {
+    "nome_no_encoder": "encoder.convs.{0,1,2}.convs.<terrain___in_range_of___antenna>.lin_l.weight",
+    "edge_type_tupla": [
+      "terrain",
+      "in_range_of",
+      "antenna"
+    ],
+    "conv_class": "SAGEConv(in_channels=hidden_dim, out_channels=hidden_dim, aggr='mean')",
+    "fonte_conv": "GNN_RF_V2/02_models/gnn_rf_encoder.py:140-144",
+    "semantica": "lin_l atua sobre a agregacao MEAN dos vizinhos 'terrain' que apontam para cada 'antenna' (dst=antenna); lin_r atua sobre o embedding proprio da antena (self/root). Se NENHUMA aresta terrain->antenna cai no subgrafo amostrado, a agregacao e o vetor zero para TODAS as antenas do batch, e lin_l nunca recebe gradiente (matriz constante x zero)."
+  },
+  "cidade": "bauru",
+  "quadrante": "Q2",
+  "max_nodes": 100000,
+  "split_seed": 42,
+  "batch_size_pedido": 8192,
+  "batch_size_real_bs_sementes": 8192,
+  "arestas_janela_completa_100k": {
+    "antenna___propagates_to___terrain": 498335,
+    "terrain___in_range_of___antenna": 498335,
+    "terrain___connects_to___terrain": 893217
+  },
+  "arestas_graph_train_induzido": {
+    "antenna___propagates_to___terrain": 344805,
+    "terrain___in_range_of___antenna": 344805,
+    "terrain___connects_to___terrain": 613023
+  },
+  "arestas_no_batch_amostrado_pelo_neighborloader": {
+    "antenna___propagates_to___terrain": 40960,
+    "terrain___in_range_of___antenna": 0,
+    "terrain___connects_to___terrain": 64712
+  },
+  "n_antenas_destino_distintas_com_aresta_ta_no_batch": 0,
+  "hipotese_do_chefe_confirmada": true,
+  "features_antena_ctx_completo": {
+    "shape": [
+      794,
+      6
+    ],
+    "todas_zero": false,
+    "fracao_linhas_todas_zero": 0.0,
+    "norma_media_por_linha": 1747.2650146484375,
+    "no_batch_shape": [
+      15,
+      6
+    ],
+    "no_batch_todas_zero": false
+  },
+  "tempo_total_s": 15.584085644994047
+}

@@ -1,0 +1,185 @@
+{
+ "T2_retencao_v3-12": {
+  "compilou": true,
+  "returncode": 0,
+  "erros": [],
+  "largura_natural_pt": 470.85178,
+  "largura_texto_pt": 394.36,
+  "overfull_hbox_pt": [
+   "73.15845"
+  ],
+  "pdf_gerado": true
+ },
+ "T3_deriva_erro_v3-12": {
+  "compilou": true,
+  "returncode": 0,
+  "erros": [],
+  "largura_natural_pt": 430.16763,
+  "largura_texto_pt": 394.36,
+  "overfull_hbox_pt": [
+   "32.4743"
+  ],
+  "pdf_gerado": true
+ },
+ "T3_resumo_v3-12": {
+  "compilou": true,
+  "returncode": 0,
+  "erros": [],
+  "largura_natural_pt": 343.60638,
+  "largura_texto_pt": 394.36,
+  "overfull_hbox_pt": [],
+  "pdf_gerado": true
+ },
+ "T4_S2_v3-12": {
+  "compilou": true,
+  "returncode": 0,
+  "erros": [],
+  "largura_natural_pt": 571.0847,
+  "largura_texto_pt": 394.36,
+  "overfull_hbox_pt": [
+   "173.39137"
+  ],
+  "pdf_gerado": true
+ },
+ "T4_inversao_v3-12": {
+  "compilou": true,
+  "returncode": 0,
+  "erros": [],
+  "largura_natural_pt": 561.75134,
+  "largura_texto_pt": 394.36,
+  "overfull_hbox_pt": [
+   "164.05801"
+  ],
+  "pdf_gerado": true
+ },
+ "T4_totais_v3-12": {
+  "compilou": true,
+  "returncode": 0,
+  "erros": [],
+  "largura_natural_pt": 471.75107,
+  "largura_texto_pt": 394.36,
+  "overfull_hbox_pt": [
+   "74.05774"
+  ],
+  "pdf_gerado": true
+ },
+ "T5_inclusao_por_classe_v3-12": {
+  "compilou": true,
+  "returncode": 0,
+  "erros": [],
+  "largura_natural_pt": 452.55669,
+  "largura_texto_pt": 394.36,
+  "overfull_hbox_pt": [
+   "54.86336"
+  ],
+  "pdf_gerado": true
+ },
+ "T6_referencia_desenho_v3-12": {
+  "compilou": true,
+  "returncode": 0,
+  "erros": [],
+  "largura_natural_pt": 473.36447,
+  "largura_texto_pt": 394.36,
+  "overfull_hbox_pt": [
+   "75.67114"
+  ],
+  "pdf_gerado": true
+ },
+ "T7_deriva_modelo_A4_v3-12": {
+  "compilou": true,
+  "returncode": 0,
+  "erros": [],
+  "largura_natural_pt": 427.8897,
+  "largura_texto_pt": 394.36,
+  "overfull_hbox_pt": [
+   "30.19637"
+  ],
+  "pdf_gerado": true
+ },
+ "T7b_deriva_modelo_A4_v3-12": {
+  "compilou": true,
+  "returncode": 0,
+  "erros": [],
+  "largura_natural_pt": 353.11171,
+  "largura_texto_pt": 394.36,
+  "overfull_hbox_pt": [],
+  "pdf_gerado": true
+ },
+ "T8_termo_desenho_v3-12": {
+  "compilou": true,
+  "returncode": 0,
+  "erros": [],
+  "largura_natural_pt": 349.27856,
+  "largura_texto_pt": 394.36,
+  "overfull_hbox_pt": [],
+  "pdf_gerado": true
+ },
+ "TA1_hiperparametros_v3-12": {
+  "compilou": true,
+  "returncode": 0,
+  "erros": [],
+  "largura_natural_pt": 394.2549,
+  "largura_texto_pt": 394.36,
+  "overfull_hbox_pt": [],
+  "pdf_gerado": true
+ },
+ "TA1a_hiperparametros_arquitetura_perda_v3-12": {
+  "compilou": true,
+  "returncode": 0,
+  "erros": [],
+  "largura_natural_pt": 394.2549,
+  "largura_texto_pt": 394.36,
+  "overfull_hbox_pt": [],
+  "pdf_gerado": true
+ },
+ "TA1b_hiperparametros_otimizacao_custo_v3-12": {
+  "compilou": true,
+  "returncode": 0,
+  "erros": [],
+  "largura_natural_pt": 394.2549,
+  "largura_texto_pt": 394.36,
+  "overfull_hbox_pt": [],
+  "pdf_gerado": true
+ },
+ "TN_notacao_v3-12": {
+  "compilou": true,
+  "returncode": 0,
+  "erros": [],
+  "largura_natural_pt": 394.26091,
+  "largura_texto_pt": 394.36,
+  "overfull_hbox_pt": [],
+  "pdf_gerado": true
+ },
+ "antiga_T2_retencao_v3": {
+  "so_comparacao_v3-11g": true,
+  "largura_natural_pt": 690.99107
+ },
+ "antiga_T3_deriva_erro_v3": {
+  "so_comparacao_v3-11g": true,
+  "largura_natural_pt": 664.50128
+ },
+ "antiga_T4_inversao_v3": {
+  "so_comparacao_v3-11g": true,
+  "largura_natural_pt": 561.75134
+ },
+ "antiga_T5_banda_p7_v3": {
+  "so_comparacao_v3-11g": true,
+  "largura_natural_pt": 328.282
+ },
+ "antiga_T6_paridade_A3_v3": {
+  "so_comparacao_v3-11g": true,
+  "largura_natural_pt": 604.66792
+ },
+ "antiga_T7_deriva_modelo_A4_v3": {
+  "so_comparacao_v3-11g": true,
+  "largura_natural_pt": 481.2231
+ },
+ "antiga_T8_paridade_A4_v3": {
+  "so_comparacao_v3-11g": true,
+  "largura_natural_pt": 463.37589
+ },
+ "antiga_T9_larguras_A4_v3": {
+  "so_comparacao_v3-11g": true,
+  "largura_natural_pt": 411.38965
+ }
+}
