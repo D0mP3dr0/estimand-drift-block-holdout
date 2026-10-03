@@ -22,11 +22,16 @@ DOC = r"""\documentclass[10pt]{article}
 \newsavebox{\bx}\sbox{\bx}{\input{%s}}\typeout{LARGURA_NATURAL=\the\wd\bx}
 \end{document}
 """
+# v3-12h: arquivos com ambiente table (T9: table[H] + caption + label) entram pelo invólucro \tabcorpo do manuscrito (main.tex linha 51), como em parts/*.tex
+DOC_TAB = DOC.replace(r"\begin{document}", r"\providecommand{\tabcorpo}[1]{\begingroup\renewenvironment{table}[1][]{}{}\renewcommand{\caption}[1]{}\renewcommand{\label}[1]{}\input{#1}\endgroup}" + "\n" + r"\begin{document}", 1) \
+    .replace(r"\input{%s}" + "\n" + r"\end{minipage}", r"\tabajusta{\tabcorpo{%s}}" + "\n" + r"\end{minipage}", 1) \
+    .replace(r"\sbox{\bx}{\input{%s}}", r"\sbox{\bx}{\tabcorpo{%s}}", 1)
 res = {}
 ok_todas = True
 for t in sorted(TAB.glob("T*_v3-12.tex")):
     nome = t.stem
-    (W / f"{nome}.tex").write_text(DOC % (t, t), encoding="utf-8")
+    modelo = DOC_TAB if "\\begin{table}" in t.read_text(encoding="utf-8") else DOC
+    (W / f"{nome}.tex").write_text(modelo % (t, t), encoding="utf-8")
     r = subprocess.run(["pdflatex", "-interaction=nonstopmode", "-halt-on-error", f"{nome}.tex"], cwd=W, capture_output=True, text=True, timeout=120)
     log = (W / f"{nome}.log").read_text(encoding="latin-1")
     over = re.findall(r"Overfull \\hbox \(([\d.]+)pt too wide\)", log)

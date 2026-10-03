@@ -1,0 +1,24 @@
+% gerado por _pipeline/v3_12h_gerar_T9_G1.py -- nao editar a mao
+% T9: lote G1, modelos treinados a g = 10 km, b = 2 km; 4 celulas x GNN/MLP; fontes gpu/G1/agregado_G1_v5_bloco1.json, agregado_G1_v5_bloco2.json (so a coluna de dp entre sementes, so Q1), agregado_G1_v8_bloco3.json; 'Draws excluded' = sem_validos+nao_treinaveis (so onde ha); 'same' = valor da celula, impresso na linha da GNN; ambiente table[H] com legenda e label (o \tabcorpo do manuscrito os neutraliza)
+\begin{table}[H]
+\caption{Valid-node error drift of the trained models across split draws. Trained models at the main geometry ($g = 10$~km, $b = 2$~km), training budget of eight epochs, training seed $42$ for the across-draw SD; $0.132$~dB is the largest difference between two training repeats with the same seed and partition at $g = 5$~km; pooled seed SD from three seeds $\times$ five draws in Bauru Q1 and three seeds $\times$ ten draws in Campinas Q1; draws without a valid test node or with a validation partition without an antenna--terrain edge were recorded and not replaced. Draws excluded are shown as draws without a valid test node plus draws whose validation partition has no antenna--terrain edge; Sentinel parity has one value per cell, printed in the GNN row, and ``same'' repeats it; --: not run, since the crossed seed block covers only the Q1 cells.}
+\label{tab:drift_models_g10}
+\centering
+\begin{tabular}{llccccccc}
+\toprule
+Cell & Model & \celula{Draws used \\ \relax (of 20)} & \celula{Draws \\ \relax excluded} & \celula{SD across \\ \relax draws of \\ \relax valid-node \\ \relax MAE (dB)} & \celula{Ratio to \\ \relax $0.132\,\mathrm{dB}$} & \celula{Pooled SD \\ \relax across \\ \relax seeds (dB)} & \celula{Spearman \\ \relax with \\ \relax constant-predictor \\ \relax valid-node \\ \relax MAE across \\ \relax draws} & \celula{Sentinel \\ \relax parity: \\ \relax median \\ \relax $|\mathrm{GNN}-\mathrm{MLP}|$ \\ \relax (dB)} \\
+\midrule
+Bauru Q1 & GNN & 20 & 0 & 1.25 & 9.5 & 0.12 & 0.61 & 0.028 \\
+ & MLP & 20 & 0 & 1.13 & 8.6 & 0.31 & 0.61 & same \\
+\midrule
+Campinas Q1 & GNN & 20 & 0 & 3.26 & 24.7 & 0.43 & 0.37 & 0.036 \\
+ & MLP & 20 & 0 & 2.01 & 15.2 & 0.67 & 0.33 & same \\
+\midrule
+Bauru Q3 & GNN & 16 & 2+2 & 3.86 & 29.2 & -- & 0.95 & 0.032 \\
+ & MLP & 16 & 2+2 & 4.08 & 30.9 & -- & 0.77 & same \\
+\midrule
+Campinas Q3 & GNN & 19 & 1+0 & 2.46 & 18.6 & -- & 0.91 & 0.027 \\
+ & MLP & 19 & 1+0 & 3.08 & 23.3 & -- & 0.82 & same \\
+\bottomrule
+\end{tabular}
+\end{table}

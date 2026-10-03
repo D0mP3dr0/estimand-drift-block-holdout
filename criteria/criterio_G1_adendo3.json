@@ -1,0 +1,14 @@
+{
+ "id": "G1_modelos_g10_adendo3",
+ "emenda": "criterios/criterio_G1_adendo2.json (sha256 5089c7f869adb34d5172201b3e6c1e57ad383515c25af73e59f739acfe8e80d0), que fica intacto; adendos 1 e 2 intactos",
+ "origem": "fato observado no lote (02/10, 18:03-18:42): nos sorteios 125243 (Bauru Q3) e 739191 (Bauru Q3 e Campinas Q3), previstos como sem no valido pelo 2.1, o treinador congelado aborta ANTES do treino com 'PARTICAO DEGENERADA: test sem nenhuma aresta antena->terreno' (rc=1) e grava um run JSON PARCIAL (sem bloco de treino/selecao, sem .npz, sem sidecar). A regra C2 do agregador v5 exige conferencias que o run JSON parcial nao pode atender (ex.: sha do dataset no bloco de insumos), e abortaria o bloco 3 inteiro.",
+ "prova_de_anterioridade": {
+  "agregados_bloco3_existentes": [],
+  "nota": "nenhum agregado do bloco 3 existe; nenhum MAE do bloco 3 foi lido pelo chefe. Blocos 1 e 2 ja agregados e recalculados, nao sao afetados (sem corridas sem_validos)."
+ },
+ "fixacao": {
+  "corrida_sem_validos": "E aceita como 'sem validos' (excluida do dp, contada por celula, fora da mediana de paridade por nao ter predicao) quando, E SOMENTE QUANDO: (a) o 2.1 registra validos == 0 para a celula e o split_seed; (b) o status do lote registra rc != 0 com sem_validos == true e o log da corrida contem a mensagem de particao degenerada ou equivalente; (c) o run JSON parcial existe e traz g = 10 e b = 2, seed e split_seed iguais ao plano, dataset com o nome/sha esperado nos campos que ele contem, e particoes.test.n_pl_alvo_valido == 0 (ou campo equivalente da guarda de particao degenerada); as conferencias que dependem de treino concluido (selecao, .npz, sidecar, amarracao) nao se aplicam a essa corrida. Qualquer uma das tres faltando: aborta.",
+  "leitura": "inalterada: 20 sorteios do plano por celula; dp sobre os sorteios com validos; contagem de sem_validos relatada (adendo 1, emenda 6)."
+ },
+ "fixado_em": "2026-10-02T19:28:48-03:00"
+}

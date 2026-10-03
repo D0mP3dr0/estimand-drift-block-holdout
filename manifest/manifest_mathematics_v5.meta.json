@@ -161,6 +161,12 @@
         "v3_12_gerar_folha_fatos",
         "v3_12_gerar_tabelas",
         "v3_12_montar_main",
+        "v3_12_montar_pacote_limpo",
+        "v3_13_R5_variancia_um_sorteio",
+        "v3_13_R6_nivel_sentinela",
+        "v3_13_R7_sementes_x_sorteios",
+        "v3_13_folha_adendo3",
+        "v3_13_laco_comum",
         "v3_2.1_3.1_deriva_calibracao",
         "v3_2.3b_por_sorteio",
         "v3_3.2_banda_p7_bordas_reais",
@@ -172,6 +178,16 @@
         "v3_A3_agregar",
         "v3_A4_agregar",
         "v3_A4_suplemento_inversao_validos",
+        "v3_G1_agregar",
+        "v3_G1_agregar_v10",
+        "v3_G1_agregar_v2",
+        "v3_G1_agregar_v3",
+        "v3_G1_agregar_v4",
+        "v3_G1_agregar_v5",
+        "v3_G1_agregar_v6",
+        "v3_G1_agregar_v7",
+        "v3_G1_agregar_v8",
+        "v3_G1_agregar_v9",
         "v3_fig1_block_erosion",
         "v3_gerar_figuras",
         "v3_gerar_folha_fase1",
@@ -181,7 +197,7 @@
         "v3_resposta_cego_calculos",
         "validar_manifest_mathematics_v5"
       ],
-      "encontrado": 67,
+      "encontrado": 83,
       "esperado": null,
       "esperado_atualizado_v4": [
         "blocos_efetivos_20celulas",
@@ -251,7 +267,7 @@
       "esperado": 16
     },
     "v3_2026_09_25_criterios": {
-      "encontrado": 28
+      "encontrado": 37
     }
   },
   "contagens_por_grupo": {
@@ -389,11 +405,11 @@
       "tamanho_bytes": 83104
     },
     "scripts_artigo2": {
-      "linhas": 67,
+      "linhas": 83,
       "pendentes_de_hash": 0,
       "sha_reaproveitado_v4": 0,
-      "sha_recalculado_v5": 67,
-      "tamanho_bytes": 1150656
+      "sha_recalculado_v5": 83,
+      "tamanho_bytes": 1790925
     },
     "scripts_produtores": {
       "linhas": 8,
@@ -424,18 +440,18 @@
       "tamanho_bytes": 553517
     },
     "v3_12_tabelas": {
-      "linhas": 136,
+      "linhas": 145,
       "pendentes_de_hash": 0,
       "sha_reaproveitado_v4": 0,
-      "sha_recalculado_v5": 136,
-      "tamanho_bytes": 1489700
+      "sha_recalculado_v5": 145,
+      "tamanho_bytes": 1607301
     },
     "v3_2026_09_25_criterios": {
-      "linhas": 28,
+      "linhas": 37,
       "pendentes_de_hash": 0,
       "sha_reaproveitado_v4": 0,
-      "sha_recalculado_v5": 28,
-      "tamanho_bytes": 109338
+      "sha_recalculado_v5": 37,
+      "tamanho_bytes": 130671
     },
     "v3_fase1": {
       "linhas": 24,
@@ -466,25 +482,25 @@
       "tamanho_bytes": 7210666
     },
     "v3_gpu_agregados_scripts_logs": {
-      "linhas": 597,
+      "linhas": 1529,
       "pendentes_de_hash": 0,
       "sha_reaproveitado_v4": 0,
-      "sha_recalculado_v5": 597,
-      "tamanho_bytes": 21501377
+      "sha_recalculado_v5": 1529,
+      "tamanho_bytes": 51421077
     },
     "v3_gpu_checkpoints_pt": {
-      "linhas": 165,
+      "linhas": 375,
       "pendentes_de_hash": 0,
       "sha_reaproveitado_v4": 0,
-      "sha_recalculado_v5": 165,
-      "tamanho_bytes": 3229017317
+      "sha_recalculado_v5": 375,
+      "tamanho_bytes": 7294248339
     },
     "v3_gpu_predicoes_npz": {
-      "linhas": 164,
+      "linhas": 374,
       "pendentes_de_hash": 0,
       "sha_reaproveitado_v4": 0,
-      "sha_recalculado_v5": 164,
-      "tamanho_bytes": 1460470270
+      "sha_recalculado_v5": 374,
+      "tamanho_bytes": 10402911470
     },
     "v3_votos": {
       "linhas": 340,
@@ -544,7 +560,7 @@
       "tamanho_bytes": 57029
     }
   ],
-  "data": "2026-10-02",
+  "data": "2026-10-03",
   "dependencias_vivas": [
     {
       "caminho_rel": "03_training/spatial_cv.py",
@@ -720,15 +736,15 @@
   ],
   "detalhe_grupos_novos": {
     "checkpoints_treinos_evidencia": {
-      "hashes_calculados_agora": 0,
+      "hashes_calculados_agora": 238,
       "ja_no_base_v4_nao_duplicadas": 0,
       "linhas": 238,
       "pendentes_de_hash": 0,
-      "segundos_hash": 0.0,
+      "segundos_hash": 1.7,
       "tamanho_bytes": 5039404918
     },
     "dependencias_vivas": {
-      "hashes_calculados_agora": 0,
+      "hashes_calculados_agora": 17,
       "ja_no_base_v4_nao_duplicadas": 2,
       "linhas": 17,
       "pendentes_de_hash": 0,
@@ -736,7 +752,7 @@
       "tamanho_bytes": 297041
     },
     "graf_data_v3_manifesto": {
-      "hashes_calculados_agora": 0,
+      "hashes_calculados_agora": 2,
       "ja_no_base_v4_nao_duplicadas": 0,
       "linhas": 2,
       "pendentes_de_hash": 0,
@@ -744,15 +760,15 @@
       "tamanho_bytes": 10541
     },
     "grafos_gpu_arestas": {
-      "hashes_calculados_agora": 0,
+      "hashes_calculados_agora": 16,
       "ja_no_base_v4_nao_duplicadas": 0,
       "linhas": 16,
       "pendentes_de_hash": 0,
-      "segundos_hash": 0.0,
+      "segundos_hash": 141.6,
       "tamanho_bytes": 249258637712
     },
     "v3_12_figuras": {
-      "hashes_calculados_agora": 12,
+      "hashes_calculados_agora": 28,
       "ja_no_base_v4_nao_duplicadas": 0,
       "linhas": 28,
       "pendentes_de_hash": 0,
@@ -760,7 +776,7 @@
       "tamanho_bytes": 1179557
     },
     "v3_12_folha_de_fatos_adendo": {
-      "hashes_calculados_agora": 0,
+      "hashes_calculados_agora": 2,
       "ja_no_base_v4_nao_duplicadas": 0,
       "linhas": 2,
       "pendentes_de_hash": 0,
@@ -768,31 +784,31 @@
       "tamanho_bytes": 553517
     },
     "v3_12_tabelas": {
-      "hashes_calculados_agora": 128,
+      "hashes_calculados_agora": 145,
       "ja_no_base_v4_nao_duplicadas": 0,
-      "linhas": 136,
+      "linhas": 145,
       "pendentes_de_hash": 0,
       "segundos_hash": 0.1,
-      "tamanho_bytes": 1489700
+      "tamanho_bytes": 1607301
     },
     "v3_criterios_demais": {
       "hashes_calculados_agora": 0,
-      "ja_no_base_v4_nao_duplicadas": 28,
+      "ja_no_base_v4_nao_duplicadas": 37,
       "linhas": 0,
       "pendentes_de_hash": 0,
       "segundos_hash": 0.0,
       "tamanho_bytes": 0
     },
     "v3_fase1": {
-      "hashes_calculados_agora": 0,
+      "hashes_calculados_agora": 24,
       "ja_no_base_v4_nao_duplicadas": 0,
       "linhas": 24,
       "pendentes_de_hash": 0,
-      "segundos_hash": 0.0,
+      "segundos_hash": 0.1,
       "tamanho_bytes": 2079481
     },
     "v3_fase2": {
-      "hashes_calculados_agora": 0,
+      "hashes_calculados_agora": 34,
       "ja_no_base_v4_nao_duplicadas": 0,
       "linhas": 34,
       "pendentes_de_hash": 0,
@@ -800,7 +816,7 @@
       "tamanho_bytes": 3847591
     },
     "v3_fase3": {
-      "hashes_calculados_agora": 0,
+      "hashes_calculados_agora": 21,
       "ja_no_base_v4_nao_duplicadas": 0,
       "linhas": 21,
       "pendentes_de_hash": 0,
@@ -808,7 +824,7 @@
       "tamanho_bytes": 499236
     },
     "v3_fase4": {
-      "hashes_calculados_agora": 10,
+      "hashes_calculados_agora": 112,
       "ja_no_base_v4_nao_duplicadas": 0,
       "linhas": 112,
       "pendentes_de_hash": 0,
@@ -816,35 +832,35 @@
       "tamanho_bytes": 7210666
     },
     "v3_gpu_agregados_scripts_logs": {
-      "hashes_calculados_agora": 0,
+      "hashes_calculados_agora": 1529,
       "ja_no_base_v4_nao_duplicadas": 0,
-      "linhas": 597,
+      "linhas": 1529,
       "pendentes_de_hash": 0,
-      "segundos_hash": 0.0,
-      "tamanho_bytes": 21501377
+      "segundos_hash": 0.6,
+      "tamanho_bytes": 51421077
     },
     "v3_gpu_checkpoints_pt": {
-      "hashes_calculados_agora": 0,
+      "hashes_calculados_agora": 375,
       "ja_no_base_v4_nao_duplicadas": 0,
-      "linhas": 165,
+      "linhas": 375,
       "pendentes_de_hash": 0,
-      "segundos_hash": 0.0,
-      "tamanho_bytes": 3229017317
+      "segundos_hash": 1.7,
+      "tamanho_bytes": 7294248339
     },
     "v3_gpu_predicoes_npz": {
-      "hashes_calculados_agora": 0,
+      "hashes_calculados_agora": 374,
       "ja_no_base_v4_nao_duplicadas": 0,
-      "linhas": 164,
+      "linhas": 374,
       "pendentes_de_hash": 0,
-      "segundos_hash": 0.0,
-      "tamanho_bytes": 1460470270
+      "segundos_hash": 1.2,
+      "tamanho_bytes": 10402911470
     },
     "v3_votos": {
-      "hashes_calculados_agora": 0,
+      "hashes_calculados_agora": 340,
       "ja_no_base_v4_nao_duplicadas": 0,
       "linhas": 340,
       "pendentes_de_hash": 0,
-      "segundos_hash": 0.0,
+      "segundos_hash": 0.1,
       "tamanho_bytes": 1965252
     }
   },
@@ -883,18 +899,18 @@
         "diferencas": {
           "sha256": {
             "v4": "82aa550427e8054bede9625c41498db4e9953ee5d29fc45875f06e45aec1d9e9",
-            "v5": "b3bb19875c0a4680dda66e889838c01808335e21e08378958b0f52ce2179913a"
+            "v5": "0820929ab6248ece1ab91e06503a23fe719519f7672800b58d739744380bca88"
           },
           "tamanho_bytes": {
             "v4": 1326,
-            "v5": 7824
+            "v5": 9761
           }
         },
         "grupo_v5": "v3_2026_09_25_criterios"
       }
     ],
     "n_linhas_v4": 895,
-    "n_linhas_v5": 2841,
+    "n_linhas_v5": 4227,
     "novos_grupos_v5_contagem": {
       "checkpoints_treinos_evidencia": 238,
       "dependencias_vivas": 17,
@@ -902,15 +918,15 @@
       "grafos_gpu_arestas": 16,
       "v3_12_figuras": 28,
       "v3_12_folha_de_fatos_adendo": 2,
-      "v3_12_tabelas": 136,
+      "v3_12_tabelas": 145,
       "v3_criterios_demais": 0,
       "v3_fase1": 24,
       "v3_fase2": 34,
       "v3_fase3": 21,
       "v3_fase4": 112,
-      "v3_gpu_agregados_scripts_logs": 597,
-      "v3_gpu_checkpoints_pt": 165,
-      "v3_gpu_predicoes_npz": 164,
+      "v3_gpu_agregados_scripts_logs": 1529,
+      "v3_gpu_checkpoints_pt": 375,
+      "v3_gpu_predicoes_npz": 374,
       "v3_votos": 340
     },
     "novos_nos_grupos_dinamicos_do_v4": [
@@ -926,10 +942,19 @@
       "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/criterios/criterio_A3_analise.json",
       "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/criterios/criterio_A4.json",
       "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/criterios/criterio_A4_suplemento_validos.json",
+      "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/criterios/criterio_G1_adendo1.json",
+      "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/criterios/criterio_G1_adendo2.json",
+      "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/criterios/criterio_G1_adendo3.json",
+      "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/criterios/criterio_G1_adendo4.json",
+      "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/criterios/criterio_G1_modelos_g10.json",
+      "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/criterios/criterio_G1b_campinas_bloco_cruzado.json",
       "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/criterios/criterio_R1_b0.json",
       "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/criterios/criterio_R2_referencia_desenho.json",
       "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/criterios/criterio_R3_termo_desenho.json",
       "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/criterios/criterio_R4_p_fechado_vs_frequencia.json",
+      "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/criterios/criterio_R5_variancia_um_sorteio.json",
+      "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/criterios/criterio_R6_nivel_do_sentinela.json",
+      "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/criterios/criterio_R7_sementes_x_sorteios_existentes.json",
       "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/criterios/criterio_resposta_cego_v3-10.json",
       "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/scripts/gerar_manifest_mathematics_v5.py",
       "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/scripts/v3_1.5b_exata_vs_nodal200.py",
@@ -948,6 +973,12 @@
       "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/scripts/v3_12_gerar_folha_fatos.py",
       "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/scripts/v3_12_gerar_tabelas.py",
       "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/scripts/v3_12_montar_main.py",
+      "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/scripts/v3_12_montar_pacote_limpo.py",
+      "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/scripts/v3_13_R5_variancia_um_sorteio.py",
+      "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/scripts/v3_13_R6_nivel_sentinela.py",
+      "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/scripts/v3_13_R7_sementes_x_sorteios.py",
+      "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/scripts/v3_13_folha_adendo3.py",
+      "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/scripts/v3_13_laco_comum.py",
       "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/scripts/v3_2.3b_por_sorteio.py",
       "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/scripts/v3_3.7b_decomposicao_por_celula.py",
       "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/scripts/v3_3.9_colunas_lidar.py",
@@ -956,6 +987,16 @@
       "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/scripts/v3_A3_agregar.py",
       "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/scripts/v3_A4_agregar.py",
       "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/scripts/v3_A4_suplemento_inversao_validos.py",
+      "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/scripts/v3_G1_agregar.py",
+      "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/scripts/v3_G1_agregar_v10.py",
+      "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/scripts/v3_G1_agregar_v2.py",
+      "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/scripts/v3_G1_agregar_v3.py",
+      "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/scripts/v3_G1_agregar_v4.py",
+      "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/scripts/v3_G1_agregar_v5.py",
+      "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/scripts/v3_G1_agregar_v6.py",
+      "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/scripts/v3_G1_agregar_v7.py",
+      "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/scripts/v3_G1_agregar_v8.py",
+      "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/scripts/v3_G1_agregar_v9.py",
       "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/scripts/v3_fig1_block_erosion.py",
       "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/scripts/v3_gerar_figuras.py",
       "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/scripts/v3_gerar_folha_fase1.py",
@@ -968,9 +1009,9 @@
     "sumiu_da_cobertura_mas_existe_no_disco": [],
     "sumiu_do_disco": []
   },
-  "duracao_s": 3.3,
+  "duracao_s": 151.2,
   "excluidos_da_varredura": "__pycache__/ e *.pyc dentro de _v3_2026-09-25/",
-  "gerado_em": "2026-10-02T00:43:11.411949+00:00",
+  "gerado_em": "2026-10-03T23:14:21.112129+00:00",
   "grupos_pendentes_de_hash": [],
   "localizado_com_ressalva": [
     {
@@ -998,11 +1039,11 @@
       "ressalva": "nao existem como arquivo autonomo: sao recomputados por spatial_cv (sha no manifesto) a partir do tensor, grid_km/buffer_km e split_seed; cada run JSON registra `particoes.*.idx_sha256_global` e os .npz de predicao (R2 e3_predicoes, gpu/*) trazem `idx_global` dos nos de teste"
     }
   ],
-  "n_caminhos_distintos": 2781,
+  "n_caminhos_distintos": 4167,
   "n_caminhos_em_mais_de_um_grupo": 60,
-  "n_linhas": 2841,
-  "n_linhas_base_v4_reexecutado": 945,
-  "n_linhas_novas_v5": 1896,
+  "n_linhas": 4227,
+  "n_linhas_base_v4_reexecutado": 970,
+  "n_linhas_novas_v5": 3257,
   "nao_localizado": [],
   "nota_estado": "snapshot de redacao_v3-12 (tables/figures) e scripts/ em curso na data; mtime e sha registram o estado no momento da geracao",
   "protocolo": "ROADMAP_v3-12_major_revision.md sec. 5 / D9; ordem do dono 01/10/2026 17:12; ata escritor_cientifico 2026-10-01 (Adendo 2)",
@@ -1022,12 +1063,12 @@
     "reaproveitados_do_v4_mtime_e_tamanho_inalterados": 16,
     "recalculados_por_mudanca_ou_novos": []
   },
-  "saida": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/manifest_mathematics_v5.jsonl",
-  "saida_sha256": "0117001cad0a6d818f70e8819b45185d452cc2bf0f0fc44d1e83abd601c933f0",
+  "saida": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_repositorio_artigo2/_manifest_v5_regerado/manifest_mathematics_v5.jsonl",
+  "saida_sha256": "c196b55c9872804e51f1480e110cd81b78df3ec729219d877d8a84ae70b7ef9f",
   "script": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/scripts/gerar_manifest_mathematics_v5.py",
   "script_sha256": "40b3482027835b820a617bc1bedc9a87e5167b0e8487f5b0f58849d1ebab1bc1",
   "scripts_v3_atuais_sem_linha": [],
-  "tamanho_total_bytes": 712772086892,
+  "tamanho_total_bytes": 725810458017,
   "v4_manifest_comparado": {
     "caminho": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/manifest_mathematics_v4.jsonl",
     "n_linhas": 895,

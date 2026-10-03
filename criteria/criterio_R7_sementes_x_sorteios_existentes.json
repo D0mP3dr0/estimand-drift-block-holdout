@@ -1,0 +1,11 @@
+{
+ "id": "R7_sementes_x_sorteios_existentes",
+ "subclaim": "S8",
+ "origem": "três leituras cegas simuladas (v3-11g, v3-12c, v3-12g) e ordem do dono de 01/10/2026 à noite: título 'Estimand Drift under Spatial Block Hold-Out' aceito; 'execute o treino em gpu'",
+ "pergunta": "Nas corridas ja feitas a g=5 km (A3: 5 sementes de treino no sorteio 42; A4: 5 sorteios na semente 42), em Bauru Q1 e Bauru Q3 (as celulas presentes nos dois lotes), o dp do MAE nos validos entre sorteios excede o dp entre sementes, para GNN e MLP?",
+ "metodo_fixado": "dp ddof=1 de mae nos validos (potencia recebida) entre as 5 sementes (A3) e entre os 5 sorteios (A4), por celula e modelo; razao; sem treino novo.",
+ "previsao": "razao sorteio/semente acima de 2 nos quatro pares celula-modelo.",
+ "leitura": "razao >= 2 em >= 3 dos 4 pares -> REFORCA (uma oracao: a deriva entre sorteios excede a variacao entre sementes). Caso contrario DELIMITA (a frase fica com os dois desvios lado a lado). O desenho nao e cruzado; o cruzado e o teste G1.",
+ "se_inverter": "nao inverte.",
+ "fixado_em": "2026-10-01T22:47:16-03:00 (antes de existir qualquer script ou resultado deste teste)"
+}

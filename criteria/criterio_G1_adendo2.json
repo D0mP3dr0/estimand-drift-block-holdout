@@ -1,0 +1,17 @@
+{
+ "id": "G1_modelos_g10_adendo2",
+ "emenda": "criterios/criterio_G1_adendo1.json (sha256 e36a6294948566905f50ca5adebe325c3d5a003178a18397ed499fad4eb409e5), que fica intacto",
+ "origem": "ambiguidades do adendo 1 resolvidas na implementacao do agregador scripts/v3_G1_agregar_v2.py (sha256 d94fac29dcf6c694cab9bec55c4bdd9e2701fe5baf2675cbfe0aa77a5c155824); o chefe as fixa aqui antes de qualquer agregado.",
+ "prova_de_anterioridade": {
+  "agregados_existentes": [],
+  "nota": "nenhum MAE de corrida real do lote foi calculado nem lido; o agregador so rodou contra dados sinteticos e em modo de conferencia sem MAE."
+ },
+ "fixacoes": {
+  "comparador_Q1": "dp entre sementes pooled POR CELULA e modelo (raiz de QM_dentro da propria celula); a alternativa com as duas cidades juntas e so informativa.",
+  "bloco3_incompleto": "prefixo CONTIGUO de sorteios com as 4 corridas completas; k >= 10 sorteios com nos validos por celula dentro do prefixo; so com o lote terminado.",
+  "delimita": "uma celula conta para DELIMITA quando GNN e MLP ficam abaixo de 2 x o mesmo comparador; limiar 3 de 4 celulas (2 de 2 se so as Q1 entram).",
+  "delimita_parcial": "(a) condicao 1 no limiar de celulas sem condicao 2 nas duas Q1; (b) nenhuma das duas regras no limiar. O caso residual sem celula na faixa 2x-3x tambem e DELIMITA PARCIAL.",
+  "paridade": "corrida sem .npz (falhou por nao haver no valido) fica fora da mediana de paridade e e contada e listada."
+ },
+ "fixado_em": "2026-10-01T23:51:05-03:00"
+}

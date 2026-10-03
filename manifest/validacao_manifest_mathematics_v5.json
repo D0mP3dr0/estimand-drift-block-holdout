@@ -1,5 +1,5 @@
 {
-  "manifest_validado": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/manifest_mathematics_v5.jsonl",
+  "manifest_validado": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_repositorio_artigo2/_manifest_v5_regerado/manifest_mathematics_v5.jsonl",
   "nota": "validador v5 (copia declarada do v3): existencia+tamanho de todas as linhas; rehash de amostra de arquivos pequenos e de todos os scripts; arquivos com sha_recalculado=false so tem o tamanho conferido; conferencia dos digests do manuscrito",
   "resultado_manifest_mathematics_v5": {
     "caminhos_sem_rehash": [
@@ -59,7 +59,7 @@
       }
     },
     "digests_manuscrito_ok": true,
-    "existentes_com_tamanho_confere": 2792,
+    "existentes_com_tamanho_confere": 4227,
     "matriz_por_grupo": {
       "E2_c0c1cf_controles": {
         "linhas": 28,
@@ -214,12 +214,12 @@
         "tamanho_bytes": 83104
       },
       "scripts_artigo2": {
-        "linhas": 67,
+        "linhas": 83,
         "script_sha256_preenchido": 0,
         "sha256_nulo": 0,
         "sha_recalculado_false": 0,
-        "sha_recalculado_true": 67,
-        "tamanho_bytes": 1135455
+        "sha_recalculado_true": 83,
+        "tamanho_bytes": 1790925
       },
       "scripts_produtores": {
         "linhas": 8,
@@ -238,12 +238,12 @@
         "tamanho_bytes": 452216678824
       },
       "v3_12_figuras": {
-        "linhas": 23,
+        "linhas": 28,
         "script_sha256_preenchido": 0,
         "sha256_nulo": 0,
         "sha_recalculado_false": 0,
-        "sha_recalculado_true": 23,
-        "tamanho_bytes": 928971
+        "sha_recalculado_true": 28,
+        "tamanho_bytes": 1179557
       },
       "v3_12_folha_de_fatos_adendo": {
         "linhas": 2,
@@ -254,20 +254,20 @@
         "tamanho_bytes": 553517
       },
       "v3_12_tabelas": {
-        "linhas": 107,
+        "linhas": 145,
         "script_sha256_preenchido": 0,
         "sha256_nulo": 0,
         "sha_recalculado_false": 0,
-        "sha_recalculado_true": 107,
-        "tamanho_bytes": 1278322
+        "sha_recalculado_true": 145,
+        "tamanho_bytes": 1607301
       },
       "v3_2026_09_25_criterios": {
-        "linhas": 28,
+        "linhas": 37,
         "script_sha256_preenchido": 0,
         "sha256_nulo": 0,
         "sha_recalculado_false": 0,
-        "sha_recalculado_true": 28,
-        "tamanho_bytes": 109338
+        "sha_recalculado_true": 37,
+        "tamanho_bytes": 130671
       },
       "v3_fase1": {
         "linhas": 24,
@@ -294,36 +294,36 @@
         "tamanho_bytes": 499236
       },
       "v3_fase4": {
-        "linhas": 97,
+        "linhas": 112,
         "script_sha256_preenchido": 0,
         "sha256_nulo": 0,
         "sha_recalculado_false": 0,
-        "sha_recalculado_true": 97,
-        "tamanho_bytes": 7164577
+        "sha_recalculado_true": 112,
+        "tamanho_bytes": 7210666
       },
       "v3_gpu_agregados_scripts_logs": {
-        "linhas": 597,
+        "linhas": 1529,
         "script_sha256_preenchido": 0,
         "sha256_nulo": 0,
         "sha_recalculado_false": 0,
-        "sha_recalculado_true": 597,
-        "tamanho_bytes": 21501377
+        "sha_recalculado_true": 1529,
+        "tamanho_bytes": 51421077
       },
       "v3_gpu_checkpoints_pt": {
-        "linhas": 165,
+        "linhas": 375,
         "script_sha256_preenchido": 0,
         "sha256_nulo": 0,
         "sha_recalculado_false": 0,
-        "sha_recalculado_true": 165,
-        "tamanho_bytes": 3229017317
+        "sha_recalculado_true": 375,
+        "tamanho_bytes": 7294248339
       },
       "v3_gpu_predicoes_npz": {
-        "linhas": 164,
+        "linhas": 374,
         "script_sha256_preenchido": 0,
         "sha256_nulo": 0,
         "sha_recalculado_false": 0,
-        "sha_recalculado_true": 164,
-        "tamanho_bytes": 1460470270
+        "sha_recalculado_true": 374,
+        "tamanho_bytes": 10402911470
       },
       "v3_votos": {
         "linhas": 340,
@@ -335,7 +335,7 @@
       }
     },
     "n_caminhos_em_mais_de_um_grupo_informativo": 60,
-    "n_linhas": 2792,
+    "n_linhas": 4227,
     "pendentes_de_hash_sha256_nulo": [],
     "problemas_por_categoria": {
       "caminho_duplicado": 0,
@@ -349,10 +349,10 @@
     "rehash": {
       "amostra_pequenos_pedida": 200,
       "amostra_pequenos_usada": 200,
-      "rehash_ok": 435,
-      "scripts_rehash": 237,
+      "rehash_ok": 493,
+      "scripts_rehash": 293,
       "semente": 0,
-      "total_arquivos_rehash": 435
+      "total_arquivos_rehash": 493
     },
     "segue_sem_cadeia_total": 2,
     "sem_rehash_sha_recalculado_false": 16

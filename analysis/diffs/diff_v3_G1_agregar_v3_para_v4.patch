@@ -1,0 +1,120 @@
+--- scripts/v3_G1_agregar_v3.py	2026-10-02 00:00:41.728970307 -0300
++++ scripts/v3_G1_agregar_v4.py	2026-10-02 00:07:40.060963168 -0300
+@@ -1,52 +1,14 @@
+ #!/trabalho/ambientes/s33_amb_virtual/.venv/bin/python
+ # -*- coding: utf-8 -*-
+ """
+-Agregacao do lote G1 (modelos treinados a g = 10 km, b = 2 km), VERSAO 3.
+-Criterios: `_v3_2026-09-25/criterios/criterio_G1_modelos_g10.json` (sha256 d0d2b636...5132),
+-emendado por criterio_G1_adendo1.json (sete emendas) e criterio_G1_adendo2.json (fixa as
+-resolucoes de ambiguidade do v2). Onde divergem, o adendo manda.
+-
+-COPIA DECLARADA de scripts/v3_G1_agregar_v2.py
+-  sha256 do v2: d94fac29dcf6c694cab9bec55c4bdd9e2701fe5baf2675cbfe0aa77a5c155824
+-(v1 sha 88d444d4c480b7758ccd197f6936d5835a78c71863d99933fe8cbcfcd2419d2b e v2 NAO sao editados).
+-O v2 e copia declarada do v1, que e copia declarada de scripts/v3_A4_agregar.py.
+-
+-Correcoes do v3 sobre o v2 (veredito: gpu/G1_agregador_v2_contra_auditoria/veredito.json):
+-  C1  divergencia de n_test, n_validos ou n_todos contra o 2.1 (mesmo split_seed e celula), ou
+-      ausencia da referencia no 2.1, ABORTA (rc=4, nada gravado). `todas_passaram` e calculado
+-      a partir das conferencias, nao e literal.
+-  C2  corrida `sem_validos` registrada so no status SO e aceita sem .npz se houver run JSON,
+-      lido e conferido (rotulo, dataset, g/b, sementes, config x A4, n_test x 2.1,
+-      particoes.test.n_pl_alvo_valido == 0) E validos == 0 no 2.1 para a celula e o split_seed;
+-      senao ABORTA.
+-  C3  exatamente 1 run JSON, 1 .npz e 1 sidecar por pasta, com os nomes run_<label>.json,
+-      predicoes_<label>.npz, shim_g10_<label>.json (padrao real do lote); outro arquivo
+-      que case com o padrao ABORTA. Amarracao do .npz ao modelo/corrida: NENHUM artefato do
+-      lote grava o sha do .npz (conferido: run JSON, sidecar e log nao o trazem). A conferencia
+-      mais forte disponivel, sem tocar no lote, e recalcular do .npz o MAE e o RMSE de RSSI de
+-      TODOS os nos e comparar com selecao.test_no_melhor_ckpt do run JSON (tolerancia relativa
+-      5 % no MAE, 1 % no RMSE), alem de n_nos e n_pl_alvo_valido. Um .npz de outro modelo ou
+-      de outra celula nao passa (nas 4 corridas reais ja concluidas a diferenca propria foi
+-      <= 2,1 % no MAE e <= 0,2 % no RMSE; a de outro modelo/celula >= 6,4 % e >= 23 %). Limite:
+-      MAE/RMSE sobre todos os nos sao dominados pelos sentinelas (~90 % dos nos); a conferencia
+-      nao prova bit a bit que o arquivo e o gravado pelo treino.
+-  NB  finitude testada em todo campo do .npz usado (target[:,0], target[:,3], pred[:,3], e
+-      pred[:,0] nos validos); razao indeterminada nao cai em faixa intermediaria (marca
+-      indeterminada e a contagem de ramos e RECUSADA, satisfaz_regra_* = null); 3x e 2x
+-      calculados de uma forma so (razao dp/comparador, tambem no bloco simples); campo
+-      None/ausente nas conferencias e violacao; conferir_plano checa 80/40/80 corridas e
+-      rotulos unicos; adendo2 lido, e seu sha1 citado conferido.
+-  Saida: gpu/G1/agregado_G1_v3_bloco<N>.json (nome novo, para nao colidir com o v2).
+-  --so-conferir recalcula MAE/RMSE do .npz apenas para a amarracao e NAO os imprime nem grava.
+-
+-Reaproveitado do v2 (que reaproveita do v1/A4): mae_pop, decomposicao de um fator, comparador
+-max(0,132; sqrt(QM_dentro)) nas Q1 e 0,132 nas Q3, condicao 1 GNN e MLP, bloco 3 por prefixo
+-contiguo (k>=10), contagem mecanica de ramos, sem-validos na paridade, conferencias do item 7.
+-
+-Codigos de saida: 0 ok; 2 recusa (bloco incompleto, bloco 2 sem bloco 1, bloco 3 k<10,
+-truncamento sem flag); 4 aborto por conferencia (nada gravado em NENHUM bloco da invocacao);
+-1 erro. Este script NAO interpreta: aplica limiares aritmeticos. Numero so e citavel apos
+-contra-auditoria.
++Agregacao do lote G1 (modelos treinados a g = 10 km, b = 2 km), VERSAO 4.
++COPIA DECLARADA de scripts/v3_G1_agregar_v3.py
++  sha256 do v3: 5102299e6e5b0b3d25009693ad04c3dc0d9341833252b406841e2e894bae0e16
++(v1, v2 e v3 NAO sao editados). UNICA mudanca em relacao ao v3: TOL_AMARRA_RMSE_REL 0,01 -> 0,03
++(MAE continua 0,05; as duas tolerancias valem ao mesmo tempo), por reauditoria do v3
++(gpu/G1_agregador_v3_contra_auditoria/veredito.json), e o nome da saida: gpu/G1/agregado_G1_v4_bloco<N>.json.
++Todo o restante (criterios, adendos 1 e 2, C1-C3, conferencias do item 7, ramos) e o do v3; ver o cabecalho
++do v3 para a descricao completa. Este script NAO interpreta resultados.
+ """
+ import argparse
+ import glob
+@@ -65,8 +27,12 @@
+ RAIZ_PADRAO = BASE_PADRAO / "_v3_2026-09-25"
+ SHA_ORIGINAL_V1 = "88d444d4c480b7758ccd197f6936d5835a78c71863d99933fe8cbcfcd2419d2b"
+ SHA_V2 = "d94fac29dcf6c694cab9bec55c4bdd9e2701fe5baf2675cbfe0aa77a5c155824"
++SHA_V3 = "5102299e6e5b0b3d25009693ad04c3dc0d9341833252b406841e2e894bae0e16"
+ TOL_AMARRA_MAE_REL = 0.05
+-TOL_AMARRA_RMSE_REL = 0.01
++# Origem dos numeros: gpu/G1_agregador_v3_contra_auditoria/veredito.json (reauditoria do v3): nos 40 runs do A4 a
++# diferenca propria npz x run JSON chega a 1,9 % no RMSE e 3,9 % no MAE; entre GNN e MLP da mesma celula e sorteio a
++# diferenca minima e 10,9 % no RMSE e 2,3 % no MAE. A conferencia exige as DUAS tolerancias ao mesmo tempo.
++TOL_AMARRA_RMSE_REL = 0.03
+ SENTINELA_PL = 299.0
+ RUIDO_REPETICAO_DB = 0.132      # maior diferenca entre repeticoes do GNN (A2c); nao e um dp (adendo 2)
+ RUIDO_SENTINELA_DB = 0.117      # maior diferenca entre repeticoes nos sentinelas (A2c)
+@@ -780,12 +746,12 @@
+         return {"cels1": cels1, "bloco2": cel_out, "flags": flags, "alternativa_comparador_pooled_entre_celulas": alt}
+ 
+     def montar_meta(n: int) -> dict:
+-        return {"artefato": f"agregado_G1_v3_bloco{n}", "versao_agregador": 3,
++        return {"artefato": f"agregado_G1_v4_bloco{n}", "versao_agregador": 4,
+                 "script": str(Path(__file__).resolve()), "script_sha256": sha256(Path(__file__).resolve()),
+-                "script_original_copiado": {"caminho": "scripts/v3_G1_agregar_v2.py", "sha256": SHA_V2, "avo_v1_sha256": SHA_ORIGINAL_V1},
++                "script_original_copiado": {"caminho": "scripts/v3_G1_agregar_v3.py", "sha256": SHA_V3, "avo_v2_sha256": SHA_V2, "avo_v1_sha256": SHA_ORIGINAL_V1},
+                 "comando": [sys.executable] + list(argv_efetivo), "comando_texto": " ".join([sys.executable] + list(argv_efetivo)),
+                 "data": datetime.now().astimezone().isoformat(timespec="seconds"),
+-                "criterio_sha256": sha_crit, "adendo_sha256": sha_adendo, "adendo2_sha256": sha_adendo2, "script_v2_sha256_copiado": SHA_V2, "plano_sha256": sha_plano,
++                "criterio_sha256": sha_crit, "adendo_sha256": sha_adendo, "adendo2_sha256": sha_adendo2, "script_v3_sha256_copiado": SHA_V3, "script_v2_sha256_avo": SHA_V2, "plano_sha256": sha_plano,
+                 "status_lote_veredito": status.get("veredito_lote"),
+                 "modo_teste": bool(modo_teste), "raiz": str(P.RAIZ),
+                 "limiares_do_criterio_db": {"ruido_repeticao_gnn_0_132": RUIDO_REPETICAO_DB, "ruido_sentinela_0_117": RUIDO_SENTINELA_DB,
+@@ -811,7 +777,7 @@
+             "todas_passaram": todas,
+             "n_com_npz": sum(1 for v in usados.values() if v.get("com_npz")),
+             "n_sem_validos_sem_npz_conferidas_C2": sum(1 for v in usados.values() if not v.get("com_npz")),
+-            "amarracao_npz": "MAE e RMSE de RSSI (todos os nos) do .npz x selecao.test_no_melhor_ckpt (tol. 5 % / 1 %), n_nos, n_pl_alvo_valido; nenhum artefato do lote grava sha do .npz",
++            "amarracao_npz": "MAE e RMSE de RSSI (todos os nos) do .npz x selecao.test_no_melhor_ckpt (tol. 5 % / 3 %), n_nos, n_pl_alvo_valido; nenhum artefato do lote grava sha do .npz",
+             "sem_artefatos_sem_validos_registrados": [lbl for lbl in labels if cache.get(lbl, {}).get("sem_predicao")]}
+ 
+     # ---- execucao por bloco
+@@ -840,7 +806,7 @@
+                 out["celulas"] = cels
+                 out["leitura_aritmetica_contra_piso_0_132"] = sinais_simples(cels)
+                 out["nota"] = ("condicao 1 das celulas Q1 usa o comparador max(0,132; dp entre sementes) do bloco 2: ver "
+-                               "agregado_G1_v3_bloco2.json; aqui so a comparacao com o piso 0,132")
++                               "agregado_G1_v4_bloco2.json; aqui so a comparacao com o piso 0,132")
+                 out["contagem_sorteios_sem_validos_por_celula"] = {c: b["n_sorteios_sem_validos"] for c, b in cels.items()}
+                 fechar_conferencias(out, [c["run_label"] for c in plano if c["bloco"] == 1])
+             elif n == 2:
+@@ -909,7 +875,7 @@
+     for n, motivo in recusas.items():
+         print(f"bloco {n}: RECUSADO ({motivo}); nao grava resultado parcial")
+     for n, out in saidas.items():
+-        path = P.G1 / f"agregado_G1_v3_bloco{n}.json"
++        path = P.G1 / f"agregado_G1_v4_bloco{n}.json"
+         tmp = path.with_suffix(".json.tmp")
+         with open(tmp, "w", encoding="utf-8") as f:
+             json.dump(out, f, indent=1, ensure_ascii=False)

@@ -1,0 +1,166 @@
+--- scripts/v3_G1_agregar_v7.py	2026-10-03 11:13:26.430512865 -0300
++++ scripts/v3_G1_agregar_v8.py	2026-10-03 11:20:04.014325745 -0300
+@@ -1,33 +1,20 @@
+ #!/trabalho/ambientes/s33_amb_virtual/.venv/bin/python
+ # -*- coding: utf-8 -*-
+ """
+-Agregacao do lote G1 (modelos treinados a g = 10 km, b = 2 km), VERSAO 7.
+-COPIA DECLARADA de scripts/v3_G1_agregar_v6.py
+-  sha256 do v6: 6f852e2d56cfd61a5a4f687132a45b35369efcc06f72dccd1d7f77cf0bd8bb96
+-(v1 a v6 NAO sao editados). UNICA mudanca: sorteio `nao_treinavel`, conforme criterios/criterio_G1_adendo4.json
+-(fixado antes de qualquer agregado do bloco 3). Fato do lote: em Bauru Q3, sorteio 769856, o treinador aborta antes
+-do treino com "PARTICAO DEGENERADA: ['val'] ..." (particao de validacao sem enlace antena-terreno), com o 2.1
+-tendo validos > 0 no teste.
+-  (1) Corrida `nao_treinavel` e aceita quando (a) o status tem rc != 0 e nao_treinavel == true para o run_label;
+-      (b) o log da corrida (campo `log` do status) contem "PARTICAO DEGENERADA" e a(s) particao(oes) nomeada(s)
+-      NAO inclui(em) 'test' (caso de 'test' e sem_validos, adendo 3, e nao nao_treinavel); (c) o run JSON parcial
+-      existe, sem selecao/insumos/modelo_v3, sem .npz e sem sidecar, com g = 10, b = 2 (config, geometria, split),
+-      seed e split_seed do plano, run_label, dataset com nome e rf_data_bytes = tamanho do manifest v4 (o parcial nao
+-      grava sha). O 2.1 pode ter validos > 0. Qualquer item faltando: aborta. Exige tambem
+-      proveniencia_scripts_G1_retomada.json presente e conferida (sha do lancador de retomada).
+-      Se a corrida do MESMO sorteio no outro modelo tiver .npz, ela e conferida normalmente (todas as conferencias).
+-  (2) O sorteio marcado nao_treinavel em QUALQUER modelo da celula e EXCLUIDO da celula para os DOIS modelos (dp,
+-      correlacao, paridade, comparador do bloco 2); relatado em `nao_treinaveis` ao lado de `sem_validos`, com a
+-      contagem de sorteios USAVEIS (plano - sem_validos - nao_treinaveis). O k minimo de 10 do adendo 1 (bloco 3
+-      truncado) passa a contar sorteios usaveis.
+-  (3) Conferencia dos scripts do lote: alem de proveniencia_scripts_G1.json, le proveniencia_scripts_G1_retomada.json
+-      (se existir; obrigatorio se houver nao_treinavel) e confere os sha, incluindo rodar_lote_G1_retomada.py. O
+-      bloco 3 COMPLETO so e agregado se lote_G1_status.json (reescrito pela retomada) tiver veredito_lote ==
+-      "concluido".
+-  (4) Retomada em curso: o lancador de retomada mantem `veredito_lote` com o valor ANTERIOR ate o fim (acrescenta
+-      `retomadas` e `veredito_lote_anterior`). Nesse estado (retomadas presente e veredito_lote == veredito_lote_anterior)
+-      um run JSON sem .npz e sem marcador no status pode ser corrida em andamento: RECUSA (rc 2) em vez de abortar.
+-Saida: gpu/G1/agregado_G1_v7_bloco<N>.json. Restante = v3 a v6. Este script NAO interpreta resultados.
++Agregacao do lote G1 (modelos treinados a g = 10 km, b = 2 km), VERSAO 8.
++COPIA DECLARADA de scripts/v3_G1_agregar_v7.py
++  sha256 do v7: cc703246f65d6d4b4a23ded13b957b9d27eda1d359b0621e04a9eff8425d0b72
++(v1 a v7 NAO sao editados). Mudancas, so estas (contra-auditoria do v7:
++gpu/G1_agregador_v7_contra_auditoria/veredito.json):
++  L1  corrida marcada `nao_treinavel` no status com run JSON COMPLETO / .npz (saudavel) ABORTA. O sorteio so e
++      excluido da celula se ao menos uma corrida dele foi aceita pelo ramo PARCIAL verificado (adendo 4); o .npz
++      do outro modelo no sorteio excluido continua sendo conferido normalmente e nao conta.
++  L2  conferir_parcial, modo nao_treinavel: exige guarda_particao_degenerada.particoes_sem_aresta_antena presente,
++      nao vazio, IGUAL ao conjunto de particoes nomeadas no log e sem 'test'.
++  L3  `--bloco3-truncado` e RECUSADO (rc 2) enquanto a retomada estiver em curso possivel (retomadas presente e
++      veredito_lote == veredito_lote_anterior).
++Todo o restante e o do v7 (ver cabecalhos v3 a v7). Saida: gpu/G1/agregado_G1_v8_bloco<N>.json. Este script NAO
++interpreta resultados.
+ """
+ import argparse
+ import glob
+@@ -50,6 +37,7 @@
+ SHA_V4 = "4263076007a28aa76c5e51fa73c35c513b34131c8019f2b5089981a57e916b14"
+ SHA_V5 = "50610e19f9ea1314c899b86b21eeefb569b74e64093f28936ee1c03a6aa0e465"
+ SHA_V6 = "6f852e2d56cfd61a5a4f687132a45b35369efcc06f72dccd1d7f77cf0bd8bb96"
++SHA_V7 = "cc703246f65d6d4b4a23ded13b957b9d27eda1d359b0621e04a9eff8425d0b72"
+ TRECHO_LOG_DEGENERADA = "PARTICAO DEGENERADA"
+ TOL_AMARRA_MAE_REL = 0.10
+ # Origem dos numeros: gpu/G1_agregador_v3_contra_auditoria/veredito.json (A4: 40 runs, diferenca propria npz x run JSON
+@@ -653,6 +641,7 @@
+ 
+     cache = {}
+     conferidas = {}
++    excluidos_com_npz = set()   # corridas COM .npz (conferidas) em sorteios excluidos por nao_treinavel de outra corrida
+ 
+     def conferir_parcial(c, dj, zs, sd, modo) -> dict:
+         """Run JSON PARCIAL (treinador abortou antes do treino). modo 'sem_validos' (adendo 3) ou 'nao_treinavel' (adendo 4)."""
+@@ -689,6 +678,10 @@
+         if modo == "nao_treinavel":
+             ex("A4b_particao_nomeada_no_log", bool(nomes), nomes)
+             ex("A4b_particao_nomeada_diferente_de_test", bool(nomes) and "test" not in nomes, nomes)
++            gl = (dj.get("guarda_particao_degenerada") or {}).get("particoes_sem_aresta_antena")
++            ex("A4c_guarda_particoes_sem_aresta_antena_presente_e_nao_vazia", isinstance(gl, list) and len(gl) > 0, gl)
++            ex("A4c_guarda_particoes_igual_as_nomeadas_no_log", isinstance(gl, list) and bool(nomes) and set(gl) == set(nomes), (gl, nomes))
++            ex("A4c_guarda_particoes_sem_test", isinstance(gl, list) and "test" not in gl, gl)
+         for k in ("selecao", "insumos", "modelo_v3"):
+             ex(f"{pre}c_parcial_sem_{k}", k not in dj)
+         ex(f"{pre}c_sem_npz_nem_sidecar", not zs and not sd, (len(zs), len(sd)))
+@@ -744,6 +737,8 @@
+             side = _ler_sidecar(sd)
+             z = np.load(zs[0])
+             idx = z["idx_global"]
++            if lbl in nao_trein:
++                raise Aborta(f"{lbl}: marcada nao_treinavel no status, mas tem run JSON/.npz de corrida concluida (so o ramo parcial verificado aceita o marcador)")
+             m = mae_pop(z)
+             conferidas[lbl] = conferir_corrida(c, dj, idx, side, man, ref21, m)
+             if lbl in sem_val and m["n_validos"] != 0:
+@@ -754,7 +749,7 @@
+             ref = ref21.get((f"{c['cidade']}_{c['quadrante']}", c["split_seed"]))
+             cfg = dj.get("config") or {}
+             r = {
+-                "run_label": lbl, "nao_treinavel": lbl in nao_trein, "sem_validos": m["n_validos"] == 0, "sem_predicao": False, "npz": str(zs[0]), "mae": m,
++                "run_label": lbl, "nao_treinavel": False, "sem_validos": m["n_validos"] == 0, "sem_predicao": False, "npz": str(zs[0]), "mae": m,
+                 "grid_km": cfg.get("grid_km"), "buffer_km": cfg.get("buffer_km"), "split_seed_run": dj.get("split_seed"),
+                 "seed_treino_run": dj.get("seed"),
+                 "proveniencia_ok": bool(ins.get("sha256_rf_data") and man.get(rf) == ins.get("sha256_rf_data")),
+@@ -791,6 +786,10 @@
+             ss_plano = [s for s in ordem if s in g and s in m]
+             nt = [s for s in ss_plano if g[s].get("nao_treinavel") or m[s].get("nao_treinavel")]
+             ss = [s for s in ss_plano if s not in nt]
++            for s_ in nt:
++                for st_ in (g, m):
++                    if st_[s_].get("mae") is not None:
++                        excluidos_com_npz.add(st_[s_]["run_label"])
+             sv = [s for s in ss if g[s]["sem_validos"] or m[s]["sem_validos"]]
+             bloco = {"sorteios": ss, "n_sorteios_plano_considerados": len(ss_plano), "n_sorteios_plano_usados": len(ss),
+                      "sem_validos": sv, "n_sorteios_sem_validos": len(sv),
+@@ -862,6 +861,11 @@
+             ps_all = {t_: {sd_: {c_["split_seed"]: carregar(c_) for c_ in runs(1 if sd_ == 42 else 2, cel, t_, sd_, 5)} for sd_ in (42, 43, 44)}
+                       for t_ in ("gnn", "mlp")}
+             nt_cel = {s_ for t_ in ps_all for sd_ in ps_all[t_] for s_, r_ in ps_all[t_][sd_].items() if r_.get("nao_treinavel")}
++            for t_ in ps_all:
++                for sd_ in ps_all[t_]:
++                    for s_ in nt_cel:
++                        if s_ in ps_all[t_][sd_] and ps_all[t_][sd_][s_].get("mae") is not None:
++                            excluidos_com_npz.add(ps_all[t_][sd_][s_]["run_label"])
+             for tipo in ("gnn", "mlp"):
+                 por_semente = ps_all[tipo]
+                 sorteios = [c["split_seed"] for c in runs(2, cel, tipo, 43, 5)]
+@@ -912,9 +916,9 @@
+         return {"cels1": cels1, "bloco2": cel_out, "flags": flags, "alternativa_comparador_pooled_entre_celulas": alt}
+ 
+     def montar_meta(n: int) -> dict:
+-        return {"artefato": f"agregado_G1_v7_bloco{n}", "versao_agregador": 7,
++        return {"artefato": f"agregado_G1_v8_bloco{n}", "versao_agregador": 8,
+                 "script": str(Path(__file__).resolve()), "script_sha256": sha256(Path(__file__).resolve()),
+-                "script_original_copiado": {"caminho": "scripts/v3_G1_agregar_v6.py", "sha256": SHA_V6, "avo_v5_sha256": SHA_V5, "avo_v4_sha256": SHA_V4, "avo_v3_sha256": SHA_V3, "avo_v2_sha256": SHA_V2, "avo_v1_sha256": SHA_ORIGINAL_V1},
++                "script_original_copiado": {"caminho": "scripts/v3_G1_agregar_v7.py", "sha256": SHA_V7, "avo_v6_sha256": SHA_V6, "avo_v5_sha256": SHA_V5, "avo_v4_sha256": SHA_V4, "avo_v3_sha256": SHA_V3, "avo_v2_sha256": SHA_V2, "avo_v1_sha256": SHA_ORIGINAL_V1},
+                 "comando": [sys.executable] + list(argv_efetivo), "comando_texto": " ".join([sys.executable] + list(argv_efetivo)),
+                 "data": datetime.now().astimezone().isoformat(timespec="seconds"),
+                 "criterio_sha256": sha_crit, "adendo_sha256": sha_adendo, "adendo2_sha256": sha_adendo2, "adendo3_sha256": sha_adendo3, "adendo4_sha256": sha_adendo4, "script_v3_sha256_copiado": SHA_V3, "script_v2_sha256_avo": SHA_V2, "plano_sha256": sha_plano,
+@@ -947,7 +951,7 @@
+             "n_sem_validos_sem_npz_conferidas_C2": sum(1 for v in usados.values() if not v.get("com_npz")),
+             "sem_validos_parcial_adendo3": {lbl: {"dataset_bytes": v.get("dataset_bytes"), "n_test_parcial_igual_2_1": v.get("n_test_parcial_igual_2_1")} for lbl, v in usados.items() if v.get("parcial_sem_validos_adendo3")},
+             "nao_treinavel_parcial_adendo4": {lbl: {k: v.get(k) for k in ("dataset_bytes", "n_test_parcial_igual_2_1", "validos_2_1", "particoes_nomeadas_no_log", "guarda_particoes_sem_aresta_antena")} for lbl, v in usados.items() if v.get("parcial_nao_treinavel_adendo4")},
+-            "nao_treinavel_com_npz_conferido_e_excluido": sorted(lbl for lbl in carregadas if lbl in nao_trein and cache[lbl].get("mae") is not None),
++            "nao_treinavel_com_npz_conferido_e_excluido": sorted(lbl for lbl in carregadas if lbl in excluidos_com_npz),
+             "amarracao_npz": "MAE e RMSE de RSSI (todos os nos) do .npz x selecao.test_no_melhor_ckpt (tol. 10 % / 3 %), n_nos, n_pl_alvo_valido; nenhum artefato do lote grava sha do .npz",
+             "sem_artefatos_sem_validos_registrados": [lbl for lbl in labels if cache.get(lbl, {}).get("sem_predicao")]}
+ 
+@@ -977,7 +981,7 @@
+                 out["celulas"] = cels
+                 out["leitura_aritmetica_contra_piso_0_132"] = sinais_simples(cels)
+                 out["nota"] = ("condicao 1 das celulas Q1 usa o comparador max(0,132; dp entre sementes) do bloco 2: ver "
+-                               "agregado_G1_v7_bloco2.json; aqui so a comparacao com o piso 0,132")
++                               "agregado_G1_v8_bloco2.json; aqui so a comparacao com o piso 0,132")
+                 out["contagem_sorteios_sem_validos_por_celula"] = {c: b["n_sorteios_sem_validos"] for c, b in cels.items()}
+                 out["contagem_sorteios_nao_treinaveis_por_celula"] = {c: b["n_sorteios_nao_treinaveis"] for c, b in cels.items()}
+                 out["contagem_sorteios_usaveis_por_celula"] = {c: b["n_sorteios_usaveis"] for c, b in cels.items()}
+@@ -1011,6 +1015,8 @@
+                                          "(use --bloco3-truncado so se o lote terminou e o bloco segue incompleto)")
+                     if status.get("veredito_lote") is None:
+                         raise Incompleto("--bloco3-truncado recusado: lote_G1_status.json sem veredito_lote (lote ainda em andamento)")
++                    if retomada_em_curso_possivel:
++                        raise Incompleto("--bloco3-truncado recusado: retomada em curso possivel (retomadas presente e veredito_lote == veredito_lote_anterior)")
+                     usados = []
+                     for i in sorted(idx3):
+                         if not idx3[i]:
+@@ -1054,7 +1060,7 @@
+     for n, motivo in recusas.items():
+         print(f"bloco {n}: RECUSADO ({motivo}); nao grava resultado parcial")
+     for n, out in saidas.items():
+-        path = P.G1 / f"agregado_G1_v7_bloco{n}.json"
++        path = P.G1 / f"agregado_G1_v8_bloco{n}.json"
+         tmp = path.with_suffix(".json.tmp")
+         with open(tmp, "w", encoding="utf-8") as f:
+             json.dump(out, f, indent=1, ensure_ascii=False)

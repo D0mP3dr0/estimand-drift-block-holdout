@@ -1,8 +1,8 @@
-# Estimand Drift under Buffered Spatial Block Hold-Out: reproducibility package
+# Estimand Drift under Spatial Block Hold-Out: reproducibility package
 
 Code, criteria, result records, tables, figures, and artifact manifest for the
-manuscript *Estimand Drift under Buffered Spatial Block Hold-Out* by L. F. C.
-Seelig and R. M. Salles (manuscript in preparation).
+manuscript *Estimand Drift under Spatial Block Hold-Out* by L. F. C.
+Seelig and R. M. Salles, manuscript submitted to MDPI Mathematics (revision of 3 October 2026).
 
 The study works on 16 city x quadrant cells of a radio-frequency (RF) field
 reconstruction task (Bauru, Campinas, Lins, Sorocaba; quadrants Q1-Q4) and asks
@@ -32,7 +32,9 @@ turn those records into every table and figure.
   (`models/`, `rf_diagnostic_metrics.py`, `baselines/empirical_models.py`), and
   `modelo_v3/` with the training and evaluation code of the third campaign
   (`train_gnn_v3.py`, `train_mlp_v3.py`, `v3_common.py`, `rf_decoder_v3.py`,
-  `e3_inferencia_checkpoints_antigos.py`).
+  `e3_inferencia_checkpoints_antigos.py`). `G1/` holds the shim and the three launchers of
+  the 10 km campaign (`train_v3_g10.py`, `rodar_lote_G1.py`, `rodar_lote_G1_retomada.py`,
+  `rodar_lote_G1_bloco4.py`).
 - `analysis/` - the scripts of the article: one script per numerical test
   (`v3_*.py`), the revision-round scripts (`v3_12_*.py`), the table, figure, and
   fact-sheet generators, the earlier Monte Carlo and sweep modules the tests
@@ -46,12 +48,13 @@ turn those records into every table and figure.
   probabilities, error drift, estimands), `fase3/` (calibration, edge bands,
   FSPL coincidence, feature columns), `fase4/` (b = 0 drift, design reference,
   design term, closed-form p versus frequency, hyper-parameter sheet, and the
-  verification and vote folders with their scripts), `gpu/` (aggregates and
-  per-run JSON/CSV of the GNN and MLP campaigns A0-A4 with their drivers), and
-  `inputs/` (the one data file consumed by the figure script).
+  verification and vote folders with their scripts), `fase5/` (checks R5 to R7),
+  `gpu/` (aggregates and per-run JSON/CSV of the GNN and MLP campaigns A0-A4
+  with their drivers, and the G1 campaign at 10 km), `verificacoes/` (two verification
+  outputs), and `inputs/` (the one data file consumed by the figure script).
 - `tables_figures/` - `tables_v3-12/` (LaTeX tabulars, CSVs, manifest and checks
   of every table), `figures_v3-12/` (PDF/PNG, manifest, check of the F4 figure),
-  `suplementar/` (Table S1 and Table S2, sources and PDFs), and
+  `suplementar/` (Table S1, Table S2, and Table S3, sources and PDFs), and
   `prior_version_csv/` (four CSVs of the previous table set, read by the table
   script as cross-checks).
 - `manifest/` - `manifest_mathematics_v5.jsonl` and `.meta.json` (file, size, and
@@ -75,9 +78,57 @@ turn those records into every table and figure.
 - The manuscript source and PDF, review material, and internal working notes are
   not part of this package.
 - Training logs (`*.log`, `*.txt`), Markdown notes, diffs, and LaTeX
-  intermediates were left out; the JSON records carry the provenance fields that
+  intermediates were left out, except the two G1 driver logs and the G1 aggregator diffs
+  (see "Revision of 3 October 2026"); the JSON records carry the provenance fields that
   matter (script and input digests).
 - No file above the 5 MB per-file limit was found among the candidates; none was left out for size.
+
+## Revision of 3 October 2026
+
+This revision adds the material behind the model campaign at a block size of 10 km and
+three robustness checks of the revised manuscript. Nothing from the earlier package was
+removed; the files listed below were added and the table, manifest, and checksum files
+were regenerated.
+
+- **Campaign G1** (`results/gpu/G1/`, `training/G1/`). 220 trained runs (110 GNN and
+  110 MLP) at g = 10 km and b = 2 km in four cells of two cities (Bauru Q1 and Q3, Campinas
+  Q1 and Q3), 20 split draws per cell at training seed 42, plus a crossed block of training
+  seeds 42 to 44 in the two Q1 cells (5 draws in Bauru Q1, 10 draws in Campinas Q1), for
+  the GNN and the MLP. The folder holds the plans, the launcher status and driver logs
+  (`lote_G1_*`), the gate and the script provenance records, the four aggregates
+  (`agregado_G1_v5_bloco1.json`, `..._v5_bloco2.json`, `..._v8_bloco3.json`,
+  `..._v10_bloco4.json`), the run manifests (`MANIFEST_G1*.jsonl`), and, per run, the run
+  record `run_<label>.json` and the shim record `shim_g10_<label>.json`. The recomputation
+  votes are in `results/gpu/G1_votos_bloco1` to `bloco4`, the manifest builders and tensor
+  checks in `results/gpu/G1_manifest/`, and the aggregator tests and counter-audits in
+  `results/gpu/G1_agregador_v*`. The shim and the three launchers are in `training/G1/`; the
+  aggregators (`v3_G1_agregar.py` and versions v2 to v10, with the step-by-step diffs in
+  `analysis/diffs/`) are in `analysis/`. The pre-registered criteria are
+  `criteria/criterio_G1_modelos_g10.json`, `criterio_G1_adendo1.json` to `adendo4.json`, and
+  `criterio_G1b_campinas_bloco_cruzado.json`.
+- **Checks R5, R6, R7** (`results/fase5/`). R5: variance of a single draw estimated from its
+  own test blocks; R6: whether the between-draw ratio depends on the level of the constant
+  predictor; R7: between-draw versus between-seed spread in the earlier 5 km runs. Scripts
+  `analysis/v3_13_*.py` (`v3_13_laco_comum.py` is the loop shared by R5 and R6); the
+  recomputation votes are in `results/fase5/votos_R5`, `votos_R6`, `votos_R7`; criteria in
+  `criteria/criterio_R5_*`, `criterio_R6_*`, `criterio_R7_*`.
+- **Tables.** Table 7 of the manuscript (file prefix T9, `T9_deriva_modelo_G1_v3-12.{tex,csv}`;
+  written by `analysis/v3_12h_gerar_T9_G1.py`, to be run after `v3_12_gerar_tabelas.py`) and
+  Table S3 (`tables_figures/suplementar/Table_S3.{tex,pdf}`, built from the T7b fragment).
+  T3 summary, TN, T6, T8, `CONFERENCIAS_tabelas_v3-12.json`, `Table_S1`, and the table generator
+  were regenerated. `results/verificacoes/` holds the outputs of the two checks that source the
+  0.132 dB repeat difference (`saida_V2.json`) and the 30 km fraction (`saida_c.json`).
+- **Manifest.** `manifest/manifest_mathematics_v5.jsonl` was regenerated with
+  `scripts/gerar_manifest_mathematics_v5.py` (now with the G1 files) and revalidated; its
+  `.meta.json` and the validator output are alongside.
+
+**Available on request.** The prediction files (`predicoes_*.npz`), the checkpoints
+(`checkpoints/`), the per-run `training_log.csv`, and the per-run training logs
+(`log_g1_*.txt`) of the G1 runs are not in this repository because of their size. Their
+names, sizes, and SHA-256 digests are in `manifest/manifest_mathematics_v5.jsonl` (groups
+`v3_gpu_predicoes_npz`, `v3_gpu_checkpoints_pt`, `v3_gpu_agregados_scripts_logs`), and the
+corresponding author supplies them upon request. 10 G1 runs have no shim record in the
+source folder and none is shown for them.
 
 ## Environment
 
@@ -92,7 +143,7 @@ matching wheel index).
 ## Absolute paths in the scripts (read this before running anything)
 
 The scripts were written and run on the authors' machine and carry absolute
-paths of that machine; 355 files in this repository contain such paths.
+paths of that machine; 859 files in this repository contain such paths.
 Nothing was rewritten, so that the SHA-256 of every file still matches the
 manifest and the digests cited in the manuscript. To run a script elsewhere,
 adjust the following before executing:
@@ -176,12 +227,14 @@ table map is:
 | T5 | inclusion by class | `fase4/R4_p_por_classe.json` | `T5_inclusao_por_classe_v3-12` |
 | T6 | reference by design | `fase4/R2_*`, `fase4/votos_fismat_R2_R4/` | `T6_referencia_desenho_v3-12` |
 | T7, T7b | model drift (campaign A4) | `gpu/A4/agregado_A4.json` | `T7_deriva_modelo_A4_v3-12`, `T7b_...` |
+| T9 (Table 7) | model drift at 10 km (campaign G1) | `gpu/G1/agregado_G1_v5_bloco1.json`, `..._v5_bloco2.json`, `..._v8_bloco3.json`, `..._v10_bloco4.json`, `gpu/G1_votos_bloco4/veredito.json` | `T9_deriva_modelo_G1_v3-12` (by `analysis/v3_12h_gerar_T9_G1.py`) |
+| Table S3 | model drift at 5 km (T7b fragment) | `T7b_deriva_modelo_A4_v3-12.tex` | `tables_figures/suplementar/Table_S3.{tex,pdf}` |
 | T8 | design term | `fase4/R3_termo_desenho.json` | `T8_termo_desenho_v3-12` |
 | TA1 (Table S1) | hyper-parameters | `fase4/B7.2_hiperparametros/` | `TA1_hiperparametros_v3-12`, `TA1a_...`, `TA1b_...` |
 | TN | notation | notation block of the manuscript (not distributed) | `TN_notacao_v3-12` |
 
-Table S1 and Table S2 are compiled with `pdflatex Table_S1.tex` and
-`pdflatex Table_S2.tex` inside `tables_figures/suplementar/`. The script
+Table S1, Table S2, and Table S3 are compiled with `pdflatex Table_S1.tex`,
+`pdflatex Table_S2.tex`, and `pdflatex Table_S3.tex` inside `tables_figures/suplementar/`. The script
 `tables_figures/tables_v3-12/_pipeline/validar_valores_csv.py` re-checks the
 values of the CSVs against the records.
 
@@ -228,4 +281,4 @@ figures, and the manifest are released under CC BY 4.0 (`LICENSE-DATA`).
 
 ## Citation
 
-The manuscript is in preparation. See `CITATION.cff`.
+The manuscript was submitted to MDPI Mathematics (revision of 3 October 2026). See `CITATION.cff`.

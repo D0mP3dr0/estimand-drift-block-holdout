@@ -114,6 +114,15 @@
   "overfull_hbox_pt": [],
   "pdf_gerado": true
  },
+ "T9_deriva_modelo_G1_v3-12": {
+  "compilou": true,
+  "returncode": 0,
+  "erros": [],
+  "largura_natural_pt": 572.82043,
+  "largura_texto_pt": 394.36,
+  "overfull_hbox_pt": [],
+  "pdf_gerado": true
+ },
  "TA1_hiperparametros_v3-12": {
   "compilou": true,
   "returncode": 0,

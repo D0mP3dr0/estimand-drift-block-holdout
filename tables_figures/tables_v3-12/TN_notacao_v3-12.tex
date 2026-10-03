@@ -15,7 +15,7 @@ $B_{\mathsf{w}}$, $B_{\mathsf{e}}$, $B_{\mathsf{s}}$, $B_{\mathsf{n}}$, $B_{\mat
 $\mathcal{S}$, $A(\mathcal{S})$, $\rho(\mathcal{S})$ & trimming neighbours; surviving area; surviving fraction & Proposition~\ref{prop:area} \\
 $q$, $R(g,b,q)$ & non-trimming probability; mean-field retention & Proposition~\ref{prop:retention} \\
 $\omega_k$, $\bar\rho_{\mathrm{te}}$, $\bar\rho_{\mathrm{va}}$ & area near exactly $k$ neighbours; exact expected surviving fraction & Proposition~\ref{prop:exactretention} \\
-$R_{\mathrm{va}}(g,b)$, $R_{\mathrm{te}}(g,b)$, $V_{\mathrm{te}}(\sigma)$ & nodal retention of validation and test; retained (scored) test nodes & Section~\ref{sec:setting} \\
+$r(g,b)$, $r_{\mathrm{va}}(g,b)$, $r_{\mathrm{te}}(g,b)$, $V_{\mathrm{te}}(\sigma)$ & nodal retention of a partition, of validation and of test; retained (scored) test nodes & Section~\ref{sec:setting} \\
 $\mathcal{L}$, $e_i$ & loss function; loss at node $i$ & Equation~\eqref{eq:err}; Definition~\ref{def:estimand} \\
 $U$, $M_U$, $S_U$, $A_U$ & subpopulation; scored size; scored sum; event $M_U > 0$ & Definition~\ref{def:estimand} \\
 $p_i$, $p_{ij}$ & first- and second-order inclusion probabilities & Definition~\ref{def:estimand}; Proposition~\ref{prop:designvar} \\
@@ -23,10 +23,10 @@ $\mathrm{Err}_\sigma(U)$, $\mathrm{Err}(U)$ & conditional error of a draw; proto
 $\theta_U$, $\mu_U$ & inclusion-weighted mean; domain mean & Definition~\ref{def:estimand} \\
 $w_i$ & weight of node $i$ in $\mathrm{Err}(U)$ & Proposition~\ref{prop:ratio} \\
 $m(i)$, $\mathcal{N}_b(i)$ & number and set of other blocks within $b$ of node $i$ & Proposition~\ref{prop:inclusion} \\
-$d_i$, $d_i^V$, $\partial V$, $\Lambda(V)$ & degree; degree after induction; inner boundary; relative degree loss & Proposition~\ref{prop:degree} \\
-$d_{\max}$, $\bar d_V$ & maximum degree; mean degree over $V$ & Proposition~\ref{prop:degree} \\
+$d_i$, $d_i^V$, $\partial V$, $\Lambda(V)$ & degree; degree after induction; inner boundary; relative degree loss & Remark~\ref{prop:degree} \\
+$d_{\max}$, $\bar d_V$ & maximum degree; mean degree over $V$ & Remark~\ref{prop:degree} \\
 $\mathrm{MAE}$, $\mathrm{MAE}_{\mathrm{valid}}$, $\mathrm{MAE}_{\sigma}$ & mean absolute error; on the valid nodes; on the test set of draw $\sigma$ & Equation~\eqref{eq:mixture}; Proposition~\ref{prop:drift} \\
-$\Delta_f$, $e_f$ & sentinel and valid mean absolute errors of $f$ & Proposition~\ref{prop:drift} \\
+$\Delta_f$, $e_f$, $\varepsilon_{\mathrm{c}}$ & sentinel and valid mean absolute errors of $f$; remainder of the composition identity & Proposition~\ref{prop:drift}, Equation~\eqref{eq:composition} \\
 $a$, $e$, $\Delta$, $\varpi^*$ & valid error of $f_c$; valid error and sentinel deviation of $f$; threshold & Proposition~\ref{prop:inversion} \\
 $W$, $F_0$, $F_1$, $Q_1^{\pm}$, $\hat\tau$ & calibration residual; its laws; quantiles; median offset & Proposition~\ref{prop:median} \\
 \bottomrule

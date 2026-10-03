@@ -183,9 +183,127 @@
    "- linha ell_x, ell_y (v3-12g: sem ocorrencia no texto)",
    "+ linha d_max, \\bar d_V",
    "+ linhas MAE/MAE_valid e MAE_sigma",
-   "+ linha dos blocos vizinhos B_w..B_en (v3-12h)"
+   "+ linha dos blocos vizinhos B_w..B_en (v3-12h)",
+   "R_va/R_te -> r, r_va, r_te (v3-12h, colisao com \\bar\\rho)",
+   "Proposition -> Remark em prop:degree (v3-12h)",
+   "+ \\varepsilon_c na linha Delta_f, e_f (v3-12i)"
   ],
   "bloco_gravado_contem_o_bloco_alterado": true,
   "passou": true
+ },
+ "T9_conferencia_por_caminho_json": {
+  "fontes": {
+   "G1_bloco1": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/gpu/G1/agregado_G1_v5_bloco1.json",
+   "G1_bloco2": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/gpu/G1/agregado_G1_v5_bloco2.json",
+   "G1_bloco4": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/gpu/G1/agregado_G1_v10_bloco4.json",
+   "G1_bloco3": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/_v3_2026-09-25/gpu/G1/agregado_G1_v8_bloco3.json"
+  },
+  "verificacoes": 172,
+  "falhas": [],
+  "passou": true,
+  "linhas": [
+   {
+    "celula": "bauru_Q1",
+    "modelo": "gnn",
+    "n": 20,
+    "excluidos": "0",
+    "dp_json": 1.248182158036913,
+    "dp_recalculado_stdev_ddof1": 1.248182158036913,
+    "razao_json": 9.455925439673583,
+    "spearman_json": 0.6060150375939849
+   },
+   {
+    "celula": "bauru_Q1",
+    "modelo": "mlp",
+    "n": 20,
+    "excluidos": "0",
+    "dp_json": 1.1304380663198776,
+    "dp_recalculado_stdev_ddof1": 1.1304380663198776,
+    "razao_json": 8.563924744847558,
+    "spearman_json": 0.6075187969924812
+   },
+   {
+    "celula": "campinas_Q1",
+    "modelo": "gnn",
+    "n": 20,
+    "excluidos": "0",
+    "dp_json": 3.260303378611019,
+    "dp_recalculado_stdev_ddof1": 3.260303378611019,
+    "razao_json": 24.699268019780444,
+    "spearman_json": 0.37293233082706767
+   },
+   {
+    "celula": "campinas_Q1",
+    "modelo": "mlp",
+    "n": 20,
+    "excluidos": "0",
+    "dp_json": 2.0050368461786,
+    "dp_recalculado_stdev_ddof1": 2.0050368461786,
+    "razao_json": 15.189673077110607,
+    "spearman_json": 0.3293233082706767
+   },
+   {
+    "celula": "bauru_Q3",
+    "modelo": "gnn",
+    "n": 16,
+    "excluidos": "2+2",
+    "dp_json": 3.85833963975475,
+    "dp_recalculado_stdev_ddof1": 3.85833963975475,
+    "razao_json": 29.2298457557178,
+    "spearman_json": 0.9470588235294116
+   },
+   {
+    "celula": "bauru_Q3",
+    "modelo": "mlp",
+    "n": 16,
+    "excluidos": "2+2",
+    "dp_json": 4.075810656190718,
+    "dp_recalculado_stdev_ddof1": 4.075810656190718,
+    "razao_json": 30.87735345599029,
+    "spearman_json": 0.7676470588235293
+   },
+   {
+    "celula": "campinas_Q3",
+    "modelo": "gnn",
+    "n": 19,
+    "excluidos": "1+0",
+    "dp_json": 2.4601856124049646,
+    "dp_recalculado_stdev_ddof1": 2.4601856124049646,
+    "razao_json": 18.6377697909467,
+    "spearman_json": 0.9070175438596491
+   },
+   {
+    "celula": "campinas_Q3",
+    "modelo": "mlp",
+    "n": 19,
+    "excluidos": "1+0",
+    "dp_json": 3.080107743587456,
+    "dp_recalculado_stdev_ddof1": 3.080107743587456,
+    "razao_json": 23.334149572632242,
+    "spearman_json": 0.8210526315789475
+   }
+  ]
+ },
+ "T9_spearman": {
+  "nota": "Spearman relido do agregado por caminho e conferido contra CSV e TEX; nao recalculado aqui (exige a MAE do preditor constante por sorteio, que esta no 2.1 e no recalculo gpu/G1_votos_bloco*/veredito.json)",
+  "veredito_independente": {
+   "G1_veredito_bloco1": "confirmado",
+   "G1_veredito_bloco2": "confirmado",
+   "G1_veredito_bloco4": "confirmado",
+   "G1_veredito_bloco3": "confirmado"
+  }
+ },
+ "T9_faixa_razao_0_132": {
+  "min": 8.563924744847558,
+  "max": 30.87735345599029,
+  "impresso": "8.6 a 30.9"
+ },
+ "T9_paridade_faixa_db": {
+  "min": 0.02745364559522756,
+  "max": 0.035917179276856157
+ },
+ "T9_campos_ausentes_no_json": {
+  "n_sorteios_nao_treinaveis em agregado_G1_v5_bloco1.json (bauru_Q1, campinas_Q1)": "campo inexistente; tratado como 0 (lista sem_validos vazia; n_sorteios_plano_usados = 20 = n_sorteios_com_validos)",
+  "dp_entre_sementes_pooled_db nas celulas Q3": "inexistente por desenho (bloco 2 so tem Q1); impresso '--' (csv vazio)"
  }
 }

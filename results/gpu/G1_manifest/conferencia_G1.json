@@ -1,0 +1,409 @@
+{
+ "gerado_em_utc": "2026-10-03T18:21:58.993223+00:00",
+ "script_sha256": "311c1f25caa98e81992f67db96c4e232f85a1aa7c0a8ddb0a5eb9026aba01415",
+ "proveniencias": {
+  "proveniencia_scripts_G1.json": {
+   "todos_batem_sha": true,
+   "arquivos": [
+    {
+     "caminho": "_v3_2026-09-25/gpu/G1/train_v3_g10.py",
+     "sha256_registrado": "1a9dfa2f7079ce58056e53a63f682f7b0336355dae6582efa2941379fefae70c",
+     "sha256_observado": "1a9dfa2f7079ce58056e53a63f682f7b0336355dae6582efa2941379fefae70c",
+     "bate_sha": true,
+     "bytes_registrado": 7429,
+     "bytes_observado": 7429,
+     "bate_bytes": true
+    },
+    {
+     "caminho": "_v3_2026-09-25/gpu/G1/rodar_lote_G1.py",
+     "sha256_registrado": "e05a921488a13f4fb34e262968cddeb9cb3134bd44c9cfcb05bbaaa03ff3bc59",
+     "sha256_observado": "e05a921488a13f4fb34e262968cddeb9cb3134bd44c9cfcb05bbaaa03ff3bc59",
+     "bate_sha": true,
+     "bytes_registrado": 14435,
+     "bytes_observado": 14435,
+     "bate_bytes": true
+    },
+    {
+     "caminho": "scripts/v3_G1_agregar.py",
+     "sha256_registrado": "88d444d4c480b7758ccd197f6936d5835a78c71863d99933fe8cbcfcd2419d2b",
+     "sha256_observado": "88d444d4c480b7758ccd197f6936d5835a78c71863d99933fe8cbcfcd2419d2b",
+     "bate_sha": true,
+     "bytes_registrado": 18812,
+     "bytes_observado": 18812,
+     "bate_bytes": true
+    },
+    {
+     "caminho": "_v3_2026-09-25/criterios/criterio_G1_modelos_g10.json",
+     "sha256_registrado": "d0d2b6366930d53ca71065baeff36addbe61be6f56560e722d08721e91125132",
+     "sha256_observado": "d0d2b6366930d53ca71065baeff36addbe61be6f56560e722d08721e91125132",
+     "bate_sha": true,
+     "bytes_registrado": 3033,
+     "bytes_observado": 3033,
+     "bate_bytes": true
+    },
+    {
+     "caminho": "_v3_2026-09-25/gpu/G1/portao_G1.json",
+     "sha256_registrado": "4ced4fcba7aa8e6e520f467458260f958723d56084b25a8c54d71573d60161c8",
+     "sha256_observado": "4ced4fcba7aa8e6e520f467458260f958723d56084b25a8c54d71573d60161c8",
+     "bate_sha": true,
+     "bytes_registrado": 3545,
+     "bytes_observado": 3545,
+     "bate_bytes": true
+    }
+   ]
+  },
+  "proveniencia_scripts_G1_retomada.json": {
+   "todos_batem_sha": true,
+   "arquivos": [
+    {
+     "caminho": "_v3_2026-09-25/gpu/G1/rodar_lote_G1_retomada.py",
+     "sha256_registrado": "4f4f61cf170319ea9f3752fb78d83681065b4bc034b347751777a5d9edd3fc79",
+     "sha256_observado": "4f4f61cf170319ea9f3752fb78d83681065b4bc034b347751777a5d9edd3fc79",
+     "bate_sha": true,
+     "bytes_registrado": 20377,
+     "bytes_observado": 20377,
+     "bate_bytes": true
+    },
+    {
+     "caminho": "_v3_2026-09-25/gpu/G1/rodar_lote_G1.py",
+     "sha256_registrado": "e05a921488a13f4fb34e262968cddeb9cb3134bd44c9cfcb05bbaaa03ff3bc59",
+     "sha256_observado": "e05a921488a13f4fb34e262968cddeb9cb3134bd44c9cfcb05bbaaa03ff3bc59",
+     "bate_sha": true,
+     "bytes_registrado": 14435,
+     "bytes_observado": 14435,
+     "bate_bytes": true
+    },
+    {
+     "caminho": "_v3_2026-09-25/gpu/G1/train_v3_g10.py",
+     "sha256_registrado": "1a9dfa2f7079ce58056e53a63f682f7b0336355dae6582efa2941379fefae70c",
+     "sha256_observado": "1a9dfa2f7079ce58056e53a63f682f7b0336355dae6582efa2941379fefae70c",
+     "bate_sha": true,
+     "bytes_registrado": 7429,
+     "bytes_observado": 7429,
+     "bate_bytes": true
+    },
+    {
+     "caminho": "_v3_2026-09-25/criterios/criterio_G1_adendo4.json",
+     "sha256_registrado": "9d48d0d38d0f0b57e269ba8644955faa050ab08ad4355a16778bc0c05540e4e4",
+     "sha256_observado": "9d48d0d38d0f0b57e269ba8644955faa050ab08ad4355a16778bc0c05540e4e4",
+     "bate_sha": true,
+     "bytes_registrado": 2852,
+     "bytes_observado": 2852,
+     "bate_bytes": true
+    }
+   ]
+  }
+ },
+ "corridas_por_bloco": {
+  "bloco1": {
+   "planejadas": 80,
+   "run_json": 80,
+   "npz": 80,
+   "shim": 80,
+   "training_log": 80,
+   "checkpoint": 80,
+   "log": 80,
+   "completas_run_npz_shim": 80
+  },
+  "bloco2": {
+   "planejadas": 40,
+   "run_json": 40,
+   "npz": 40,
+   "shim": 40,
+   "training_log": 40,
+   "checkpoint": 40,
+   "log": 40,
+   "completas_run_npz_shim": 40
+  },
+  "bloco3": {
+   "planejadas": 80,
+   "run_json": 80,
+   "npz": 70,
+   "shim": 70,
+   "training_log": 70,
+   "checkpoint": 70,
+   "log": 80,
+   "completas_run_npz_shim": 70
+  }
+ },
+ "corridas_planejadas_total": 200,
+ "n_plano_declarado": 200,
+ "corridas_no_status": 198,
+ "rc_no_status": {
+  "0": 188,
+  "1": 10
+ },
+ "plano_fora_do_status": [
+  "g1_gnn_bauru_Q1_ss811474_s42",
+  "g1_mlp_bauru_Q1_ss811474_s42"
+ ],
+ "status_fora_do_plano": [],
+ "corridas_sem_par_completo": [
+  {
+   "run_label": "g1_gnn_bauru_Q3_ss125243_s42",
+   "bloco": 3,
+   "tem_run": true,
+   "tem_npz": false,
+   "tem_shim": false,
+   "nao_treinavel_registrado": false,
+   "rc_no_status": 1,
+   "status_run_json": "provisorio",
+   "chaves_run_json": 21,
+   "guarda_particao_degenerada": {
+    "particoes_sem_aresta_antena": [
+     "test"
+    ],
+    "n_pl_alvo_valido": {
+     "train": 1158124,
+     "val": 28594,
+     "test": 0
+    },
+    "significado": "particao com 0 arestas ant->ter e 0 alvo de PL valido nao testa o caminho da antena; MAE de RSSI ali e regressao sobre o sentinela constante de -110 dBm"
+   }
+  },
+  {
+   "run_label": "g1_mlp_bauru_Q3_ss125243_s42",
+   "bloco": 3,
+   "tem_run": true,
+   "tem_npz": false,
+   "tem_shim": false,
+   "nao_treinavel_registrado": false,
+   "rc_no_status": 1,
+   "status_run_json": "provisorio",
+   "chaves_run_json": 22,
+   "guarda_particao_degenerada": {
+    "particoes_sem_aresta_antena": [
+     "test"
+    ],
+    "n_pl_alvo_valido": {
+     "train": 1158124,
+     "val": 28594,
+     "test": 0
+    },
+    "significado": "particao com 0 arestas ant->ter e 0 alvo de PL valido nao testa o caminho da antena; MAE de RSSI ali e regressao sobre o sentinela constante de -110 dBm",
+    "nota_mlp": "[M3] contagem por pertencimento do endpoint terrain global; identica a do subgrafo induzido do congelado"
+   }
+  },
+  {
+   "run_label": "g1_gnn_campinas_Q3_ss739191_s42",
+   "bloco": 3,
+   "tem_run": true,
+   "tem_npz": false,
+   "tem_shim": false,
+   "nao_treinavel_registrado": false,
+   "rc_no_status": 1,
+   "status_run_json": "provisorio",
+   "chaves_run_json": 21,
+   "guarda_particao_degenerada": {
+    "particoes_sem_aresta_antena": [
+     "test"
+    ],
+    "n_pl_alvo_valido": {
+     "train": 1668639,
+     "val": 128323,
+     "test": 0
+    },
+    "significado": "particao com 0 arestas ant->ter e 0 alvo de PL valido nao testa o caminho da antena; MAE de RSSI ali e regressao sobre o sentinela constante de -110 dBm"
+   }
+  },
+  {
+   "run_label": "g1_gnn_bauru_Q3_ss739191_s42",
+   "bloco": 3,
+   "tem_run": true,
+   "tem_npz": false,
+   "tem_shim": false,
+   "nao_treinavel_registrado": false,
+   "rc_no_status": 1,
+   "status_run_json": "provisorio",
+   "chaves_run_json": 21,
+   "guarda_particao_degenerada": {
+    "particoes_sem_aresta_antena": [
+     "test"
+    ],
+    "n_pl_alvo_valido": {
+     "train": 974618,
+     "val": 135439,
+     "test": 0
+    },
+    "significado": "particao com 0 arestas ant->ter e 0 alvo de PL valido nao testa o caminho da antena; MAE de RSSI ali e regressao sobre o sentinela constante de -110 dBm"
+   }
+  },
+  {
+   "run_label": "g1_mlp_campinas_Q3_ss739191_s42",
+   "bloco": 3,
+   "tem_run": true,
+   "tem_npz": false,
+   "tem_shim": false,
+   "nao_treinavel_registrado": false,
+   "rc_no_status": 1,
+   "status_run_json": "provisorio",
+   "chaves_run_json": 22,
+   "guarda_particao_degenerada": {
+    "particoes_sem_aresta_antena": [
+     "test"
+    ],
+    "n_pl_alvo_valido": {
+     "train": 1668639,
+     "val": 128323,
+     "test": 0
+    },
+    "significado": "particao com 0 arestas ant->ter e 0 alvo de PL valido nao testa o caminho da antena; MAE de RSSI ali e regressao sobre o sentinela constante de -110 dBm",
+    "nota_mlp": "[M3] contagem por pertencimento do endpoint terrain global; identica a do subgrafo induzido do congelado"
+   }
+  },
+  {
+   "run_label": "g1_mlp_bauru_Q3_ss739191_s42",
+   "bloco": 3,
+   "tem_run": true,
+   "tem_npz": false,
+   "tem_shim": false,
+   "nao_treinavel_registrado": false,
+   "rc_no_status": 1,
+   "status_run_json": "provisorio",
+   "chaves_run_json": 22,
+   "guarda_particao_degenerada": {
+    "particoes_sem_aresta_antena": [
+     "test"
+    ],
+    "n_pl_alvo_valido": {
+     "train": 974618,
+     "val": 135439,
+     "test": 0
+    },
+    "significado": "particao com 0 arestas ant->ter e 0 alvo de PL valido nao testa o caminho da antena; MAE de RSSI ali e regressao sobre o sentinela constante de -110 dBm",
+    "nota_mlp": "[M3] contagem por pertencimento do endpoint terrain global; identica a do subgrafo induzido do congelado"
+   }
+  },
+  {
+   "run_label": "g1_gnn_bauru_Q3_ss769856_s42",
+   "bloco": 3,
+   "tem_run": true,
+   "tem_npz": false,
+   "tem_shim": false,
+   "nao_treinavel_registrado": true,
+   "rc_no_status": 1,
+   "status_run_json": "provisorio",
+   "chaves_run_json": 21,
+   "guarda_particao_degenerada": {
+    "particoes_sem_aresta_antena": [
+     "val"
+    ],
+    "n_pl_alvo_valido": {
+     "train": 885153,
+     "val": 0,
+     "test": 131544
+    },
+    "significado": "particao com 0 arestas ant->ter e 0 alvo de PL valido nao testa o caminho da antena; MAE de RSSI ali e regressao sobre o sentinela constante de -110 dBm"
+   }
+  },
+  {
+   "run_label": "g1_mlp_bauru_Q3_ss769856_s42",
+   "bloco": 3,
+   "tem_run": true,
+   "tem_npz": false,
+   "tem_shim": false,
+   "nao_treinavel_registrado": true,
+   "rc_no_status": 1,
+   "status_run_json": "provisorio",
+   "chaves_run_json": 22,
+   "guarda_particao_degenerada": {
+    "particoes_sem_aresta_antena": [
+     "val"
+    ],
+    "n_pl_alvo_valido": {
+     "train": 885153,
+     "val": 0,
+     "test": 131544
+    },
+    "significado": "particao com 0 arestas ant->ter e 0 alvo de PL valido nao testa o caminho da antena; MAE de RSSI ali e regressao sobre o sentinela constante de -110 dBm",
+    "nota_mlp": "[M3] contagem por pertencimento do endpoint terrain global; identica a do subgrafo induzido do congelado"
+   }
+  },
+  {
+   "run_label": "g1_gnn_bauru_Q3_ss282106_s42",
+   "bloco": 3,
+   "tem_run": true,
+   "tem_npz": false,
+   "tem_shim": false,
+   "nao_treinavel_registrado": true,
+   "rc_no_status": 1,
+   "status_run_json": "provisorio",
+   "chaves_run_json": 21,
+   "guarda_particao_degenerada": {
+    "particoes_sem_aresta_antena": [
+     "val"
+    ],
+    "n_pl_alvo_valido": {
+     "train": 892949,
+     "val": 0,
+     "test": 210636
+    },
+    "significado": "particao com 0 arestas ant->ter e 0 alvo de PL valido nao testa o caminho da antena; MAE de RSSI ali e regressao sobre o sentinela constante de -110 dBm"
+   }
+  },
+  {
+   "run_label": "g1_mlp_bauru_Q3_ss282106_s42",
+   "bloco": 3,
+   "tem_run": true,
+   "tem_npz": false,
+   "tem_shim": false,
+   "nao_treinavel_registrado": true,
+   "rc_no_status": 1,
+   "status_run_json": "provisorio",
+   "chaves_run_json": 22,
+   "guarda_particao_degenerada": {
+    "particoes_sem_aresta_antena": [
+     "val"
+    ],
+    "n_pl_alvo_valido": {
+     "train": 892949,
+     "val": 0,
+     "test": 210636
+    },
+    "significado": "particao com 0 arestas ant->ter e 0 alvo de PL valido nao testa o caminho da antena; MAE de RSSI ali e regressao sobre o sentinela constante de -110 dBm",
+    "nota_mlp": "[M3] contagem por pertencimento do endpoint terrain global; identica a do subgrafo induzido do congelado"
+   }
+  }
+ ],
+ "nao_treinaveis_registrados": [
+  "g1_gnn_bauru_Q3_ss282106_s42",
+  "g1_gnn_bauru_Q3_ss769856_s42",
+  "g1_mlp_bauru_Q3_ss282106_s42",
+  "g1_mlp_bauru_Q3_ss769856_s42"
+ ],
+ "n_nao_treinaveis_corridas": 4,
+ "agregado_v8_contagem_sorteios_sem_validos_por_celula": {
+  "bauru_Q3": 2,
+  "campinas_Q3": 1
+ },
+ "agregado_v8_contagem_sorteios_nao_treinaveis_por_celula": {
+  "bauru_Q3": 2,
+  "campinas_Q3": 0
+ },
+ "agregado_v8_contagem_sorteios_usaveis_por_celula": {
+  "bauru_Q3": 16,
+  "campinas_Q3": 19
+ },
+ "agregado_G1_v5_bloco1.json_sem_validos": {
+  "bauru_Q1": 0,
+  "campinas_Q1": 0
+ },
+ "agregado_G1_v5_bloco2.json_sem_validos": {
+  "bauru_Q1": 0,
+  "campinas_Q1": 0
+ },
+ "arquivos_lote_sem_pycache": 1174,
+ "bytes_lote_sem_pycache": 11789364474,
+ "arquivos_pycache_excluidos": [
+  "__pycache__/train_v3_g10.cpython-311.pyc"
+ ],
+ "arquivos_por_categoria": {
+  "log_corrida": 200,
+  "outro_lote": 14,
+  "npz": 190,
+  "shim": 190,
+  "training_log.csv": 190,
+  "run_json": 200,
+  "checkpoint": 190
+ }
+}

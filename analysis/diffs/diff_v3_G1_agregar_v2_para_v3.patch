@@ -1,0 +1,549 @@
+--- scripts/v3_G1_agregar_v2.py	2026-10-01 23:46:49.791457991 -0300
++++ scripts/v3_G1_agregar_v3.py	2026-10-02 00:00:41.728970307 -0300
+@@ -1,61 +1,52 @@
+ #!/trabalho/ambientes/s33_amb_virtual/.venv/bin/python
+ # -*- coding: utf-8 -*-
+ """
+-Agregacao do lote G1 (modelos treinados a g = 10 km, b = 2 km), VERSAO 2:
+-implementa as sete emendas de `_v3_2026-09-25/criterios/criterio_G1_adendo1.json`
+-(fixado 2026-10-01T23:33:14-03:00) sobre o criterio
+-`_v3_2026-09-25/criterios/criterio_G1_modelos_g10.json` (sha256 d0d2b636...5132,
+-intacto). Onde os dois divergem, o adendo manda.
+-
+-COPIA DECLARADA de scripts/v3_G1_agregar.py
+-  sha256 do original: 88d444d4c480b7758ccd197f6936d5835a78c71863d99933fe8cbcfcd2419d2b
+-  (o original NAO e editado; ele consta em gpu/G1/proveniencia_scripts_G1.json)
+-que por sua vez e copia declarada de scripts/v3_A4_agregar.py
+-  (sha256 b5bb904429fd7ff79566a013e202f14d256794fa82cb32f427d6cdfa3bb07b6f).
+-
+-Reaproveitados sem mudanca de logica: sha256, manifest_cftudo, mae_pop (MAE de
+-RSSI = canal 3 a partir do .npz fisico, valido = target[:,0] < 299), med, dp
+-(ddof=1), razao, pearson, spearman, carregar_2_1, metricas por bloco simples.
+-
+-Mudancas em relacao ao v1, uma por emenda do adendo:
+-  (1) bloco 2: decomposicao de UM fator, sementes aninhadas no sorteio
+-      (n sorteios x 3 sementes): sigma2_semente = QM_dentro;
+-      sigma2_sorteio = max(0, (QM_entre - QM_dentro)/3). A ANOVA de dois fatores
+-      sem repeticao foi REMOVIDA (nao e calculada nem gravada).
+-  (2) comparador do dp entre sorteios: celulas Q1 = max(0,132 dB; dp entre
+-      sementes pooled do bloco 2, por modelo); celulas Q3 = 0,132 dB (ancora
+-      medida a 5 km). O dp pooled entre sementes e sqrt(QM_dentro).
+-  (3) condicao 1 por celula = dp entre sorteios >= 3 x comparador para GNN E MLP.
+-  (4) bloco 3: completo -> como o bloco 1. Incompleto: SO com --bloco3-truncado
+-      (declaracao do operador de que o lote terminou/foi relancado e o bloco
+-      continua incompleto) e com lote_G1_status.json trazendo veredito_lote;
+-      usa os primeiros k sorteios do plano (prefixo contiguo) com as 4 corridas
+-      completas e exige >= 10 sorteios com nos validos por celula; senao o
+-      bloco 3 e RECUSADO (rc=2, nada gravado).
+-  (5) contagem mecanica dos ramos (satisfaz_regra_reforca / _delimita /
+-      _delimita_parcial) nos arquivos dos blocos 2 e 3; so aritmetica sobre os
+-      limiares do criterio/adendo, sem texto interpretativo.
+-  (6) sorteios sem no valido por celula sao contados; as corridas deles (quando
+-      ha predicao) entram na paridade de sentinelas (mediana de |GNN-MLP| nos
+-      sentinelas, limiar 0,117 dB).
+-  (7) conferencias que ABORTAM (rc=4, nada gravado) antes de qualquer metrica:
+-      sha do dataset (run JSON x manifest v4), g = 10 e b = 2 no run JSON e no
+-      sidecar shim_g10_*.json, split_seed e seed iguais aos de plano_G1.json,
+-      hash dos indices do .npz == particoes.test.idx_sha256_global do run JSON,
+-      config igual a das corridas do A4 (gpu/A4/{gnn,mlp}_v3_a4_bauru_Q*_ss*) do
+-      mesmo modelo fora de grid_km, seed, split_seed, rotulos e caminhos, sha dos
+-      arquivos listados em gpu/G1/proveniencia_scripts_G1.json iguais aos
+-      registrados.
+-
+-Codigos de saida: 0 ok; 2 recusa (bloco incompleto, bloco 2 sem bloco 1,
+-bloco 3 com k<10 sorteios validos por celula, truncamento sem flag); 4 aborto por
+-conferencia do item 7 (nada e gravado em NENHUM bloco da invocacao); 1 erro.
+-
+-Este script NAO interpreta: calcula as metricas e aplica aritmeticamente os
+-limiares (0,132 dB; 0,117 dB; 3x; 2x; sigma2). A leitura e do rigor.
+-Nenhum numero e citavel sem contra-auditoria (reexecucao por quem nao escreveu).
+-
+-Saida: gpu/G1/agregado_G1_v2_bloco<N>.json   (uso: v3_G1_agregar_v2.py [--bloco 1|2|3])
++Agregacao do lote G1 (modelos treinados a g = 10 km, b = 2 km), VERSAO 3.
++Criterios: `_v3_2026-09-25/criterios/criterio_G1_modelos_g10.json` (sha256 d0d2b636...5132),
++emendado por criterio_G1_adendo1.json (sete emendas) e criterio_G1_adendo2.json (fixa as
++resolucoes de ambiguidade do v2). Onde divergem, o adendo manda.
++
++COPIA DECLARADA de scripts/v3_G1_agregar_v2.py
++  sha256 do v2: d94fac29dcf6c694cab9bec55c4bdd9e2701fe5baf2675cbfe0aa77a5c155824
++(v1 sha 88d444d4c480b7758ccd197f6936d5835a78c71863d99933fe8cbcfcd2419d2b e v2 NAO sao editados).
++O v2 e copia declarada do v1, que e copia declarada de scripts/v3_A4_agregar.py.
++
++Correcoes do v3 sobre o v2 (veredito: gpu/G1_agregador_v2_contra_auditoria/veredito.json):
++  C1  divergencia de n_test, n_validos ou n_todos contra o 2.1 (mesmo split_seed e celula), ou
++      ausencia da referencia no 2.1, ABORTA (rc=4, nada gravado). `todas_passaram` e calculado
++      a partir das conferencias, nao e literal.
++  C2  corrida `sem_validos` registrada so no status SO e aceita sem .npz se houver run JSON,
++      lido e conferido (rotulo, dataset, g/b, sementes, config x A4, n_test x 2.1,
++      particoes.test.n_pl_alvo_valido == 0) E validos == 0 no 2.1 para a celula e o split_seed;
++      senao ABORTA.
++  C3  exatamente 1 run JSON, 1 .npz e 1 sidecar por pasta, com os nomes run_<label>.json,
++      predicoes_<label>.npz, shim_g10_<label>.json (padrao real do lote); outro arquivo
++      que case com o padrao ABORTA. Amarracao do .npz ao modelo/corrida: NENHUM artefato do
++      lote grava o sha do .npz (conferido: run JSON, sidecar e log nao o trazem). A conferencia
++      mais forte disponivel, sem tocar no lote, e recalcular do .npz o MAE e o RMSE de RSSI de
++      TODOS os nos e comparar com selecao.test_no_melhor_ckpt do run JSON (tolerancia relativa
++      5 % no MAE, 1 % no RMSE), alem de n_nos e n_pl_alvo_valido. Um .npz de outro modelo ou
++      de outra celula nao passa (nas 4 corridas reais ja concluidas a diferenca propria foi
++      <= 2,1 % no MAE e <= 0,2 % no RMSE; a de outro modelo/celula >= 6,4 % e >= 23 %). Limite:
++      MAE/RMSE sobre todos os nos sao dominados pelos sentinelas (~90 % dos nos); a conferencia
++      nao prova bit a bit que o arquivo e o gravado pelo treino.
++  NB  finitude testada em todo campo do .npz usado (target[:,0], target[:,3], pred[:,3], e
++      pred[:,0] nos validos); razao indeterminada nao cai em faixa intermediaria (marca
++      indeterminada e a contagem de ramos e RECUSADA, satisfaz_regra_* = null); 3x e 2x
++      calculados de uma forma so (razao dp/comparador, tambem no bloco simples); campo
++      None/ausente nas conferencias e violacao; conferir_plano checa 80/40/80 corridas e
++      rotulos unicos; adendo2 lido, e seu sha1 citado conferido.
++  Saida: gpu/G1/agregado_G1_v3_bloco<N>.json (nome novo, para nao colidir com o v2).
++  --so-conferir recalcula MAE/RMSE do .npz apenas para a amarracao e NAO os imprime nem grava.
++
++Reaproveitado do v2 (que reaproveita do v1/A4): mae_pop, decomposicao de um fator, comparador
++max(0,132; sqrt(QM_dentro)) nas Q1 e 0,132 nas Q3, condicao 1 GNN e MLP, bloco 3 por prefixo
++contiguo (k>=10), contagem mecanica de ramos, sem-validos na paridade, conferencias do item 7.
++
++Codigos de saida: 0 ok; 2 recusa (bloco incompleto, bloco 2 sem bloco 1, bloco 3 k<10,
++truncamento sem flag); 4 aborto por conferencia (nada gravado em NENHUM bloco da invocacao);
++1 erro. Este script NAO interpreta: aplica limiares aritmeticos. Numero so e citavel apos
++contra-auditoria.
+ """
+ import argparse
+ import glob
+@@ -73,6 +64,9 @@
+ BASE_PADRAO = Path("/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics")
+ RAIZ_PADRAO = BASE_PADRAO / "_v3_2026-09-25"
+ SHA_ORIGINAL_V1 = "88d444d4c480b7758ccd197f6936d5835a78c71863d99933fe8cbcfcd2419d2b"
++SHA_V2 = "d94fac29dcf6c694cab9bec55c4bdd9e2701fe5baf2675cbfe0aa77a5c155824"
++TOL_AMARRA_MAE_REL = 0.05
++TOL_AMARRA_RMSE_REL = 0.01
+ SENTINELA_PL = 299.0
+ RUIDO_REPETICAO_DB = 0.132      # maior diferenca entre repeticoes do GNN (A2c); nao e um dp (adendo 2)
+ RUIDO_SENTINELA_DB = 0.117      # maior diferenca entre repeticoes nos sentinelas (A2c)
+@@ -112,6 +106,7 @@
+     P.A4 = raiz / "gpu" / "A4"
+     P.CRIT = raiz / "criterios" / "criterio_G1_modelos_g10.json"
+     P.ADENDO = raiz / "criterios" / "criterio_G1_adendo1.json"
++    P.ADENDO2 = raiz / "criterios" / "criterio_G1_adendo2.json"
+     P.PLANO = P.G1 / "plano_G1.json"
+     P.STATUS = P.G1 / "lote_G1_status.json"
+     P.PROV = P.G1 / "proveniencia_scripts_G1.json"
+@@ -172,23 +167,35 @@
+     return pearson(rx, ry)
+ 
+ 
++def _finito(nome, arr):
++    if not np.isfinite(arr).all():
++        raise Aborta(f"valor nao finito no .npz: {nome}")
++
++
+ def mae_pop(z) -> dict:
+-    """z: dict-like (NpzFile) com target, pred, idx_global [, sentinela]. Identico ao v1 (+ finitude)."""
++    """z: dict-like (NpzFile) com target, pred, idx_global [, sentinela]. Como o v1, com finitude de todo campo usado."""
+     tgt = z["target"].astype(np.float64)
+     pred = z["pred"].astype(np.float64)
++    if tgt.ndim != 2 or pred.shape != tgt.shape or tgt.shape[1] < 4 or tgt.shape[0] != len(z["idx_global"]):
++        raise Aborta("formato do .npz inesperado (target/pred/idx_global)")
++    _finito("target[:,0]", tgt[:, 0])
++    _finito("target[:,3]", tgt[:, 3])
++    _finito("pred[:,3]", pred[:, 3])
+     sent = tgt[:, 0] >= SENTINELA_PL
+     if "sentinela" in getattr(z, "files", z) and not np.array_equal(sent, z["sentinela"].astype(bool)):
+         raise Aborta("campo sentinela do .npz nao bate com target[:,0] >= 299")
+-    e3 = np.abs(tgt[:, 3] - pred[:, 3])
+-    e0 = np.abs(tgt[:, 0] - pred[:, 0])
+-    if not np.isfinite(e3).all():
+-        raise Aborta("erro de RSSI nao finito no .npz (NaN/inf em target[:,3] ou pred[:,3])")
+     val = ~sent
++    if val.any():
++        _finito("pred[:,0] nos validos", pred[val, 0])
++    e3s = pred[:, 3] - tgt[:, 3]
++    e3 = np.abs(e3s)
++    e0 = np.abs(tgt[:, 0] - pred[:, 0])
+     return {
+         "n": int(tgt.shape[0]), "n_validos": int(val.sum()), "n_sentinela": int(sent.sum()),
+         "mae_rssi_validos_db": float(e3[val].mean()) if val.any() else None,
+         "mae_rssi_sentinela_db": float(e3[sent].mean()) if sent.any() else None,
+         "mae_rssi_todos_db": float(e3.mean()),
++        "rmse_rssi_todos_db": float(np.sqrt((e3s ** 2).mean())),
+         "mae_pl_validos_db": float(e0[val].mean()) if val.any() else None,
+         "idx_sha256": hash_idx(z["idx_global"]),
+     }
+@@ -247,11 +254,11 @@
+ 
+ def sinalizar_celula(por_modelo: dict) -> dict:
+     g, m = por_modelo["gnn"], por_modelo["mlp"]
+-    cond1 = bool(g["dp_ge_3x_comparador"] and m["dp_ge_3x_comparador"])
+-    delim = bool(g["dp_lt_2x_comparador"] and m["dp_lt_2x_comparador"])
+     indet = any(x["razao_dp_sobre_comparador"] is None for x in (g, m))
++    cond1 = bool(not indet and g["dp_ge_3x_comparador"] and m["dp_ge_3x_comparador"])
++    delim = bool(not indet and g["dp_lt_2x_comparador"] and m["dp_lt_2x_comparador"])
+     return {"condicao1_gnn_e_mlp": cond1, "ambos_lt_2x": delim,
+-            "faixa_intermediaria": bool(not cond1 and not delim),
++            "faixa_intermediaria": bool(not indet and not cond1 and not delim),
+             "algum_modelo_entre_2x_e_3x": bool(g["dp_entre_2x_e_3x_comparador"] or m["dp_entre_2x_e_3x_comparador"]),
+             "indeterminada_dp_nao_calculavel": indet}
+ 
+@@ -259,6 +266,11 @@
+ def contar_ramos(celulas: dict, celulas_q1: list) -> dict:
+     """celulas[c] = {condicao1_gnn_e_mlp, ambos_lt_2x, faixa_intermediaria, algum_modelo_entre_2x_e_3x,
+     condicao2_gnn_e_mlp (so Q1), paridade_le_0_117}. Limiar: 3 de 4 celulas; 2 de 2 se so as Q1 entram (adendo 4)."""
++    ind = [c for c, d in celulas.items() if d.get("indeterminada_dp_nao_calculavel")]
++    if ind:
++        return {"indeterminada": True, "celulas_indeterminadas": ind, "n_celulas": len(celulas),
++                "satisfaz_regra_reforca": None, "satisfaz_regra_delimita": None, "satisfaz_regra_delimita_parcial": None,
++                "nota": "contagem de ramos RECUSADA: dp, razao ou condicao 2 nao calculavel em celula(s) acima"}
+     n = len(celulas)
+     t = 3 if n == 4 else n          # n==2 -> 2 de 2 (adendo 4); n==4 -> 3 de 4
+     n1 = [c for c, d in celulas.items() if d["condicao1_gnn_e_mlp"]]
+@@ -328,7 +340,14 @@
+     sc, sa = sha256(P.CRIT), sha256(P.ADENDO)
+     if not m or m.group(1) != sc:
+         raise Aborta(f"sha256 do criterio ({sc}) difere do citado no adendo ({m.group(1) if m else None})")
+-    return sc, sa
++    if not P.ADENDO2.exists():
++        raise Aborta("criterio_G1_adendo2.json ausente")
++    with open(P.ADENDO2, "r", encoding="utf-8") as f:
++        adendo2 = json.load(f)
++    m2 = re.search(r"sha256 ([0-9a-f]{64})", adendo2.get("emenda", ""))
++    if adendo2.get("id") != "G1_modelos_g10_adendo2" or not m2 or m2.group(1) != sa:
++        raise Aborta("adendo2: id inesperado ou sha256 citado do adendo1 difere do observado")
++    return sc, sa, sha256(P.ADENDO2)
+ 
+ 
+ def conferir_plano(plano_doc: dict) -> None:
+@@ -338,6 +357,10 @@
+     with open(P.SORTEIOS_2_1, "r", encoding="utf-8") as f:
+         lista = json.load(f)["nota_divergencia_seeds"]["seeds_usados_nesta_rodada"]
+     esp = {1: lista[:20], 2: lista[:5], 3: lista[:20]}
++    cs = plano_doc["corridas"]
++    cont = {b: sum(1 for c in cs if c["bloco"] == b) for b in (1, 2, 3)}
++    if cont != {1: 80, 2: 40, 3: 80} or len(cs) != 200 or len({c["run_label"] for c in cs}) != 200:
++        raise Aborta(f"plano_G1.json: contagem por bloco {cont} / rotulos unicos != 80/40/80, 200")
+     for c in plano_doc["corridas"]:
+         if c["split_seed"] != esp[c["bloco"]][c["indice_sorteio"]]:
+             raise Aborta(f"plano_G1.json: split_seed de {c['run_label']} fora da lista do 2.1")
+@@ -364,6 +387,9 @@
+         mv = d.get("modelo_v3") or {}
+         refs.append({"config": cfg, "artefato_tipo": d.get("artefato_tipo"), "script_sha256": d.get("script_sha256"),
+                      "decoder_sha256": mv.get("decoder_sha256"), "wrapper_sha256": mv.get("wrapper_sha256")})
++    r0 = refs[0]
++    if any(v is None for v in (r0["artefato_tipo"], r0["script_sha256"], r0["decoder_sha256"], r0["wrapper_sha256"])) or not r0["config"]:
++        raise Aborta(f"A4: referencia {tipo} com campo ausente/None (artefato_tipo, script/decoder/wrapper sha, config)")
+     if any(r != refs[0] for r in refs[1:]):
+         raise Aborta(f"A4: as {len(fs)} corridas {tipo} nao tem config identica fora das chaves ignoradas; referencia ambigua")
+     _REF_A4[tipo] = {"n_corridas_a4": len(fs), **refs[0]}
+@@ -375,7 +401,18 @@
+     return a is not None and b is not None and abs(float(a) - float(b)) <= TOL_FLOAT
+ 
+ 
+-def conferir_corrida(c: dict, dj: dict, idx_global, side, man: dict) -> dict:
++def _num(x) -> bool:
++    return isinstance(x, (int, float)) and not isinstance(x, bool) and bool(np.isfinite(x))
++
++
++def _rel_ok(a, b, tol) -> bool:
++    """|a-b| <= tol*|b|; None, nao numerico ou nao finito = violacao."""
++    return _num(a) and _num(b) and b != 0 and abs(a - b) <= tol * abs(b)
++
++
++def conferir_corrida(c: dict, dj: dict, idx_global, side, man: dict, ref21: dict, m) -> dict:
++    """m = mae_pop(z) da corrida (com .npz) ou None (corrida `sem_validos` sem .npz: conferencias que dependem do
++    .npz/sidecar nao se aplicam e a regra C2 passa a valer)."""
+     lbl, tipo = c["run_label"], c["tipo"]
+     falhas = []
+ 
+@@ -385,6 +422,8 @@
+ 
+     cfg, geo, spl = dj.get("config") or {}, dj.get("geometria") or {}, dj.get("split") or {}
+     ins = dj.get("insumos") or {}
++    ptest = (dj.get("particoes") or {}).get("test") or {}
++    sel = (dj.get("selecao") or {}).get("test_no_melhor_ckpt") or {}
+     # rotulo
+     ex("run_label", dj.get("run_label") == lbl and cfg.get("run_label") == lbl, dj.get("run_label"))
+     # (a) dataset
+@@ -403,47 +442,71 @@
+         ex(f"run_json_g=10[{k}]", _igual(v, GRID_KM), v)
+     for k, v in bb_run.items():
+         ex(f"run_json_b=2[{k}]", _igual(v, BUFFER_KM), v)
+-    # (b) sidecar
+-    if not isinstance(side, dict):
+-        ex("sidecar_shim_g10_presente", False)
+-    else:
+-        ex("sidecar_artefato", side.get("artefato") == "shim_g10" and side.get("run_label") == lbl
+-           and side.get("modelo") == tipo, (side.get("artefato"), side.get("run_label"), side.get("modelo")))
+-        ex("sidecar_g_pedido=10", _igual(side.get("grid_km_pedido"), GRID_KM), side.get("grid_km_pedido"))
+-        ex("sidecar_b_pedido=2", _igual(side.get("buffer_km_pedido"), BUFFER_KM), side.get("buffer_km_pedido"))
+-        ef = side.get("efetivo") or {}
+-        for k in ("config.grid_km", "geometria.grid_km_usado", "split.grid_km"):
+-            ex(f"sidecar_g_efetivo=10[{k}]", _igual(ef.get(k), GRID_KM), ef.get(k))
+-        for k in ("config.buffer_km", "geometria.buffer_km_usado", "split.buffer_km"):
+-            ex(f"sidecar_b_efetivo=2[{k}]", _igual(ef.get(k), BUFFER_KM), ef.get(k))
+-        ex("sidecar_g_b_efetivos_conferem", side.get("g_b_efetivos_conferem") is True)
+-        ex("sidecar_npz_igual_teste_retido", side.get("npz_igual_teste_retido") is True)
+-        n_run = ((spl.get("n_nos_apos_buffer") or {}).get("test"))
+-        ex("sidecar_n_nos_x_run_x_npz", side.get("n_nos_npz") == len(idx_global) == side.get("n_nos_teste_retidos_run_json") == n_run,
+-           (side.get("n_nos_npz"), len(idx_global), side.get("n_nos_teste_retidos_run_json"), n_run))
+     # (c) sementes x plano
+     ex("seed_x_plano", dj.get("seed") == c["seed_treino"] and cfg.get("seed") == c["seed_treino"],
+        (dj.get("seed"), cfg.get("seed"), c["seed_treino"]))
+     ex("split_seed_x_plano", dj.get("split_seed") == c["split_seed"] and cfg.get("split_seed") == c["split_seed"]
+        and spl.get("split_seed") == c["split_seed"], (dj.get("split_seed"), cfg.get("split_seed"), spl.get("split_seed"), c["split_seed"]))
+-    # (d) hash dos indices
+-    h = hash_idx(idx_global)
+-    ptest = (dj.get("particoes") or {}).get("test") or {}
+-    ex("hash_idx_npz_x_run_json", h == ptest.get("idx_sha256_global"), (h, ptest.get("idx_sha256_global")))
+-    ex("n_idx_npz_x_particoes_test", ptest.get("n") == len(idx_global), (ptest.get("n"), len(idx_global)))
++    # (C1) contagens x 2.1 (mesma celula e split_seed)
++    ref = ref21.get((f"{c['cidade']}_{c['quadrante']}", c["split_seed"]))
++    ex("ref_2_1_presente", ref is not None)
++    n_test_run = (spl.get("n_nos_apos_buffer") or {}).get("test")
++    if ref is not None:
++        ex("n_test_run_x_2_1", n_test_run == ref["n_test"], (n_test_run, ref["n_test"]))
++        ex("particoes_test_n_x_2_1", ptest.get("n") == ref["n_test"], (ptest.get("n"), ref["n_test"]))
++    if m is None:
++        # (C2) sem_validos sem .npz: run JSON lido; 2.1 validos == 0 e run JSON sem alvo valido
++        ex("C2_sem_validos_2_1_validos==0", ref is not None and ref["validos"] == 0, ref and ref["validos"])
++        ex("C2_sem_validos_run_json_n_pl_alvo_valido==0", ptest.get("n_pl_alvo_valido") == 0, ptest.get("n_pl_alvo_valido"))
++        h = None
++    else:
++        if ref is not None:
++            ex("n_validos_npz_x_2_1", m["n_validos"] == ref["validos"], (m["n_validos"], ref["validos"]))
++            ex("n_todos_npz_x_2_1", m["n"] == ref["todos"], (m["n"], ref["todos"]))
++        # (b) sidecar
++        if not isinstance(side, dict):
++            ex("sidecar_shim_g10_presente", False)
++        else:
++            ex("sidecar_artefato", side.get("artefato") == "shim_g10" and side.get("run_label") == lbl
++               and side.get("modelo") == tipo, (side.get("artefato"), side.get("run_label"), side.get("modelo")))
++            ex("sidecar_g_pedido=10", _igual(side.get("grid_km_pedido"), GRID_KM), side.get("grid_km_pedido"))
++            ex("sidecar_b_pedido=2", _igual(side.get("buffer_km_pedido"), BUFFER_KM), side.get("buffer_km_pedido"))
++            ef = side.get("efetivo") or {}
++            for k in ("config.grid_km", "geometria.grid_km_usado", "split.grid_km"):
++                ex(f"sidecar_g_efetivo=10[{k}]", _igual(ef.get(k), GRID_KM), ef.get(k))
++            for k in ("config.buffer_km", "geometria.buffer_km_usado", "split.buffer_km"):
++                ex(f"sidecar_b_efetivo=2[{k}]", _igual(ef.get(k), BUFFER_KM), ef.get(k))
++            ex("sidecar_g_b_efetivos_conferem", side.get("g_b_efetivos_conferem") is True)
++            ex("sidecar_npz_igual_teste_retido", side.get("npz_igual_teste_retido") is True)
++            ex("sidecar_n_nos_x_run_x_npz", n_test_run is not None and side.get("n_nos_npz") == len(idx_global)
++               == side.get("n_nos_teste_retidos_run_json") == n_test_run,
++               (side.get("n_nos_npz"), len(idx_global), side.get("n_nos_teste_retidos_run_json"), n_test_run))
++        # (d) hash dos indices
++        h = hash_idx(idx_global)
++        ex("hash_idx_npz_x_run_json", ptest.get("idx_sha256_global") is not None and h == ptest.get("idx_sha256_global"),
++           (h, ptest.get("idx_sha256_global")))
++        ex("n_idx_npz_x_particoes_test", ptest.get("n") == len(idx_global), (ptest.get("n"), len(idx_global)))
++        # (C3) amarracao do .npz ao modelo/corrida: metricas recalculadas do .npz x selecao.test_no_melhor_ckpt do run JSON
++        ex("amarra_npz_n_nos", sel.get("n_nos") == m["n"], (sel.get("n_nos"), m["n"]))
++        ex("amarra_npz_n_pl_alvo_valido", sel.get("n_pl_alvo_valido") == m["n_validos"] == ptest.get("n_pl_alvo_valido"),
++           (sel.get("n_pl_alvo_valido"), m["n_validos"], ptest.get("n_pl_alvo_valido")))
++        ex("amarra_npz_mae_rssi_todos", _rel_ok(m["mae_rssi_todos_db"], sel.get("mae_rssi_db"), TOL_AMARRA_MAE_REL),
++           "MAE do .npz difere do run JSON alem da tolerancia")
++        ex("amarra_npz_rmse_rssi_todos", _rel_ok(m["rmse_rssi_todos_db"], sel.get("rmse_rssi_db"), TOL_AMARRA_RMSE_REL),
++           "RMSE do .npz difere do run JSON alem da tolerancia")
+     # (e) config x A4
+-    ref = referencia_a4(tipo)
++    ref_a4 = referencia_a4(tipo)
+     cfg_cmp = {k: v for k, v in cfg.items() if k not in CONFIG_IGNORADAS_A4}
+-    if cfg_cmp != ref["config"]:
+-        dif = sorted(k for k in set(cfg_cmp) | set(ref["config"]) if cfg_cmp.get(k) != ref["config"].get(k) or
+-                     (k in cfg_cmp) != (k in ref["config"]))
+-        ex("config_igual_A4", False, {k: (cfg_cmp.get(k), ref["config"].get(k)) for k in dif})
++    if cfg_cmp != ref_a4["config"]:
++        dif = sorted(k for k in set(cfg_cmp) | set(ref_a4["config"]) if cfg_cmp.get(k) != ref_a4["config"].get(k) or
++                     (k in cfg_cmp) != (k in ref_a4["config"]))
++        ex("config_igual_A4", False, {k: (cfg_cmp.get(k), ref_a4["config"].get(k)) for k in dif})
+     mv = dj.get("modelo_v3") or {}
+-    ex("script_sha_igual_A4", dj.get("script_sha256") == ref["script_sha256"] and dj.get("artefato_tipo") == ref["artefato_tipo"]
+-       and mv.get("decoder_sha256") == ref["decoder_sha256"] and mv.get("wrapper_sha256") == ref["wrapper_sha256"])
++    ex("script_sha_igual_A4", dj.get("script_sha256") == ref_a4["script_sha256"] and dj.get("artefato_tipo") == ref_a4["artefato_tipo"]
++       and mv.get("decoder_sha256") == ref_a4["decoder_sha256"] and mv.get("wrapper_sha256") == ref_a4["wrapper_sha256"])
+     if falhas:
+         raise Aborta(f"{lbl}: " + "; ".join(falhas))
+-    return {"run_label": lbl, "dataset_sha256": ins.get("sha256_rf_data"), "idx_sha256_teste": h}
++    return {"run_label": lbl, "passou": True, "com_npz": m is not None, "dataset_sha256": ins.get("sha256_rf_data"), "idx_sha256_teste": h}
+ 
+ 
+ # ------------------------------------------------------------------- agregador
+@@ -485,7 +548,7 @@
+ 
+ 
+ def _executar(args, argv_efetivo, modo_teste) -> int:
+-    sha_crit, sha_adendo = conferir_criterios()
++    sha_crit, sha_adendo, sha_adendo2 = conferir_criterios()
+     prov_scripts = conferir_scripts_do_lote(modo_teste)
+     with open(P.PLANO, "r", encoding="utf-8") as f:
+         plano_doc = json.load(f)
+@@ -500,17 +563,22 @@
+ 
+     # ---- completude
+     def artefatos(lbl):
++        """C3: exatamente (no maximo) 1 run JSON, 1 .npz e 1 sidecar por pasta, com o nome do padrao do lote."""
+         d = P.G1 / lbl
+-        js = sorted(glob.glob(str(d / "run_*.json")))
+-        zs = sorted(glob.glob(str(d / "predicoes_*.npz")))
+-        sd = sorted(glob.glob(str(d / "shim_g10_*.json")))
+-        return d, js, zs, sd
++        achados = []
++        for pat, esp in (("run_*.json", f"run_{lbl}.json"), ("predicoes_*.npz", f"predicoes_{lbl}.npz"),
++                         ("shim_g10_*.json", f"shim_g10_{lbl}.json")):
++            fs = sorted(glob.glob(str(d / pat)))
++            if len(fs) > 1 or (fs and Path(fs[0]).name != esp):
++                raise Aborta(f"{lbl}: arquivos {pat} inesperados na pasta {[Path(x).name for x in fs]} (esperado exatamente {esp})")
++            achados.append(fs)
++        return (d, *achados)
+ 
+     def completa(c) -> bool:
+         lbl = c["run_label"]
+         d, js, zs, sd = artefatos(lbl)
+         if lbl in sem_val and not zs:
+-            return True
++            return True           # aceitacao so no carregar(): exige run JSON conferido e 2.1 validos == 0 (C2)
+         if not (js and zs):
+             return False          # sidecar ausente NAO torna incompleta: e violacao da conferencia (aborta, item 7)
+         try:
+@@ -537,6 +605,11 @@
+             return cache[lbl]
+         d, js, zs, sd = artefatos(lbl)
+         if lbl in sem_val and not zs:
++            if not js:
++                raise Aborta(f"{lbl}: registrada sem_validos so no status; run JSON ausente (C2)")
++            with open(js[0], "r", encoding="utf-8") as f:
++                dj = json.load(f)
++            conferidas[lbl] = conferir_corrida(c, dj, None, None, man, ref21, None)
+             r = {"run_label": lbl, "sem_validos": True, "sem_predicao": True, "mae": None}
+         else:
+             with open(js[0], "r", encoding="utf-8") as f:
+@@ -544,8 +617,10 @@
+             side = _ler_sidecar(sd)
+             z = np.load(zs[0])
+             idx = z["idx_global"]
+-            conferidas[lbl] = conferir_corrida(c, dj, idx, side, man)
+             m = mae_pop(z)
++            conferidas[lbl] = conferir_corrida(c, dj, idx, side, man, ref21, m)
++            if lbl in sem_val and m["n_validos"] != 0:
++                raise Aborta(f"{lbl}: status registra sem_validos, mas o .npz tem {m['n_validos']} nos validos")
+             ins = dj.get("insumos") or {}
+             rf = Path(ins.get("rf_data_file") or "").name
+             geo = dj.get("split") or {}
+@@ -561,11 +636,9 @@
+                 "n_test_retido_run": (geo.get("n_nos_apos_buffer") or {}).get("test"),
+                 "baselines_test": {b: ((dj.get("baselines_analiticos") or {}).get("test") or {}).get(f"baseline_{b}_mae") for b in BASELINES},
+                 "melhor_epoca": (dj.get("selecao") or {}).get("melhor_epoca"),
+-                "bate_com_2_1": (None if ref is None else {
+-                    "n_test_igual": geo.get("n_nos_apos_buffer", {}).get("test") == ref["n_test"],
+-                    "n_validos_igual": m["n_validos"] == ref["validos"],
+-                    "n_todos_igual": m["n"] == ref["todos"]}),
+-                "mae_constante_validos_2_1": None if ref is None else ref["mae_constante_validos"],
++                "bate_com_2_1": {"n_test_igual": True, "n_validos_igual": True, "n_todos_igual": True,
++                                 "nota": "divergencia ABORTA (C1); campos mantidos por compatibilidade"},
++                "mae_constante_validos_2_1": ref["mae_constante_validos"],
+             }
+         cache[lbl] = r
+         return r
+@@ -596,14 +669,15 @@
+                 ok = [s for s in ss if not store[s]["sem_validos"]]
+                 v = [store[s]["mae"]["mae_rssi_validos_db"] for s in ok]
+                 d = dp(v)
++                ac = avaliar_condicoes_modelo(d, RUIDO_REPETICAO_DB)
+                 const = [store[s]["mae_constante_validos_2_1"] for s in ok]
+                 bloco["por_modelo"][nome] = {
+                     "n_sorteios_com_validos": len(ok),
+                     "mae_validos_por_sorteio": {str(s): store[s]["mae"]["mae_rssi_validos_db"] for s in ok},
+                     "dp_entre_sorteios_validos_db": d,
+                     "razao_dp_sobre_0_132": razao(d, RUIDO_REPETICAO_DB),
+-                    "dp_ge_3x_0_132": (None if d is None else bool(d >= FATOR_CONDICAO1 * RUIDO_REPETICAO_DB)),
+-                    "dp_lt_2x_0_132": (None if d is None else bool(d < FATOR_DELIMITA * RUIDO_REPETICAO_DB)),
++                    "dp_ge_3x_0_132": ac["dp_ge_3x_comparador"],
++                    "dp_lt_2x_0_132": ac["dp_lt_2x_comparador"],
+                     "correlacao_com_constante_validos": {"pearson": pearson(v, const), "spearman": spearman(v, const), "n": len(ok)},
+                     "dp_entre_sorteios_demais_populacoes_db": {p: dp([store[s]["mae"][p] for s in ok]) for p in POPS},
+                     "inversao_vs_baselines_validos": {b: sum(1 for s in ok if store[s]["baselines_test"][b] is not None and
+@@ -681,7 +755,10 @@
+                     "leitura_aritmetica": pm[tipo],
+                     "condicao2_sigma2_sorteio_ge_sigma2_semente": (None if dec is None else dec["condicao2_sigma2_sorteio_ge_sigma2_semente"])}
+             s = sinalizar_celula(pm)
+-            s["condicao2_gnn_e_mlp"] = bool(all(ent[t]["condicao2_sigma2_sorteio_ge_sigma2_semente"] is True for t in ("gnn", "mlp")))
++            c2s = [ent[t]["condicao2_sigma2_sorteio_ge_sigma2_semente"] for t in ("gnn", "mlp")]
++            s["condicao2_gnn_e_mlp"] = None if any(v is None for v in c2s) else bool(all(c2s))
++            if s["condicao2_gnn_e_mlp"] is None:
++                s["indeterminada_dp_nao_calculavel"] = True
+             s["paridade_le_0_117"] = bool(cels1[cel]["paridade_sentinela"]["mediana_le_0_117"])
+             # sensibilidade declarada: comparador pooled ENTRE as 2 celulas Q1 (leitura alternativa do adendo 2)
+             cel_out[cel] = ent
+@@ -703,12 +780,12 @@
+         return {"cels1": cels1, "bloco2": cel_out, "flags": flags, "alternativa_comparador_pooled_entre_celulas": alt}
+ 
+     def montar_meta(n: int) -> dict:
+-        return {"artefato": f"agregado_G1_v2_bloco{n}", "versao_agregador": 2,
++        return {"artefato": f"agregado_G1_v3_bloco{n}", "versao_agregador": 3,
+                 "script": str(Path(__file__).resolve()), "script_sha256": sha256(Path(__file__).resolve()),
+-                "script_original_copiado": {"caminho": "scripts/v3_G1_agregar.py", "sha256": SHA_ORIGINAL_V1},
++                "script_original_copiado": {"caminho": "scripts/v3_G1_agregar_v2.py", "sha256": SHA_V2, "avo_v1_sha256": SHA_ORIGINAL_V1},
+                 "comando": [sys.executable] + list(argv_efetivo), "comando_texto": " ".join([sys.executable] + list(argv_efetivo)),
+                 "data": datetime.now().astimezone().isoformat(timespec="seconds"),
+-                "criterio_sha256": sha_crit, "adendo_sha256": sha_adendo, "plano_sha256": sha_plano,
++                "criterio_sha256": sha_crit, "adendo_sha256": sha_adendo, "adendo2_sha256": sha_adendo2, "script_v2_sha256_copiado": SHA_V2, "plano_sha256": sha_plano,
+                 "status_lote_veredito": status.get("veredito_lote"),
+                 "modo_teste": bool(modo_teste), "raiz": str(P.RAIZ),
+                 "limiares_do_criterio_db": {"ruido_repeticao_gnn_0_132": RUIDO_REPETICAO_DB, "ruido_sentinela_0_117": RUIDO_SENTINELA_DB,
+@@ -720,13 +797,21 @@
+ 
+     def fechar_conferencias(out: dict, labels: list) -> None:
+         usados = {lbl: conferidas[lbl] for lbl in labels if lbl in conferidas}
++        carregadas = [lbl for lbl in labels if lbl in cache]
++        todas = bool(carregadas) and all(conferidas.get(lbl, {}).get("passou") is True for lbl in carregadas)
+         out["conferencias_item7"]["corridas_conferidas"] = {
+             "n": len(usados),
+             "itens": ["run_label", "dataset_nome/sha256/flag_manifest_v4", "g=10 e b=2 no run JSON (config, geometria, split)",
+                       "g=10 e b=2 no sidecar shim_g10 (pedido, efetivo, flags, n_nos)", "seed e split_seed x plano_G1.json",
+                       "hash dos indices do .npz x particoes.test.idx_sha256_global", "config x A4 (fora de grid_km, seed, split_seed, rotulos e caminhos)",
+-                      "script/decoder/wrapper sha x A4"],
+-            "todas_passaram": True,
++                      "script/decoder/wrapper sha x A4",
++                      "n_test/n_validos/n_todos x 2.1 (C1)", "nomes unicos run_/predicoes_/shim_g10_<label> (C3)",
++                      "amarracao .npz x run JSON (C3)", "sem_validos sem .npz: run JSON + 2.1 validos==0 (C2)"],
++            "n_corridas_carregadas": len(carregadas),
++            "todas_passaram": todas,
++            "n_com_npz": sum(1 for v in usados.values() if v.get("com_npz")),
++            "n_sem_validos_sem_npz_conferidas_C2": sum(1 for v in usados.values() if not v.get("com_npz")),
++            "amarracao_npz": "MAE e RMSE de RSSI (todos os nos) do .npz x selecao.test_no_melhor_ckpt (tol. 5 % / 1 %), n_nos, n_pl_alvo_valido; nenhum artefato do lote grava sha do .npz",
+             "sem_artefatos_sem_validos_registrados": [lbl for lbl in labels if cache.get(lbl, {}).get("sem_predicao")]}
+ 
+     # ---- execucao por bloco
+@@ -737,16 +822,11 @@
+         feitas = 0
+         for n in alvo:
+             for c in [c for c in plano if c["bloco"] == n]:
+-                if completa(c) and c["run_label"] not in sem_val:
+-                    d, js, zs, sd = artefatos(c["run_label"])
+-                    with open(js[0], "r", encoding="utf-8") as f:
+-                        dj = json.load(f)
+-                    side = _ler_sidecar(sd)
+-                    idx = np.load(zs[0])["idx_global"]
+-                    conferidas[c["run_label"]] = conferir_corrida(c, dj, idx, side, man)
++                if completa(c):
++                    carregar(c)          # aplica TODAS as conferencias (aborta se violada); nada e impresso alem do rotulo
+                     feitas += 1
+                     print(f"conferencia ok: {c['run_label']}")
+-        print(f"--so-conferir: {feitas} corridas completas conferidas (nenhuma metrica calculada, nada gravado)")
++        print(f"--so-conferir: {feitas} corridas completas conferidas (nada gravado; MAE/RMSE recalculados so para a amarracao e nao impressos)")
+         return 0
+ 
+     for n in alvo:
+@@ -760,7 +840,7 @@
+                 out["celulas"] = cels
+                 out["leitura_aritmetica_contra_piso_0_132"] = sinais_simples(cels)
+                 out["nota"] = ("condicao 1 das celulas Q1 usa o comparador max(0,132; dp entre sementes) do bloco 2: ver "
+-                               "agregado_G1_v2_bloco2.json; aqui so a comparacao com o piso 0,132")
++                               "agregado_G1_v3_bloco2.json; aqui so a comparacao com o piso 0,132")
+                 out["contagem_sorteios_sem_validos_por_celula"] = {c: b["n_sorteios_sem_validos"] for c, b in cels.items()}
+                 fechar_conferencias(out, [c["run_label"] for c in plano if c["bloco"] == 1])
+             elif n == 2:
+@@ -829,7 +909,7 @@
+     for n, motivo in recusas.items():
+         print(f"bloco {n}: RECUSADO ({motivo}); nao grava resultado parcial")
+     for n, out in saidas.items():
+-        path = P.G1 / f"agregado_G1_v2_bloco{n}.json"
++        path = P.G1 / f"agregado_G1_v3_bloco{n}.json"
+         tmp = path.with_suffix(".json.tmp")
+         with open(tmp, "w", encoding="utf-8") as f:
+             json.dump(out, f, indent=1, ensure_ascii=False)

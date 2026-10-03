@@ -350,13 +350,13 @@ def gerar_t3_resumo():
     r = d["resumo"]
     r1 = load(ENT["R1_resumo"])["medias_16_celulas"]
     itens = [
-        ("sd_entre_sorteios_b2_media_das_celulas", "Between-draw standard deviation of the valid-node error, $b=2$~km, mean over the cells (dB)",
+        ("sd_entre_sorteios_b2_media_das_celulas", "Between-draw standard deviation of the valid-node MAE, $b=2$~km, mean over the cells (dB)",
          r["dp_medio_entre_sorteios_validos_dB_simples"], f3),
-        ("sd_entre_sorteios_b2_ponderado_media_das_celulas", "Between-draw standard deviation of the valid-node error, $b=2$~km, weighted by the valid test nodes of each draw, mean over the cells (dB)",
+        ("sd_entre_sorteios_b2_ponderado_media_das_celulas", "Between-draw standard deviation of the valid-node MAE, $b=2$~km, weighted by the valid test nodes of each draw, mean over the cells (dB)",
          r["dp_medio_entre_sorteios_validos_dB_ponderado"], f3),
         ("sd_entre_celulas_das_medias", "Standard deviation between the cells' mean errors, $b=2$~km (dB)",
          r["dp_entre_celulas_das_medias_validos_dB"], f3),
-        ("sd_entre_sorteios_b0_media_das_celulas", "Between-draw standard deviation of the valid-node error, no buffer ($b=0$), mean over the cells (dB)",
+        ("sd_entre_sorteios_b0_media_das_celulas", "Between-draw standard deviation of the valid-node MAE, no buffer ($b=0$), mean over the cells (dB)",
          r1["dp_mae_constante_validos_b0"], f3),
         ("sd_fracao_valida_b2", "Between-draw standard deviation of the valid fraction of the test set, $b=2$~km, mean over the cells (dimensionless)",
          r1["dp_fracao_valida_teste_b2"], f3),
@@ -567,7 +567,7 @@ def gerar_t5():
 
 
 # ------------------------------------------------------------------ T6 (nova): referencia por desenho
-PRED = {"constante": "Constant", "fspl_calibrado_b": "FSPL (b)"}
+PRED = {"constante": "Constant", "fspl_calibrado_b": "FSPL (second calibration)"}  # v3-12l (orientador): rotulo alinhado ao texto
 POP = {"todos": "All nodes", "validos": "Valid nodes"}
 
 
@@ -1004,6 +1004,15 @@ def gerar_tn():
     # colunas p{} (a juncao de linhas gera celulas longas): a tabela cabe na largura do texto sem encolher (\tabajusta nao age);
     # a soma 0.30 + 0.38 + 0.22 + 6 espacos de coluna (36 pt) fica abaixo de \linewidth.
     bloco = bloco.replace("\\begin{tabular}{lll}", "\\begin{tabular}{" + "".join(">{\\raggedright\\arraybackslash}p{%s\\linewidth}" % w for w in ("0.30", "0.38", "0.22")) + "}", 1)
+    # v3-12h (chefe, 03/10): retencao nodal passa a r (minusculo) para nao colidir com \bar\rho de prop:exactretention;
+    # prop:degree e prop:deflation rebaixadas a Remark (demanda B-h3(ii)).
+    assert bloco.count("$R_{\\mathrm{va}}(g,b)$, $R_{\\mathrm{te}}(g,b)$") == 1 and bloco.count("Proposition~\\ref{prop:degree}") == 2
+    bloco = bloco.replace("$R_{\\mathrm{va}}(g,b)$, $R_{\\mathrm{te}}(g,b)$", "$r(g,b)$, $r_{\\mathrm{va}}(g,b)$, $r_{\\mathrm{te}}(g,b)$")
+    bloco = bloco.replace("nodal retention of validation and test;", "nodal retention of a partition, of validation and of test;")
+    # v3-12i (chefe, 03/10): o resto da eq:composition passa de r a \varepsilon_c (colisao com r da retencao); entra na linha de Delta_f, e_f
+    assert bloco.count("$\\Delta_f$, $e_f$ & sentinel and valid mean absolute errors of $f$ & Proposition~\\ref{prop:drift}") == 1
+    bloco = bloco.replace("$\\Delta_f$, $e_f$ & sentinel and valid mean absolute errors of $f$ & Proposition~\\ref{prop:drift}", "$\\Delta_f$, $e_f$, $\\varepsilon_{\\mathrm{c}}$ & sentinel and valid mean absolute errors of $f$; remainder of the composition identity & Proposition~\\ref{prop:drift}, Equation~\\eqref{eq:composition}")
+    bloco = bloco.replace("Proposition~\\ref{prop:degree}", "Remark~\\ref{prop:degree}").replace("Proposition~\\ref{prop:deflation}", "Remark~\\ref{prop:deflation}")
     # linhas de dados (copiadas sem mudar simbolo): entre \midrule e \bottomrule
     corpo = bloco.split("\\midrule\n", 1)[1].split("\\bottomrule", 1)[0]
     rows = [ln.rstrip()[:-2].strip() if ln.rstrip().endswith("\\\\") else ln for ln in corpo.strip().split("\n")]
@@ -1028,7 +1037,7 @@ def gerar_tn():
     CONF["TN_copia_do_bloco_F-10_com_alteracoes_v3-12b"] = {
         "linhas_de_simbolos": len(csv_rows), "linhas_antes_da_versao_enxuta_v3-12d": n_antes, "linha_retirada_v3-12d": RETIRADA, "linha_acrescentada_v3-12h": "blocos vizinhos B_w..B_en (Equation~\\eqref{eq:area})", "linha_retirada_v3-12g": "$\\ell_x$, $\\ell_y$ (sem ocorrencia no texto)",
         "linhas_fundidas_v3-12d": [{"simbolos": f[0], "ref": f[2]} for f in fundidas], "limite_de_linhas": 26,
-        "alteracoes": ["- linha ell_x, ell_y (v3-12g: sem ocorrencia no texto)", "+ linha d_max, \\bar d_V", "+ linhas MAE/MAE_valid e MAE_sigma", "+ linha dos blocos vizinhos B_w..B_en (v3-12h)"],
+        "alteracoes": ["- linha ell_x, ell_y (v3-12g: sem ocorrencia no texto)", "+ linha d_max, \\bar d_V", "+ linhas MAE/MAE_valid e MAE_sigma", "+ linha dos blocos vizinhos B_w..B_en (v3-12h)", "R_va/R_te -> r, r_va, r_te (v3-12h, colisao com \\bar\\rho)", "Proposition -> Remark em prop:degree (v3-12h)", "+ \\varepsilon_c na linha Delta_f, e_f (v3-12i)"],
         "bloco_gravado_contem_o_bloco_alterado": True, "passou": True}
     return [tex, csvp]
 

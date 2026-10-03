@@ -1,0 +1,64 @@
+{
+ "artefato": "G1_agregador_v2_contra_auditoria",
+ "veredito": "apto com correcoes obrigatorias",
+ "sha256_script_auditado": "d94fac29dcf6c694cab9bec55c4bdd9e2701fe5baf2675cbfe0aa77a5c155824",
+ "sha256_meus_testes": "5ee81c324d786527fb6d0e6860be5f226a123955cb2d6aeda727b460a638a96d",
+ "meus_testes": "/tmp/claude-1000/-trabalho-HERMES/492a006d-c0f8-41c5-9896-1453e7ec0600/scratchpad/g1_contra/meus_testes.py",
+ "resultado_meus_testes": "/tmp/claude-1000/-trabalho-HERMES/492a006d-c0f8-41c5-9896-1453e7ec0600/scratchpad/g1_contra/meus_testes_resultado.json",
+ "harness_autor_reexecutado": "127/127 passaram (nice, CPU, 73 s); log em /tmp/claude-1000/-trabalho-HERMES/492a006d-c0f8-41c5-9896-1453e7ec0600/scratchpad/g1_contra/harness.log",
+ "metrica_conferida": "mae_pop identica a v3_A4_agregar.mae_pop (RSSI canal 3 nos validos target[:,0]<299); .npz real tem chaves idx_global,target(N,5 f32),pred,sentinela(bool); nenhum MAE real calculado. Decomposicao de um fator, sigma2, comparador, dp ddof=1, paridade (mediana |g-m| sentinela) e ramos batem com referencia independente a 1e-9 em 2 cenarios (sorteio>>semente e semente>>sorteio). Chave do 2.1: (celula, split_seed) com celula='bauru_Q1' etc., campos validos/todos/mae_constante_teste.validos corretos.",
+ "mutacoes_abortam_rc4_nada_gravado": [
+  "alvo sentinela/valido trocado com campo sentinela intacto",
+  "pasta da celula errada (conteudo copiado)",
+  "pastas trocadas entre celulas",
+  "sorteio errado dentro da pasta",
+  "seed errada",
+  "split_seed errado no bloco split",
+  "idx alterado (hash)",
+  "sidecar g efetivo=5",
+  "sidecar ausente",
+  "sha do dataset",
+  "config != A4",
+  "NaN em pred RSSI",
+  "flag manifest false",
+  "criterio adulterado",
+  "script do lote alterado",
+  "run json antigo extra na pasta (por acaso, seed diferente)"
+ ],
+ "mutacoes_NAO_abortam": [
+  "m2: alvo e campo sentinela trocados de forma coerente: grava, bate_com_2_1_todos=false apenas registrado, todas_passaram=true",
+  "m15: menos validos que o 2.1 (coerente): idem",
+  "m3e: npz do outro modelo (mesmo idx) na pasta do gnn: grava",
+  "m3d: npz de outra celula com mesmo idx (so no sintetico; no real n difere entre cidades, entao o hash pegaria)",
+  "m17/m18: status diz sem_validos e o agregador confia sem olhar run JSON (m18 apaga a pasta com dados e conta como sem validos)"
+ ],
+ "correcoes_obrigatorias": [
+  {
+   "id": "C1",
+   "linhas": "564-567, 615, 723-730",
+   "problema": "bate_com_2_1 (n_test, n_validos, n_todos contra o 2.1, mesmo split_seed) so e registrado; divergencia nao aborta e fechar_conferencias grava todas_passaram=true fixo. Unica barreira contra alvo sentinela/valido trocado de forma coerente. Contradiz 'aborta em qualquer violacao'.",
+   "correcao": "abortar (rc=4) em conferir_corrida se ref existe e n_validos/n_todos/n_test divergem, ou ref ausente"
+  },
+  {
+   "id": "C2",
+   "linhas": "496, 512, 539-540",
+   "problema": "sem_validos vem so do lote_G1_status.json; corrida com esse flag e sem .npz nao e conferida (run JSON nem lido) e some do agregado como sem validos; a ausencia de dados e indistinguivel de falha.",
+   "correcao": "exigir run JSON e n_nos_apos_buffer/particoes.test.n e 2.1 validos==0 para aceitar sem_validos sem npz"
+  },
+  {
+   "id": "C3",
+   "linhas": "504-506, 538-545",
+   "problema": "js[0]/zs[0]/sd[0] de glob sem exigir unicidade nem nome == run_label; npz de outro modelo na pasta passa (hash do idx e igual entre gnn e mlp).",
+   "correcao": "exigir exatamente 1 arquivo de cada e nome igual a predicoes_<run_label>.npz"
+  }
+ ],
+ "observacoes_nao_bloqueantes": [
+  "linha 184: so e3 e testado quanto a finitude; e0 NaN passa silencioso em mae_pl_validos_db",
+  "linhas 253-255: celula com razao indeterminada (None) cai em faixa_intermediaria=true; so aparece o flag indeterminada separado, e impedem (273) pode virar DELIMITA PARCIAL por indeterminacao",
+  "linhas 243-245 vs 605-606: 3x/2x calculado como razao num lado e como produto no outro (diferenca so em empate de ponto flutuante)",
+  "linha 565: geo.get('n_nos_apos_buffer', {}) falha se a chave existir com None",
+  "conferir_plano nao checa contagem 80/40/80 nem rotulos unicos (real: 200 unicos, contagem correta, conferida por mim)",
+  "leitura de outro lote: nenhuma; le gpu/A4 (declarado, config de referencia) e fase2/2.1 parcial (declarado)"
+ ],
+ "nota": "nao rodei o agregador sobre gpu/G1 real; todas as execucoes usaram --raiz-teste com arvores sinteticas minhas."
+}

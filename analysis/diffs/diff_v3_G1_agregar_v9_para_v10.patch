@@ -1,0 +1,55 @@
+--- scripts/v3_G1_agregar_v9.py	2026-10-03 16:26:20.780191903 -0300
++++ scripts/v3_G1_agregar_v10.py	2026-10-03 19:24:21.167485351 -0300
+@@ -26,7 +26,7 @@
+     inclusive --bloco3-truncado se foi o caso). Mesma aritmetica de contar_ramos (reforca: condicao 1 em >= 3 de 4 e
+     condicao 2 nas duas Q1; delimita parcial por faixa ou por condicao 1 sem condicao 2; delimita). Tambem se grava,
+     para registro, a contagem com Campinas pelo bloco 2 original (5 sorteios) e a de 2 de 2 so nas Q1.
+-Saida: gpu/G1/agregado_G1_v9_bloco4.json. Os blocos 1 a 3 ficam como no v8 (saida agregado_G1_v9_bloco<N>.json).
++VERSAO 10 (copia declarada do v9, sha 132a831a...; unica mudanca: TOL_AMARRA_RMSE_REL 0,03 -> 0,05). Saida: gpu/G1/agregado_G1_v10_bloco4.json. Os blocos 1 a 3 ficam como no v8 (saida agregado_G1_v10_bloco<N>.json).
+ Este script NAO interpreta resultados.
+ """
+ import argparse
+@@ -51,6 +51,7 @@
+ SHA_V5 = "50610e19f9ea1314c899b86b21eeefb569b74e64093f28936ee1c03a6aa0e465"
+ SHA_V6 = "6f852e2d56cfd61a5a4f687132a45b35369efcc06f72dccd1d7f77cf0bd8bb96"
+ SHA_V7 = "cc703246f65d6d4b4a23ded13b957b9d27eda1d359b0621e04a9eff8425d0b72"
++SHA_V9 = "132a831abe2e6f987d58a1440e301a75c5acede31d555ce2cd1b379f0976fe21"  # v10 = copia declarada do v9; unica mudanca: TOL_AMARRA_RMSE_REL 0,03 -> 0,05
+ SHA_V8 = "7ba0360d7bc4d9927809c061059c18b88acd0b236d01bdbc29001435bf56a4ac"
+ TRECHO_LOG_DEGENERADA = "PARTICAO DEGENERADA"
+ TOL_AMARRA_MAE_REL = 0.10
+@@ -59,7 +60,7 @@
+ # corridas reais do G1: diferenca propria de MAE de 6,35 % numa corrida legitima (o MAE em todos os nos e dominado
+ # pelos sentinelas, onde o erro absoluto e pequeno, e por isso a diferenca relativa e instavel) e RMSE proprio maximo
+ # de 0,27 %. Por isso MAE 10 % (frouxo) e RMSE 3 % (quem distingue). As DUAS tolerancias sao exigidas ao mesmo tempo.
+-TOL_AMARRA_RMSE_REL = 0.03
++TOL_AMARRA_RMSE_REL = 0.05  # v10 (chefe, 03/10 19:30): corrida legitima do bloco 4 (g1_gnn_campinas_Q1_ss259492_s44) com diferenca propria de RMSE de 4,08 % (MAE 3,88 %); troca GNN/MLP no A4 tem minimo 10,9 % no RMSE (veredito v3), logo 5 % continua distinguindo; todas as outras conferencias da corrida passaram
+ SENTINELA_PL = 299.0
+ RUIDO_REPETICAO_DB = 0.132      # maior diferenca entre repeticoes do GNN (A2c); nao e um dp (adendo 2)
+ RUIDO_SENTINELA_DB = 0.117      # maior diferenca entre repeticoes nos sentinelas (A2c)
+@@ -1029,7 +1030,7 @@
+         return {"cels1": cels1, "bloco2": cel_out, "flags": flags, "alternativa_comparador_pooled_entre_celulas": alt}
+ 
+     def montar_meta(n: int) -> dict:
+-        return {"artefato": f"agregado_G1_v9_bloco{n}", "versao_agregador": 9,
++        return {"artefato": f"agregado_G1_v10_bloco{n}", "versao_agregador": 10,
+                 "script": str(Path(__file__).resolve()), "script_sha256": sha256(Path(__file__).resolve()),
+                 "script_original_copiado": {"caminho": "scripts/v3_G1_agregar_v8.py", "sha256": SHA_V8, "avo_v7_sha256": SHA_V7, "avo_v6_sha256": SHA_V6, "avo_v5_sha256": SHA_V5, "avo_v4_sha256": SHA_V4, "avo_v3_sha256": SHA_V3, "avo_v2_sha256": SHA_V2, "avo_v1_sha256": SHA_ORIGINAL_V1},
+                 "comando": [sys.executable] + list(argv_efetivo), "comando_texto": " ".join([sys.executable] + list(argv_efetivo)),
+@@ -1196,7 +1197,7 @@
+                 out["celulas"] = cels
+                 out["leitura_aritmetica_contra_piso_0_132"] = sinais_simples(cels)
+                 out["nota"] = ("condicao 1 das celulas Q1 usa o comparador max(0,132; dp entre sementes) do bloco 2: ver "
+-                               "agregado_G1_v9_bloco2.json; aqui so a comparacao com o piso 0,132")
++                               "agregado_G1_v10_bloco2.json; aqui so a comparacao com o piso 0,132")
+                 out["contagem_sorteios_sem_validos_por_celula"] = {c: b["n_sorteios_sem_validos"] for c, b in cels.items()}
+                 out["contagem_sorteios_nao_treinaveis_por_celula"] = {c: b["n_sorteios_nao_treinaveis"] for c, b in cels.items()}
+                 out["contagem_sorteios_usaveis_por_celula"] = {c: b["n_sorteios_usaveis"] for c, b in cels.items()}
+@@ -1265,7 +1266,7 @@
+     for n, motivo in recusas.items():
+         print(f"bloco {n}: RECUSADO ({motivo}); nao grava resultado parcial")
+     for n, out in saidas.items():
+-        path = P.G1 / f"agregado_G1_v9_bloco{n}.json"
++        path = P.G1 / f"agregado_G1_v10_bloco{n}.json"
+         tmp = path.with_suffix(".json.tmp")
+         with open(tmp, "w", encoding="utf-8") as f:
+             json.dump(out, f, indent=1, ensure_ascii=False)

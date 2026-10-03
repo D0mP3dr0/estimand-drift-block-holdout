@@ -1,7 +1,7 @@
 cff-version: 1.2.0
-message: "If you use this software or data, please cite the manuscript below (in preparation)."
+message: "If you use this software or data, please cite the manuscript below (submitted to MDPI Mathematics; revision of 3 October 2026)."
 type: software
-title: "Reproducibility package: Estimand Drift under Buffered Spatial Block Hold-Out"
+title: "Reproducibility package: Estimand Drift under Spatial Block Hold-Out"
 authors:
   - family-names: "Seelig"
     given-names: "L. F. C."
@@ -9,14 +9,14 @@ authors:
     given-names: "R. M."
 preferred-citation:
   type: unpublished
-  title: "Estimand Drift under Buffered Spatial Block Hold-Out"
+  title: "Estimand Drift under Spatial Block Hold-Out"
   authors:
     - family-names: "Seelig"
       given-names: "L. F. C."
     - family-names: "Salles"
       given-names: "R. M."
   year: 2026
-  notes: "Manuscript in preparation."
+  notes: "Manuscript submitted to MDPI Mathematics (revision of 3 October 2026)."
 license: "MIT"
 license-url: "https://opensource.org/licenses/MIT"
-date-released: "2026-10-01"
+date-released: "2026-10-03"

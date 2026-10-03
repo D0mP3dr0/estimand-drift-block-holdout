@@ -1,0 +1,101 @@
+{
+ "gerado_em": "2026-10-03T18:22:28.143062+00:00",
+ "comando": "venv s33_amb_virtual: python gpu/G1_manifest/verificar_tensores_G1.py",
+ "script_sha256": "379c633e754d303fc6469688c31f1d166c067c0947c92376d9a0333b78d4b270",
+ "manifest_v4": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/manifest_mathematics_v4.jsonl",
+ "nota": "run JSON do lote registram metodo_sha_rf_data=reuso_manifest_v4_mtime_e_tamanho_identicos (sha NAO recomputado no lote); esta leitura integral e a primeira verificacao de conteudo.",
+ "resultados": [
+  {
+   "celula": "bauru_Q1",
+   "caminho": "/trabalho/TOPO_RF_DOWNLOAD_DRIVE/graph_data_v3/transfer_dataset_bauru_v19_Q1_enriched_cftudo.pt",
+   "sha256_observado": "33e8d57368920241fc289f8c939de35ece7178c316d2bf5488c3cdf98ff5fb5c",
+   "bytes_lidos": 28316234345,
+   "bytes_stat": 28316234345,
+   "mtime_stat": "2026-09-08T12:41:41.380783+00:00",
+   "estavel_durante_leitura": true,
+   "manifest_v4_sha256": "33e8d57368920241fc289f8c939de35ece7178c316d2bf5488c3cdf98ff5fb5c",
+   "manifest_v4_tamanho_bytes": 28316234345,
+   "manifest_v4_mtime": "2026-09-08T12:41:41.380783+00:00",
+   "bate_manifest_v4": true,
+   "tamanho_bate_manifest_v4": true,
+   "n_run_json_com_insumos": 60,
+   "sha256_distintos_nos_run_json": [
+    "33e8d57368920241fc289f8c939de35ece7178c316d2bf5488c3cdf98ff5fb5c"
+   ],
+   "metodos_sha_nos_run_json": [
+    "reuso_manifest_v4_mtime_e_tamanho_identicos"
+   ],
+   "bate_todos_run_json": true,
+   "tempo_leitura_s": 26.3
+  },
+  {
+   "celula": "bauru_Q3",
+   "caminho": "/trabalho/TOPO_RF_DOWNLOAD_DRIVE/graph_data_v3/transfer_dataset_bauru_v19_Q3_enriched_cftudo.pt",
+   "sha256_observado": "ef67c8c886b6c0cb7001a84f0316033699965d73961b6eca31ea66dd042f5264",
+   "bytes_lidos": 28246855209,
+   "bytes_stat": 28246855209,
+   "mtime_stat": "2026-09-07T17:52:32.161331+00:00",
+   "estavel_durante_leitura": true,
+   "manifest_v4_sha256": "ef67c8c886b6c0cb7001a84f0316033699965d73961b6eca31ea66dd042f5264",
+   "manifest_v4_tamanho_bytes": 28246855209,
+   "manifest_v4_mtime": "2026-09-07T17:52:32.161331+00:00",
+   "bate_manifest_v4": true,
+   "tamanho_bate_manifest_v4": true,
+   "n_run_json_com_insumos": 32,
+   "sha256_distintos_nos_run_json": [
+    "ef67c8c886b6c0cb7001a84f0316033699965d73961b6eca31ea66dd042f5264"
+   ],
+   "metodos_sha_nos_run_json": [
+    "reuso_manifest_v4_mtime_e_tamanho_identicos"
+   ],
+   "bate_todos_run_json": true,
+   "tempo_leitura_s": 26.0
+  },
+  {
+   "celula": "campinas_Q1",
+   "caminho": "/trabalho/TOPO_RF_DOWNLOAD_DRIVE/graph_data_v3/transfer_dataset_campinas_v19_Q1_enriched_cftudo.pt",
+   "sha256_observado": "d3787cd087c1ded417da788a83bd048bcaafa347dcd6adc0e64a9fe1e405fe00",
+   "bytes_lidos": 28293194963,
+   "bytes_stat": 28293194963,
+   "mtime_stat": "2026-09-07T17:31:00.428658+00:00",
+   "estavel_durante_leitura": true,
+   "manifest_v4_sha256": "d3787cd087c1ded417da788a83bd048bcaafa347dcd6adc0e64a9fe1e405fe00",
+   "manifest_v4_tamanho_bytes": 28293194963,
+   "manifest_v4_mtime": "2026-09-07T17:31:00.428658+00:00",
+   "bate_manifest_v4": true,
+   "tamanho_bate_manifest_v4": true,
+   "n_run_json_com_insumos": 60,
+   "sha256_distintos_nos_run_json": [
+    "d3787cd087c1ded417da788a83bd048bcaafa347dcd6adc0e64a9fe1e405fe00"
+   ],
+   "metodos_sha_nos_run_json": [
+    "reuso_manifest_v4_mtime_e_tamanho_identicos"
+   ],
+   "bate_todos_run_json": true,
+   "tempo_leitura_s": 28.4
+  },
+  {
+   "celula": "campinas_Q3",
+   "caminho": "/trabalho/TOPO_RF_DOWNLOAD_DRIVE/graph_data_v3/transfer_dataset_campinas_v19_Q3_enriched_cftudo.pt",
+   "sha256_observado": "8b7bacbcdb7d34bc8c0234554a1f1afd954a05773a61d1b79e53191687330bb5",
+   "bytes_lidos": 28304852115,
+   "bytes_stat": 28304852115,
+   "mtime_stat": "2026-09-07T17:33:48.566539+00:00",
+   "estavel_durante_leitura": true,
+   "manifest_v4_sha256": "8b7bacbcdb7d34bc8c0234554a1f1afd954a05773a61d1b79e53191687330bb5",
+   "manifest_v4_tamanho_bytes": 28304852115,
+   "manifest_v4_mtime": "2026-09-07T17:33:48.566539+00:00",
+   "bate_manifest_v4": true,
+   "tamanho_bate_manifest_v4": true,
+   "n_run_json_com_insumos": 38,
+   "sha256_distintos_nos_run_json": [
+    "8b7bacbcdb7d34bc8c0234554a1f1afd954a05773a61d1b79e53191687330bb5"
+   ],
+   "metodos_sha_nos_run_json": [
+    "reuso_manifest_v4_mtime_e_tamanho_identicos"
+   ],
+   "bate_todos_run_json": true,
+   "tempo_leitura_s": 25.9
+  }
+ ]
+}

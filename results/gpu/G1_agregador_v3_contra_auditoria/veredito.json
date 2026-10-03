@@ -1,0 +1,22 @@
+{
+ "artefato": "G1_agregador_v3_contra_auditoria",
+ "veredito": "apto com correcoes",
+ "sha256_script_auditado": "5102299e6e5b0b3d25009693ad04c3dc0d9341833252b406841e2e894bae0e16",
+ "sha256_meus_testes_v3": "e4d76a048835bab7ff6e16761fffb09f6b5b29c850d143620502abd681025759",
+ "item1_diff": "C1 (aborta se 2.1 diverge em n_test, n_validos, n_todos, ou ref ausente), C2 (sem_validos sem npz exige run JSON, 2.1 validos==0 e n_pl_alvo_valido==0; npz com validos e status sem_validos aborta) e C3 (1 arquivo por padrao, nome == label) implementados como pedido; observacoes: finitude de target/pred/pred0 validos, razao indeterminada recusa ramos (cond1/delim/faixa falsos), 3x/2x por razao nos dois lados, n_test None vira violacao, contagem 80/40/80 do plano. Metrica, decomposicao, comparador e ramos sem outra mudanca no diff. todas_passaram agora e calculado.",
+ "item2_meus_testes": "31/31: 16 mutacoes que abortavam continuam em rc=4 sem gravar; as 6 que passavam (m2, m3d, m3e, m15, m17, m18) agora abortam; os 2 cenarios de resposta conhecida batem a 1e-9. (adaptei meu gerador para atualizar selecao.test_no_melhor_ckpt do run JSON.)",
+ "item4_harness_autor": "181/181 passaram (reexecutado, CPU)",
+ "item3_amarracao_npz_modelo": {
+  "avaliacao": "Detecta troca de modelo/celula apenas quando MAE/RMSE de TODOS os nos diferem: em 20 pares GNN/MLP do A4 (mesma celula e split_seed) a diferenca relativa minima do MAE foi 2,3 % e do RMSE 10,9 %, mediana ~34 %; nenhum par ficou dentro de (5 %, 1 %) simultaneamente, entao o RMSE a 1 % distingue; mas o MAE a 5 % sozinho nao distinguiria o par mais proximo. Risco de rejeitar corrida legitima: nos 40 runs A4 concluidos (mesmo script de treino), recalcular MAE/RMSE do .npz contra selecao.test_no_melhor_ckpt deu max 3,9 % (MAE; 0 excedem 5 %) e max 1,9 % (RMSE; 4 de 40, todos GNN, excedem 1 %). Logo o G1 pode abortar em corrida legitima (falso aborto, ~10 % dos GNN), bloqueando o agregado. Nao aceita numero errado, mas custa relancamento/emenda. A amarracao nao distingue sorteios do mesmo modelo/celula (nao e o seu papel; hash do idx e split_seed cobrem).",
+  "melhor_conferencia_sem_tocar_no_lote": "usar tolerancia empirica do A4 para o RMSE (>= 2,5 % ou relativa a discrepancia observada) fixada em adendo antes de agregar; e/ou conferir tambem MAE/RMSE nos validos e sentinelas separados e checar que o .npz do GNN difere do .npz do MLP da mesma celula/sorteio (arrays nao identicos) e que o padrao de erro no mesmo no correlaciona com o run JSON; a conferencia ideal (sha do .npz no run JSON) nao existe porque nenhum artefato do lote grava sha do .npz."
+ },
+ "correcoes_obrigatorias": [
+  {
+   "id": "V3-1",
+   "onde": "constantes TOL_AMARRA_RMSE_REL (1 %) e conferir_corrida amarra_npz_rmse_rssi_todos",
+   "problema": "tolerancia de RMSE de 1 % rejeitaria 4 de 40 corridas A4 legitimas (max 1,9 %)",
+   "correcao": "fixar tolerancia empirica (p.ex. RMSE >= 2,5 %, MAE >= 5 %) em adendo antes de qualquer agregacao, e sempre rodar --so-conferir nas corridas ja concluidas do G1 (sem MAE impresso) antes de depender dele"
+  }
+ ],
+ "nota": "nao rodei o v3 em gpu/G1 real; comparacao npz x run JSON feita so em gpu/A4 (lote ja agregado), imprimindo apenas diferencas relativas."
+}

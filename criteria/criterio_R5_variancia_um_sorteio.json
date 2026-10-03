@@ -1,0 +1,11 @@
+{
+ "id": "R5_variancia_um_sorteio",
+ "subclaim": "S4 (titulo) e S9 (regra de relato)",
+ "origem": "três leituras cegas simuladas (v3-11g, v3-12c, v3-12g) e ordem do dono de 01/10/2026 à noite: título 'Estimand Drift under Spatial Block Hold-Out' aceito; 'execute o treino em gpu'",
+ "pergunta": "Um estudo com UMA particao consegue estimar, so com os blocos de teste dela, a variancia entre sorteios do erro que reporta? Nas 16 celulas, g=10 km, b=2 km, nos 60 sorteios de fase2/_v3_2.1_3.1_parcial_16x60rnd.json, para o preditor constante e o FSPL calibrado (b), populacoes 'validos' e 'todos'.",
+ "metodo_fixado": "por sorteio, estimador de variancia de razao por conglomerados (blocos de teste retidos como conglomerados): v = (1 - k/N) * k/(k-1) * soma_B (S_B - Err*M_B)^2 / M^2, com S_B a soma das perdas e M_B o numero de nos pontuados do bloco B, M = soma M_B, Err = soma S_B / M, k o numero de blocos de teste com no pontuado da populacao, N o numero de blocos da malha. Comparar por celula: (i) razao Q = media sobre sorteios de v / variancia empirica entre sorteios de Err; (ii) cobertura: fracao de sorteios em que Err +- 2*sqrt(v) contem a media de Err sobre os sorteios; sorteios com k<2 ficam indefinidos e sao contados.",
+ "previsao": "o estimador capta a ordem de grandeza (Q entre 0,5 e 2) na populacao 'todos'; nos 'validos', com poucos blocos contendo nos validos, tende a subestimar.",
+ "leitura": "constante, validos: Q em [0,5; 2] E cobertura >= 0,80 em >= 12 das 16 celulas -> REFORCA: o texto entrega o procedimento (erro-padrao de um sorteio a partir dos blocos de teste) dentro da regra de relato. Cobertura < 0,60 em >= 8 celulas -> DELIMITA: o texto diz que a dispersao entre blocos de um unico sorteio sub ou superestima a deriva pelo fator mediano de Q, e a regra de relato fica sendo repetir sorteios. Entre os dois: descritivo, com Q e cobertura.",
+ "se_inverter": "nenhum desfecho inverte S4; delimita S9.",
+ "fixado_em": "2026-10-01T22:47:16-03:00 (antes de existir qualquer script ou resultado deste teste)"
+}

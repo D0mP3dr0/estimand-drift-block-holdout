@@ -1,0 +1,11 @@
+{
+ "id": "R6_nivel_do_sentinela",
+ "subclaim": "S4 (titulo)",
+ "origem": "três leituras cegas simuladas (v3-11g, v3-12c, v3-12g) e ordem do dono de 01/10/2026 à noite: título 'Estimand Drift under Spatial Block Hold-Out' aceito; 'execute o treino em gpu'",
+ "pergunta": "A razao entre o dp entre sorteios e o dp entre as medias das celulas do erro nos nos validos (8,02 contra 2,18 dB para o constante em -110 dBm) depende do nivel do preditor constante? Mesmas 16 celulas e 60 sorteios, g=10 km, b=2 km.",
+ "metodo_fixado": "preditores constantes c em {-100, -110, -120, -130} dBm e o constante 'mediana dos validos do treino' (recalculada por sorteio); por nivel: media das 16 celulas do dp (ddof=1) entre sorteios do MAE nos validos do teste; dp entre as medias das celulas; razao; mesma exclusao de sorteios sem no valido.",
+ "previsao": "a razao fica acima de 2 em todos os niveis; o nivel absoluto dos dois desvios muda com c.",
+ "leitura": "razao >= 2 nos cinco preditores -> REFORCA: uma frase ('the ratio holds for constants from -100 to -130 dBm and for the valid-median constant, between x and y'). Razao < 1,5 em algum -> DELIMITA: o texto diz para qual ancora a razao vale.",
+ "se_inverter": "razao < 1 no constante 'mediana dos validos' devolve ao dono a frase central do resumo (a comparacao passaria a depender da ancora).",
+ "fixado_em": "2026-10-01T22:47:16-03:00 (antes de existir qualquer script ou resultado deste teste)"
+}

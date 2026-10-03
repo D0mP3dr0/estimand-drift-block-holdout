@@ -1,0 +1,16 @@
+{
+ "id": "G1_modelos_g10_adendo4",
+ "emenda": "criterios/criterio_G1_adendo3.json (sha256 b0a4280a91830ac1c6cc0c9a68bc83f4bc37bfedd7c6ed239294cbf01ba1cf2b), que fica intacto; adendos 1-3 intactos",
+ "origem": "fato observado no lote (02/10 23:14): em Bauru Q3, sorteio 769856, o treinador congelado aborta antes do treino com 'PARTICAO DEGENERADA: [val] sem nenhuma aresta antena->terreno' (rc=1): a particao de VALIDACAO desse sorteio nao tem enlace antena-terreno, embora o teste tenha nos validos (2.1). O lancador parou o lote por falha nao prevista (abortado_por_falha_corrida), como desenhado. O treino desse sorteio so seria possivel mudando parametros do treinador (--window-anchor ou --max-nodes), o que quebraria a identidade de configuracao com A3/A4 e com as demais corridas; portanto NAO e feito.",
+ "prova_de_anterioridade": {
+  "agregados_bloco3_existentes": [],
+  "nota": "nenhum agregado do bloco 3 existe; nenhum MAE do bloco 3 foi lido pelo chefe; a agregacao automatica do bloco 3 abortou (rc=4) exatamente por esta corrida, sem gravar nada."
+ },
+ "fixacao": {
+  "sorteio_nao_treinavel": "Um sorteio cuja particao de validacao (ou de treino) e degenerada para o treinador congelado, com a configuracao identica a A3/A4, e registrado como 'nao_treinavel' na celula, NAO e substituido, e e EXCLUIDO da celula para os DOIS modelos (GNN e MLP), inclusive da mediana de paridade, para que GNN e MLP sejam comparados sobre os mesmos sorteios. A contagem de sorteios nao treinaveis e relatada ao lado da de sem_validos.",
+  "aceitacao_pelo_agregador": "analoga ao adendo 3: (a) status do lote com rc != 0 e marcador nao_treinavel para o run_label (ou, para a corrida que parou o lote antes da emenda, o registro de falha original mais o marcador acrescentado pelo lancador de retomada em arquivo proprio); (b) log da corrida com 'PARTICAO DEGENERADA' e a particao nomeada diferente de test; (c) run JSON parcial com g = 10, b = 2, seed e split_seed do plano, dataset com nome e tamanho esperados; o 2.1 pode ter validos > 0 nesse caso. Qualquer item faltando: aborta. Se o MLP do mesmo sorteio chegar a treinar (o guard pode diferir), a corrida e conferida normalmente mas o sorteio continua excluido da celula.",
+  "retomada": "o lote e retomado com um lancador de RETOMADA em arquivo novo (gpu/G1/rodar_lote_G1_retomada.py, copia declarada do original, que fica intacto), cuja unica diferenca e: ao encontrar rc != 0 com 'PARTICAO DEGENERADA' em particao diferente de test, registra 'nao_treinavel' e segue, em vez de parar o lote. O teto e zerado na retomada, como no desenho.",
+  "leitura": "inalterada: dp sobre os sorteios usaveis da celula (plano de 20 menos sem_validos menos nao_treinaveis); k minimo do adendo 1 (>= 10 sorteios usaveis por celula) continua valendo para o bloco 3."
+ },
+ "fixado_em": "2026-10-03T11:06:33-03:00"
+}

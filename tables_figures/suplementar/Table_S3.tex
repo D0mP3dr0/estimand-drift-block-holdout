@@ -1,0 +1,32 @@
+% Material suplementar (v3-12): Table S3, modelos treinados a g = 5 km nas quatro celulas de Bauru (cinco sorteios).
+% A tabela vem de ../tables_v3-12/T7b_deriva_modelo_A4_v3-12.tex (gerada por scripts/v3_12_gerar_tabelas.py;
+% antiga Table 7 do corpo ate a v3-12g); nada e digitado aqui.
+% Compilar com o diretorio atual = suplementar/:
+%   /trabalho/ambientes/texlive-2025/bin/x86_64-linux/pdflatex Table_S3.tex
+\documentclass[10pt,a4paper]{article}
+\usepackage[a4paper,margin=2.2cm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs,array,graphicx}
+\usepackage{microtype}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\renewcommand{\arraystretch}{1.12}
+% macros do manuscrito usadas pelas tabelas geradas
+\newcommand{\celula}[1]{\begin{tabular}[c]{@{}c@{}}#1\end{tabular}}
+\newsavebox{\tabcaixa}
+\newcommand{\tabajusta}[1]{\sbox{\tabcaixa}{#1}\ifdim\wd\tabcaixa>\linewidth\resizebox{\linewidth}{!}{\usebox{\tabcaixa}}\else\usebox{\tabcaixa}\fi}
+\begin{document}
+
+{\large\bfseries Table S3. Trained models at $g = 5$~km in the four Bauru cells (five draws)}
+
+\medskip
+\small
+A trained model's valid-node MAE drifts with the split draw. Split draws $101$--$105$ in the four Bauru cells, $g = 5$~km, $b = 2$~km, training seed $42$, training budget of eight epochs. Valid-node mean absolute error of received power, in decibels, mean over draws (between-draw standard deviation) for the graph regressor (GNN) and the perceptron (MLP); bottom row: standard deviation of the per-cell means. The between-draw standard deviations exceed $0.132$~dB, the largest difference between two training repeats with the same seed and partition, by factors of $5.2$ to $21.6$ (GNN) and $4.7$ to $32.0$ (MLP), as reported in Section~6.6 of the article.
+
+\medskip
+\centering
+\tabajusta{\input{../tables_v3-12/T7b_deriva_modelo_A4_v3-12.tex}}
+
+\end{document}

@@ -1,0 +1,235 @@
+--- scripts/v3_G1_agregar_v5.py	2026-10-02 00:10:29.103138795 -0300
++++ scripts/v3_G1_agregar_v6.py	2026-10-02 19:31:09.246895094 -0300
+@@ -1,14 +1,27 @@
+ #!/trabalho/ambientes/s33_amb_virtual/.venv/bin/python
+ # -*- coding: utf-8 -*-
+ """
+-Agregacao do lote G1 (modelos treinados a g = 10 km, b = 2 km), VERSAO 5.
+-COPIA DECLARADA de scripts/v3_G1_agregar_v4.py
+-  sha256 do v4: 4263076007a28aa76c5e51fa73c35c513b34131c8019f2b5089981a57e916b14
+-(v1 a v4 NAO sao editados; v3 sha 5102299e...e16). UNICA mudanca de logica: TOL_AMARRA_MAE_REL 0,05 -> 0,10
+-(RMSE continua 0,03 e e quem distingue GNN de MLP; as duas tolerancias valem ao mesmo tempo). Acrescimo de
+-registro: a saida grava, por corrida, as duas diferencas relativas da amarracao .npz x run JSON
+-(`amarracao_por_corrida`), nunca o MAE. Saida: gpu/G1/agregado_G1_v5_bloco<N>.json. Restante = v3/v4 (ver
+-cabecalho do v3). Este script NAO interpreta resultados.
++Agregacao do lote G1 (modelos treinados a g = 10 km, b = 2 km), VERSAO 6.
++COPIA DECLARADA de scripts/v3_G1_agregar_v5.py
++  sha256 do v5: 50610e19f9ea1314c899b86b21eeefb569b74e64093f28936ee1c03a6aa0e465
++(v1 a v5 NAO sao editados). UNICA mudanca: a aceitacao de corrida `sem_validos` sem .npz passa a seguir
++criterios/criterio_G1_adendo3.json (fixado antes de qualquer agregado do bloco 3). Fato do lote: nos sorteios
++sem no valido o treinador aborta ANTES do treino com "PARTICAO DEGENERADA" (rc=1) e grava um run JSON PARCIAL
++(sem selecao/insumos/modelo_v3, sem .npz, sem sidecar). Uma corrida assim e aceita como sem_validos SE E SOMENTE SE:
++  (a) o 2.1 registra validos == 0 para a celula e o split_seed;
++  (b) lote_G1_status.json tem, para o run_label, rc != 0 e sem_validos == true, e o log da corrida (campo `log`
++      do status) contem "PARTICAO DEGENERADA";
++  (c) o run JSON parcial existe, e traz: run_label, seed e split_seed do plano (topo, config e split), g = 10 e
++      b = 2 (config, geometria, split), dataset com o NOME esperado e rf_data_bytes igual ao tamanho do manifest v4
++      (LIDOS DO BLOCO `dataset` do parcial; o parcial NAO grava sha256 do dataset -- o manifest v4 tem
++      `tamanho_bytes`, e a conferencia de tamanho e o que o parcial permite; sha nao e verificavel nele),
++      particoes.test.n_pl_alvo_valido == 0 e guarda_particao_degenerada.n_pl_alvo_valido.test == 0 e `test` em
++      particoes_sem_aresta_antena;
++  e o run JSON NAO traz selecao/insumos/modelo_v3, e a pasta NAO tem sidecar nem .npz (senao e corrida completa
++  com flag inconsistente: aborta). Conferencias de treino concluido (selecao, .npz, sidecar, amarracao, config x A4)
++  nao se aplicam. Qualquer item faltando: aborta (rc=4). Run JSON sem .npz e sem registro sem_validos, com o lote ja encerrado (veredito_lote preenchido), tambem aborta; com o lote em andamento e corrida incompleta (recusa rc=2). Blocos 1 e 2 e corridas completas: sem mudanca.
++O ramo `m is None` de conferir_corrida (v3-v5) fica sem uso. Saida: gpu/G1/agregado_G1_v6_bloco<N>.json.
++Restante = v3/v4/v5 (ver cabecalhos). Este script NAO interpreta resultados.
+ """
+ import argparse
+ import glob
+@@ -29,6 +42,8 @@
+ SHA_V2 = "d94fac29dcf6c694cab9bec55c4bdd9e2701fe5baf2675cbfe0aa77a5c155824"
+ SHA_V3 = "5102299e6e5b0b3d25009693ad04c3dc0d9341833252b406841e2e894bae0e16"
+ SHA_V4 = "4263076007a28aa76c5e51fa73c35c513b34131c8019f2b5089981a57e916b14"
++SHA_V5 = "50610e19f9ea1314c899b86b21eeefb569b74e64093f28936ee1c03a6aa0e465"
++TRECHO_LOG_DEGENERADA = "PARTICAO DEGENERADA"
+ TOL_AMARRA_MAE_REL = 0.10
+ # Origem dos numeros: gpu/G1_agregador_v3_contra_auditoria/veredito.json (A4: 40 runs, diferenca propria npz x run JSON
+ # ate 1,9 % no RMSE e 3,9 % no MAE; GNN contra MLP da mesma celula e sorteio: minimo 10,9 % no RMSE e 2,3 % no MAE) e
+@@ -76,6 +91,7 @@
+     P.CRIT = raiz / "criterios" / "criterio_G1_modelos_g10.json"
+     P.ADENDO = raiz / "criterios" / "criterio_G1_adendo1.json"
+     P.ADENDO2 = raiz / "criterios" / "criterio_G1_adendo2.json"
++    P.ADENDO3 = raiz / "criterios" / "criterio_G1_adendo3.json"
+     P.PLANO = P.G1 / "plano_G1.json"
+     P.STATUS = P.G1 / "lote_G1_status.json"
+     P.PROV = P.G1 / "proveniencia_scripts_G1.json"
+@@ -105,6 +121,18 @@
+     return out
+ 
+ 
++def manifest_tamanhos() -> dict:
++    out = {}
++    with open(P.MANIFEST_V4, "r", encoding="utf-8") as f:
++        for ln in f:
++            ln = ln.strip()
++            if ln:
++                e = json.loads(ln)
++                if e.get("grupo") == "tensores_cftudo":
++                    out[Path(e.get("caminho", "")).name] = e.get("tamanho_bytes")
++    return out
++
++
+ def med(xs):
+     xs = [x for x in xs if x is not None]
+     return float(statistics.median(xs)) if xs else None
+@@ -316,7 +344,15 @@
+     m2 = re.search(r"sha256 ([0-9a-f]{64})", adendo2.get("emenda", ""))
+     if adendo2.get("id") != "G1_modelos_g10_adendo2" or not m2 or m2.group(1) != sa:
+         raise Aborta("adendo2: id inesperado ou sha256 citado do adendo1 difere do observado")
+-    return sc, sa, sha256(P.ADENDO2)
++    if not P.ADENDO3.exists():
++        raise Aborta("criterio_G1_adendo3.json ausente")
++    with open(P.ADENDO3, "r", encoding="utf-8") as f:
++        adendo3 = json.load(f)
++    m3 = re.search(r"sha256 ([0-9a-f]{64})", adendo3.get("emenda", ""))
++    s2 = sha256(P.ADENDO2)
++    if adendo3.get("id") != "G1_modelos_g10_adendo3" or not m3 or m3.group(1) != s2:
++        raise Aborta("adendo3: id inesperado ou sha256 citado do adendo2 difere do observado")
++    return sc, sa, s2, sha256(P.ADENDO3)
+ 
+ 
+ def conferir_plano(plano_doc: dict) -> None:
+@@ -520,7 +556,7 @@
+ 
+ 
+ def _executar(args, argv_efetivo, modo_teste) -> int:
+-    sha_crit, sha_adendo, sha_adendo2 = conferir_criterios()
++    sha_crit, sha_adendo, sha_adendo2, sha_adendo3 = conferir_criterios()
+     prov_scripts = conferir_scripts_do_lote(modo_teste)
+     with open(P.PLANO, "r", encoding="utf-8") as f:
+         plano_doc = json.load(f)
+@@ -529,6 +565,8 @@
+     with open(P.STATUS, "r", encoding="utf-8") as f:
+         status = json.load(f)
+     sem_val = {c["run_label"] for c in status["corridas"] if c.get("sem_validos")}
++    status_por_lbl = {c["run_label"]: c for c in status["corridas"]}
++    tam_man = manifest_tamanhos()
+     man = manifest_cftudo()
+     ref21 = carregar_2_1()
+     sha_plano = sha256(P.PLANO)
+@@ -551,6 +589,9 @@
+         d, js, zs, sd = artefatos(lbl)
+         if lbl in sem_val and not zs:
+             return True           # aceitacao so no carregar(): exige run JSON conferido e 2.1 validos == 0 (C2)
++        if js and not zs and lbl not in sem_val and status.get("veredito_lote") is not None:
++            # run JSON sem predicoes e sem registro sem_validos com o lote ENCERRADO: nao e corrida em andamento (adendo 3)
++            raise Aborta(f"{lbl}: run JSON sem .npz e sem registro sem_validos no status, com o lote encerrado")
+         if not (js and zs):
+             return False          # sidecar ausente NAO torna incompleta: e violacao da conferencia (aborta, item 7)
+         try:
+@@ -571,6 +612,60 @@
+     cache = {}
+     conferidas = {}
+ 
++    def conferir_parcial_sem_validos(c, dj, js_nome, zs, sd, d) -> dict:
++        """Adendo 3: corrida sem_validos com run JSON PARCIAL (treinador abortou antes do treino)."""
++        lbl = c["run_label"]
++        falhas = []
++
++        def ex(nome, ok, det=""):
++            if not ok:
++                falhas.append(f"{nome}{(' (' + str(det) + ')') if det else ''}")
++
++        cl = f"{c['cidade']}_{c['quadrante']}"
++        ref = ref21.get((cl, c["split_seed"]))
++        # (a) 2.1
++        ex("A3a_2_1_validos==0", ref is not None and ref["validos"] == 0, ref and ref["validos"])
++        # (b) status + log
++        e = status_por_lbl.get(lbl) or {}
++        rc_ = e.get("rc")
++        ex("A3b_status_rc!=0", isinstance(rc_, int) and not isinstance(rc_, bool) and rc_ != 0, rc_)
++        ex("A3b_status_sem_validos==true", e.get("sem_validos") is True)
++        logp = e.get("log")
++        txt = None
++        if isinstance(logp, str) and Path(logp).is_file():
++            txt = Path(logp).read_text(encoding="utf-8", errors="replace")
++        ex("A3b_log_da_corrida_lido", txt is not None, logp)
++        ex("A3b_log_contem_particao_degenerada", txt is not None and TRECHO_LOG_DEGENERADA in txt)
++        # (c) run JSON parcial
++        for k in ("selecao", "insumos", "modelo_v3"):
++            ex(f"A3c_parcial_sem_{k}", k not in dj)
++        ex("A3c_sem_npz_nem_sidecar", not zs and not sd, (len(zs), len(sd)))
++        cfg, geo, spl = dj.get("config") or {}, dj.get("geometria") or {}, dj.get("split") or {}
++        ex("A3c_run_label", dj.get("run_label") == lbl and cfg.get("run_label") == lbl, dj.get("run_label"))
++        for k, v in (("config.grid_km", cfg.get("grid_km")), ("geometria.grid_km_usado", geo.get("grid_km_usado")), ("split.grid_km", spl.get("grid_km"))):
++            ex(f"A3c_g=10[{k}]", _igual(v, GRID_KM), v)
++        for k, v in (("config.buffer_km", cfg.get("buffer_km")), ("geometria.buffer_km_usado", geo.get("buffer_km_usado")), ("split.buffer_km", spl.get("buffer_km"))):
++            ex(f"A3c_b=2[{k}]", _igual(v, BUFFER_KM), v)
++        ex("A3c_seed_x_plano", dj.get("seed") == c["seed_treino"] and cfg.get("seed") == c["seed_treino"], (dj.get("seed"), cfg.get("seed")))
++        ex("A3c_split_seed_x_plano", dj.get("split_seed") == c["split_seed"] and cfg.get("split_seed") == c["split_seed"]
++           and spl.get("split_seed") == c["split_seed"], (dj.get("split_seed"), cfg.get("split_seed"), spl.get("split_seed")))
++        esp_nome = f"transfer_dataset_{c['cidade']}_v19_{c['quadrante']}_enriched_cftudo.pt"
++        dsb = dj.get("dataset") or {}
++        ex("A3c_dataset_nome", Path(dsb.get("rf_data_file") or "").name == esp_nome and Path(cfg.get("rf_data_file") or "").name == esp_nome,
++           (dsb.get("rf_data_file"), cfg.get("rf_data_file")))
++        ex("A3c_dataset_bytes_x_manifest_v4", dsb.get("rf_data_bytes") is not None and tam_man.get(esp_nome) == dsb.get("rf_data_bytes"),
++           (dsb.get("rf_data_bytes"), tam_man.get(esp_nome)))
++        pt = (dj.get("particoes") or {}).get("test") or {}
++        gd = dj.get("guarda_particao_degenerada") or {}
++        ex("A3c_particoes_test_n_pl_alvo_valido==0", pt.get("n_pl_alvo_valido") == 0, pt.get("n_pl_alvo_valido"))
++        ex("A3c_guarda_n_pl_alvo_valido_test==0", (gd.get("n_pl_alvo_valido") or {}).get("test") == 0, (gd.get("n_pl_alvo_valido") or {}).get("test"))
++        ex("A3c_guarda_test_sem_aresta_antena", "test" in (gd.get("particoes_sem_aresta_antena") or []))
++        if falhas:
++            raise Aborta(f"{lbl}: sem_validos (adendo 3): " + "; ".join(falhas))
++        ntest = (spl.get("n_nos_apos_buffer") or {}).get("test")
++        return {"run_label": lbl, "passou": True, "com_npz": False, "parcial_sem_validos_adendo3": True,
++                "dataset_bytes": dsb.get("rf_data_bytes"), "n_test_parcial_igual_2_1": bool(ref is not None and ntest == ref["n_test"])}
++
+     def carregar(c) -> dict:
+         lbl = c["run_label"]
+         if lbl in cache:
+@@ -578,10 +673,10 @@
+         d, js, zs, sd = artefatos(lbl)
+         if lbl in sem_val and not zs:
+             if not js:
+-                raise Aborta(f"{lbl}: registrada sem_validos so no status; run JSON ausente (C2)")
++                raise Aborta(f"{lbl}: registrada sem_validos so no status; run JSON ausente (adendo 3)")
+             with open(js[0], "r", encoding="utf-8") as f:
+                 dj = json.load(f)
+-            conferidas[lbl] = conferir_corrida(c, dj, None, None, man, ref21, None)
++            conferidas[lbl] = conferir_parcial_sem_validos(c, dj, js[0], zs, sd, d)
+             r = {"run_label": lbl, "sem_validos": True, "sem_predicao": True, "mae": None}
+         else:
+             with open(js[0], "r", encoding="utf-8") as f:
+@@ -752,12 +847,12 @@
+         return {"cels1": cels1, "bloco2": cel_out, "flags": flags, "alternativa_comparador_pooled_entre_celulas": alt}
+ 
+     def montar_meta(n: int) -> dict:
+-        return {"artefato": f"agregado_G1_v5_bloco{n}", "versao_agregador": 5,
++        return {"artefato": f"agregado_G1_v6_bloco{n}", "versao_agregador": 6,
+                 "script": str(Path(__file__).resolve()), "script_sha256": sha256(Path(__file__).resolve()),
+-                "script_original_copiado": {"caminho": "scripts/v3_G1_agregar_v4.py", "sha256": SHA_V4, "avo_v3_sha256": SHA_V3, "avo_v2_sha256": SHA_V2, "avo_v1_sha256": SHA_ORIGINAL_V1},
++                "script_original_copiado": {"caminho": "scripts/v3_G1_agregar_v5.py", "sha256": SHA_V5, "avo_v4_sha256": SHA_V4, "avo_v3_sha256": SHA_V3, "avo_v2_sha256": SHA_V2, "avo_v1_sha256": SHA_ORIGINAL_V1},
+                 "comando": [sys.executable] + list(argv_efetivo), "comando_texto": " ".join([sys.executable] + list(argv_efetivo)),
+                 "data": datetime.now().astimezone().isoformat(timespec="seconds"),
+-                "criterio_sha256": sha_crit, "adendo_sha256": sha_adendo, "adendo2_sha256": sha_adendo2, "script_v3_sha256_copiado": SHA_V3, "script_v2_sha256_avo": SHA_V2, "plano_sha256": sha_plano,
++                "criterio_sha256": sha_crit, "adendo_sha256": sha_adendo, "adendo2_sha256": sha_adendo2, "adendo3_sha256": sha_adendo3, "script_v3_sha256_copiado": SHA_V3, "script_v2_sha256_avo": SHA_V2, "plano_sha256": sha_plano,
+                 "status_lote_veredito": status.get("veredito_lote"),
+                 "modo_teste": bool(modo_teste), "raiz": str(P.RAIZ),
+                 "limiares_do_criterio_db": {"ruido_repeticao_gnn_0_132": RUIDO_REPETICAO_DB, "ruido_sentinela_0_117": RUIDO_SENTINELA_DB,
+@@ -785,6 +880,7 @@
+             "todas_passaram": todas,
+             "n_com_npz": sum(1 for v in usados.values() if v.get("com_npz")),
+             "n_sem_validos_sem_npz_conferidas_C2": sum(1 for v in usados.values() if not v.get("com_npz")),
++            "sem_validos_parcial_adendo3": {lbl: {"dataset_bytes": v.get("dataset_bytes"), "n_test_parcial_igual_2_1": v.get("n_test_parcial_igual_2_1")} for lbl, v in usados.items() if v.get("parcial_sem_validos_adendo3")},
+             "amarracao_npz": "MAE e RMSE de RSSI (todos os nos) do .npz x selecao.test_no_melhor_ckpt (tol. 10 % / 3 %), n_nos, n_pl_alvo_valido; nenhum artefato do lote grava sha do .npz",
+             "sem_artefatos_sem_validos_registrados": [lbl for lbl in labels if cache.get(lbl, {}).get("sem_predicao")]}
+ 
+@@ -814,7 +910,7 @@
+                 out["celulas"] = cels
+                 out["leitura_aritmetica_contra_piso_0_132"] = sinais_simples(cels)
+                 out["nota"] = ("condicao 1 das celulas Q1 usa o comparador max(0,132; dp entre sementes) do bloco 2: ver "
+-                               "agregado_G1_v5_bloco2.json; aqui so a comparacao com o piso 0,132")
++                               "agregado_G1_v6_bloco2.json; aqui so a comparacao com o piso 0,132")
+                 out["contagem_sorteios_sem_validos_por_celula"] = {c: b["n_sorteios_sem_validos"] for c, b in cels.items()}
+                 fechar_conferencias(out, [c["run_label"] for c in plano if c["bloco"] == 1])
+             elif n == 2:
+@@ -883,7 +979,7 @@
+     for n, motivo in recusas.items():
+         print(f"bloco {n}: RECUSADO ({motivo}); nao grava resultado parcial")
+     for n, out in saidas.items():
+-        path = P.G1 / f"agregado_G1_v5_bloco{n}.json"
++        path = P.G1 / f"agregado_G1_v6_bloco{n}.json"
+         tmp = path.with_suffix(".json.tmp")
+         with open(tmp, "w", encoding="utf-8") as f:
+             json.dump(out, f, indent=1, ensure_ascii=False)

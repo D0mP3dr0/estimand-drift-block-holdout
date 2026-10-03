@@ -1,0 +1,36 @@
+{
+ "id": "G1b_campinas_bloco_cruzado_completo",
+ "subclaim": "S8 (condicao 2 do criterio G1 em Campinas Q1)",
+ "origem": "ordem do dono de 03/10/2026 ('pode executar td inclusive o c'): completar o bloco cruzado de Campinas Q1 para 3 sementes x 10 sorteios; sugerido pelo forum-eng-ia (fase5/_pareceres_rigor_G1/forum-eng-ia.md) e pelo forum-fisico-matematico (poder do desenho 5x3 insuficiente).",
+ "pergunta": "Com 10 sorteios cruzados por 3 sementes em Campinas Q1 (GNN e MLP), a componente de sorteio supera a componente de semente (condicao 2 do criterio G1)?",
+ "desenho": {
+  "bloco": 4,
+  "celula": "campinas_Q1",
+  "sementes_treino": [
+   43,
+   44
+  ],
+  "sorteios": [
+   739191,
+   29675,
+   676375,
+   387379,
+   259492
+  ],
+  "modelos": [
+   "gnn",
+   "mlp"
+  ],
+  "n_corridas": 20,
+  "config": "identica ao lote G1 (g=10, b=2, 8 epocas, shim train_v3_g10.py, dataset canonico)",
+  "orcamento": "~20 x (15,4 + 1,8) min ~ 3 h; teto 4 h; retomavel"
+ },
+ "metricas": "com as corridas de semente 42 dos 10 sorteios (bloco 1) e das sementes 43/44 (blocos 2 e 4): decomposicao de um fator, sementes aninhadas no sorteio, n_sorteios = 10, n_sementes = 3: sigma2_semente = QM_dentro (g.l. 20), sigma2_sorteio = max(0,(QM_entre - QM_dentro)/3) (g.l. 9); dp pooled entre sementes; comparador max(0,132; dp pooled) e razao do dp entre os 20 sorteios (semente 42) sobre ele; IC95 de sigma2_sorteio/sigma2_semente por F(9,20) (registro).",
+ "leitura": "condicao 2 em Campinas Q1 = sigma2_sorteio >= sigma2_semente para GNN E MLP com os 10 sorteios. Se verdadeira: a condicao 2 do criterio G1 passa a valer nas duas celulas Q1; com a condicao 1 ja em 3 de 4 celulas, o resultado do G1 passa de DELIMITA PARCIAL a REFORCA, salvo se a condicao 1 de Campinas Q1 (recomputada com o novo comparador de sementes) cair abaixo de 2x em algum modelo, caso em que fica DELIMITA PARCIAL por faixa. Se falsa: o resultado permanece DELIMITA PARCIAL e o texto diz, como condicao de validade, que em Campinas o bloco cruzado de 10 sorteios nao separa as componentes. A leitura do bloco 2 original (5 sorteios) fica registrada; a leitura final usa os 10 sorteios. Numeros do bloco 4 citaveis so apos recalculo independente e inclusao no manifest.",
+ "se_inverter": "nenhum desfecho inverte o titulo; o pior desfecho mantem a delimitacao atual.",
+ "prova_de_anterioridade": {
+  "corridas_existentes_bloco4": [],
+  "nota": "nenhuma corrida das sementes 43/44 nos sorteios 6-10 existe."
+ },
+ "fixado_em": "2026-10-03T16:18:37-03:00"
+}

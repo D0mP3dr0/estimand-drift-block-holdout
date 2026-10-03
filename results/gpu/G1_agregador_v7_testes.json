@@ -1,0 +1,3685 @@
+{
+ "artefato": "G1_agregador_v7_testes",
+ "script_testado": "/trabalho/ARPIA_RF/TOPO_RF_PROJETO/GNN_RF/MDPI_Mathematics/scripts/v3_G1_agregar_v7.py",
+ "script_sha256": "cc703246f65d6d4b4a23ded13b957b9d27eda1d359b0621e04a9eff8425d0b72",
+ "harness": "/tmp/claude-1000/-trabalho-HERMES/492a006d-c0f8-41c5-9896-1453e7ec0600/scratchpad/g1_sint/testes_g1_v7.py",
+ "harness_sha256": "25748cf8a5a524c9a8615bef120b9da6e1a83f2fec9fb8aaf115404804bbf829",
+ "gerador_sha256": "cfc6ab98d9c92ec93a9926d7a37fa71404f260feec57deef51359aea53c9122c",
+ "python": "/trabalho/ambientes/s33_amb_virtual/.venv/bin/python",
+ "n_testes": 246,
+ "n_passou": 246,
+ "n_falhou": 0,
+ "duracao_s": 112.4,
+ "nota": "dados sinteticos em scratchpad/g1_sint; nenhuma corrida real foi agregada; sem GPU",
+ "testes": [
+  {
+   "grupo": "T1_estatistica",
+   "teste": "known_answer_fracoes_exatas",
+   "esperado": {
+    "qm_entre": 5.1,
+    "qm_dentro": 1.8
+   },
+   "observado": {
+    "qm_entre": 5.1,
+    "qm_dentro": 1.8,
+    "sigma2_sorteio": 1.0999999999999999,
+    "sigma2_semente": 1.8
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T1_estatistica",
+   "teste": "sorteio_sem_efeito_sigma2_sorteio_truncado_em_0",
+   "esperado": {
+    "sigma2_sorteio": 0.0,
+    "cond2": false
+   },
+   "observado": {
+    "sigma2_sorteio": 0.0,
+    "bruto": -0.0033333333333333353,
+    "cond2": false
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T1_estatistica",
+   "teste": "razao_QM_igual_F_scipy_f_oneway",
+   "esperado": 1.00215087439649,
+   "observado": 1.0021508743964902,
+   "passou": true
+  },
+  {
+   "grupo": "T1_estatistica",
+   "teste": "sim_nulo_sem_efeito_de_sorteio_N20000",
+   "esperado": "<= 0.10 por modelo",
+   "observado": {
+    "p_cond2_por_modelo": 0.032725,
+    "p_cond2_gnn_e_mlp_na_celula": 0.001,
+    "p_cond2_nas_2_celulas": 0.0
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T1_estatistica",
+   "teste": "sim_efeito_forte_sd_sorteio_10x_sd_semente_N20000",
+   "esperado": "~1",
+   "observado": {
+    "p_cond2_por_modelo": 0.9996375,
+    "p_cond2_gnn_e_mlp_na_celula": 0.999275,
+    "p_cond2_nas_2_celulas": 0.99855
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T2_completo",
+   "teste": "rc_0_e_tres_arquivos",
+   "esperado": {
+    "rc": 0,
+    "arquivos": 3
+   },
+   "observado": {
+    "rc": 0,
+    "arquivos": [
+     "agregado_G1_v7_bloco1.json",
+     "agregado_G1_v7_bloco2.json",
+     "agregado_G1_v7_bloco3.json"
+    ]
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T2_completo",
+   "teste": "bloco1_dp_e_mae_por_sorteio_x_recalculo_independente",
+   "esperado": "sem divergencia",
+   "observado": "sem divergencia",
+   "passou": true
+  },
+  {
+   "grupo": "T2_completo",
+   "teste": "bloco2_sigma2_comparador_condicao2_x_recalculo_independente",
+   "esperado": "sem divergencia",
+   "observado": "sem divergencia",
+   "passou": true
+  },
+  {
+   "grupo": "T2_completo",
+   "teste": "bloco2_sem_anova_de_dois_fatores_na_saida",
+   "esperado": "ausente",
+   "observado": "ausente",
+   "passou": true
+  },
+  {
+   "grupo": "T2_completo",
+   "teste": "bloco3_comparador_0_132_nas_Q3",
+   "esperado": "sem divergencia",
+   "observado": "sem divergencia",
+   "passou": true
+  },
+  {
+   "grupo": "T2_completo",
+   "teste": "bloco3_traz_contagem_de_4_celulas",
+   "esperado": {
+    "n_celulas": 4,
+    "limiar": 3
+   },
+   "observado": {
+    "n_celulas": 4,
+    "limiar": 3
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T2_completo",
+   "teste": "metadados_sha_script_comando_data_criterio_adendo",
+   "esperado": "presentes",
+   "observado": {
+    "script_sha256": "cc703246f65d6d4b4a23ded13b957b9d27eda1d359b0621e04a9eff8425d0b72",
+    "criterio_sha256": "d0d2b6366930d53ca71065baeff36addbe61be6f56560e722d08721e91125132",
+    "adendo_sha256": "e36a6294948566905f50ca5adebe325c3d5a003178a18397ed499fad4eb409e5",
+    "data": "2026-10-03T11:13:30-03:00"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T2_completo",
+   "teste": "correlacao_com_constante_presente",
+   "esperado": "n=20 e pearson numerico",
+   "observado": {
+    "pearson": -0.3283007079989366,
+    "spearman": -0.30526315789473685,
+    "n": 20
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T3_incompleto",
+   "teste": "bloco1_incompleto_rc2_nada_gravado",
+   "esperado": {
+    "rc": 2,
+    "arquivos": []
+   },
+   "observado": {
+    "rc": 2,
+    "arquivos": []
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T3_incompleto",
+   "teste": "bloco2_sem_bloco1_completo_rc2_nada_gravado",
+   "esperado": {
+    "rc": 2,
+    "arquivos": []
+   },
+   "observado": {
+    "rc": 2,
+    "arquivos": []
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T3_incompleto",
+   "teste": "multibloco_grava_so_o_bloco3_completo_e_marca_q1_indisponivel",
+   "esperado": {
+    "rc": 2,
+    "arquivos": [
+     "agregado_G1_v7_bloco3.json"
+    ]
+   },
+   "observado": {
+    "rc": 2,
+    "arquivos": [
+     "agregado_G1_v7_bloco3.json"
+    ]
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T3_bloco3",
+   "teste": "incompleto_sem_flag_recusa",
+   "esperado": {
+    "rc": 2,
+    "arquivos": []
+   },
+   "observado": {
+    "rc": 2,
+    "arquivos": []
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T3_bloco3",
+   "teste": "furo_no_sorteio_12_usa_prefixo_k12_e_ignora_13_a_19_completos",
+   "esperado": {
+    "rc": 0,
+    "k": 12,
+    "usados": [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11
+    ]
+   },
+   "observado": {
+    "rc": 0,
+    "k": 12,
+    "usados": [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11
+    ]
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T3_bloco3",
+   "teste": "dp_do_prefixo_k12_x_recalculo",
+   "esperado": 1.2482596355967905,
+   "observado": 1.248259635596791,
+   "passou": true
+  },
+  {
+   "grupo": "T3_bloco3",
+   "teste": "k8_menor_que_10_recusa_rc2_nada_gravado",
+   "esperado": {
+    "rc": 2,
+    "arquivos": []
+   },
+   "observado": {
+    "rc": 2,
+    "arquivos": [],
+    "stdout": "bloco 3: RECUSADO (bloco 3 truncado (k=8) com menos de 10 sorteios com nos validos em ['bauru_Q3', 'campinas_Q3']: bloco 3 nao entra (regra passa a 2 de 2 nas c"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T3_bloco3",
+   "teste": "k10_exato_entra",
+   "esperado": {
+    "rc": 0,
+    "k": 10
+   },
+   "observado": {
+    "rc": 0,
+    "k": 10
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T3_bloco3",
+   "teste": "k12_com_apenas_8_sorteios_validos_na_celula_recusa",
+   "esperado": {
+    "rc": 2,
+    "arquivos": []
+   },
+   "observado": {
+    "rc": 2,
+    "arquivos": [],
+    "stdout": "bloco 3: RECUSADO (bloco 3 truncado (k=12) com menos de 10 sorteios com nos validos em ['bauru_Q3']: bloco 3 nao entra (regra passa a 2 de 2 nas celulas Q1)); nao grava resultado parcial"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T3_bloco3",
+   "teste": "flag_truncado_com_lote_sem_veredito_recusa",
+   "esperado": {
+    "rc": 2
+   },
+   "observado": {
+    "rc": 2,
+    "arquivos": []
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T3_bloco3",
+   "teste": "completo_com_flag_continua_modo_completo",
+   "esperado": {
+    "modo": "completo",
+    "k": 20
+   },
+   "observado": {
+    "modo": "completo",
+    "k": 20
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T4_sem_validos",
+   "teste": "rc0_e_arquivo",
+   "esperado": {
+    "rc": 0
+   },
+   "observado": {
+    "rc": 0,
+    "stderr": ""
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T4_sem_validos",
+   "teste": "contagem_de_sorteios_sem_validos_por_celula",
+   "esperado": {
+    "bauru_Q3": 2,
+    "campinas_Q3": 1
+   },
+   "observado": {
+    "bauru_Q3": 2,
+    "campinas_Q3": 1
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T4_sem_validos",
+   "teste": "dp_exclui_sorteios_sem_validos",
+   "esperado": {
+    "bauru_gnn": 18,
+    "campinas_gnn": 19
+   },
+   "observado": {
+    "bauru_gnn": 18,
+    "campinas_gnn": 19
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T4_sem_validos",
+   "teste": "paridade_inclui_sem_validos_com_npz_bauru",
+   "esperado": {
+    "mediana": 0.035527188419135575,
+    "n": 19
+   },
+   "observado": {
+    "mediana": 0.035527188419138156,
+    "n": 19,
+    "incl_sem_validos": 1
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T4_sem_validos",
+   "teste": "paridade_inclui_sem_validos_com_npz_campinas",
+   "esperado": {
+    "mediana": 0.04221901276494269,
+    "n": 20
+   },
+   "observado": {
+    "mediana": 0.04221901276493156,
+    "n": 20,
+    "incl_sem_validos": 1
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T4_sem_validos",
+   "teste": "sorteio_sem_validos_so_run_json_fica_fora_e_listado",
+   "esperado": [
+    739191
+   ],
+   "observado": [
+    739191
+   ],
+   "passou": true
+  },
+  {
+   "grupo": "T4_sem_validos",
+   "teste": "controle_mediana_excluindo_sem_validos_seria_diferente",
+   "esperado": "diferente",
+   "observado": {
+    "incluindo": 0.04221901276494269,
+    "excluindo": 0.041984820153014274
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T4_sem_validos",
+   "teste": "inclusao_da_corrida_sem_validos_muda_a_mediana_da_paridade",
+   "esperado": {
+    "mediana_incluindo": 0.175,
+    "mediana_excluindo": 0.05,
+    "le_0_117_incluindo": false
+   },
+   "observado": {
+    "mediana_script": 0.17499999999999716,
+    "n": 20,
+    "le_0_117": false
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T5_comparador",
+   "teste": "Q1_usa_max(0,132; dp_sementes)_e_Q3_usa_0,132",
+   "esperado": "sem divergencia",
+   "observado": {
+    "bauru_Q1_gnn": {
+     "dp20": 0.8922151234982744,
+     "comparador": 0.592062742310744,
+     "dp_sementes": 0.592062742310744
+    },
+    "bauru_Q1_mlp": {
+     "dp20": 1.04303989635154,
+     "comparador": 0.4862069626637643,
+     "dp_sementes": 0.4862069626637643
+    },
+    "campinas_Q1_gnn": {
+     "dp20": 1.0394760506235803,
+     "comparador": 0.36997032540785313,
+     "dp_sementes": 0.36997032540785313
+    },
+    "campinas_Q1_mlp": {
+     "dp20": 1.1009064240525717,
+     "comparador": 0.6404018181617666,
+     "dp_sementes": 0.6404018181617666
+    }
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T5_comparador",
+   "teste": "ha_caso_com_dp>=3*0,132_e_condicao1_falsa_so_pelo_comparador_novo",
+   "esperado": ">= 1",
+   "observado": 4,
+   "passou": true
+  },
+  {
+   "grupo": "T5_comparador",
+   "teste": "piso_0_132_quando_dp_sementes_menor",
+   "esperado": 0.132,
+   "observado": {
+    "gnn": 0.132,
+    "mlp": 0.132
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T5_ramos",
+   "teste": "reforca_4_de_4",
+   "esperado": {
+    "satisfaz_regra_reforca": true,
+    "satisfaz_regra_delimita": false,
+    "satisfaz_regra_delimita_parcial": false,
+    "n_cond1": 4,
+    "limiar": 3
+   },
+   "observado": {
+    "satisfaz_regra_reforca": true,
+    "satisfaz_regra_delimita": false,
+    "satisfaz_regra_delimita_parcial": false,
+    "n_cond1": 4,
+    "n_lt2x": 0,
+    "cond2_q1_todas": true,
+    "parcial_por": {
+     "condicao1_atendida_condicao2_nao": false,
+     "celulas_entre_2x_e_3x_impedem_limiar": false,
+     "residual_nao_prevista_literalmente_no_adendo": false
+    },
+    "n_celulas": 4,
+    "limiar": 3
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T5_ramos",
+   "teste": "reforca_3_de_4",
+   "esperado": {
+    "satisfaz_regra_reforca": true,
+    "satisfaz_regra_delimita": false,
+    "n_cond1": 3
+   },
+   "observado": {
+    "satisfaz_regra_reforca": true,
+    "satisfaz_regra_delimita": false,
+    "satisfaz_regra_delimita_parcial": false,
+    "n_cond1": 3,
+    "n_lt2x": 1,
+    "cond2_q1_todas": true,
+    "parcial_por": {
+     "condicao1_atendida_condicao2_nao": false,
+     "celulas_entre_2x_e_3x_impedem_limiar": false,
+     "residual_nao_prevista_literalmente_no_adendo": false
+    },
+    "n_celulas": 4,
+    "limiar": 3
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T5_ramos",
+   "teste": "delimita_4_de_4",
+   "esperado": {
+    "satisfaz_regra_reforca": false,
+    "satisfaz_regra_delimita": true,
+    "satisfaz_regra_delimita_parcial": false,
+    "n_lt2x": 4
+   },
+   "observado": {
+    "satisfaz_regra_reforca": false,
+    "satisfaz_regra_delimita": true,
+    "satisfaz_regra_delimita_parcial": false,
+    "n_cond1": 0,
+    "n_lt2x": 4,
+    "cond2_q1_todas": true,
+    "parcial_por": {
+     "condicao1_atendida_condicao2_nao": false,
+     "celulas_entre_2x_e_3x_impedem_limiar": false,
+     "residual_nao_prevista_literalmente_no_adendo": false
+    },
+    "n_celulas": 4,
+    "limiar": 3
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T5_ramos",
+   "teste": "delimita_3_de_4",
+   "esperado": {
+    "satisfaz_regra_delimita": true,
+    "satisfaz_regra_reforca": false,
+    "n_lt2x": 3
+   },
+   "observado": {
+    "satisfaz_regra_reforca": false,
+    "satisfaz_regra_delimita": true,
+    "satisfaz_regra_delimita_parcial": false,
+    "n_cond1": 1,
+    "n_lt2x": 3,
+    "cond2_q1_todas": true,
+    "parcial_por": {
+     "condicao1_atendida_condicao2_nao": false,
+     "celulas_entre_2x_e_3x_impedem_limiar": false,
+     "residual_nao_prevista_literalmente_no_adendo": false
+    },
+    "n_celulas": 4,
+    "limiar": 3
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T5_ramos",
+   "teste": "parcial_faixa_2x_3x_impede_3_de_4",
+   "esperado": {
+    "satisfaz_regra_reforca": false,
+    "satisfaz_regra_delimita": false,
+    "satisfaz_regra_delimita_parcial": true
+   },
+   "observado": {
+    "satisfaz_regra_reforca": false,
+    "satisfaz_regra_delimita": false,
+    "satisfaz_regra_delimita_parcial": true,
+    "n_cond1": 2,
+    "n_lt2x": 0,
+    "cond2_q1_todas": true,
+    "parcial_por": {
+     "condicao1_atendida_condicao2_nao": false,
+     "celulas_entre_2x_e_3x_impedem_limiar": true,
+     "residual_nao_prevista_literalmente_no_adendo": false
+    },
+    "n_celulas": 4,
+    "limiar": 3
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T5_ramos",
+   "teste": "parcial_cond1_sim_cond2_nao",
+   "esperado": {
+    "satisfaz_regra_reforca": false,
+    "satisfaz_regra_delimita": false,
+    "satisfaz_regra_delimita_parcial": true,
+    "n_cond1": 4,
+    "cond2_q1_todas": false
+   },
+   "observado": {
+    "satisfaz_regra_reforca": false,
+    "satisfaz_regra_delimita": false,
+    "satisfaz_regra_delimita_parcial": true,
+    "n_cond1": 4,
+    "n_lt2x": 0,
+    "cond2_q1_todas": false,
+    "parcial_por": {
+     "condicao1_atendida_condicao2_nao": true,
+     "celulas_entre_2x_e_3x_impedem_limiar": false,
+     "residual_nao_prevista_literalmente_no_adendo": false
+    },
+    "n_celulas": 4,
+    "limiar": 3
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T5_ramos",
+   "teste": "parcial_cond1_sim_cond2_nao: motivo mecanico",
+   "esperado": true,
+   "observado": true,
+   "passou": true
+  },
+  {
+   "grupo": "T5_ramos",
+   "teste": "q1_2_de_2_reforca",
+   "esperado": {
+    "satisfaz_regra_reforca": true,
+    "n_celulas": 2,
+    "limiar": 2,
+    "n_cond1": 2
+   },
+   "observado": {
+    "satisfaz_regra_reforca": true,
+    "satisfaz_regra_delimita": false,
+    "satisfaz_regra_delimita_parcial": false,
+    "n_cond1": 2,
+    "n_lt2x": 0,
+    "cond2_q1_todas": true,
+    "parcial_por": {
+     "condicao1_atendida_condicao2_nao": false,
+     "celulas_entre_2x_e_3x_impedem_limiar": false,
+     "residual_nao_prevista_literalmente_no_adendo": false
+    },
+    "n_celulas": 2,
+    "limiar": 2
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T5_ramos",
+   "teste": "q1_2_de_2_com_uma_celula_fraca",
+   "esperado": {
+    "satisfaz_regra_reforca": false,
+    "n_celulas": 2,
+    "limiar": 2,
+    "n_cond1": 1
+   },
+   "observado": {
+    "satisfaz_regra_reforca": false,
+    "satisfaz_regra_delimita": false,
+    "satisfaz_regra_delimita_parcial": true,
+    "n_cond1": 1,
+    "n_lt2x": 1,
+    "cond2_q1_todas": true,
+    "parcial_por": {
+     "condicao1_atendida_condicao2_nao": false,
+     "celulas_entre_2x_e_3x_impedem_limiar": false,
+     "residual_nao_prevista_literalmente_no_adendo": true
+    },
+    "n_celulas": 2,
+    "limiar": 2
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T5_ramos",
+   "teste": "paridade_ok_nas_celulas",
+   "esperado": {
+    "n_celulas": 4
+   },
+   "observado": {
+    "satisfaz_regra_reforca": true,
+    "satisfaz_regra_delimita": false,
+    "satisfaz_regra_delimita_parcial": false,
+    "n_cond1": 4,
+    "n_lt2x": 0,
+    "cond2_q1_todas": true,
+    "parcial_por": {
+     "condicao1_atendida_condicao2_nao": false,
+     "celulas_entre_2x_e_3x_impedem_limiar": false,
+     "residual_nao_prevista_literalmente_no_adendo": false
+    },
+    "n_celulas": 4,
+    "limiar": 3
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T5_ramos",
+   "teste": "paridade_le_0_117_nas_4_celulas",
+   "esperado": {
+    "n": 4,
+    "todas": true
+   },
+   "observado": {
+    "n": 4,
+    "todas": true
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T5_ramos",
+   "teste": "paridade_violada_em_uma_celula",
+   "esperado": {
+    "n": 3,
+    "todas": false
+   },
+   "observado": {
+    "n": 3,
+    "cels": [
+     "campinas_Q1",
+     "bauru_Q3",
+     "campinas_Q3"
+    ],
+    "todas": false
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T6_simulacoes_e2e",
+   "teste": "nulo_sem_efeito_de_sorteio",
+   "esperado": "condicao 2 verdadeira em <= 0,10 das simulacoes (e condicao 1 tambem)",
+   "observado": {
+    "n_sim_ok": 400,
+    "n_erros": 0,
+    "cond2_por_celula_e_modelo": 0.0375,
+    "cond2_gnn_e_mlp_na_celula": 0.0025,
+    "cond2_nas_2_celulas": 0.0,
+    "cond1_gnn_e_mlp_na_celula": 0.0
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T6_simulacoes_e2e",
+   "teste": "efeito_forte_sd_sorteio_20x_sd_semente",
+   "esperado": "condicao 2 (e 1) verdadeira em >= 0,95 das simulacoes",
+   "observado": {
+    "n_sim_ok": 400,
+    "n_erros": 0,
+    "cond2_por_celula_e_modelo": 1.0,
+    "cond2_gnn_e_mlp_na_celula": 1.0,
+    "cond2_nas_2_celulas": 1.0,
+    "cond1_gnn_e_mlp_na_celula": 1.0
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T7_mutacoes",
+   "teste": "controle_sem_mutacao_rc0",
+   "esperado": {
+    "rc": 0
+   },
+   "observado": {
+    "rc": 0,
+    "stderr": ""
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T7_mutacoes",
+   "teste": "a1_sha256_do_dataset_no_run_json_diferente_do_manifest",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "dataset_sha256_x_manifest_v4"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q1_ss811474_s42: dataset_sha256_x_manifest_v4 (('000000000000000000000000000000000000000000000000000000000000"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T7_mutacoes",
+   "teste": "a2_sha_do_manifest_v4_alterado",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "dataset_sha256_x_manifest_v4"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q1_ss811474_s42: dataset_sha256_x_manifest_v4 (('2d2b0533e136418cf2a33378f27ba2cc81f68931d45e28a6a18e1ccd3cd6"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T7_mutacoes",
+   "teste": "a3_flag_bate_manifest_v4_false",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "dataset_flag"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_mlp_campinas_Q1_ss54892_s42: dataset_flag_bate_manifest_v4"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T7_mutacoes",
+   "teste": "a4_dataset_de_outra_cidade_no_config",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "dataset_nome"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q1_ss811474_s42: dataset_nome (('transfer_dataset_campinas_v19_Q1_enriched_cftudo.pt', '/x/transfer_dataset_b"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T7_mutacoes",
+   "teste": "b1_run_json_config.grid_km=5",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "run_json_g=10"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q1_ss811474_s42: run_json_g=10[config.grid_km] (5.0)"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T7_mutacoes",
+   "teste": "b2_run_json_config.buffer_km=3",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "run_json_b=2"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_mlp_campinas_Q1_ss54892_s42: run_json_b=2[config.buffer_km] (3.0); config_igual_A4 ({'buffer_km': (3.0, 2.0)})"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T7_mutacoes",
+   "teste": "b3_run_json_geometria.grid_km_usado=5",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "geometria.grid_km_usado"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q1_ss811474_s42: run_json_g=10[geometria.grid_km_usado] (5.0)"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T7_mutacoes",
+   "teste": "b4_run_json_geometria.buffer_km_usado=1",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "geometria.buffer_km_usado"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_mlp_campinas_Q1_ss54892_s42: run_json_b=2[geometria.buffer_km_usado] (1.0)"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T7_mutacoes",
+   "teste": "b5_run_json_split.grid_km=5",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "split.grid_km"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q1_ss811474_s42: run_json_g=10[split.grid_km] (5.0)"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T7_mutacoes",
+   "teste": "b6_run_json_split.buffer_km=1",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "split.buffer_km"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_mlp_campinas_Q1_ss54892_s42: run_json_b=2[split.buffer_km] (1.0)"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T7_mutacoes",
+   "teste": "c1_sidecar_ausente",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "sidecar_shim_g10_presente"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q1_ss811474_s42: sidecar_shim_g10_presente"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T7_mutacoes",
+   "teste": "c2_sidecar_grid_km_pedido=5",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "sidecar_g_pedido"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_mlp_campinas_Q1_ss54892_s42: sidecar_g_pedido=10 (5.0)"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T7_mutacoes",
+   "teste": "c3_sidecar_buffer_km_pedido=3",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "sidecar_b_pedido"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q1_ss811474_s42: sidecar_b_pedido=2 (3.0)"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T7_mutacoes",
+   "teste": "c4_sidecar_efetivo_geometria.grid_km_usado=5",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "sidecar_g_efetivo"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_mlp_campinas_Q1_ss54892_s42: sidecar_g_efetivo=10[geometria.grid_km_usado] (5.0)"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T7_mutacoes",
+   "teste": "c5_sidecar_efetivo_split.buffer_km=1",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "sidecar_b_efetivo"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q1_ss811474_s42: sidecar_b_efetivo=2[split.buffer_km] (1.0)"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T7_mutacoes",
+   "teste": "c6_sidecar_g_b_efetivos_conferem=false",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "sidecar_g_b_efetivos_conferem"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_mlp_campinas_Q1_ss54892_s42: sidecar_g_b_efetivos_conferem"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T7_mutacoes",
+   "teste": "c7_sidecar_npz_igual_teste_retido=false",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "sidecar_npz_igual"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q1_ss811474_s42: sidecar_npz_igual_teste_retido"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T7_mutacoes",
+   "teste": "c8_sidecar_n_nos_npz_diferente",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "sidecar_n_nos"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_mlp_campinas_Q1_ss54892_s42: sidecar_n_nos_x_run_x_npz ((999, 40, 40, 40))"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T7_mutacoes",
+   "teste": "c9_sidecar_de_outra_corrida (run_label)",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "sidecar_artefato"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q1_ss811474_s42: sidecar_artefato (('shim_g10', 'g1_mlp_campinas_Q1_ss54892_s42', 'gnn'))"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T7_mutacoes",
+   "teste": "d1_seed_top_level=43",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "seed_x_plano"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q1_ss811474_s42: seed_x_plano ((43, 42, 42))"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T7_mutacoes",
+   "teste": "d2_config.seed=7",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "seed_x_plano"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_mlp_campinas_Q1_ss54892_s42: seed_x_plano ((42, 7, 42))"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T7_mutacoes",
+   "teste": "d3_split_seed_top_level_diferente",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "split_seed_x_plano"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q1_ss811474_s42: split_seed_x_plano ((54892, 811474, 811474, 811474))"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T7_mutacoes",
+   "teste": "d4_config.split_seed_diferente",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "split_seed_x_plano"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_mlp_campinas_Q1_ss54892_s42: split_seed_x_plano ((54892, 123, 54892, 54892))"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T7_mutacoes",
+   "teste": "d5_split.split_seed_diferente",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "split_seed_x_plano"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q1_ss811474_s42: split_seed_x_plano ((811474, 811474, 123, 811474))"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T7_mutacoes",
+   "teste": "d6_plano_G1_com_seed_treino_43_para_a_corrida (run JSON diz 42)",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "plano_G1.json"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): plano_G1.json: run_label g1_gnn_bauru_Q1_ss811474_s42 != g1_gnn_bauru_Q1_ss811474_s43"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T7_mutacoes",
+   "teste": "d7_plano_G1_com_split_seed_fora_da_lista_do_2.1",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "plano_G1.json"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): plano_G1.json: split_seed de g1_mlp_campinas_Q1_ss54892_s42 fora da lista do 2.1"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T7_mutacoes",
+   "teste": "e1_hash_idx_do_run_json_alterado",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "hash_idx"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q1_ss811474_s42: hash_idx_npz_x_run_json (('764136b9f32bad251bb249883972b6adc1512eb92230bf8ff55514f35c14cbf7'"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T7_mutacoes",
+   "teste": "e2_indice_do_npz_alterado (particao diferente)",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "hash_idx"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_mlp_campinas_Q1_ss54892_s42: hash_idx_npz_x_run_json (('3c063749b19ed726e801cdc7db35d9d4e3bcede8e4ac96dc1285cbd8fb5678f"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T7_mutacoes",
+   "teste": "e3_npz_permutado (mesma particao, outra ordem) NAO deve abortar",
+   "esperado": {
+    "rc": 0,
+    "arquivos": [
+     "agregado_G1_v7_bloco1.json"
+    ]
+   },
+   "observado": {
+    "rc": 0,
+    "arquivos": [
+     "agregado_G1_v7_bloco1.json"
+    ],
+    "msg": ""
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T7_mutacoes",
+   "teste": "e4_campo_sentinela_do_npz_incoerente_com_target",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "sentinela"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): campo sentinela do .npz nao bate com target[:,0] >= 299"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T7_mutacoes",
+   "teste": "e5_pred_com_nan",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "nao finito"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): valor nao finito no .npz: pred[:,3]"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T7_mutacoes",
+   "teste": "f_config.lr_diferente_do_A4 (gnn)",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "config_igual_A4"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q1_ss811474_s42: config_igual_A4 ({'lr': (0.002, 0.001)})"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T7_mutacoes",
+   "teste": "f_config.hidden_dim_diferente_do_A4 (gnn)",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "config_igual_A4"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q1_ss811474_s42: config_igual_A4 ({'hidden_dim': (128, 256)})"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T7_mutacoes",
+   "teste": "f_config.epochs_diferente_do_A4 (gnn)",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "config_igual_A4"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q1_ss811474_s42: config_igual_A4 ({'epochs': (9, 8)})"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T7_mutacoes",
+   "teste": "f_config.batch_size_diferente_do_A4 (gnn)",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "config_igual_A4"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q1_ss811474_s42: config_igual_A4 ({'batch_size': (4096, 12288)})"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T7_mutacoes",
+   "teste": "f_config.scheduler_diferente_do_A4 (gnn)",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "config_igual_A4"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q1_ss811474_s42: config_igual_A4 ({'scheduler': ('step', 'cosine')})"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T7_mutacoes",
+   "teste": "f_config.version_diferente_do_A4 (gnn)",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "config_igual_A4"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q1_ss811474_s42: config_igual_A4 ({'version': (22, 21)})"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T7_mutacoes",
+   "teste": "f_config.k_antenna_diferente_do_A4 (mlp)",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "config_igual_A4"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_mlp_campinas_Q1_ss54892_s42: config_igual_A4 ({'k_antenna': (-1, 20)})"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T7_mutacoes",
+   "teste": "f_config.k_terrain_diferente_do_A4 (mlp)",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "config_igual_A4"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_mlp_campinas_Q1_ss54892_s42: config_igual_A4 ({'k_terrain': (-1, 8)})"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T7_mutacoes",
+   "teste": "f_config_com_chave_extra",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "config_igual_A4"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q1_ss811474_s42: config_igual_A4 ({'chave_nova': (1, None)})"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T7_mutacoes",
+   "teste": "f_config_sem_uma_chave",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "config_igual_A4"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_mlp_campinas_Q1_ss54892_s42: config_igual_A4 ({'lr': (None, 0.001)})"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T7_mutacoes",
+   "teste": "f_config.mmap=False",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "config_igual_A4"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q1_ss811474_s42: config_igual_A4 ({'mmap': (False, True)})"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T7_mutacoes",
+   "teste": "f_script_sha256_do_run_diferente_do_A4",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "script_sha_igual_A4"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q1_ss811474_s42: script_sha_igual_A4"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T7_mutacoes",
+   "teste": "f_wrapper_sha256_diferente_do_A4",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "script_sha_igual_A4"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_mlp_campinas_Q1_ss54892_s42: script_sha_igual_A4"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T7_mutacoes",
+   "teste": "f_referencia_A4_gnn_inconsistente_entre_corridas",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "A4"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): A4: as 2 corridas gnn nao tem config identica fora das chaves ignoradas; referencia ambigua"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T7_mutacoes",
+   "teste": "f_sem_corridas_A4_do_modelo_mlp",
+   "esperado": {
+    "rc": 4,
+    "arquivos": []
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): A4: nenhuma corrida mlp_v3_a4_bauru_Q*_ss* encontrada em /tmp/claude-1000/-trabalho-HERMES/4"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T7_mutacoes",
+   "teste": "g_run_label_do_run_json_diferente",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "run_label"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q1_ss811474_s42: run_label (g1_mlp_campinas_Q1_ss54892_s42)"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T7_mutacoes",
+   "teste": "h1_shim_train_v3_g10.py_editado",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "train_v3_g10.py"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): proveniencia dos scripts do lote: _v3_2026-09-25/gpu/G1/train_v3_g10.py: sha256 053df37d73bf1ca47b65a1e4b5a04524e47561f291"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T7_mutacoes",
+   "teste": "h2_rodar_lote_G1.py_editado",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "rodar_lote_G1.py"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): proveniencia dos scripts do lote: _v3_2026-09-25/gpu/G1/rodar_lote_G1.py: sha256 19c73f7e39d706eb1d12bd5d85a7d94f6ed5db734"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T7_mutacoes",
+   "teste": "h3_agregador_original_v1_editado",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "v3_G1_agregar.py"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): proveniencia dos scripts do lote: scripts/v3_G1_agregar.py: sha256 fd24cd25c5acaf4874901f4d554cb10968e4deb4dbd7323770948ca"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T7_mutacoes",
+   "teste": "h4_portao_G1.json_editado",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "portao_G1.json"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): proveniencia dos scripts do lote: _v3_2026-09-25/gpu/G1/portao_G1.json: sha256 44136fa355b3678a1146ad16f7e8649e94fb4fc21fe"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T7_mutacoes",
+   "teste": "h5_sha_registrado_na_proveniencia_alterado",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "proveniencia"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): proveniencia dos scripts do lote: _v3_2026-09-25/gpu/G1/train_v3_g10.py: sha256 86409a45a48cb62ac2f4f830d12cb34de21cbd86ee"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T7_mutacoes",
+   "teste": "h6_proveniencia_sem_o_shim_listado",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "nao consta"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): proveniencia dos scripts do lote: _v3_2026-09-25/gpu/G1/train_v3_g10.py: nao consta de proveniencia_scripts_G1.json"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T7_mutacoes",
+   "teste": "h7_proveniencia_ausente",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": null
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (entrada de conferencia ausente/ilegivel; nada gravado): FileNotFoundError: [Errno 2] No such file or directory: '/tmp/claude-1000/-trabalho-HERMES/492a006d-c0f8"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T7_mutacoes",
+   "teste": "i1_criterio_editado (sha != citado no adendo e != proveniencia)",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "criterio"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): sha256 do criterio (6417a716bbfeefb35a03affb0678b8adc05ac0104b11edf4833ed739d9493f2b) difere do citado no adendo (d0d2b636"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T7_mutacoes",
+   "teste": "i2_adendo_sem_sha_do_criterio",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "adendo"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): sha256 do criterio (d0d2b6366930d53ca71065baeff36addbe61be6f56560e722d08721e91125132) difere do citado no adendo (None)"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T7_mutacoes",
+   "teste": "j1_caminhos_diferentes (evid_dir, graph_dir, base_dir, graph_file, dir do dataset) NAO abortam",
+   "esperado": {
+    "rc": 0,
+    "arquivos": [
+     "agregado_G1_v7_bloco1.json"
+    ]
+   },
+   "observado": {
+    "rc": 0,
+    "arquivos": [
+     "agregado_G1_v7_bloco1.json"
+    ],
+    "msg": ""
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T7_mutacoes",
+   "teste": "j2_caminhos_diferentes_mlp NAO abortam",
+   "esperado": {
+    "rc": 0,
+    "arquivos": [
+     "agregado_G1_v7_bloco1.json"
+    ]
+   },
+   "observado": {
+    "rc": 0,
+    "arquivos": [
+     "agregado_G1_v7_bloco1.json"
+    ],
+    "msg": ""
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T7_mutacoes",
+   "teste": "multibloco_com_mutacao_no_bloco1_nao_grava_nenhum_arquivo",
+   "esperado": {
+    "rc": 4,
+    "arquivos": []
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": []
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T8_mutacoes_b2_b3",
+   "teste": "bloco2: g=5 no run JSON em g1_gnn_campinas_Q1_ss811474_s44",
+   "esperado": {
+    "rc": 4,
+    "arquivos": []
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_campinas_Q1_ss811474_s44: run_json_g=10[config.grid_km]"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T8_mutacoes_b2_b3",
+   "teste": "bloco2: split_seed errado em g1_gnn_campinas_Q1_ss811474_s44",
+   "esperado": {
+    "rc": 4,
+    "arquivos": []
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_campinas_Q1_ss811474_s44: split_seed_x_plano ((1, 81147"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T8_mutacoes_b2_b3",
+   "teste": "bloco2: hash idx errado em g1_gnn_campinas_Q1_ss811474_s44",
+   "esperado": {
+    "rc": 4,
+    "arquivos": []
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_campinas_Q1_ss811474_s44: hash_idx_npz_x_run_json (('76"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T8_mutacoes_b2_b3",
+   "teste": "bloco2: sidecar g_b_efetivos_conferem=false em g1_gnn_campinas_Q1_ss811474_s44",
+   "esperado": {
+    "rc": 4,
+    "arquivos": []
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_campinas_Q1_ss811474_s44: sidecar_g_b_efetivos_conferem"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T8_mutacoes_b2_b3",
+   "teste": "bloco2: config lr em g1_gnn_campinas_Q1_ss811474_s44",
+   "esperado": {
+    "rc": 4,
+    "arquivos": []
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_campinas_Q1_ss811474_s44: config_igual_A4 ({'lr': (0.5,"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T8_mutacoes_b2_b3",
+   "teste": "bloco3: g=5 no run JSON em g1_mlp_campinas_Q3_ss676375_s42",
+   "esperado": {
+    "rc": 4,
+    "arquivos": []
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_mlp_campinas_Q3_ss676375_s42: run_json_g=10[config.grid_km]"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T8_mutacoes_b2_b3",
+   "teste": "bloco3: split_seed errado em g1_mlp_campinas_Q3_ss676375_s42",
+   "esperado": {
+    "rc": 4,
+    "arquivos": []
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_mlp_campinas_Q3_ss676375_s42: split_seed_x_plano ((1, 67637"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T8_mutacoes_b2_b3",
+   "teste": "bloco3: hash idx errado em g1_mlp_campinas_Q3_ss676375_s42",
+   "esperado": {
+    "rc": 4,
+    "arquivos": []
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_mlp_campinas_Q3_ss676375_s42: hash_idx_npz_x_run_json (('15"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T8_mutacoes_b2_b3",
+   "teste": "bloco3: sidecar g_b_efetivos_conferem=false em g1_mlp_campinas_Q3_ss676375_s42",
+   "esperado": {
+    "rc": 4,
+    "arquivos": []
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_mlp_campinas_Q3_ss676375_s42: sidecar_g_b_efetivos_conferem"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T8_mutacoes_b2_b3",
+   "teste": "bloco3: config lr em g1_mlp_campinas_Q3_ss676375_s42",
+   "esperado": {
+    "rc": 4,
+    "arquivos": []
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_mlp_campinas_Q3_ss676375_s42: config_igual_A4 ({'lr': (0.5,"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T9_real",
+   "teste": "so_conferir_bloco1_corridas_reais_completas",
+   "esperado": "rc 0 e >= 1 corrida conferida",
+   "observado": {
+    "rc": 0,
+    "n_ok": 80,
+    "stderr": ""
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T9_real",
+   "teste": "so_conferir_bloco2_corridas_reais_completas",
+   "esperado": "rc 0 e >= 1 corrida conferida",
+   "observado": {
+    "rc": 0,
+    "n_ok": 40,
+    "stderr": ""
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T9_real",
+   "teste": "so_conferir_bloco3_real (retomada em curso: nao_treinavel 769856 marcado no status)",
+   "esperado": "rc 0 e >= 1 corrida conferida",
+   "observado": {
+    "rc": 0,
+    "n_ok": 57,
+    "stderr": ""
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T9_real",
+   "teste": "so_conferir_nao_cria_arquivo_nem_agregado_em_gpu/G1",
+   "esperado": "listas iguais",
+   "observado": {
+    "agregados_antes": [
+     "agregado_G1_v5_bloco1.json",
+     "agregado_G1_v5_bloco2.json"
+    ],
+    "agregados_depois": [
+     "agregado_G1_v5_bloco1.json",
+     "agregado_G1_v5_bloco2.json"
+    ]
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T9_real",
+   "teste": "arquivos_de_gpu_G1_lidos_nao_foram_alterados (mtime)",
+   "esperado": "iguais",
+   "observado": "iguais",
+   "passou": true
+  },
+  {
+   "grupo": "T9_real",
+   "teste": "v3_G1_agregar_v6.py_inalterado",
+   "esperado": "6f852e2d56cfd61a5a4f687132a45b35369efcc06f72dccd1d7f77cf0bd8bb96",
+   "observado": "6f852e2d56cfd61a5a4f687132a45b35369efcc06f72dccd1d7f77cf0bd8bb96",
+   "passou": true
+  },
+  {
+   "grupo": "T9_real",
+   "teste": "v3_G1_agregar.py_inalterado",
+   "esperado": "88d444d4c480b7758ccd197f6936d5835a78c71863d99933fe8cbcfcd2419d2b",
+   "observado": "88d444d4c480b7758ccd197f6936d5835a78c71863d99933fe8cbcfcd2419d2b",
+   "passou": true
+  },
+  {
+   "grupo": "T9_real",
+   "teste": "v3_G1_agregar_v2.py_inalterado",
+   "esperado": "d94fac29dcf6c694cab9bec55c4bdd9e2701fe5baf2675cbfe0aa77a5c155824",
+   "observado": "d94fac29dcf6c694cab9bec55c4bdd9e2701fe5baf2675cbfe0aa77a5c155824",
+   "passou": true
+  },
+  {
+   "grupo": "T9_real",
+   "teste": "v3_G1_agregar_v3.py_inalterado",
+   "esperado": "5102299e6e5b0b3d25009693ad04c3dc0d9341833252b406841e2e894bae0e16",
+   "observado": "5102299e6e5b0b3d25009693ad04c3dc0d9341833252b406841e2e894bae0e16",
+   "passou": true
+  },
+  {
+   "grupo": "T9_real",
+   "teste": "v3_G1_agregar_v4.py_inalterado",
+   "esperado": "4263076007a28aa76c5e51fa73c35c513b34131c8019f2b5089981a57e916b14",
+   "observado": "4263076007a28aa76c5e51fa73c35c513b34131c8019f2b5089981a57e916b14",
+   "passou": true
+  },
+  {
+   "grupo": "T9_real",
+   "teste": "v3_G1_agregar_v5.py_inalterado",
+   "esperado": "50610e19f9ea1314c899b86b21eeefb569b74e64093f28936ee1c03a6aa0e465",
+   "observado": "50610e19f9ea1314c899b86b21eeefb569b74e64093f28936ee1c03a6aa0e465",
+   "passou": true
+  },
+  {
+   "grupo": "T10_C1_contagens_x_2_1",
+   "teste": "base_sem_mutacao_rc0_e_todas_passaram_calculado",
+   "esperado": {
+    "rc": 0,
+    "todas_passaram": true,
+    "n_carregadas": 80,
+    "n_com_npz": 80
+   },
+   "observado": {
+    "rc": 0,
+    "todas_passaram": true,
+    "n_carregadas": 80,
+    "n_com_npz": 80
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T10_C1_contagens_x_2_1",
+   "teste": "saida_grava_por_corrida_as_duas_diferencas_relativas_da_amarracao (nao o MAE)",
+   "esperado": {
+    "n": 80,
+    "chaves": [
+     "dif_rel_mae",
+     "dif_rel_rmse"
+    ]
+   },
+   "observado": {
+    "n": 80,
+    "max": {
+     "dif_rel_mae": 0.0,
+     "dif_rel_rmse": 0.0
+    }
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T10_C1_contagens_x_2_1",
+   "teste": "script_nao_tem_todas_passaram_literal_True",
+   "esperado": "ausente",
+   "observado": "ausente",
+   "passou": true
+  },
+  {
+   "grupo": "T10_C1_contagens_x_2_1",
+   "teste": "alvo_e_sentinela_trocados_de_forma_coerente (mais validos que o 2.1: 35 em vez de 30; run JSON, sidecar e npz coerentes)",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "n_validos_npz_x_2_1"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q1_ss811474_s42: n_validos_npz_x_2_1 ((35, 30))"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T10_C1_contagens_x_2_1",
+   "teste": "menos_validos_que_o_2.1 (25 em vez de 30, tudo coerente)",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "n_validos_npz_x_2_1"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_mlp_campinas_Q1_ss54892_s42: n_validos_npz_x_2_1 ((25, 30))"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T10_C1_contagens_x_2_1",
+   "teste": "n_todos_diferente_do_2.1 (41 em vez de 40, tudo coerente)",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "n_test_run_x_2_1"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q1_ss811474_s42: n_test_run_x_2_1 ((41, 40)); particoes_test_n_x_2_1 ((41, 40)); n_todos_npz_x_2_1 ((41, 40))"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T10_C1_contagens_x_2_1",
+   "teste": "alvo_e_sentinela_trocados_so_no_npz (campo sentinela coerente com o alvo trocado)",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": null
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q1_ss811474_s42: n_validos_npz_x_2_1 ((25, 30)); amarra_npz_n_pl_alvo_valido ((30, 25, 30))"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T10_C1_contagens_x_2_1",
+   "teste": "referencia_do_2.1_ausente_para_celula_e_split_seed",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "ref_2_1_presente"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q1_ss811474_s42: ref_2_1_presente"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T10_C1_contagens_x_2_1",
+   "teste": "n_test_so_no_run_json_diferente",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "n_test_run_x_2_1"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q1_ss811474_s42: n_test_run_x_2_1 ((39, 40)); sidecar_n_nos_x_run_x_npz ((40, 40, 40, 39))"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T10_C1_contagens_x_2_1",
+   "teste": "particoes.test.n_diferente_do_2.1",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": null
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q1_ss811474_s42: particoes_test_n_x_2_1 ((39, 40)); n_idx_npz_x_particoes_test ((39, 40))"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T10_C1_contagens_x_2_1",
+   "teste": "2.1_com_validos_diferente_do_npz",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "n_validos_npz_x_2_1"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_campinas_Q1_ss54892_s42: n_validos_npz_x_2_1 ((30, 29))"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T11_adendo3_sem_validos_parcial",
+   "teste": "sem_validos_so_no_status_sem_pasta_aborta",
+   "esperado": {
+    "rc": 4,
+    "arquivos": []
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q1_ss54892_s42: registrada sem_validos so no status; run JSON ausente (adendo 3)"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T11_adendo3_sem_validos_parcial",
+   "teste": "(i) parcial_legitimo_aceito_e_contado",
+   "esperado": {
+    "rc": 0,
+    "sem_validos_bauru_Q1": 1,
+    "conferidas_sem_npz": 2,
+    "todas_passaram": true,
+    "adendo3_listadas": 2
+   },
+   "observado": {
+    "rc": 0,
+    "sem_validos_bauru_Q1": 1,
+    "conferidas_sem_npz": 2,
+    "todas_passaram": true,
+    "adendo3_listadas": 2
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T11_adendo3_sem_validos_parcial",
+   "teste": "(ii) parcial_com_2.1_validos>0_aborta",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "A3a_2_1_validos"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q1_ss54892_s42: sem_validos (adendo 3): A3a_2_1_validos==0 (30)"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T11_adendo3_sem_validos_parcial",
+   "teste": "(iii) parcial_sem_entrada_no_status_(lote_encerrado)_aborta",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "sem registro sem_validos"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q1_ss54892_s42: run JSON sem .npz e sem registro sem_validos no status, com o lote encerrado"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T11_adendo3_sem_validos_parcial",
+   "teste": "(iii-b) parcial_sem_entrada_no_status_com_lote_em_andamento: recusa (corrida possivelmente em curso), nada gravado",
+   "esperado": {
+    "rc": 2,
+    "arquivos": [],
+    "msg_contem": null
+   },
+   "observado": {
+    "rc": 2,
+    "arquivos": [],
+    "msg": "bloco 1: RECUSADO (1 corridas sem resultado); nao grava resultado parcial"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T11_adendo3_sem_validos_parcial",
+   "teste": "(iv) parcial_com_split_seed_errado_aborta",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "A3c_split_seed"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q1_ss54892_s42: sem_validos (adendo 3): A3c_split_seed_x_plano ((7, 54892, 54892))"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T11_adendo3_sem_validos_parcial",
+   "teste": "(iv-b) parcial_com_split.split_seed_errado_aborta",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "A3c_split_seed"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q1_ss54892_s42: sem_validos (adendo 3): A3c_split_seed_x_plano ((54892, 54892, 7))"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T11_adendo3_sem_validos_parcial",
+   "teste": "(iv-c) parcial_com_seed_errada_aborta",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "A3c_seed"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q1_ss54892_s42: sem_validos (adendo 3): A3c_seed_x_plano ((43, 42))"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T11_adendo3_sem_validos_parcial",
+   "teste": "(v) parcial_com_dataset_de_tamanho_errado_aborta",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "A3c_dataset_bytes"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q1_ss54892_s42: sem_validos (adendo 3): A3c_dataset_bytes_x_manifest_v4 ((123, 28000000000))"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T11_adendo3_sem_validos_parcial",
+   "teste": "(v-b) parcial_com_dataset_de_outra_cidade_aborta",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "A3c_dataset_nome"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q1_ss54892_s42: sem_validos (adendo 3): A3c_dataset_nome (('/x/transfer_dataset_campinas_v19_Q1_enriched_cftudo.pt', 'transfer_dataset_baur"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T11_adendo3_sem_validos_parcial",
+   "teste": "(v-c) parcial_sem_bloco_dataset_aborta",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "A3c_dataset"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q1_ss54892_s42: sem_validos (adendo 3): A3c_dataset_nome ((None, 'transfer_dataset_bauru_v19_Q1_enriched_cftudo.pt')); A3c_dataset_bytes_x_"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T11_adendo3_sem_validos_parcial",
+   "teste": "(vi) pasta_com_run_json_COMPLETO_mas_status_sem_validos_aborta",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "A3c_parcial_sem_"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q1_ss54892_s42: sem_validos (adendo 3): A3c_parcial_sem_selecao; A3c_parcial_sem_insumos; A3c_parcial_sem_modelo_v3; A3c_dataset_nome ((Non"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T11_adendo3_sem_validos_parcial",
+   "teste": "parcial_com_n_pl_alvo_valido>0_em_particoes_aborta",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "A3c_particoes_test"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q1_ss54892_s42: sem_validos (adendo 3): A3c_particoes_test_n_pl_alvo_valido==0 (5)"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T11_adendo3_sem_validos_parcial",
+   "teste": "parcial_com_n_pl_alvo_valido_ausente_aborta",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "A3c_particoes_test"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q1_ss54892_s42: sem_validos (adendo 3): A3c_particoes_test_n_pl_alvo_valido==0"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T11_adendo3_sem_validos_parcial",
+   "teste": "parcial_com_guarda_degenerada_test>0_aborta",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "A3c_guarda"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q1_ss54892_s42: sem_validos (adendo 3): A3c_guarda_n_pl_alvo_valido_test==0 (3)"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T11_adendo3_sem_validos_parcial",
+   "teste": "parcial_sem_guarda_degenerada_aborta",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "A3c_guarda"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q1_ss54892_s42: sem_validos (adendo 3): A3c_guarda_n_pl_alvo_valido_test==0; A3c_guarda_test_sem_aresta_antena"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T11_adendo3_sem_validos_parcial",
+   "teste": "parcial_com_g=5_aborta",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "A3c_g=10"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q1_ss54892_s42: sem_validos (adendo 3): A3c_g=10[config.grid_km] (5.0)"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T11_adendo3_sem_validos_parcial",
+   "teste": "parcial_com_buffer_geometria=1_aborta",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "A3c_b=2"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q1_ss54892_s42: sem_validos (adendo 3): A3c_b=2[geometria.buffer_km_usado] (1.0)"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T11_adendo3_sem_validos_parcial",
+   "teste": "parcial_com_split.grid_km=5_aborta",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "A3c_g=10"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q1_ss54892_s42: sem_validos (adendo 3): A3c_g=10[split.grid_km] (5.0)"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T11_adendo3_sem_validos_parcial",
+   "teste": "parcial_com_run_label_errado_aborta",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "A3c_run_label"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q1_ss54892_s42: sem_validos (adendo 3): A3c_run_label (g1_mlp_bauru_Q1_ss54892_s42)"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T11_adendo3_sem_validos_parcial",
+   "teste": "status_com_rc=0_e_sem_validos_aborta",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "A3b_status_rc"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q1_ss54892_s42: sem_validos (adendo 3): A3b_status_rc!=0"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T11_adendo3_sem_validos_parcial",
+   "teste": "status_sem_campo_rc_aborta",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "A3b_status_rc"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q1_ss54892_s42: sem_validos (adendo 3): A3b_status_rc!=0"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T11_adendo3_sem_validos_parcial",
+   "teste": "status_sem_campo_log_aborta",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "A3b_log_da_corrida_lido"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q1_ss54892_s42: sem_validos (adendo 3): A3b_log_da_corrida_lido; A3b_log_contem_particao_degenerada"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T11_adendo3_sem_validos_parcial",
+   "teste": "log_apontando_arquivo_inexistente_aborta",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "A3b_log_da_corrida_lido"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q1_ss54892_s42: sem_validos (adendo 3): A3b_log_da_corrida_lido (/nao/existe.txt); A3b_log_contem_particao_degenerada"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T11_adendo3_sem_validos_parcial",
+   "teste": "log_sem_particao_degenerada_aborta",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "A3b_log_contem"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q1_ss54892_s42: sem_validos (adendo 3): A3b_log_contem_particao_degenerada"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T11_adendo3_sem_validos_parcial",
+   "teste": "parcial_com_sidecar_na_pasta_aborta",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "A3c_sem_npz_nem_sidecar"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q1_ss54892_s42: sem_validos (adendo 3): A3c_sem_npz_nem_sidecar ((0, 1))"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T11_adendo3_sem_validos_parcial",
+   "teste": "n_test_do_parcial_diferente_do_2.1: nao aborta (adendo 3 nao o lista); fica registrado",
+   "esperado": {
+    "rc": 0,
+    "arquivos": ">=1"
+   },
+   "observado": {
+    "rc": 0,
+    "arquivos": [
+     "agregado_G1_v7_bloco1.json"
+    ],
+    "msg": "bloco 1: gravado /tmp/claude-1000/-trabalho-HERMES/492a006d-c0f8-41c5-9896-1453e7ec0600/scratchpad/g1_sint/caso/_v3_2026-09-25/gpu/G1/agregado_G1_v7_bloco1.json"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T11_adendo3_sem_validos_parcial",
+   "teste": "config.lr_do_parcial_diferente_do_A4: nao se aplica (conferencias de treino) -> passa",
+   "esperado": {
+    "rc": 0,
+    "arquivos": ">=1"
+   },
+   "observado": {
+    "rc": 0,
+    "arquivos": [
+     "agregado_G1_v7_bloco1.json"
+    ],
+    "msg": "bloco 1: gravado /tmp/claude-1000/-trabalho-HERMES/492a006d-c0f8-41c5-9896-1453e7ec0600/scratchpad/g1_sint/caso/_v3_2026-09-25/gpu/G1/agregado_G1_v7_bloco1.json"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T11_adendo3_sem_validos_parcial",
+   "teste": "pasta_com_dados_apagada_e_status_sem_validos_aborta",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "run JSON ausente"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q1_ss54892_s42: registrada sem_validos so no status; run JSON ausente (adendo 3)"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T11_adendo3_sem_validos_parcial",
+   "teste": "status_diz_sem_validos_mas_npz_tem_validos_aborta",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "status registra sem_validos"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q1_ss811474_s42: status registra sem_validos, mas o .npz tem 30 nos validos"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T12_C3_artefatos_da_pasta",
+   "teste": "npz_do_outro_modelo_(mlp,_mesmo_idx)_na_pasta_do_gnn",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "amarra_npz"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q1_ss811474_s42: amarra_npz_mae_rssi_todos (MAE do .npz difere do run JSON alem da tolerancia); amarra_npz_rmse_rssi_todos (RMSE do .npz di"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T12_C3_artefatos_da_pasta",
+   "teste": "npz_do_gnn_na_pasta_do_mlp",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "amarra_npz"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_mlp_bauru_Q1_ss811474_s42: amarra_npz_mae_rssi_todos (MAE do .npz difere do run JSON alem da tolerancia); amarra_npz_rmse_rssi_todos (RMSE do .npz di"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T12_C3_artefatos_da_pasta",
+   "teste": "npz_de_outra_celula_(campinas,_mesmo_idx)_na_pasta_de_bauru",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "amarra_npz"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q1_ss811474_s42: amarra_npz_mae_rssi_todos (MAE do .npz difere do run JSON alem da tolerancia); amarra_npz_rmse_rssi_todos (RMSE do .npz di"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T12_C3_artefatos_da_pasta",
+   "teste": "run_json_extra_na_pasta",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "inesperados"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q1_ss811474_s42: arquivos run_*.json inesperados na pasta ['run_antigo.json', 'run_g1_gnn_bauru_Q1_ss811474_s42.json'] (esperado exatamente"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T12_C3_artefatos_da_pasta",
+   "teste": "npz_extra_na_pasta",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "inesperados"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q1_ss811474_s42: arquivos predicoes_*.npz inesperados na pasta ['predicoes_g1_gnn_bauru_Q1_ss811474_s42.npz', 'predicoes_outro.npz'] (esper"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T12_C3_artefatos_da_pasta",
+   "teste": "sidecar_duplicado",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "inesperados"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q1_ss811474_s42: arquivos shim_g10_*.json inesperados na pasta ['shim_g10_g1_gnn_bauru_Q1_ss811474_s42.json', 'shim_g10_velho.json'] (esper"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T12_C3_artefatos_da_pasta",
+   "teste": "unico_npz_com_nome_diferente_do_run_label",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "inesperados"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q1_ss811474_s42: arquivos predicoes_*.npz inesperados na pasta ['predicoes_x.npz'] (esperado exatamente predicoes_g1_gnn_bauru_Q1_ss811474_"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T12_C3_artefatos_da_pasta",
+   "teste": "unico_run_json_com_nome_diferente_do_run_label",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "inesperados"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_mlp_campinas_Q1_ss54892_s42: arquivos run_*.json inesperados na pasta ['run_x.json'] (esperado exatamente run_g1_mlp_campinas_Q1_ss54892_s42.json)"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T12_C3_artefatos_da_pasta",
+   "teste": "arquivos_nao_ligados_ao_padrao_(training_log.csv,_checkpoints)_NAO_abortam",
+   "esperado": {
+    "rc": 0,
+    "arquivos": ">=1"
+   },
+   "observado": {
+    "rc": 0,
+    "arquivos": [
+     "agregado_G1_v7_bloco1.json"
+    ],
+    "msg": "bloco 1: gravado /tmp/claude-1000/-trabalho-HERMES/492a006d-c0f8-41c5-9896-1453e7ec0600/scratchpad/g1_sint/caso/_v3_2026-09-25/gpu/G1/agregado_G1_v7_bloco1.json"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T12_C3_artefatos_da_pasta",
+   "teste": "tolerancia: MAE do run JSON +3 % e RMSE +0,5 % passam",
+   "esperado": {
+    "rc": 0,
+    "arquivos": ">=1"
+   },
+   "observado": {
+    "rc": 0,
+    "arquivos": [
+     "agregado_G1_v7_bloco1.json"
+    ],
+    "msg": "bloco 1: gravado /tmp/claude-1000/-trabalho-HERMES/492a006d-c0f8-41c5-9896-1453e7ec0600/scratchpad/g1_sint/caso/_v3_2026-09-25/gpu/G1/agregado_G1_v7_bloco1.json"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T12_C3_artefatos_da_pasta",
+   "teste": "tolerancia v5: MAE do run JSON +8 % com RMSE dentro passa",
+   "esperado": {
+    "rc": 0,
+    "arquivos": ">=1"
+   },
+   "observado": {
+    "rc": 0,
+    "arquivos": [
+     "agregado_G1_v7_bloco1.json"
+    ],
+    "msg": "bloco 1: gravado /tmp/claude-1000/-trabalho-HERMES/492a006d-c0f8-41c5-9896-1453e7ec0600/scratchpad/g1_sint/caso/_v3_2026-09-25/gpu/G1/agregado_G1_v7_bloco1.json"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T12_C3_artefatos_da_pasta",
+   "teste": "tolerancia v5: MAE do run JSON +12 % aborta",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "amarra_npz_mae"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q1_ss811474_s42: amarra_npz_mae_rssi_todos (MAE do .npz difere do run JSON alem da tolerancia)"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T12_C3_artefatos_da_pasta",
+   "teste": "tolerancia v5: RMSE do run JSON +2 % com MAE dentro passa",
+   "esperado": {
+    "rc": 0,
+    "arquivos": ">=1"
+   },
+   "observado": {
+    "rc": 0,
+    "arquivos": [
+     "agregado_G1_v7_bloco1.json"
+    ],
+    "msg": "bloco 1: gravado /tmp/claude-1000/-trabalho-HERMES/492a006d-c0f8-41c5-9896-1453e7ec0600/scratchpad/g1_sint/caso/_v3_2026-09-25/gpu/G1/agregado_G1_v7_bloco1.json"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T12_C3_artefatos_da_pasta",
+   "teste": "tolerancia v5: RMSE do run JSON +2,9 % com MAE +4,9 % passam (as duas ao mesmo tempo dentro)",
+   "esperado": {
+    "rc": 0,
+    "arquivos": ">=1"
+   },
+   "observado": {
+    "rc": 0,
+    "arquivos": [
+     "agregado_G1_v7_bloco1.json"
+    ],
+    "msg": "bloco 1: gravado /tmp/claude-1000/-trabalho-HERMES/492a006d-c0f8-41c5-9896-1453e7ec0600/scratchpad/g1_sint/caso/_v3_2026-09-25/gpu/G1/agregado_G1_v7_bloco1.json"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T12_C3_artefatos_da_pasta",
+   "teste": "tolerancia v5: RMSE do run JSON +5 % aborta",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "amarra_npz_rmse"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q1_ss811474_s42: amarra_npz_rmse_rssi_todos (RMSE do .npz difere do run JSON alem da tolerancia)"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T12_C3_artefatos_da_pasta",
+   "teste": "tolerancia v5: RMSE +2 % mas MAE +12 % aborta (as duas sao exigidas)",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "amarra_npz_mae"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q1_ss811474_s42: amarra_npz_mae_rssi_todos (MAE do .npz difere do run JSON alem da tolerancia)"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T12_C3_artefatos_da_pasta",
+   "teste": "selecao.test_no_melhor_ckpt_ausente",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "amarra_npz"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q1_ss811474_s42: amarra_npz_n_nos ((None, 40)); amarra_npz_n_pl_alvo_valido ((None, 30, 30)); amarra_npz_mae_rssi_todos (MAE do .npz difere"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T12_C3_artefatos_da_pasta",
+   "teste": "selecao.mae_rssi_db_None",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "amarra_npz_mae"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q1_ss811474_s42: amarra_npz_mae_rssi_todos (MAE do .npz difere do run JSON alem da tolerancia)"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T12_C3_artefatos_da_pasta",
+   "teste": "n_pl_alvo_valido_do_run_json_diferente_do_npz",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "amarra_npz_n_pl"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q1_ss811474_s42: amarra_npz_n_pl_alvo_valido ((29, 30, 30))"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T13_nao_bloqueantes",
+   "teste": "NaN_em_pred[:,0]_num_no_valido_aborta",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "pred[:,0]"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): valor nao finito no .npz: pred[:,0] nos validos"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T13_nao_bloqueantes",
+   "teste": "NaN_em_pred[:,0]_num_no_sentinela_(campo_nao_usado)_nao_aborta",
+   "esperado": {
+    "rc": 0,
+    "arquivos": ">=1"
+   },
+   "observado": {
+    "rc": 0,
+    "arquivos": [
+     "agregado_G1_v7_bloco1.json"
+    ],
+    "msg": "bloco 1: gravado /tmp/claude-1000/-trabalho-HERMES/492a006d-c0f8-41c5-9896-1453e7ec0600/scratchpad/g1_sint/caso/_v3_2026-09-25/gpu/G1/agregado_G1_v7_bloco1.json"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T13_nao_bloqueantes",
+   "teste": "NaN_em_target[:,0]_aborta",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "target[:,0]"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): valor nao finito no .npz: target[:,0]"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T13_nao_bloqueantes",
+   "teste": "inf_em_target[:,3]_aborta",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "target[:,3]"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): valor nao finito no .npz: target[:,3]"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T13_nao_bloqueantes",
+   "teste": "run_json.split.n_nos_apos_buffer=None_aborta_sem_traceback",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": null
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q1_ss811474_s42: n_test_run_x_2_1 ((None, 40)); sidecar_n_nos_x_run_x_npz ((40, 40, 40, None))"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T13_nao_bloqueantes",
+   "teste": "run_json.particoes=None_aborta_sem_traceback",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": null
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_mlp_campinas_Q1_ss54892_s42: particoes_test_n_x_2_1 ((None, 40)); hash_idx_npz_x_run_json (('2a21d38976dfdf927113847164624f1bfc396afc035fc1c387662430"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T13_nao_bloqueantes",
+   "teste": "run_json.config.seed=None_aborta",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": null
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q1_ss811474_s42: seed_x_plano ((42, None, 42))"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T13_nao_bloqueantes",
+   "teste": "run_json.seed_e_config.seed_ausentes_aborta",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": null
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q1_ss811474_s42: seed_x_plano ((None, None, 42))"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T13_nao_bloqueantes",
+   "teste": "run_json.insumos=None_aborta",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": null
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q1_ss811474_s42: dataset_nome (('transfer_dataset_bauru_v19_Q1_enriched_cftudo.pt', None)); dataset_sha256_x_manifest_v4 ((None, '2d2b0533e"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T13_nao_bloqueantes",
+   "teste": "plano_com_199_corridas_aborta",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "contagem por bloco"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): plano_G1.json: contagem por bloco {1: 80, 2: 40, 3: 79} / rotulos unicos != 80/40/80, 200"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T13_nao_bloqueantes",
+   "teste": "plano_com_rotulo_duplicado_aborta",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": null
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): plano_G1.json: contagem por bloco {1: 80, 2: 40, 3: 80} / rotulos unicos != 80/40/80, 200"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T13_nao_bloqueantes",
+   "teste": "adendo2_ausente_aborta",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "adendo2"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): criterio_G1_adendo2.json ausente"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T13_nao_bloqueantes",
+   "teste": "adendo2_citando_sha_errado_do_adendo1_aborta",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "adendo2"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): adendo2: id inesperado ou sha256 citado do adendo1 difere do observado"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T13_nao_bloqueantes",
+   "teste": "razao_indeterminada_nao_cai_em_faixa_e_recusa_a_contagem_de_ramos",
+   "esperado": {
+    "rc": 0,
+    "indeterminada": true,
+    "celulas_indeterminadas": [
+     "bauru_Q3"
+    ],
+    "satisfaz_*": null,
+    "faixa_intermediaria": false
+   },
+   "observado": {
+    "rc": 0,
+    "indeterminada": true,
+    "celulas_indeterminadas": [
+     "bauru_Q3"
+    ],
+    "satisfaz": [
+     null,
+     null,
+     null
+    ],
+    "faixa_intermediaria": false,
+    "indeterminada_flag": true
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T13_nao_bloqueantes",
+   "teste": "3x_e_2x_mesma_forma_nas_chaves_do_bloco_simples_e_na_leitura",
+   "esperado": "sem divergencia",
+   "observado": "sem divergencia",
+   "passou": true
+  },
+  {
+   "grupo": "T13_nao_bloqueantes",
+   "teste": "borda_dp=3*comparador_decidida_pela_razao_unica",
+   "esperado": "consistente",
+   "observado": {
+    "razao": 3.0,
+    "ge3": true,
+    "entre": false
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T14_adendo4_nao_treinavel",
+   "teste": "(i)+(iv) nao_treinavel_legitimo_aceito; sorteio excluido dos DOIS modelos (dp, paridade, contagem); npz do MLP presente: conferido e nao contado",
+   "esperado": "excluido de GNN e MLP; usaveis 19/20; MLP conferido",
+   "observado": {
+    "rc": 0,
+    "stderr": "",
+    "nao_treinaveis": [
+     676375
+    ],
+    "n_com_validos": [
+     19,
+     19
+    ],
+    "dp": [
+     1.0299137463089785,
+     0.9125748022830065
+    ],
+    "contagens": {
+     "bauru_Q3": 1,
+     "campinas_Q3": 0
+    },
+    "usaveis": {
+     "bauru_Q3": 19,
+     "campinas_Q3": 20
+    },
+    "mlp_conferido": true
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T14_adendo4_nao_treinavel",
+   "teste": "(iv-b) npz_do_MLP_no_sorteio_excluido_e_conferido: g=5 no run JSON dele aborta",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "run_json_g=10"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_mlp_bauru_Q3_ss676375_s42: run_json_g=10[config.grid_km] (5.0)"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T14_adendo4_nao_treinavel",
+   "teste": "nao_treinavel_nos_dois_modelos: aceito, excluido, nenhum npz do sorteio",
+   "esperado": {
+    "rc": 0,
+    "nt": 2,
+    "usaveis_bauru": 19
+   },
+   "observado": {
+    "rc": 0,
+    "nt": 2,
+    "usaveis": {
+     "bauru_Q3": 19,
+     "campinas_Q3": 20
+    }
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T14_adendo4_nao_treinavel",
+   "teste": "(ii) log_nomeia_particao_test_em_vez_de_val_aborta",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "A4b_particao_nomeada_diferente_de_test"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q3_ss676375_s42: nao_treinavel (adendo 4): A4b_particao_nomeada_diferente_de_test (['test'])"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T14_adendo4_nao_treinavel",
+   "teste": "(ii-b) log_nomeia_test_e_val_aborta",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "A4b_particao_nomeada_diferente_de_test"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q3_ss676375_s42: nao_treinavel (adendo 4): A4b_particao_nomeada_diferente_de_test (['val', 'test'])"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T14_adendo4_nao_treinavel",
+   "teste": "log_sem_particao_degenerada_aborta",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "A4b_log_contem"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q3_ss676375_s42: nao_treinavel (adendo 4): A4b_log_contem_particao_degenerada; A4b_particao_nomeada_no_log; A4b_particao_nomeada_diferente_"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T14_adendo4_nao_treinavel",
+   "teste": "log_com_mensagem_sem_particao_nomeada_aborta",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "A4b_particao_nomeada_no_log"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q3_ss676375_s42: nao_treinavel (adendo 4): A4b_particao_nomeada_no_log; A4b_particao_nomeada_diferente_de_test"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T14_adendo4_nao_treinavel",
+   "teste": "(iii) sem_marcador_nao_treinavel_no_status (lote encerrado) aborta",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "sem registro sem_validos"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q3_ss676375_s42: run JSON sem .npz e sem registro sem_validos no status, com o lote encerrado"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T14_adendo4_nao_treinavel",
+   "teste": "(iii-b) sem_marcador_e_veredito=abortado_por_falha_corrida aborta (situacao real antes da retomada)",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "sem registro sem_validos"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q3_ss676375_s42: run JSON sem .npz e sem registro sem_validos no status, com o lote encerrado"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T14_adendo4_nao_treinavel",
+   "teste": "(iii-c) retomada em curso (veredito_lote == veredito_lote_anterior): parcial sem marcador RECUSA (rc 2), nao aborta",
+   "esperado": {
+    "rc": 2,
+    "arquivos": [],
+    "msg_contem": null
+   },
+   "observado": {
+    "rc": 2,
+    "arquivos": [],
+    "msg": "bloco 3: RECUSADO (1 corridas sem resultado (use --bloco3-truncado so se o lote terminou e o bloco segue incompleto)); nao grava resultado parcial"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T14_adendo4_nao_treinavel",
+   "teste": "(iii-d) retomada concluida (veredito 'concluido' != anterior): parcial sem marcador aborta",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "sem registro sem_validos"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q3_ss676375_s42: run JSON sem .npz e sem registro sem_validos no status, com o lote encerrado"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T14_adendo4_nao_treinavel",
+   "teste": "marcador_nao_treinavel_nao_booleano_e_ignorado_logo_aborta",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "sem registro sem_validos"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q3_ss676375_s42: run JSON sem .npz e sem registro sem_validos no status, com o lote encerrado"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T14_adendo4_nao_treinavel",
+   "teste": "status_com_rc=0_e_nao_treinavel_aborta",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "A4_status_rc"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q3_ss676375_s42: nao_treinavel (adendo 4): A4_status_rc!=0"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T14_adendo4_nao_treinavel",
+   "teste": "status_com_sem_validos_E_nao_treinavel_aborta",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "sem_validos E nao_treinavel"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): status marca sem_validos E nao_treinavel na mesma corrida: ['g1_gnn_bauru_Q3_ss676375_s42']"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T14_adendo4_nao_treinavel",
+   "teste": "parcial_split_seed_errado_aborta",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "A4c_split_seed"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q3_ss676375_s42: nao_treinavel (adendo 4): A4c_split_seed_x_plano ((7, 676375, 676375))"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T14_adendo4_nao_treinavel",
+   "teste": "parcial_seed_errada_aborta",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "A4c_seed"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q3_ss676375_s42: nao_treinavel (adendo 4): A4c_seed_x_plano ((43, 42))"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T14_adendo4_nao_treinavel",
+   "teste": "parcial_g=5_na_config_aborta",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "A4c_g=10"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q3_ss676375_s42: nao_treinavel (adendo 4): A4c_g=10[config.grid_km] (5.0)"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T14_adendo4_nao_treinavel",
+   "teste": "parcial_buffer=1_na_geometria_aborta",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "A4c_b=2"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q3_ss676375_s42: nao_treinavel (adendo 4): A4c_b=2[geometria.buffer_km_usado] (1.0)"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T14_adendo4_nao_treinavel",
+   "teste": "parcial_split.grid_km=5_aborta",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "A4c_g=10"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q3_ss676375_s42: nao_treinavel (adendo 4): A4c_g=10[split.grid_km] (5.0)"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T14_adendo4_nao_treinavel",
+   "teste": "parcial_run_label_errado_aborta",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "A4c_run_label"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q3_ss676375_s42: nao_treinavel (adendo 4): A4c_run_label (g1_mlp_bauru_Q3_ss676375_s42)"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T14_adendo4_nao_treinavel",
+   "teste": "parcial_dataset_de_tamanho_errado_aborta",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "A4c_dataset_bytes"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q3_ss676375_s42: nao_treinavel (adendo 4): A4c_dataset_bytes_x_manifest_v4 ((5, 28000000022))"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T14_adendo4_nao_treinavel",
+   "teste": "parcial_dataset_de_outra_cidade_aborta",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "A4c_dataset_nome"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q3_ss676375_s42: nao_treinavel (adendo 4): A4c_dataset_nome (('/x/transfer_dataset_campinas_v19_Q3_enriched_cftudo.pt', 'transfer_dataset_b"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T14_adendo4_nao_treinavel",
+   "teste": "parcial_sem_bloco_dataset_aborta",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "A4c_dataset"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q3_ss676375_s42: nao_treinavel (adendo 4): A4c_dataset_nome ((None, 'transfer_dataset_bauru_v19_Q3_enriched_cftudo.pt')); A4c_dataset_bytes"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T14_adendo4_nao_treinavel",
+   "teste": "parcial_com_chave_selecao_(run_completo)_aborta",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "A4c_parcial_sem_selecao"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q3_ss676375_s42: nao_treinavel (adendo 4): A4c_parcial_sem_selecao"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T14_adendo4_nao_treinavel",
+   "teste": "parcial_com_chave_insumos_(run_completo)_aborta",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "A4c_parcial_sem_insumos"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q3_ss676375_s42: nao_treinavel (adendo 4): A4c_parcial_sem_insumos"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T14_adendo4_nao_treinavel",
+   "teste": "parcial_com_sidecar_na_pasta_aborta",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "A4c_sem_npz_nem_sidecar"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q3_ss676375_s42: nao_treinavel (adendo 4): A4c_sem_npz_nem_sidecar ((0, 1))"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T14_adendo4_nao_treinavel",
+   "teste": "parcial_com_npz_na_pasta_(corrida_marcada_com_run_json_parcial)_aborta",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "run JSON parcial"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q3_ss676375_s42: .npz presente mas run JSON parcial (sem modelo_v3/insumos) em corrida marcada sem_validos/nao_treinavel"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T14_adendo4_nao_treinavel",
+   "teste": "pasta_do_nao_treinavel_apagada_aborta",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "run JSON ausente"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q3_ss676375_s42: registrada nao_treinavel so no status; run JSON ausente (adendo 4)"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T14_adendo4_nao_treinavel",
+   "teste": "retomada_sem_arquivo_de_proveniencia_aborta",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "A4a_proveniencia_da_retomada"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): g1_gnn_bauru_Q3_ss676375_s42: nao_treinavel (adendo 4): A4a_proveniencia_da_retomada_conferida"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T14_adendo4_nao_treinavel",
+   "teste": "retomada_com_lancador_editado_aborta",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "retomada:"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): proveniencia dos scripts do lote: retomada: _v3_2026-09-25/gpu/G1/rodar_lote_G1_retomada.py: sha256 fd24cd25c5acaf4874901f4d554cb10968e4deb4dbd732377094"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T14_adendo4_nao_treinavel",
+   "teste": "retomada_sem_o_lancador_listado_aborta",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "rodar_lote_G1_retomada.py nao consta"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): proveniencia dos scripts do lote: retomada: rodar_lote_G1_retomada.py nao consta de proveniencia_scripts_G1_retomada.json"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T14_adendo4_nao_treinavel",
+   "teste": "retomada_com_sha_registrado_errado_aborta",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "retomada:"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): proveniencia dos scripts do lote: retomada: _v3_2026-09-25/gpu/G1/rodar_lote_G1_retomada.py: sha256 f43e40822e1c6c9df10224c661974183f91fcd896d95c1f09632"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T14_adendo4_nao_treinavel",
+   "teste": "adendo4_ausente_aborta",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "adendo4"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): criterio_G1_adendo4.json ausente"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T14_adendo4_nao_treinavel",
+   "teste": "adendo4_citando_sha_errado_aborta",
+   "esperado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg_contem": "adendo4"
+   },
+   "observado": {
+    "rc": 4,
+    "arquivos": [],
+    "msg": "ABORTADO (conferencia do item 7; nada gravado): adendo4: id inesperado ou sha256 citado do adendo3 difere do observado"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T14_adendo4_nao_treinavel",
+   "teste": "bloco3_completo_com_veredito=abortado_por_falha_corrida_recusa (rc 2, nada gravado)",
+   "esperado": {
+    "rc": 2,
+    "arquivos": [],
+    "msg_contem": null
+   },
+   "observado": {
+    "rc": 2,
+    "arquivos": [],
+    "msg": "bloco 3: RECUSADO (bloco 3 completo recusado: veredito_lote = 'abortado_por_falha_corrida' (esperado 'concluido' no status final da retomada)); nao grava resultado parcial"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T14_adendo4_nao_treinavel",
+   "teste": "bloco3_completo_com_veredito=None_recusa",
+   "esperado": {
+    "rc": 2,
+    "arquivos": [],
+    "msg_contem": null
+   },
+   "observado": {
+    "rc": 2,
+    "arquivos": [],
+    "msg": "bloco 3: RECUSADO (bloco 3 completo recusado: veredito_lote = None (esperado 'concluido' no status final da retomada)); nao grava resultado parcial"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T14_adendo4_nao_treinavel",
+   "teste": "(v) truncado k=12 com 4 nao_treinaveis em bauru_Q3: usaveis 8 < 10 recusa (rc 2, nada gravado)",
+   "esperado": {
+    "rc": 2,
+    "arquivos": []
+   },
+   "observado": {
+    "rc": 2,
+    "arquivos": [],
+    "msg": "bloco 3: RECUSADO (bloco 3 truncado (k=12) com menos de 10 sorteios com nos validos em ['bauru_Q3']: bloco 3 nao entra (regra passa a 2 de 2 nas celulas Q1)); nao grava resultado parcial"
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T14_adendo4_nao_treinavel",
+   "teste": "(v-b) truncado k=12 com 2 nao_treinaveis: usaveis 10 >= 10 entra",
+   "esperado": {
+    "rc": 0,
+    "usaveis_bauru": 10,
+    "nt": 2
+   },
+   "observado": {
+    "rc": 0,
+    "usaveis": {
+     "bauru_Q3": 10,
+     "campinas_Q3": 12
+    },
+    "nt": {
+     "bauru_Q3": 2,
+     "campinas_Q3": 0
+    }
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T14_adendo4_nao_treinavel",
+   "teste": "sem_validos e nao_treinavel na mesma celula: contagens separadas; usaveis = 20 - 1 - 1",
+   "esperado": {
+    "rc": 0,
+    "sem_validos": 1,
+    "nao_treinaveis": 1,
+    "usaveis": 18
+   },
+   "observado": {
+    "rc": 0,
+    "sv": {
+     "bauru_Q3": 1,
+     "campinas_Q3": 0
+    },
+    "nt": {
+     "bauru_Q3": 1,
+     "campinas_Q3": 0
+    },
+    "us": {
+     "bauru_Q3": 18,
+     "campinas_Q3": 20
+    }
+   },
+   "passou": true
+  },
+  {
+   "grupo": "T14_adendo4_nao_treinavel",
+   "teste": "Q1: nao_treinavel exclui o sorteio dos dois modelos no bloco 2 (decomposicao e dp contra recalculo independente)",
+   "esperado": "sem divergencia",
+   "observado": "sem divergencia",
+   "passou": true
+  }
+ ]
+}

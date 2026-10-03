@@ -1,0 +1,430 @@
+--- scripts/v3_G1_agregar_v8.py	2026-10-03 11:20:04.014325745 -0300
++++ scripts/v3_G1_agregar_v9.py	2026-10-03 16:26:20.780191903 -0300
+@@ -1,20 +1,33 @@
+ #!/trabalho/ambientes/s33_amb_virtual/.venv/bin/python
+ # -*- coding: utf-8 -*-
+ """
+-Agregacao do lote G1 (modelos treinados a g = 10 km, b = 2 km), VERSAO 8.
+-COPIA DECLARADA de scripts/v3_G1_agregar_v7.py
+-  sha256 do v7: cc703246f65d6d4b4a23ded13b957b9d27eda1d359b0621e04a9eff8425d0b72
+-(v1 a v7 NAO sao editados). Mudancas, so estas (contra-auditoria do v7:
+-gpu/G1_agregador_v7_contra_auditoria/veredito.json):
+-  L1  corrida marcada `nao_treinavel` no status com run JSON COMPLETO / .npz (saudavel) ABORTA. O sorteio so e
+-      excluido da celula se ao menos uma corrida dele foi aceita pelo ramo PARCIAL verificado (adendo 4); o .npz
+-      do outro modelo no sorteio excluido continua sendo conferido normalmente e nao conta.
+-  L2  conferir_parcial, modo nao_treinavel: exige guarda_particao_degenerada.particoes_sem_aresta_antena presente,
+-      nao vazio, IGUAL ao conjunto de particoes nomeadas no log e sem 'test'.
+-  L3  `--bloco3-truncado` e RECUSADO (rc 2) enquanto a retomada estiver em curso possivel (retomadas presente e
+-      veredito_lote == veredito_lote_anterior).
+-Todo o restante e o do v7 (ver cabecalhos v3 a v7). Saida: gpu/G1/agregado_G1_v8_bloco<N>.json. Este script NAO
+-interpreta resultados.
++Agregacao do lote G1 (modelos treinados a g = 10 km, b = 2 km), VERSAO 9.
++COPIA DECLARADA de scripts/v3_G1_agregar_v8.py
++  sha256 do v8: 7ba0360d7bc4d9927809c061059c18b88acd0b236d01bdbc29001435bf56a4ac
++(v1 a v8 NAO sao editados). UNICA adicao: `--bloco 4`, conforme
++criterios/criterio_G1b_campinas_bloco_cruzado.json (fixado antes de existir qualquer corrida do bloco 4):
++bloco cruzado COMPLETO de Campinas Q1 = 3 sementes (42 do bloco 1; 43 e 44 dos blocos 2 e 4) x 10 sorteios (os 5
++do bloco 2 + os 5 do bloco 4 = os 10 primeiros da lista do 2.1), GNN e MLP.
++  * Plano do bloco 4 derivado do criterio G1b (celula, sementes 43/44, modelos, sorteios == lista_2.1[5:10]); o
++    criterio e validado (qualquer divergencia: aborta). Rotulos g1_<tipo>_campinas_Q1_ss<sorteio>_s<semente>.
++  * Corridas do bloco 4: mesmas conferencias do item 7 (carregar/conferir_corrida). Status proprio
++    gpu/G1/lote_G1_bloco4_status.json (rc==0 por corrida; entradas fora do plano ou marcadas sem_validos/
++    nao_treinavel ABORTAM; veredito_lote == "concluido") e proveniencia gpu/G1/proveniencia_scripts_G1_bloco4.json
++    (sha de todos os arquivos, incluindo rodar_lote_G1_bloco4.py; obrigatoria). Nomes assumidos conforme a
++    mensagem do chefe; arquivo ausente com bloco 4 pedido: aborta.
++  * Bloco 4 incompleto (qualquer das 20 corridas sem resultado, ou blocos 1/2 incompletos, ou veredito do bloco 4
++    diferente de "concluido"): RECUSA (rc 2), nada gravado.
++  * Campinas Q1: decomposicao de um fator, n_sorteios = 10, n_sementes = 3 (QM_dentro g.l. 20, QM_entre g.l. 9),
++    dp pooled = sqrt(QM_dentro), comparador max(0,132; dp pooled), razao do dp entre os 20 sorteios (semente 42) sobre
++    o comparador, condicoes 1 e 2 por modelo; IC95 de sigma2_sorteio/sigma2_semente por F(9,20) (SO REGISTRO, nao
++    entra em regra): theta = (F_obs/F_q - 1)/3 com F_q os quantis 0,975 e 0,025 de F(n-1, n(k-1)), truncado em 0.
++  * Contagem mecanica dos ramos nas 4 celulas REFEITA: Campinas Q1 com a condicao 2 pelos 10 sorteios e a condicao 1
++    pelo novo comparador; Bauru Q1 continua pelo bloco 2 (5 sorteios); Q3 pelo bloco 3 (mesma regra do bloco 3,
++    inclusive --bloco3-truncado se foi o caso). Mesma aritmetica de contar_ramos (reforca: condicao 1 em >= 3 de 4 e
++    condicao 2 nas duas Q1; delimita parcial por faixa ou por condicao 1 sem condicao 2; delimita). Tambem se grava,
++    para registro, a contagem com Campinas pelo bloco 2 original (5 sorteios) e a de 2 de 2 so nas Q1.
++Saida: gpu/G1/agregado_G1_v9_bloco4.json. Os blocos 1 a 3 ficam como no v8 (saida agregado_G1_v9_bloco<N>.json).
++Este script NAO interpreta resultados.
+ """
+ import argparse
+ import glob
+@@ -38,6 +51,7 @@
+ SHA_V5 = "50610e19f9ea1314c899b86b21eeefb569b74e64093f28936ee1c03a6aa0e465"
+ SHA_V6 = "6f852e2d56cfd61a5a4f687132a45b35369efcc06f72dccd1d7f77cf0bd8bb96"
+ SHA_V7 = "cc703246f65d6d4b4a23ded13b957b9d27eda1d359b0621e04a9eff8425d0b72"
++SHA_V8 = "7ba0360d7bc4d9927809c061059c18b88acd0b236d01bdbc29001435bf56a4ac"
+ TRECHO_LOG_DEGENERADA = "PARTICAO DEGENERADA"
+ TOL_AMARRA_MAE_REL = 0.10
+ # Origem dos numeros: gpu/G1_agregador_v3_contra_auditoria/veredito.json (A4: 40 runs, diferenca propria npz x run JSON
+@@ -56,7 +70,7 @@
+ GRID_KM, BUFFER_KM = 10.0, 2.0
+ POPS = ("mae_rssi_validos_db", "mae_rssi_sentinela_db", "mae_rssi_todos_db", "mae_pl_validos_db")
+ BASELINES = ("fspl", "hata_rural", "cost231_sub")
+-CELULAS_POR_BLOCO = {1: ("bauru_Q1", "campinas_Q1"), 2: ("bauru_Q1", "campinas_Q1"), 3: ("bauru_Q3", "campinas_Q3")}
++CELULAS_POR_BLOCO = {1: ("bauru_Q1", "campinas_Q1"), 2: ("bauru_Q1", "campinas_Q1"), 3: ("bauru_Q3", "campinas_Q3"), 4: ("campinas_Q1",)}
+ # chaves do config que a conferencia A4 ignora (adendo 7: grid_km, seed, split_seed, rotulos e caminhos)
+ CONFIG_IGNORADAS_A4 = ("grid_km", "seed", "split_seed", "run_label", "evid_dir", "graph_dir", "graph_file",
+                        "rf_data_file", "base_dir")
+@@ -88,6 +102,9 @@
+     P.ADENDO2 = raiz / "criterios" / "criterio_G1_adendo2.json"
+     P.ADENDO3 = raiz / "criterios" / "criterio_G1_adendo3.json"
+     P.ADENDO4 = raiz / "criterios" / "criterio_G1_adendo4.json"
++    P.CRIT_G1B = raiz / "criterios" / "criterio_G1b_campinas_bloco_cruzado.json"
++    P.STATUS4 = raiz / "gpu" / "G1" / "lote_G1_bloco4_status.json"
++    P.PROV4 = raiz / "gpu" / "G1" / "proveniencia_scripts_G1_bloco4.json"
+     P.PLANO = P.G1 / "plano_G1.json"
+     P.STATUS = P.G1 / "lote_G1_status.json"
+     P.PROV = P.G1 / "proveniencia_scripts_G1.json"
+@@ -296,7 +313,7 @@
+ 
+ 
+ # ---------------------------------------------------------------- proveniencia global (item 7f)
+-def conferir_scripts_do_lote(modo_teste: bool) -> dict:
++def conferir_scripts_do_lote(modo_teste: bool, bloco4: bool = False) -> dict:
+     with open(P.PROV, "r", encoding="utf-8") as f:
+         prov = json.load(f)
+     falhas, linhas = [], []
+@@ -335,9 +352,30 @@
+         if not any(str(e["caminho"]).endswith("rodar_lote_G1_retomada.py") for e in provr["arquivos"]):
+             falhas.append("retomada: rodar_lote_G1_retomada.py nao consta de proveniencia_scripts_G1_retomada.json")
+         retomada = {"fonte": str(P.PROV_RET), "arquivos": linhas_r}
++    b4 = None
++    if bloco4:
++        if not P.PROV4.exists():
++            pass     # ausente: so aborta ao agregar (agrega_bloco4), depois de conferir que o bloco 4 esta completo (incompleto = recusa)
++        else:
++            with open(P.PROV4, "r", encoding="utf-8") as f:
++                prov4 = json.load(f)
++            linhas4 = []
++            ents4 = list(prov4["arquivos"].values()) if isinstance(prov4["arquivos"], dict) else list(prov4["arquivos"])
++            for e in ents4:
++                p = P.BASE / e["caminho"]
++                if not p.exists():
++                    falhas.append(f"bloco4: {e['caminho']}: ausente")
++                    continue
++                obs = sha256(p)
++                linhas4.append({"caminho": e["caminho"], "sha256_registrado": e["sha256"], "sha256_observado": obs, "igual": bool(obs == e["sha256"])})
++                if obs != e["sha256"]:
++                    falhas.append(f"bloco4: {e['caminho']}: sha256 {obs} != registrado {e['sha256']}")
++            if not any(str(e["caminho"]).endswith("rodar_lote_G1_bloco4.py") for e in ents4):
++                falhas.append("bloco4: rodar_lote_G1_bloco4.py nao consta de proveniencia_scripts_G1_bloco4.json")
++            b4 = {"fonte": str(P.PROV4), "arquivos": linhas4}
+     if falhas:
+         raise Aborta("proveniencia dos scripts do lote: " + "; ".join(falhas))
+-    return {"fonte": str(P.PROV), "arquivos": linhas, "retomada": retomada}
++    return {"fonte": str(P.PROV), "arquivos": linhas, "retomada": retomada, "bloco4": b4}
+ 
+ 
+ def conferir_criterios() -> tuple:
+@@ -377,6 +415,66 @@
+     return sc, sa, s2, s3, sha256(P.ADENDO4)
+ 
+ 
++def construir_plano4() -> tuple:
++    """Plano do bloco 4 derivado do criterio G1b (validado contra a lista de 60 sorteios do 2.1)."""
++    if not P.CRIT_G1B.exists():
++        raise Aborta("criterio_G1b_campinas_bloco_cruzado.json ausente")
++    with open(P.CRIT_G1B, "r", encoding="utf-8") as f:
++        cr = json.load(f)
++    with open(P.SORTEIOS_2_1, "r", encoding="utf-8") as f:
++        lista = json.load(f)["nota_divergencia_seeds"]["seeds_usados_nesta_rodada"]
++    d = cr.get("desenho") or {}
++    falhas = []
++    if cr.get("id") != "G1b_campinas_bloco_cruzado_completo":
++        falhas.append(f"id {cr.get('id')!r}")
++    if d.get("bloco") != 4 or d.get("celula") != "campinas_Q1":
++        falhas.append(f"bloco/celula {d.get('bloco')!r}/{d.get('celula')!r}")
++    if d.get("sementes_treino") != [43, 44]:
++        falhas.append(f"sementes_treino {d.get('sementes_treino')!r} != [43, 44]")
++    if d.get("modelos") != ["gnn", "mlp"]:
++        falhas.append(f"modelos {d.get('modelos')!r}")
++    if d.get("sorteios") != lista[5:10]:
++        falhas.append(f"sorteios {d.get('sorteios')!r} != lista_2.1[5:10] {lista[5:10]}")
++    if d.get("n_corridas") != 20:
++        falhas.append(f"n_corridas {d.get('n_corridas')!r}")
++    if falhas:
++        raise Aborta("criterio G1b inconsistente com o plano esperado: " + "; ".join(falhas))
++    plano4 = []
++    for sd in (43, 44):
++        for i in range(5, 10):
++            ss = lista[i]
++            for tipo in ("gnn", "mlp"):
++                plano4.append({"bloco": 4, "run_label": f"g1_{tipo}_campinas_Q1_ss{ss}_s{sd}", "tipo": tipo, "cidade": "campinas",
++                               "quadrante": "Q1", "seed_treino": sd, "split_seed": ss, "indice_sorteio": i})
++    pf = P.G1 / "plano_G1_bloco4.json"
++    if pf.exists():      # plano gravado pelo lancador do bloco 4: tem de coincidir com o derivado do criterio
++        with open(pf, "r", encoding="utf-8") as f:
++            doc4 = json.load(f)
++        chaves = ("run_label", "tipo", "cidade", "quadrante", "seed_treino", "split_seed", "indice_sorteio")
++        a_ = sorted(tuple(c.get(k) for k in chaves) for c in doc4.get("corridas", []))
++        b_ = sorted(tuple(c[k] for k in chaves) for c in plano4)
++        if a_ != b_ or doc4.get("grid_km") != GRID_KM or doc4.get("buffer_km") != BUFFER_KM:
++            raise Aborta("plano_G1_bloco4.json diverge do plano derivado do criterio G1b (corridas e/ou g/b)")
++    return plano4, sha256(P.CRIT_G1B)
++
++
++def ic95_razao_componentes(dec: dict) -> dict:
++    """IC95 (so registro) de theta = sigma2_sorteio/sigma2_semente. F_obs = QM_entre/QM_dentro ~ (1+k*theta) F(n-1, n(k-1))."""
++    from scipy.stats import f as fdist
++    n, k = dec["n_sorteios"], dec["n_sementes"]
++    d1, d2 = n - 1, n * (k - 1)
++    if dec["qm_dentro"] <= 0:
++        return {"disponivel": False, "motivo": "QM_dentro nao positivo"}
++    Fobs = dec["qm_entre"] / dec["qm_dentro"]
++    q_hi, q_lo = float(fdist.ppf(0.975, d1, d2)), float(fdist.ppf(0.025, d1, d2))
++    inf_bruto, sup_bruto = (Fobs / q_hi - 1) / k, (Fobs / q_lo - 1) / k
++    return {"disponivel": True, "gl_entre": d1, "gl_dentro": d2, "F_obs": Fobs, "F_q975": q_hi, "F_q025": q_lo,
++            "theta_ic95_inferior": max(0.0, inf_bruto), "theta_ic95_superior": max(0.0, sup_bruto),
++            "theta_ic95_inferior_bruto": inf_bruto, "theta_ic95_superior_bruto": sup_bruto,
++            "theta_ponto": dec["sigma2_sorteio"] / dec["sigma2_semente"] if dec["sigma2_semente"] > 0 else None,
++            "nota": "so registro; nao entra em regra"}
++
++
+ def conferir_plano(plano_doc: dict) -> None:
+     """plano_G1.json coerente com g/b e com a lista de 60 sorteios do 2.1 (primeiros 20 e 5)."""
+     if plano_doc.get("grid_km") != GRID_KM or plano_doc.get("buffer_km") != BUFFER_KM:
+@@ -542,8 +640,8 @@
+ # ------------------------------------------------------------------- agregador
+ def main(argv=None) -> int:
+     ap = argparse.ArgumentParser()
+-    ap.add_argument("--bloco", type=int, choices=(1, 2, 3), default=None,
+-                    help="default: agrega todo bloco COMPLETO; blocos incompletos sao recusados (rc=2)")
++    ap.add_argument("--bloco", type=int, choices=(1, 2, 3, 4), default=None,
++                    help="default: agrega os blocos 1-3 COMPLETOS; blocos incompletos sao recusados (rc=2). O bloco 4 (G1b) so por --bloco 4")
+     ap.add_argument("--bloco3-truncado", action="store_true",
+                     help="declara que o lote terminou e o bloco 3 segue incompleto: usa os primeiros k sorteios com as 4 "
+                          "corridas completas (exige k validos >= 10 por celula). Adendo, emenda 4.")
+@@ -579,11 +677,26 @@
+ 
+ def _executar(args, argv_efetivo, modo_teste) -> int:
+     sha_crit, sha_adendo, sha_adendo2, sha_adendo3, sha_adendo4 = conferir_criterios()
+-    prov_scripts = conferir_scripts_do_lote(modo_teste)
++    prov_scripts = conferir_scripts_do_lote(modo_teste, bloco4=(args.bloco == 4))
+     with open(P.PLANO, "r", encoding="utf-8") as f:
+         plano_doc = json.load(f)
+     conferir_plano(plano_doc)
+     plano = plano_doc["corridas"]
++    sha_crit_g1b = None
++    status4 = None
++    if args.bloco == 4:
++        plano4, sha_crit_g1b = construir_plano4()
++        plano = plano + plano4
++        if P.STATUS4.exists():
++            with open(P.STATUS4, "r", encoding="utf-8") as f:
++                status4 = json.load(f)
++            rot4 = {c["run_label"] for c in plano4}
++            fora = sorted(str(e.get("run_label")) for e in status4.get("corridas", []) if e.get("run_label") not in rot4)
++            if fora:
++                raise Aborta(f"status do bloco 4 traz corrida(s) fora do plano do criterio G1b: {fora}")
++            marc = sorted(e["run_label"] for e in status4.get("corridas", []) if e.get("sem_validos") or e.get("nao_treinavel"))
++            if marc:
++                raise Aborta(f"status do bloco 4: corrida(s) marcada(s) sem_validos/nao_treinavel (o bloco 4 exige 20 corridas treinadas): {marc}")
+     with open(P.STATUS, "r", encoding="utf-8") as f:
+         status = json.load(f)
+     sem_val = {c["run_label"] for c in status["corridas"] if c.get("sem_validos")}
+@@ -617,7 +730,7 @@
+         d, js, zs, sd = artefatos(lbl)
+         if (lbl in sem_val or lbl in nao_trein) and not zs:
+             return True           # aceitacao so no carregar(): exige run JSON conferido e 2.1 validos == 0 (C2)
+-        if js and not zs and lbl not in sem_val and lbl not in nao_trein and status.get("veredito_lote") is not None and not retomada_em_curso_possivel:
++        if js and not zs and c["bloco"] != 4 and lbl not in sem_val and lbl not in nao_trein and status.get("veredito_lote") is not None and not retomada_em_curso_possivel:
+             # run JSON sem predicoes e sem registro sem_validos com o lote ENCERRADO: nao e corrida em andamento (adendo 3)
+             raise Aborta(f"{lbl}: run JSON sem .npz e sem registro sem_validos no status, com o lote encerrado")
+         if not (js and zs):
+@@ -916,9 +1029,9 @@
+         return {"cels1": cels1, "bloco2": cel_out, "flags": flags, "alternativa_comparador_pooled_entre_celulas": alt}
+ 
+     def montar_meta(n: int) -> dict:
+-        return {"artefato": f"agregado_G1_v8_bloco{n}", "versao_agregador": 8,
++        return {"artefato": f"agregado_G1_v9_bloco{n}", "versao_agregador": 9,
+                 "script": str(Path(__file__).resolve()), "script_sha256": sha256(Path(__file__).resolve()),
+-                "script_original_copiado": {"caminho": "scripts/v3_G1_agregar_v7.py", "sha256": SHA_V7, "avo_v6_sha256": SHA_V6, "avo_v5_sha256": SHA_V5, "avo_v4_sha256": SHA_V4, "avo_v3_sha256": SHA_V3, "avo_v2_sha256": SHA_V2, "avo_v1_sha256": SHA_ORIGINAL_V1},
++                "script_original_copiado": {"caminho": "scripts/v3_G1_agregar_v8.py", "sha256": SHA_V8, "avo_v7_sha256": SHA_V7, "avo_v6_sha256": SHA_V6, "avo_v5_sha256": SHA_V5, "avo_v4_sha256": SHA_V4, "avo_v3_sha256": SHA_V3, "avo_v2_sha256": SHA_V2, "avo_v1_sha256": SHA_ORIGINAL_V1},
+                 "comando": [sys.executable] + list(argv_efetivo), "comando_texto": " ".join([sys.executable] + list(argv_efetivo)),
+                 "data": datetime.now().astimezone().isoformat(timespec="seconds"),
+                 "criterio_sha256": sha_crit, "adendo_sha256": sha_adendo, "adendo2_sha256": sha_adendo2, "adendo3_sha256": sha_adendo3, "adendo4_sha256": sha_adendo4, "script_v3_sha256_copiado": SHA_V3, "script_v2_sha256_avo": SHA_V2, "plano_sha256": sha_plano,
+@@ -955,6 +1068,108 @@
+             "amarracao_npz": "MAE e RMSE de RSSI (todos os nos) do .npz x selecao.test_no_melhor_ckpt (tol. 10 % / 3 %), n_nos, n_pl_alvo_valido; nenhum artefato do lote grava sha do .npz",
+             "sem_artefatos_sem_validos_registrados": [lbl for lbl in labels if cache.get(lbl, {}).get("sem_predicao")]}
+ 
++    def preparar_bloco3() -> dict:
++        idx3 = indices_completos(3)
++        completo = all(idx3.values())
++        if completo:
++            if status.get("veredito_lote") != "concluido":
++                raise Incompleto(f"bloco 3 completo recusado: veredito_lote = {status.get('veredito_lote')!r} (esperado 'concluido' no status final da retomada)")
++            usados = sorted(idx3)
++            modo = "completo"
++        else:
++            if not args.bloco3_truncado:
++                raise Incompleto(f"{sum(1 for c in plano if c['bloco'] == 3 and not completa(c))} corridas sem resultado "
++                                 "(use --bloco3-truncado so se o lote terminou e o bloco segue incompleto)")
++            if status.get("veredito_lote") is None:
++                raise Incompleto("--bloco3-truncado recusado: lote_G1_status.json sem veredito_lote (lote ainda em andamento)")
++            if retomada_em_curso_possivel:
++                raise Incompleto("--bloco3-truncado recusado: retomada em curso possivel (retomadas presente e veredito_lote == veredito_lote_anterior)")
++            usados = []
++            for i in sorted(idx3):
++                if not idx3[i]:
++                    break
++                usados.append(i)
++            modo = "truncado_prefixo_contiguo"
++        if not usados:
++            raise Incompleto("bloco 3: nenhum sorteio com as 4 corridas completas")
++        cels3 = metricas_bloco_simples(3, usados)
++        if modo != "completo":
++            ruins = {c: b["por_modelo"]["gnn"]["n_sorteios_com_validos"] for c, b in cels3.items()
++                     if min(b["por_modelo"]["gnn"]["n_sorteios_com_validos"], b["por_modelo"]["mlp"]["n_sorteios_com_validos"]) < K_MIN_BLOCO3}
++            if ruins:
++                raise Incompleto(f"bloco 3 truncado (k={len(usados)}) com menos de {K_MIN_BLOCO3} sorteios com nos validos "
++                                 f"em {sorted(ruins)}: bloco 3 nao entra (regra passa a 2 de 2 nas celulas Q1)")
++        return {"idx3": idx3, "usados": usados, "modo": modo, "cels3": cels3}
++
++    def agrega_bloco4() -> dict:
++        idx4 = indices_completos(4)
++        if not all(idx4.values()):
++            raise Incompleto(f"bloco 4 incompleto: {sum(1 for c in plano if c['bloco'] == 4 and not completa(c))} das 20 corridas sem resultado")
++        if status4 is None:
++            raise Incompleto("lote_G1_bloco4_status.json ausente")
++        por4 = {e.get("run_label"): e for e in status4.get("corridas", [])}
++        ruins4 = sorted(c["run_label"] for c in plano if c["bloco"] == 4 and (por4.get(c["run_label"]) or {}).get("rc") != 0)
++        if ruins4:
++            raise Aborta(f"status do bloco 4: corrida(s) sem rc == 0 registrado: {ruins4}")
++        if status4.get("veredito_lote") != "concluido":
++            raise Incompleto(f"bloco 4 recusado: veredito_lote do status do bloco 4 = {status4.get('veredito_lote')!r} (esperado 'concluido')")
++        if prov_scripts.get("bloco4") is None:
++            raise Aborta("proveniencia do bloco 4 nao conferida")
++        q1 = avaliar_q1()                      # Bauru Q1 (bloco 2, 5 sorteios), Campinas Q1 original (5), cels1 (20 sorteios, semente 42)
++        cel = "campinas_Q1"
++        sel_ = lambda sd_, t_: [c for c in plano if c["tipo"] == t_ and f"{c['cidade']}_{c['quadrante']}" == cel and c["seed_treino"] == sd_
++                                and c["bloco"] in ((1,) if sd_ == 42 else (2, 4)) and c["indice_sorteio"] < 10]
++        ps_all = {t_: {sd_: {c_["split_seed"]: carregar(c_) for c_ in sorted(sel_(sd_, t_), key=lambda x: x["indice_sorteio"])} for sd_ in (42, 43, 44)} for t_ in ("gnn", "mlp")}
++        nt_cel = {s_ for t_ in ps_all for sd_ in ps_all[t_] for s_, r_ in ps_all[t_][sd_].items() if r_.get("nao_treinavel")}
++        sorteios10 = [c["split_seed"] for c in sorted(sel_(42, "gnn"), key=lambda x: x["indice_sorteio"])]
++        if len(sorteios10) != 10 or any(len(ps_all[t_][sd_]) != 10 for t_ in ps_all for sd_ in ps_all[t_]):
++            raise Aborta("bloco 4: esperadas 3 sementes x 10 sorteios por modelo em Campinas Q1")
++        ent, pm = {"gnn": {}, "mlp": {}}, {}
++        for tipo in ("gnn", "mlp"):
++            por_semente = ps_all[tipo]
++            lin = [x for x in sorteios10 if x not in nt_cel and all(not por_semente[sd][x]["sem_validos"] for sd in (42, 43, 44))]
++            M = np.array([[por_semente[sd][x]["mae"]["mae_rssi_validos_db"] for sd in (42, 43, 44)] for x in lin], float)
++            dec = decomposicao_um_fator(M) if len(lin) >= 2 else None
++            dp_sem = None if dec is None else dec["dp_entre_sementes_pooled_db"]
++            dp20 = q1["cels1"][cel]["por_modelo"][tipo]["dp_entre_sorteios_validos_db"]
++            comparador = max(RUIDO_REPETICAO_DB, dp_sem) if dp_sem is not None else None
++            pm[tipo] = avaliar_condicoes_modelo(dp20, comparador)
++            ent[tipo] = {
++                "sorteios_usados": lin, "n_sorteios_usados": len(lin),
++                "sorteios_sem_validos_ou_nao_treinaveis_excluidos": [x for x in sorteios10 if x not in lin],
++                "matriz_mae_validos_sorteio_x_semente_42_43_44": M.tolist(),
++                "decomposicao_um_fator_sementes_aninhadas_no_sorteio": dec,
++                "dp_entre_sementes_pooled_db": dp_sem,
++                "dp_entre_sementes_sobre_0_132": razao(dp_sem, RUIDO_REPETICAO_DB),
++                "comparador_db_max_0_132_dp_sementes": comparador,
++                "dp_entre_sorteios_20_semente42_db": dp20,
++                "razao_dp_sorteios20_sobre_comparador": pm[tipo]["razao_dp_sobre_comparador"],
++                "leitura_aritmetica": pm[tipo],
++                "condicao2_sigma2_sorteio_ge_sigma2_semente": (None if dec is None else dec["condicao2_sigma2_sorteio_ge_sigma2_semente"]),
++                "razao_sigma2_sorteio_sobre_sigma2_semente_ic95_F": (None if dec is None else ic95_razao_componentes(dec))}
++        flag = sinalizar_celula(pm)
++        c2s = [ent[t]["condicao2_sigma2_sorteio_ge_sigma2_semente"] for t in ("gnn", "mlp")]
++        flag["condicao2_gnn_e_mlp"] = None if any(v is None for v in c2s) else bool(all(c2s))
++        if flag["condicao2_gnn_e_mlp"] is None:
++            flag["indeterminada_dp_nao_calculavel"] = True
++        flag["paridade_le_0_117"] = bool(q1["cels1"][cel]["paridade_sentinela"]["mediana_le_0_117"])
++        flags_q1_novo = {"bauru_Q1": q1["flags"]["bauru_Q1"], cel: flag}
++        flags_q1_orig = {c_: q1["flags"][c_] for c_ in q1["flags"]}
++        res = {"campinas_Q1": ent, "flag_campinas_10_sorteios": flag, "q1": q1, "flags_q1_novo": flags_q1_novo, "flags_q1_orig": flags_q1_orig}
++        try:
++            b3 = preparar_bloco3()
++            sin3 = sinais_simples(b3["cels3"])
++            res["ramos_4_celulas_novo"] = contar_ramos({**flags_q1_novo, **sin3}, list(flags_q1_novo))
++            res["ramos_4_celulas_bloco2_original_5_sorteios"] = contar_ramos({**flags_q1_orig, **sin3}, list(flags_q1_orig))
++            res["b3"] = {"modo": b3["modo"], "k": len(b3["usados"])}
++            res["labels_b3"] = [c["run_label"] for c in plano if c["bloco"] == 3 and c["indice_sorteio"] in set(b3["usados"])]
++        except Incompleto as e:
++            res["ramos_4_celulas_novo"] = {"disponivel": False, "motivo": f"celulas Q3 indisponiveis: {e}"}
++            res["ramos_4_celulas_bloco2_original_5_sorteios"] = {"disponivel": False, "motivo": f"celulas Q3 indisponiveis: {e}"}
++            res["labels_b3"] = []
++        res["ramos_so_q1_2_de_2_novo"] = contar_ramos(flags_q1_novo, list(flags_q1_novo))
++        return res
++
+     # ---- execucao por bloco
+     saidas, recusas = {}, {}
+     alvo = [args.bloco] if args.bloco else [1, 2, 3]
+@@ -981,7 +1196,7 @@
+                 out["celulas"] = cels
+                 out["leitura_aritmetica_contra_piso_0_132"] = sinais_simples(cels)
+                 out["nota"] = ("condicao 1 das celulas Q1 usa o comparador max(0,132; dp entre sementes) do bloco 2: ver "
+-                               "agregado_G1_v8_bloco2.json; aqui so a comparacao com o piso 0,132")
++                               "agregado_G1_v9_bloco2.json; aqui so a comparacao com o piso 0,132")
+                 out["contagem_sorteios_sem_validos_por_celula"] = {c: b["n_sorteios_sem_validos"] for c, b in cels.items()}
+                 out["contagem_sorteios_nao_treinaveis_por_celula"] = {c: b["n_sorteios_nao_treinaveis"] for c, b in cels.items()}
+                 out["contagem_sorteios_usaveis_por_celula"] = {c: b["n_sorteios_usaveis"] for c, b in cels.items()}
+@@ -1001,37 +1216,27 @@
+                 out["paridade_sentinela_celulas_q1"] = {c: q1["cels1"][c]["paridade_sentinela"] for c in q1["cels1"]}
+                 out["contagem_mecanica_ramos_so_celulas_q1_2_de_2"] = contar_ramos(celulas_flags, list(celulas_flags))
+                 fechar_conferencias(out, [c["run_label"] for c in plano if c["bloco"] in (1, 2)])
++            elif n == 4:
++                r4 = agrega_bloco4()
++                out = montar_meta(4)
++                out["criterio_g1b_sha256"] = sha_crit_g1b
++                out["status_bloco4_veredito_lote"] = status4.get("veredito_lote")
++                out["celulas"] = {"campinas_Q1": r4["campinas_Q1"]}
++                out["leitura_aritmetica_campinas_Q1_10_sorteios"] = r4["flag_campinas_10_sorteios"]
++                out["bauru_Q1_continua_pelo_bloco_2_5_sorteios"] = {
++                    "flag": r4["flags_q1_novo"]["bauru_Q1"], "bloco2": r4["q1"]["bloco2"]["bauru_Q1"]}
++                out["campinas_Q1_bloco_2_original_5_sorteios_registro"] = {
++                    "bloco2": r4["q1"]["bloco2"]["campinas_Q1"], "flag": r4["flags_q1_orig"]["campinas_Q1"]}
++                out["contagem_mecanica_ramos_4_celulas_campinas_10_sorteios"] = r4["ramos_4_celulas_novo"]
++                out["contagem_mecanica_ramos_4_celulas_campinas_5_sorteios_registro"] = r4["ramos_4_celulas_bloco2_original_5_sorteios"]
++                out["contagem_mecanica_ramos_so_celulas_q1_2_de_2_campinas_10_sorteios"] = r4["ramos_so_q1_2_de_2_novo"]
++                out["bloco3_usado_nos_ramos"] = r4.get("b3")
++                out["contagem_sorteios_sem_validos_por_celula"] = {c: b["n_sorteios_sem_validos"] for c, b in r4["q1"]["cels1"].items()}
++                out["contagem_sorteios_nao_treinaveis_por_celula"] = {c: b["n_sorteios_nao_treinaveis"] for c, b in r4["q1"]["cels1"].items()}
++                fechar_conferencias(out, [c["run_label"] for c in plano if c["bloco"] in (1, 2, 4)] + r4["labels_b3"])
+             else:
+-                idx3 = indices_completos(3)
+-                completo = all(idx3.values())
+-                if completo:
+-                    if status.get("veredito_lote") != "concluido":
+-                        raise Incompleto(f"bloco 3 completo recusado: veredito_lote = {status.get('veredito_lote')!r} (esperado 'concluido' no status final da retomada)")
+-                    usados = sorted(idx3)
+-                    modo = "completo"
+-                else:
+-                    if not args.bloco3_truncado:
+-                        raise Incompleto(f"{sum(1 for c in plano if c['bloco'] == 3 and not completa(c))} corridas sem resultado "
+-                                         "(use --bloco3-truncado so se o lote terminou e o bloco segue incompleto)")
+-                    if status.get("veredito_lote") is None:
+-                        raise Incompleto("--bloco3-truncado recusado: lote_G1_status.json sem veredito_lote (lote ainda em andamento)")
+-                    if retomada_em_curso_possivel:
+-                        raise Incompleto("--bloco3-truncado recusado: retomada em curso possivel (retomadas presente e veredito_lote == veredito_lote_anterior)")
+-                    usados = []
+-                    for i in sorted(idx3):
+-                        if not idx3[i]:
+-                            break
+-                        usados.append(i)
+-                    modo = "truncado_prefixo_contiguo"
+-                if not usados:
+-                    raise Incompleto("bloco 3: nenhum sorteio com as 4 corridas completas")
+-                cels3 = metricas_bloco_simples(3, usados)
+-                if modo != "completo":
+-                    ruins = {c: b["por_modelo"]["gnn"]["n_sorteios_com_validos"] for c, b in cels3.items()
+-                             if min(b["por_modelo"]["gnn"]["n_sorteios_com_validos"], b["por_modelo"]["mlp"]["n_sorteios_com_validos"]) < K_MIN_BLOCO3}
+-                    if ruins:
+-                        raise Incompleto(f"bloco 3 truncado (k={len(usados)}) com menos de {K_MIN_BLOCO3} sorteios com nos validos "
+-                                         f"em {sorted(ruins)}: bloco 3 nao entra (regra passa a 2 de 2 nas celulas Q1)")
++                b3 = preparar_bloco3()
++                idx3, usados, modo, cels3 = b3["idx3"], b3["usados"], b3["modo"], b3["cels3"]
+                 out = montar_meta(3)
+                 out["bloco3_modo"] = modo
+                 out["bloco3_k_sorteios_usados"] = len(usados)
+@@ -1060,7 +1265,7 @@
+     for n, motivo in recusas.items():
+         print(f"bloco {n}: RECUSADO ({motivo}); nao grava resultado parcial")
+     for n, out in saidas.items():
+-        path = P.G1 / f"agregado_G1_v8_bloco{n}.json"
++        path = P.G1 / f"agregado_G1_v9_bloco{n}.json"
+         tmp = path.with_suffix(".json.tmp")
+         with open(tmp, "w", encoding="utf-8") as f:
+             json.dump(out, f, indent=1, ensure_ascii=False)

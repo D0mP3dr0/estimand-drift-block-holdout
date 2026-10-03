@@ -1,0 +1,32 @@
+{
+ "artefato": "G1_agregador_v7_contra_auditoria",
+ "veredito": "apto com correcoes",
+ "sha256_script_auditado": "cc703246f65d6d4b4a23ded13b957b9d27eda1d359b0621e04a9eff8425d0b72",
+ "sha256_meus_testes_v7": "437355cc2b6c6203494d3efde8e72b56d7262853515add355a0031b5adbdd92e",
+ "resultado": "/tmp/claude-1000/-trabalho-HERMES/492a006d-c0f8-41c5-9896-1453e7ec0600/scratchpad/g1_contra/meus_testes_v7_resultado.json (64 testes; 61 passam, 3 'falham' = lacunas abaixo, todas esperadas por mim como aceitacao indevida)",
+ "harness_autor": "246/246 passaram (reexecutado, CPU)",
+ "respostas": {
+  "a_numero_errado": "Nao no caminho dos dados: 2 cenarios de resposta conhecida (v2/v3) batem a 1e-9 no v7; dp, correlacao (n=19, pearson ref), paridade (mediana sobre 19) e decomposicao do bloco 2 (4 sorteios, QM e sigma2 ref) excluem o sorteio nao_treinavel para os DOIS modelos (testes N1/N2). Tolerancias novas: legitimas A4 ate 3,9 % MAE e 1,9 % RMSE (40 runs) < 10 %/3 %; pares GNN/MLP do A4 (20) com RMSE >= 10,9 % de diferenca (mediana ~34 %) -> troca GNN/MLP continua detectada pelo RMSE a 3 %; o MAE a 10 % sozinho nao a detectaria (min 2,3 %), o RMSE e quem separa (margem 1,9 % vs 3 % vs 10,9 %).",
+  "b_exclusao_indevida": "SIM, 1 caminho (L1): o marcador nao_treinavel no status exclui o sorteio (dois modelos) mesmo quando a corrida marcada e saudavel (rc=0, run JSON completo, .npz) -- aceito sem checar log nem parcial (teste n3m). Exige erro do lancador/edicao do status; todas as demais mutacoes de aceitacao abortam.",
+  "c_falhada_passa": "Parcialmente (L2): nao_treinavel nao exige o bloco guarda_particao_degenerada no run JSON parcial (teste n3l aceita sem ele); o unico elo a causa e o texto do log. Log com ['test'], sem a mensagem (OOM), com val+test, rc=0, seed/dataset errados, run JSON ausente, sem proveniencia da retomada, nt+sem_validos juntos: todos abortam. sem_validos continua exigindo 2.1 validos==0, e 2.1 validos>0 com parcial 'test' aborta (n3i); guarda so ['val'] em sem_validos aborta (n3h).",
+  "retomada_em_curso": "bloco 3 completo e bloco com corrida faltando/falhada sem marcador: recusa rc=2 sem gravar (n4a, n4b, n4d). Lacuna (L3): com --bloco3-truncado o v7 GRAVA o bloco 3 truncado durante a retomada em curso (n4c), porque veredito_lote anterior != None."
+ },
+ "correcoes": [
+  {
+   "id": "L1",
+   "onde": "v7 carregar() ramo com npz e flag nao_treinavel; nao_trein = status['nao_treinavel']",
+   "correcao": "corrida com run JSON completo (modelo_v3+insumos) e rc==0 marcada nao_treinavel deve abortar; o sorteio so e excluido se ao menos uma corrida do sorteio foi aceita pelo ramo parcial verificado"
+  },
+  {
+   "id": "L2",
+   "onde": "conferir_parcial modo nao_treinavel",
+   "correcao": "exigir guarda_particao_degenerada.particoes_sem_aresta_antena nao vazio, igual as particoes nomeadas no log e sem 'test'"
+  },
+  {
+   "id": "L3",
+   "onde": "ramo --bloco3-truncado em _executar",
+   "correcao": "recusar (rc=2) truncado quando retomada_em_curso_possivel"
+  }
+ ],
+ "nota": "nenhum agregado real gerado, nenhuma leitura de MAE real; leitura de gpu/G1 apenas dos metadados/status; tolerancias avaliadas so em gpu/A4 com diferencas relativas."
+}

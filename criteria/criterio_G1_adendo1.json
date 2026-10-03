@@ -1,0 +1,24 @@
+{
+ "id": "G1_modelos_g10_adendo1",
+ "emenda": "criterios/criterio_G1_modelos_g10.json (sha256 d0d2b6366930d53ca71065baeff36addbe61be6f56560e722d08721e91125132), que fica intacto",
+ "origem": "parecer fase5/_pareceres_rigor_R5-R7/forum-eng-ia.md (auditoria do desenho ANTES de qualquer resultado): a ANOVA de dois fatores sem repeticao nao mede variacao de semente (flag verdadeiro em 0,718 das simulacoes sem efeito de particao); o bloco 3 truncado pelo teto tornaria a regra '>= 3 de 4' indecidivel; faltavam ramos de leitura.",
+ "prova_de_anterioridade": {
+  "agregados_existentes": [],
+  "pastas_de_corrida_existentes": [
+   "g1_gnn_bauru_Q1_ss811474_s42",
+   "g1_gnn_campinas_Q1_ss811474_s42",
+   "g1_mlp_bauru_Q1_ss811474_s42"
+  ],
+  "nota": "nenhum agregado_G1_bloco*.json existe; nenhum MAE de corrida do lote foi lido pelo chefe; o agregador nao foi rodado."
+ },
+ "emendas": {
+  "1_componentes_de_variancia": "No bloco 2 (3 sementes x 5 sorteios por celula e modelo) a decomposicao e de um fator, sementes aninhadas no sorteio: sigma2_semente = QM_dentro; sigma2_sorteio = max(0, (QM_entre - QM_dentro)/3). Condicao 2 atendida numa celula quando sigma2_sorteio >= sigma2_semente para GNN e para MLP. A ANOVA de dois fatores sem repeticao sai da leitura.",
+  "2_comparador": "Nas celulas Q1 o comparador do dp entre sorteios e max(0,132 dB; dp entre sementes pooled a 10 km do bloco 2, por modelo). Nas celulas Q3 (sem bloco cruzado) o comparador e 0,132 dB, dito como ancora medida a 5 km. 0,132 dB e uma diferenca absoluta entre duas repeticoes, nao um dp: o limiar e conservador.",
+  "3_leitura_por_celula": "Uma celula atende a condicao 1 quando o dp entre sorteios e >= 3 x comparador para GNN E para MLP.",
+  "4_bloco_3": "O bloco 3 e para ser completado (o lote e relancado se o teto o cortar). Se ainda assim ficar incompleto, usam-se os primeiros k sorteios do plano com as 4 corridas completas, exigindo k >= 10 sorteios com nos validos por celula; abaixo disso o bloco 3 nao entra e a regra passa a 2 de 2 nas celulas Q1, com o texto dizendo 'two cities, one quadrant each'.",
+  "5_ramos_que_faltavam": "dp entre 2x e 3x o comparador em celulas que impecam o '>= 3 de 4', ou condicao 1 atendida e condicao 2 nao: DELIMITA PARCIAL - o texto relata os numeros a 10 km por celula sem a frase geral, e o resumo mantem o escopo que os dados derem.",
+  "6_sorteios_sem_validos": "A contagem de sorteios sem no valido por celula e relatada; essas corridas entram na paridade de sentinelas.",
+  "7_conferencias_do_agregador": "Antes da primeira agregacao: flags de proveniencia e geometria abortam; particao conferida pelo hash dos indices do .npz contra o run JSON; config de cada corrida igual ao do A4 fora de g; leitura do sidecar do shim. O agregador corrigido e arquivo novo e e contra-auditado por terceiro (testes de mutacao)."
+ },
+ "fixado_em": "2026-10-01T23:33:14-03:00"
+}

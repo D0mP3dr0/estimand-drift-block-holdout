@@ -1,0 +1,21 @@
+{
+ "veredito": "confirmado",
+ "alegado": {
+  "c-100": 3.722,
+  "c-110": 3.678,
+  "c-120": 2.677,
+  "c-130": 2.505,
+  "mediana_validos_treino": 2.068
+ },
+ "meu": {
+  "c-100": 3.7215,
+  "c-110": 3.6779,
+  "c-120": 2.6766,
+  "c-130": 2.5047,
+  "mediana_validos_treino": 2.0682,
+  "ponderada_mediana_validos": 1.8342241850240326
+ },
+ "nota": "c-120 alegado 2,677 vs meu 2,6766 (arredondamento 3 casas: 2,677 ok). Ponderada 1,834 reproduz so com dp ponderado nao viesado (orig._dp_ponderado); com ponderacao populacional da 1,812. (b) MAE por sorteio do dado bruto em bauru_Q1, lins_Q1, sorocaba_Q4 igual ao gravado (absdiff max 0) nos 5 niveis; 56 sorteios sem no valido excluidos (confere). (c) todas>=2 (min 2,068, max 3,722); nenhuma <1,5; mediana_validos<1 falso -> atende leitura REFORCA.",
+ "sha256_script": "c14c41227cfdb5659b8d03d6aea8ed2f16e40922993f5c605a6ebeef87fbf6cb",
+ "script": "fase5/votos_R6/verif_R6.py"
+}

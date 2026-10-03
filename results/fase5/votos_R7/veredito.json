@@ -1,0 +1,54 @@
+{
+ "veredito": "confirmado com ressalva",
+ "alegado": {
+  "Q1_GNN": [
+   0.1067,
+   1.2534,
+   11.74
+  ],
+  "Q1_MLP": [
+   0.0447,
+   1.7081,
+   38.2
+  ],
+  "Q3_GNN": [
+   0.3445,
+   0.9793,
+   2.84
+  ],
+  "Q3_MLP": [
+   0.0579,
+   2.9294,
+   50.63
+  ]
+ },
+ "meu": {
+  "bauru_Q1_gnn": {
+   "dp_A3": 0.10672311989358926,
+   "dp_A4": 1.2534054607787835,
+   "razao": 11.744460450823778,
+   "razao_dp_populacional": 11.744460450823777
+  },
+  "bauru_Q1_mlp": {
+   "dp_A3": 0.044719629817819885,
+   "dp_A4": 1.7081057062334253,
+   "razao": 38.195882058772746,
+   "razao_dp_populacional": 38.195882058772746
+  },
+  "bauru_Q3_gnn": {
+   "dp_A3": 0.3445304888004669,
+   "dp_A4": 0.9793003686896649,
+   "razao": 2.8424200485107773,
+   "razao_dp_populacional": 2.842420048510777
+  },
+  "bauru_Q3_mlp": {
+   "dp_A3": 0.0578542439168398,
+   "dp_A4": 2.9294237778795313,
+   "razao": 50.63455296538506,
+   "razao_dp_populacional": 50.63455296538506
+  }
+ },
+ "nota": "Numeros reproduzidos (4 casas). dp usado = amostral (ddof=1); o populacional multiplica ambos por sqrt(4/5), razao identica, leitura nao muda (4 de 4 >=2; minimo 2,84). A3: 5 sementes (42-46) no split_seed 42 com alvo identico (1 conjunto de teste); A4: seed 42, split_seeds 101-105, 5 alvos distintos. Ressalva: status 'provisorio' e literal fixo no script de treino (train_gnn_c0_spatial.py linha 869), herdado por todos os run JSON; nenhum status final gravado em agregado_A3/A4 (sem campo status); nao significa resultado incompleto, so ausencia de selo de contra-auditoria. Ressalva 2: A3 varia so semente de treino sob uma particao, A4 varia particao; desenho nao cruzado, e n=5 por grupo.",
+ "sha256_script": "76a099ffbfea03ddd865f9d9d242f12694ca39755a3b5606328107bb5b48952a",
+ "script": "fase5/votos_R7/verif_R7.py"
+}
