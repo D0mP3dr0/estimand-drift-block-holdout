@@ -41,3 +41,4 @@
 {"id": "G1_modelos_g10_adendo3", "arquivo": "criterios/criterio_G1_adendo3.json", "sha256": "b0a4280a91830ac1c6cc0c9a68bc83f4bc37bfedd7c6ed239294cbf01ba1cf2b", "registrado_em": "2026-10-02T19:28:48-03:00"}
 {"id": "G1_modelos_g10_adendo4", "arquivo": "criterios/criterio_G1_adendo4.json", "sha256": "9d48d0d38d0f0b57e269ba8644955faa050ab08ad4355a16778bc0c05540e4e4", "registrado_em": "2026-10-03T11:06:33-03:00"}
 {"id": "G1b_campinas_bloco_cruzado_completo", "arquivo": "criterios/criterio_G1b_campinas_bloco_cruzado.json", "sha256": "be5a75e346a7b9d5db25bb12147cc6f2b4963e6cdf1345c2c543db68b47db044", "registrado_em": "2026-10-03T16:18:37-03:00"}
+{"id": "E1_kfold_blocos_pontuado_em_conjunto", "arquivo": "criterios/criterio_E1_kfold_conjunto.json", "sha256": "c47a43d2b07d0e90c0138362bb25a4673984c0e8a3016d66b9882f7e2f81cbcc", "registrado_em": "2026-10-03T20:27:18-03:00"}

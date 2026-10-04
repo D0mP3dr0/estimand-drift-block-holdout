@@ -1,0 +1,59 @@
+{
+ "achado_id": "E1",
+ "veredito": "confirmado",
+ "ressalva_menor": "dp b=0 bruto = 0,0 a ~1e-14 (ruido de ponto flutuante: 0 exato por construcao, fixado em 0.0 pelo autor, declarado em ambiguidades); contagens do criterio identicas nas duas leituras",
+ "meus_numeros": {
+  "por_celula_recalculo_independente_cKDTree_global": {
+   "bauru_Q1": {
+    "max_absdiff_Err_conjunto_8chaves_x60": 1.7763568394002505e-15,
+    "folds_const_ne_-110": 0,
+    "dp_constante_validos_b2": 0.6740182682600679,
+    "dp_fspl_validos_b2": 0.34220123644633593,
+    "dp_b0_constante_validos_bruto": 3.582694916485783e-15
+   },
+   "lins_Q1": {
+    "max_absdiff_Err_conjunto_8chaves_x60": 1.7763568394002505e-15,
+    "folds_const_ne_-110": 0,
+    "dp_constante_validos_b2": 0.8085252748937265,
+    "dp_fspl_validos_b2": 0.312699746455359,
+    "dp_b0_constante_validos_bruto": 3.582694916485783e-15
+   },
+   "sorocaba_Q3": {
+    "max_absdiff_Err_conjunto_8chaves_x60": 1.7763568394002505e-15,
+    "folds_const_ne_-110": 0,
+    "dp_constante_validos_b2": 0.9527409807720536,
+    "dp_fspl_validos_b2": 1.0522371007627087,
+    "dp_b0_constante_validos_bruto": 1.074808474945735e-14
+   }
+  },
+  "dp_medio_b2_const_validos": 0.7565306116170978,
+  "dp_entre_medias": 2.0470524091856586,
+  "razao": 0.3695707096810748,
+  "celulas_razao_lt1": "16 (denominador K-fold) e 16 (denominador hold-out 2.18)",
+  "dp_medio_sobre_holdout": 0.09437046614104404,
+  "holdout_dp_medio": 8.016603526005728,
+  "celulas_dp_ge_meio_holdout": "0 (leitura por celula) e 0 (leitura dp medio)",
+  "limiar_1_4": 2.004150881501432,
+  "faixa_dp_celulas": [
+   0.4887089576786351,
+   1.0139718389542718
+  ],
+  "constante_-110_todos_folds_todas_celulas_sorteios": true,
+  "fracao_b2": {
+   "todos": 0.45983864085005144,
+   "validos": 0.4692601781685249
+  },
+  "fspl_validos_b2_dp_medio": 0.4574386327776667
+ },
+ "comentario_-110": "mediana de rssi do treino inteiro (5 folds, ~84% nos sentinela) cai no sentinela -110 dBm",
+ "desenho_responde": "sim: K-fold em blocos pontuado em conjunto (b=0 e b=2) vs hold-out com buffer; ramo atendido: REFORCA F-3 (razao<1 em 16/16 >=12 e dp medio 0,757 < 2,0 dB); DELIMITA nao atendido (0 de 16 < 8)",
+ "sha256": {
+  "script": "ae5b2e0681cbe076dc113f9b136cc058f36bb8da55647365e2645638378b9920",
+  "laco": "d6e7c2c6f5f0bb0af5f12c1fe3cbe47235e85347665f171b3fd7cd41fe813b93",
+  "E1_resumo": "34931ca50b7d9c437a168556c131e43959ea8bf4da247973d031aecbadee0ec2",
+  "E1_por_sorteio": "9870e4bb966a38fd37732fa59a0f0ee1eacdb3aa57d07722b2cd070ed93d59c7",
+  "E1_validacao": "2e0946a32086ec0867375987de512cfb42d6eaad739cb13d048a05c78528a27a",
+  "criterio": "c47a43d2b07d0e90c0138362bb25a4673984c0e8a3016d66b9882f7e2f81cbcc"
+ },
+ "script_meu": "/tmp/claude-1000/-trabalho-HERMES/492a006d-c0f8-41c5-9896-1453e7ec0600/scratchpad/mine.py"
+}

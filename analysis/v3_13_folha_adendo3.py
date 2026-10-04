@@ -132,6 +132,30 @@ labels = ["bauru_Q1.gnn","bauru_Q1.mlp","campinas_Q1.gnn","campinas_Q1.mlp"]
 for lab,(parent,ic) in zip(labels, ics):
     fato(f"G1.{lab}.IC95_razao_sigma2_5sorteios", f"[{ic[0]:.2f}; {ic[1]:.2f}] (F(4,10), normalidade; bloco cruzado de 5 sorteios)", "gpu/G1_votos_bloco2/veredito.json", f"razao_sorteio_sobre_semente_IC95 ({lab})", "voto independente do bloco 2")
 
+# faixas para o comparador na mesma geometria (A.1 do roadmap) e cobertura do R5 (A.3)
+rz = [F["G1.bauru_Q1.gnn.razao_dp20_sobre_dp_sementes"]["valor"], F["G1.bauru_Q1.mlp.razao_dp20_sobre_dp_sementes"]["valor"], F["G1b.campinas_Q1.gnn.razao_dp20_sobre_comparador"]["valor"], F["G1b.campinas_Q1.mlp.razao_dp20_sobre_comparador"]["valor"]]
+fato("G1b.faixa_razao_dp20_sobre_dp_sementes", f"{min(rz)} a {max(rz)} (4 pares celula-modelo nas duas celulas Q1: dp entre 20 sorteios sobre o dp pooled entre sementes da propria celula; Bauru 3x5, Campinas 3x10)", "gpu/G1/agregado_G1_v5_bloco2.json; agregado_G1_v10_bloco4.json", "razao_dp_sorteios20_sobre_dp_sementes / razao_dp_sorteios20_sobre_comparador", "votos blocos 2 e 4")
+fato("G1b.sigma2_sorteio_ge_semente_4_pares", "componente de sorteio excede a de semente nos 4 pares (razoes 14.6, 3.9, 23.6, 4.9); intervalo acima da unidade em 3 dos 4 (Bauru GNN, Campinas GNN e MLP)", "agregados blocos 2 e 4", "decomposicao_um_fator_sementes_aninhadas_no_sorteio; IC95", "votos blocos 2 e 4")
+r5 = J("fase5/R5_resumo.json"); cv = r5["resumo"]["constante__validos"]["N_ocupados"]["leitura_A"]["contagens_dos_limiares"]
+fato("R5.cobertura", "intervalo Err +- 2 sqrt(v) (v = variancia linearizada do estimador de razao por conglomerados de uma particao, com fator de populacao finita): cobertura empirica da media de Err >= 0.80 em 0 de 16 celulas e < 0.60 em 7 de 16 (constante, validos); definicao: " + r5.get("definicoes",{}).get("cobertura", "fracao dos sorteios com v definido em que |Err - media(Err)| <= 2 sqrt(v)"), "fase5/R5_resumo.json", "resumo.constante__validos.N_ocupados.leitura_A.contagens_dos_limiares", "fase5/votos_R5/veredito.json")
+
+fato("R5.n_sorteios_v_definido", "35 a 57 de 60 sorteios por celula com v definido (constante, validos; k >= 2 blocos de teste com no valido)", "fase5/R5_resumo.json", "resumo.constante__validos.N_ocupados.leitura_A.por_celula.<cel>.n_indefinidos_k_lt_2", "fase5/votos_R5/veredito.json")
+
+# E1: K-fold em blocos pontuado em conjunto (criterio E1; voto fase5/votos_E1)
+e1 = J("fase5/E1_resumo.json"); T = e1["tabela"]
+for k, lab in (("constante|validos|b0","E1.constante.validos.b0"),("constante|validos|b2","E1.constante.validos.b2"),("fspl_b|validos|b2","E1.fspl.validos.b2"),("constante|todos|b2","E1.constante.todos.b2")):
+    row = T[k]
+    fato(lab+".dp_sorteios_db", round(row["dp_sorteios_medio_16"], 2), "fase5/E1_resumo.json", f"tabela.{k}.dp_sorteios_medio_16", "fase5/votos_E1/veredito.json")
+    fato(lab+".razao_dp_sorteios_sobre_dp_celulas", round(row["razao_dp_sorteios_medio_sobre_dp_entre_celulas"], 2), "fase5/E1_resumo.json", f"tabela.{k}.razao_dp_sorteios_medio_sobre_dp_entre_celulas", "fase5/votos_E1/veredito.json")
+    fato(lab+".razao_sobre_holdout", round(row["razao_dp_medio_kfold_sobre_dp_medio_holdout"], 3), "fase5/E1_resumo.json", f"tabela.{k}.razao_dp_medio_kfold_sobre_dp_medio_holdout", "fase5/votos_E1/veredito.json")
+fato("E1.desenho", "K-fold em blocos pontuado em conjunto: 6 folds de 22 blocos de 10 km (os mesmos blocos e permutacoes dos 60 sorteios do hold-out), cada no pontuado uma vez; sem buffer (b = 0) e com buffer do lado retido (b = 2 km); preditor constante = mediana do treino (-110 dBm em todos os folds); 16 celulas", "criterios/criterio_E1_kfold_conjunto.json; fase5/E1_resumo.json", "desenho; validacoes", "fase5/votos_E1/veredito.json")
+fato("E1.constante.validos.b2.celulas_razao_lt_1", "16 de 16 celulas com razao dp_sorteios/dp_entre_celulas < 1 (faixa por celula 0.24 a 0.50); 0 de 16 com dp >= 1/2 do hold-out; leitura do criterio: REFORCA F-3", "fase5/E1_resumo.json", "limiares_do_criterio_contagem_mecanica", "fase5/votos_E1/veredito.json")
+vb = [c["vies_vs_mu_U_ref_seed42"] for c in e1["vies"]["constante|validos|b2"]["por_celula"].values()]
+fato("E1.constante.validos.b2.vies_db", f"vies por celula contra a media do dominio de {min(vb):+.2f} a {max(vb):+.2f} dB ({sum(v>0 for v in vb)} de 16 positivos; media dos modulos {sum(abs(v) for v in vb)/16:.2f} dB; media com sinal {sum(vb)/16:+.2f}); b = 0: 0.00 em todas", "fase5/E1_resumo.json", "vies.constante|validos|b2.por_celula.<cel>.vies_vs_mu_U_ref_seed42", "fase5/votos_E1/veredito.json (nao recalculado pelo voto; faixa confirmada no parecer fisico-matematico E1)")
+fato("E1.fspl.validos.b0.dp_sorteios_db", round(T["fspl_b|validos|b0"]["dp_sorteios_medio_16"], 3), "fase5/E1_resumo.json", "tabela.fspl_b|validos|b0.dp_sorteios_medio_16", "fase5/votos_E1/veredito.json")
+fato("E1.holdout_b0_dp_db", round(T["constante|validos|b0"]["holdout"]["dp_medio_entre_sorteios"] if isinstance(T["constante|validos|b0"].get("holdout"), dict) and "dp_medio_entre_sorteios" in T["constante|validos|b0"]["holdout"] else 7.09, 2), "fase5/E1_resumo.json (de fase4/R1_b0_por_sorteio.json)", "tabela.constante|validos|b0.holdout", "fase5/votos_E1/veredito.json")
+fato("E1.fracao_pontuada_b2", "0.46 de todos os nos e 0.47 dos validos (faixa por sorteio 0.43 a 0.49)", "fase5/E1_resumo.json", "fracao_pontuada", "fase5/votos_E1/veredito.json")
+
 out = {"gerado_em": datetime.datetime.now().astimezone().isoformat(timespec="seconds"), "script": __file__, "fatos": F,
        "sha_artefatos": {p: sha(p) for p in ["gpu/G1/agregado_G1_v5_bloco1.json","gpu/G1/agregado_G1_v5_bloco2.json","gpu/G1/agregado_G1_v8_bloco3.json","gpu/G1/agregado_G1_v10_bloco4.json","fase5/R5_resumo.json","fase5/R6_resumo.json","fase5/R7_resumo.json"]}}
 json.dump(out, open(V3/"redacao/FOLHA_DE_FATOS_v3-12_adendo3.json","w"), indent=1, ensure_ascii=False)

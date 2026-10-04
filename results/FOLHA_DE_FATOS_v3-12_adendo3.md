@@ -1,0 +1,123 @@
+# Folha de fatos v3-12 — adendo 3 (segunda rodada: R5, R6, R7, G1)
+
+Gerado por script em 2026-10-03T21:12:14-03:00; cada linha copia o JSON nomeado; contra-auditoria ao lado. Lote G1 = modelos treinados a g = 10 km, b = 2 km (etiqueta: 'lote G1 g10, 01-03/10').
+
+| id | valor | artefato | campo | contra-auditoria |
+|---|---|---|---|---|
+| G1.bauru_Q1.gnn.dp_sorteios_db | 1.25 | gpu/G1/agregado_G1_v5_bloco1.json | celulas.bauru_Q1.por_modelo.gnn.dp_entre_sorteios_validos_db | gpu/G1_votos_bloco1/veredito.json |
+| G1.bauru_Q1.gnn.razao_0132 | 9.5 | gpu/G1/agregado_G1_v5_bloco1.json | celulas.bauru_Q1.por_modelo.gnn.razao_dp_sobre_0_132 | gpu/G1_votos_bloco1/veredito.json |
+| G1.bauru_Q1.gnn.n_sorteios | 20 | gpu/G1/agregado_G1_v5_bloco1.json | celulas.bauru_Q1.por_modelo.gnn.n_sorteios_com_validos | gpu/G1_votos_bloco1/veredito.json |
+| G1.bauru_Q1.gnn.spearman_constante | 0.61 | gpu/G1/agregado_G1_v5_bloco1.json | celulas.bauru_Q1.por_modelo.gnn.correlacao_com_constante_validos.spearman | gpu/G1_votos_bloco1/veredito.json |
+| G1.bauru_Q1.mlp.dp_sorteios_db | 1.13 | gpu/G1/agregado_G1_v5_bloco1.json | celulas.bauru_Q1.por_modelo.mlp.dp_entre_sorteios_validos_db | gpu/G1_votos_bloco1/veredito.json |
+| G1.bauru_Q1.mlp.razao_0132 | 8.6 | gpu/G1/agregado_G1_v5_bloco1.json | celulas.bauru_Q1.por_modelo.mlp.razao_dp_sobre_0_132 | gpu/G1_votos_bloco1/veredito.json |
+| G1.bauru_Q1.mlp.n_sorteios | 20 | gpu/G1/agregado_G1_v5_bloco1.json | celulas.bauru_Q1.por_modelo.mlp.n_sorteios_com_validos | gpu/G1_votos_bloco1/veredito.json |
+| G1.bauru_Q1.mlp.spearman_constante | 0.61 | gpu/G1/agregado_G1_v5_bloco1.json | celulas.bauru_Q1.por_modelo.mlp.correlacao_com_constante_validos.spearman | gpu/G1_votos_bloco1/veredito.json |
+| G1.bauru_Q1.paridade_sentinela_mediana_db | 0.028 | gpu/G1/agregado_G1_v5_bloco1.json | celulas.bauru_Q1.paridade_sentinela.mediana_db | gpu/G1_votos_bloco1/veredito.json |
+| G1.bauru_Q1.sem_validos | 0 | gpu/G1/agregado_G1_v5_bloco1.json | celulas.bauru_Q1.n_sorteios_sem_validos | gpu/G1_votos_bloco1/veredito.json |
+| G1.bauru_Q1.nao_treinaveis | 0 | gpu/G1/agregado_G1_v5_bloco1.json | celulas.bauru_Q1.n_sorteios_nao_treinaveis | gpu/G1_votos_bloco1/veredito.json |
+| G1.campinas_Q1.gnn.dp_sorteios_db | 3.26 | gpu/G1/agregado_G1_v5_bloco1.json | celulas.campinas_Q1.por_modelo.gnn.dp_entre_sorteios_validos_db | gpu/G1_votos_bloco1/veredito.json |
+| G1.campinas_Q1.gnn.razao_0132 | 24.7 | gpu/G1/agregado_G1_v5_bloco1.json | celulas.campinas_Q1.por_modelo.gnn.razao_dp_sobre_0_132 | gpu/G1_votos_bloco1/veredito.json |
+| G1.campinas_Q1.gnn.n_sorteios | 20 | gpu/G1/agregado_G1_v5_bloco1.json | celulas.campinas_Q1.por_modelo.gnn.n_sorteios_com_validos | gpu/G1_votos_bloco1/veredito.json |
+| G1.campinas_Q1.gnn.spearman_constante | 0.37 | gpu/G1/agregado_G1_v5_bloco1.json | celulas.campinas_Q1.por_modelo.gnn.correlacao_com_constante_validos.spearman | gpu/G1_votos_bloco1/veredito.json |
+| G1.campinas_Q1.mlp.dp_sorteios_db | 2.01 | gpu/G1/agregado_G1_v5_bloco1.json | celulas.campinas_Q1.por_modelo.mlp.dp_entre_sorteios_validos_db | gpu/G1_votos_bloco1/veredito.json |
+| G1.campinas_Q1.mlp.razao_0132 | 15.2 | gpu/G1/agregado_G1_v5_bloco1.json | celulas.campinas_Q1.por_modelo.mlp.razao_dp_sobre_0_132 | gpu/G1_votos_bloco1/veredito.json |
+| G1.campinas_Q1.mlp.n_sorteios | 20 | gpu/G1/agregado_G1_v5_bloco1.json | celulas.campinas_Q1.por_modelo.mlp.n_sorteios_com_validos | gpu/G1_votos_bloco1/veredito.json |
+| G1.campinas_Q1.mlp.spearman_constante | 0.33 | gpu/G1/agregado_G1_v5_bloco1.json | celulas.campinas_Q1.por_modelo.mlp.correlacao_com_constante_validos.spearman | gpu/G1_votos_bloco1/veredito.json |
+| G1.campinas_Q1.paridade_sentinela_mediana_db | 0.036 | gpu/G1/agregado_G1_v5_bloco1.json | celulas.campinas_Q1.paridade_sentinela.mediana_db | gpu/G1_votos_bloco1/veredito.json |
+| G1.campinas_Q1.sem_validos | 0 | gpu/G1/agregado_G1_v5_bloco1.json | celulas.campinas_Q1.n_sorteios_sem_validos | gpu/G1_votos_bloco1/veredito.json |
+| G1.campinas_Q1.nao_treinaveis | 0 | gpu/G1/agregado_G1_v5_bloco1.json | celulas.campinas_Q1.n_sorteios_nao_treinaveis | gpu/G1_votos_bloco1/veredito.json |
+| G1.bauru_Q3.gnn.dp_sorteios_db | 3.86 | gpu/G1/agregado_G1_v8_bloco3.json | celulas.bauru_Q3.por_modelo.gnn.dp_entre_sorteios_validos_db | gpu/G1_votos_bloco3/veredito.json |
+| G1.bauru_Q3.gnn.razao_0132 | 29.2 | gpu/G1/agregado_G1_v8_bloco3.json | celulas.bauru_Q3.por_modelo.gnn.razao_dp_sobre_0_132 | gpu/G1_votos_bloco3/veredito.json |
+| G1.bauru_Q3.gnn.n_sorteios | 16 | gpu/G1/agregado_G1_v8_bloco3.json | celulas.bauru_Q3.por_modelo.gnn.n_sorteios_com_validos | gpu/G1_votos_bloco3/veredito.json |
+| G1.bauru_Q3.gnn.spearman_constante | 0.95 | gpu/G1/agregado_G1_v8_bloco3.json | celulas.bauru_Q3.por_modelo.gnn.correlacao_com_constante_validos.spearman | gpu/G1_votos_bloco3/veredito.json |
+| G1.bauru_Q3.mlp.dp_sorteios_db | 4.08 | gpu/G1/agregado_G1_v8_bloco3.json | celulas.bauru_Q3.por_modelo.mlp.dp_entre_sorteios_validos_db | gpu/G1_votos_bloco3/veredito.json |
+| G1.bauru_Q3.mlp.razao_0132 | 30.9 | gpu/G1/agregado_G1_v8_bloco3.json | celulas.bauru_Q3.por_modelo.mlp.razao_dp_sobre_0_132 | gpu/G1_votos_bloco3/veredito.json |
+| G1.bauru_Q3.mlp.n_sorteios | 16 | gpu/G1/agregado_G1_v8_bloco3.json | celulas.bauru_Q3.por_modelo.mlp.n_sorteios_com_validos | gpu/G1_votos_bloco3/veredito.json |
+| G1.bauru_Q3.mlp.spearman_constante | 0.77 | gpu/G1/agregado_G1_v8_bloco3.json | celulas.bauru_Q3.por_modelo.mlp.correlacao_com_constante_validos.spearman | gpu/G1_votos_bloco3/veredito.json |
+| G1.bauru_Q3.paridade_sentinela_mediana_db | 0.032 | gpu/G1/agregado_G1_v8_bloco3.json | celulas.bauru_Q3.paridade_sentinela.mediana_db | gpu/G1_votos_bloco3/veredito.json |
+| G1.bauru_Q3.sem_validos | 2 | gpu/G1/agregado_G1_v8_bloco3.json | celulas.bauru_Q3.n_sorteios_sem_validos | gpu/G1_votos_bloco3/veredito.json |
+| G1.bauru_Q3.nao_treinaveis | 2 | gpu/G1/agregado_G1_v8_bloco3.json | celulas.bauru_Q3.n_sorteios_nao_treinaveis | gpu/G1_votos_bloco3/veredito.json |
+| G1.campinas_Q3.gnn.dp_sorteios_db | 2.46 | gpu/G1/agregado_G1_v8_bloco3.json | celulas.campinas_Q3.por_modelo.gnn.dp_entre_sorteios_validos_db | gpu/G1_votos_bloco3/veredito.json |
+| G1.campinas_Q3.gnn.razao_0132 | 18.6 | gpu/G1/agregado_G1_v8_bloco3.json | celulas.campinas_Q3.por_modelo.gnn.razao_dp_sobre_0_132 | gpu/G1_votos_bloco3/veredito.json |
+| G1.campinas_Q3.gnn.n_sorteios | 19 | gpu/G1/agregado_G1_v8_bloco3.json | celulas.campinas_Q3.por_modelo.gnn.n_sorteios_com_validos | gpu/G1_votos_bloco3/veredito.json |
+| G1.campinas_Q3.gnn.spearman_constante | 0.91 | gpu/G1/agregado_G1_v8_bloco3.json | celulas.campinas_Q3.por_modelo.gnn.correlacao_com_constante_validos.spearman | gpu/G1_votos_bloco3/veredito.json |
+| G1.campinas_Q3.mlp.dp_sorteios_db | 3.08 | gpu/G1/agregado_G1_v8_bloco3.json | celulas.campinas_Q3.por_modelo.mlp.dp_entre_sorteios_validos_db | gpu/G1_votos_bloco3/veredito.json |
+| G1.campinas_Q3.mlp.razao_0132 | 23.3 | gpu/G1/agregado_G1_v8_bloco3.json | celulas.campinas_Q3.por_modelo.mlp.razao_dp_sobre_0_132 | gpu/G1_votos_bloco3/veredito.json |
+| G1.campinas_Q3.mlp.n_sorteios | 19 | gpu/G1/agregado_G1_v8_bloco3.json | celulas.campinas_Q3.por_modelo.mlp.n_sorteios_com_validos | gpu/G1_votos_bloco3/veredito.json |
+| G1.campinas_Q3.mlp.spearman_constante | 0.82 | gpu/G1/agregado_G1_v8_bloco3.json | celulas.campinas_Q3.por_modelo.mlp.correlacao_com_constante_validos.spearman | gpu/G1_votos_bloco3/veredito.json |
+| G1.campinas_Q3.paridade_sentinela_mediana_db | 0.027 | gpu/G1/agregado_G1_v8_bloco3.json | celulas.campinas_Q3.paridade_sentinela.mediana_db | gpu/G1_votos_bloco3/veredito.json |
+| G1.campinas_Q3.sem_validos | 1 | gpu/G1/agregado_G1_v8_bloco3.json | celulas.campinas_Q3.n_sorteios_sem_validos | gpu/G1_votos_bloco3/veredito.json |
+| G1.campinas_Q3.nao_treinaveis | 0 | gpu/G1/agregado_G1_v8_bloco3.json | celulas.campinas_Q3.n_sorteios_nao_treinaveis | gpu/G1_votos_bloco3/veredito.json |
+| G1.bauru_Q1.gnn.dp_sementes_pooled_db | 0.12 | gpu/G1/agregado_G1_v5_bloco2.json | celulas.bauru_Q1.gnn.dp_entre_sementes_pooled_db | gpu/G1_votos_bloco2/veredito.json |
+| G1.bauru_Q1.gnn.razao_sigma2_sorteio_semente | 14.6 | gpu/G1/agregado_G1_v5_bloco2.json | celulas.bauru_Q1.gnn.decomposicao_um_fator_sementes_aninhadas_no_sorteio | gpu/G1_votos_bloco2/veredito.json |
+| G1.bauru_Q1.gnn.razao_dp20_sobre_dp_sementes | 10.4 | gpu/G1/agregado_G1_v5_bloco2.json | celulas.bauru_Q1.gnn.razao_dp_sorteios20_sobre_dp_sementes | gpu/G1_votos_bloco2/veredito.json |
+| G1.bauru_Q1.mlp.dp_sementes_pooled_db | 0.31 | gpu/G1/agregado_G1_v5_bloco2.json | celulas.bauru_Q1.mlp.dp_entre_sementes_pooled_db | gpu/G1_votos_bloco2/veredito.json |
+| G1.bauru_Q1.mlp.razao_sigma2_sorteio_semente | 3.9 | gpu/G1/agregado_G1_v5_bloco2.json | celulas.bauru_Q1.mlp.decomposicao_um_fator_sementes_aninhadas_no_sorteio | gpu/G1_votos_bloco2/veredito.json |
+| G1.bauru_Q1.mlp.razao_dp20_sobre_dp_sementes | 3.6 | gpu/G1/agregado_G1_v5_bloco2.json | celulas.bauru_Q1.mlp.razao_dp_sorteios20_sobre_dp_sementes | gpu/G1_votos_bloco2/veredito.json |
+| G1.campinas_Q1.gnn.dp_sementes_pooled_db | 0.46 | gpu/G1/agregado_G1_v5_bloco2.json | celulas.campinas_Q1.gnn.dp_entre_sementes_pooled_db | gpu/G1_votos_bloco2/veredito.json |
+| G1.campinas_Q1.gnn.razao_sigma2_sorteio_semente | 0.5 | gpu/G1/agregado_G1_v5_bloco2.json | celulas.campinas_Q1.gnn.decomposicao_um_fator_sementes_aninhadas_no_sorteio | gpu/G1_votos_bloco2/veredito.json |
+| G1.campinas_Q1.gnn.razao_dp20_sobre_dp_sementes | 7.1 | gpu/G1/agregado_G1_v5_bloco2.json | celulas.campinas_Q1.gnn.razao_dp_sorteios20_sobre_dp_sementes | gpu/G1_votos_bloco2/veredito.json |
+| G1.campinas_Q1.mlp.dp_sementes_pooled_db | 0.76 | gpu/G1/agregado_G1_v5_bloco2.json | celulas.campinas_Q1.mlp.dp_entre_sementes_pooled_db | gpu/G1_votos_bloco2/veredito.json |
+| G1.campinas_Q1.mlp.razao_sigma2_sorteio_semente | 3.1 | gpu/G1/agregado_G1_v5_bloco2.json | celulas.campinas_Q1.mlp.decomposicao_um_fator_sementes_aninhadas_no_sorteio | gpu/G1_votos_bloco2/veredito.json |
+| G1.campinas_Q1.mlp.razao_dp20_sobre_dp_sementes | 2.6 | gpu/G1/agregado_G1_v5_bloco2.json | celulas.campinas_Q1.mlp.razao_dp_sorteios20_sobre_dp_sementes | gpu/G1_votos_bloco2/veredito.json |
+| G1.ramos.condicao1_celulas | ['bauru_Q1', 'bauru_Q3', 'campinas_Q3'] | gpu/G1/agregado_G1_v8_bloco3.json | contagem_mecanica_ramos_4_celulas.celulas_condicao1_gnn_e_mlp | gpu/G1_votos_bloco3/veredito.json |
+| G1.ramos.resultado | delimita_parcial | gpu/G1/agregado_G1_v8_bloco3.json | contagem_mecanica_ramos_4_celulas.satisfaz_regra_delimita_parcial | gpu/G1_votos_bloco3/veredito.json |
+| G1.bloco2.IC_F_4_10 | [3.010260744204483, 131.79708232103678] | gpu/G1_votos_bloco2/veredito.json | razao_sorteio_sobre_semente_IC95 | n/a (registro) |
+| R7.resumo | ver R7_resumo.json: razoes 11.74, 38.20, 2.84, 50.63 confirmadas | fase5/R7_resumo.json | pares | fase5/votos_R7/veredito.json |
+| R6.resumo | ver R6_resumo.json: razoes 3.722, 3.678, 2.677, 2.505, 2.068 confirmadas | fase5/R6_resumo.json | por nivel | fase5/votos_R6/veredito.json |
+| R5.resumo | ver R5_resumo.json: constante/validos Q mediano 0.506 (0.160-0.770), cobertura>=0.80 em 0/16, <0.60 em 7/16; descritivo | fase5/R5_resumo.json | resumo | fase5/votos_R5/veredito.json |
+| G1.geometria | g = 10 km; b = 2 km; semente de treino 42; 20 sorteios do plano por celula; orcamento de 8 epocas; 4 celulas (Bauru Q1, Campinas Q1, Bauru Q3, Campinas Q3); 2 cidades | criterios/criterio_G1_modelos_g10.json; gpu/G1/agregado_G1_v5_bloco1.json | desenho; celulas.*.sorteios; limiares | gpu/G1_votos_bloco1/veredito.json |
+| G1.bloco2.desenho | bloco cruzado: 3 sementes (42, 43, 44) x 5 sorteios, celulas Q1 | gpu/G1/agregado_G1_v5_bloco2.json | celulas.*.*.decomposicao_um_fator_sementes_aninhadas_no_sorteio.n_sorteios, n_sementes | gpu/G1_votos_bloco2/veredito.json |
+| G1.faixa_razao_0132 | 8.6 a 30.9 (8 combinacoes celula x modelo; 0,132 dB = maior diferenca entre duas repeticoes com a mesma semente e particao a 5 km) | agregados blocos 1 e 3 | razao_dp_sobre_0_132 (min, max) | votos blocos 1 e 3 |
+| G1.faixa_dp_sorteios_db | 1.13 a 4.08 dB | agregados blocos 1 e 3 | dp_entre_sorteios_validos_db (min, max) | votos blocos 1 e 3 |
+| G1.faixa_paridade_db | 0.027 a 0.036 dB (4 celulas) | agregados blocos 1 e 3 | paridade_sentinela.mediana_db | votos blocos 1 e 3 |
+| G1.A4.geometria | lote A4: g = 5 km; b = 2 km; 5 sorteios (101-105); 4 celulas de Bauru; semente 42 | gpu/A4/agregado_A4.json | desenho | fase5/votos_R7/veredito.json |
+| R6.razoes | 3,72; 3,68; 2,68; 2,50; 2,07 (c = -100, -110, -120, -130 dBm; mediana dos validos do treino reajustada por sorteio); todas >= 2; min 2,07; max 3,72 | fase5/R6_resumo.json | razao por nivel | fase5/votos_R6/veredito.json |
+| R7.razoes | 11,7 (Bauru Q1 GNN); 38,2 (Bauru Q1 MLP); 2,8 (Bauru Q3 GNN); 50,6 (Bauru Q3 MLP); dp entre 5 sementes (A3) e entre 5 sorteios (A4), g = 5 km | fase5/R7_resumo.json | pares | fase5/votos_R7/veredito.json |
+| R5.Q_mediano | 0,51 (0,16 a 0,77) para o constante nos validos, 16 celulas; cobertura >= 0,80 em 0 de 16; < 0,60 em 7 de 16 | fase5/R5_resumo.json | resumo.constante__validos | fase5/votos_R5/veredito.json |
+| W.n_sorteios | 200 sorteios por celula; com no valido no teste: bauru_Q1 199; lins_Q1 192; campinas_Q1 197; sorocaba_Q1 196 (min 192, max 199) | fase4/R2_resumo.json | resumo_por_celula.<cel>.fspl_calibrado_b.validos.estimadores.H0.n | fase4/votos_termo_razao_campinas_sorocaba/veredito.json; fase4/votos_R1_R2 |
+| V.n_sorteios | 200 sorteios por celula na referencia de desenho (bloco V, tabela do vies e n/deff); com no valido: bauru_Q1 199; lins_Q1 192; campinas_Q1 197; sorocaba_Q1 196 | fase4/R2_resumo.json | resumo_por_celula.<cel>.<pred>.validos.estimadores.H.n | fase4/votos_R1_R2 |
+| G1.melhor_epoca_mediana.gnn | 7 (mediana sobre 75 corridas a 10 km, blocos 1 e 3; teto 8) | gpu/G1/agregado_G1_v5_bloco1.json; agregado_G1_v8_bloco3.json | celulas.*.por_modelo.gnn.melhores_epocas | votos blocos 1 e 3 (campo lido, nao recalculado) |
+| G1.melhor_epoca_mediana.mlp | 5 (mediana sobre 75 corridas a 10 km, blocos 1 e 3; teto 8) | gpu/G1/agregado_G1_v5_bloco1.json; agregado_G1_v8_bloco3.json | celulas.*.por_modelo.mlp.melhores_epocas | votos blocos 1 e 3 (campo lido, nao recalculado) |
+| G1.paridade_criterio | mediana |GNN - MLP| nos sentinelas <= 0,117 dB (maior diferenca entre repeticoes nos sentinelas, A2c) atendida em 4 de 4 celulas | gpu/G1/agregado_G1_v8_bloco3.json | contagem_mecanica_ramos_4_celulas.celulas_paridade_sentinela_le_0_117 | gpu/G1_votos_bloco3/veredito.json |
+| G.validos_acima_30km_pct | 0.21 % a 0.38 % dos nos validos de cada celula (16 celulas) estao alem de 30 km; a regra de alcance vale para todo sentinela e falha para essa fracao dos validos | redacao/_pareceres_2026-10-01_t25/verificacao_V3_sentinela_geometria_props/saida_c.json | notsent_far / valid por celula | fase4/verificacao_V3 (parecer t25); contagem bruta em G.validos_acima_30km |
+| G1b.campinas_Q1.gnn.dp_sementes_pooled_db | 0.43 | gpu/G1/agregado_G1_v10_bloco4.json | celulas.campinas_Q1.gnn.dp_entre_sementes_pooled_db | gpu/G1_votos_bloco4/veredito.json |
+| G1b.campinas_Q1.gnn.razao_sigma2_sorteio_semente | 23.6 | gpu/G1/agregado_G1_v10_bloco4.json | celulas.campinas_Q1.gnn.decomposicao_um_fator_sementes_aninhadas_no_sorteio | gpu/G1_votos_bloco4/veredito.json |
+| G1b.campinas_Q1.gnn.IC95_razao_sigma2 | [8.1; 87.3] (F(9,20), normalidade assumida; so registro ou condicao de validade) | gpu/G1/agregado_G1_v10_bloco4.json | celulas.campinas_Q1.gnn.razao_sigma2_sorteio_sobre_sigma2_semente_ic95_F | gpu/G1_votos_bloco4/veredito.json |
+| G1b.campinas_Q1.gnn.razao_dp20_sobre_comparador | 7.6 | gpu/G1/agregado_G1_v10_bloco4.json | celulas.campinas_Q1.gnn.razao_dp_sorteios20_sobre_comparador | gpu/G1_votos_bloco4/veredito.json |
+| G1b.campinas_Q1.mlp.dp_sementes_pooled_db | 0.67 | gpu/G1/agregado_G1_v10_bloco4.json | celulas.campinas_Q1.mlp.dp_entre_sementes_pooled_db | gpu/G1_votos_bloco4/veredito.json |
+| G1b.campinas_Q1.mlp.razao_sigma2_sorteio_semente | 4.9 | gpu/G1/agregado_G1_v10_bloco4.json | celulas.campinas_Q1.mlp.decomposicao_um_fator_sementes_aninhadas_no_sorteio | gpu/G1_votos_bloco4/veredito.json |
+| G1b.campinas_Q1.mlp.IC95_razao_sigma2 | [1.5; 18.8] (F(9,20), normalidade assumida; so registro ou condicao de validade) | gpu/G1/agregado_G1_v10_bloco4.json | celulas.campinas_Q1.mlp.razao_sigma2_sorteio_sobre_sigma2_semente_ic95_F | gpu/G1_votos_bloco4/veredito.json |
+| G1b.campinas_Q1.mlp.razao_dp20_sobre_comparador | 2.98 | gpu/G1/agregado_G1_v10_bloco4.json | celulas.campinas_Q1.mlp.razao_dp_sorteios20_sobre_comparador | gpu/G1_votos_bloco4/veredito.json |
+| G1b.desenho | bloco cruzado completo em Campinas Q1: 3 sementes (42, 43, 44) x 10 sorteios; Bauru Q1 continua com 3 x 5 | criterios/criterio_G1b_campinas_bloco_cruzado.json; gpu/G1/agregado_G1_v10_bloco4.json | desenho; celulas.campinas_Q1.*.n_sorteios_usados | gpu/G1_votos_bloco4/veredito.json |
+| G1b.ramos.resultado | reforca (condicao 1 em 3 de 4 celulas: bauru_Q1, bauru_Q3, campinas_Q3; condicao 2 nas duas Q1 com 10 sorteios em Campinas; paridade nas 4) | gpu/G1/agregado_G1_v10_bloco4.json | contagem_mecanica_ramos_4_celulas_campinas_10_sorteios | gpu/G1_votos_bloco4/veredito.json (contagem nao recalculada pelo voto; condicoes recalculadas) |
+| G1b.campinas_Q1.gnn.LOO_razao_sigma2 | min 1.51; max 44.8 (retirando um sorteio por vez; acima de 1 em todos) | gpu/G1_votos_bloco4/veredito.json | item 4 (leave-one-draw-out) | voto independente (e o proprio calculo do voto) |
+| G1b.campinas_Q1.mlp.LOO_razao_sigma2 | min 4.2; max 6.2 | gpu/G1_votos_bloco4/veredito.json | item 4 (leave-one-draw-out) | voto independente |
+| G1b.campinas_Q1.gnn.LODO_sem_387379 | sem o sorteio 387379 (o de maior MAE, 7,61 dB em media nas 3 sementes): razao 1.51, IC95 [0.28; 7.08] (contem 1); limite inferior do IC acima de 1 em 9 dos 10 recortes | fase5/_pareceres_rigor_G1/ffm_G1_bloco4_contas.json | modelos.gnn.lodo.387379.ic95; lodo_n_ic_inferior_gt_1 | dois calculos (fisico-matematico bloco 4; forum-coerencia v3-12j reproduziu [0.2785; 7.084]) |
+| G1b.campinas_Q1.mlp.LODO_IC_inferior_min | limite inferior do IC95 acima de 1 em 10 dos 10 recortes (minimo 1.17, sem o sorteio 676375) | fase5/_pareceres_rigor_G1/ffm_G1_bloco4_contas.json | modelos.mlp.lodo_ic_inferior_min; lodo_n_ic_inferior_gt_1 | dois calculos: fisico-matematico bloco 4 e chefe (fase5/_pareceres_rigor_G1/chefe_lodo_mlp_recalc.json: 10 de 10, min 1.168) |
+| G1.bauru_Q1.gnn.IC95_razao_sigma2_5sorteios | [3.01; 131.80] (F(4,10), normalidade; bloco cruzado de 5 sorteios) | gpu/G1_votos_bloco2/veredito.json | razao_sorteio_sobre_semente_IC95 (bauru_Q1.gnn) | voto independente do bloco 2 |
+| G1.bauru_Q1.mlp.IC95_razao_sigma2_5sorteios | [0.60; 36.72] (F(4,10), normalidade; bloco cruzado de 5 sorteios) | gpu/G1_votos_bloco2/veredito.json | razao_sorteio_sobre_semente_IC95 (bauru_Q1.mlp) | voto independente do bloco 2 |
+| G1.campinas_Q1.gnn.IC95_razao_sigma2_5sorteios | [-0.15; 7.01] (F(4,10), normalidade; bloco cruzado de 5 sorteios) | gpu/G1_votos_bloco2/veredito.json | razao_sorteio_sobre_semente_IC95 (campinas_Q1.gnn) | voto independente do bloco 2 |
+| G1.campinas_Q1.mlp.IC95_razao_sigma2_5sorteios | [0.43; 29.77] (F(4,10), normalidade; bloco cruzado de 5 sorteios) | gpu/G1_votos_bloco2/veredito.json | razao_sorteio_sobre_semente_IC95 (campinas_Q1.mlp) | voto independente do bloco 2 |
+| G1b.faixa_razao_dp20_sobre_dp_sementes | 2.98 a 10.4 (4 pares celula-modelo nas duas celulas Q1: dp entre 20 sorteios sobre o dp pooled entre sementes da propria celula; Bauru 3x5, Campinas 3x10) | gpu/G1/agregado_G1_v5_bloco2.json; agregado_G1_v10_bloco4.json | razao_dp_sorteios20_sobre_dp_sementes / razao_dp_sorteios20_sobre_comparador | votos blocos 2 e 4 |
+| G1b.sigma2_sorteio_ge_semente_4_pares | componente de sorteio excede a de semente nos 4 pares (razoes 14.6, 3.9, 23.6, 4.9); intervalo acima da unidade em 3 dos 4 (Bauru GNN, Campinas GNN e MLP) | agregados blocos 2 e 4 | decomposicao_um_fator_sementes_aninhadas_no_sorteio; IC95 | votos blocos 2 e 4 |
+| R5.cobertura | intervalo Err +- 2 sqrt(v) (v = variancia linearizada do estimador de razao por conglomerados de uma particao, com fator de populacao finita): cobertura empirica da media de Err >= 0.80 em 0 de 16 celulas e < 0.60 em 7 de 16 (constante, validos); definicao: fracao dos sorteios com v definido em que |Err - media(Err)| <= 2 sqrt(v) | fase5/R5_resumo.json | resumo.constante__validos.N_ocupados.leitura_A.contagens_dos_limiares | fase5/votos_R5/veredito.json |
+| R5.n_sorteios_v_definido | 35 a 57 de 60 sorteios por celula com v definido (constante, validos; k >= 2 blocos de teste com no valido) | fase5/R5_resumo.json | resumo.constante__validos.N_ocupados.leitura_A.por_celula.<cel>.n_indefinidos_k_lt_2 | fase5/votos_R5/veredito.json |
+| E1.constante.validos.b0.dp_sorteios_db | 0.0 | fase5/E1_resumo.json | tabela.constante|validos|b0.dp_sorteios_medio_16 | fase5/votos_E1/veredito.json |
+| E1.constante.validos.b0.razao_dp_sorteios_sobre_dp_celulas | 0.0 | fase5/E1_resumo.json | tabela.constante|validos|b0.razao_dp_sorteios_medio_sobre_dp_entre_celulas | fase5/votos_E1/veredito.json |
+| E1.constante.validos.b0.razao_sobre_holdout | 0.0 | fase5/E1_resumo.json | tabela.constante|validos|b0.razao_dp_medio_kfold_sobre_dp_medio_holdout | fase5/votos_E1/veredito.json |
+| E1.constante.validos.b2.dp_sorteios_db | 0.76 | fase5/E1_resumo.json | tabela.constante|validos|b2.dp_sorteios_medio_16 | fase5/votos_E1/veredito.json |
+| E1.constante.validos.b2.razao_dp_sorteios_sobre_dp_celulas | 0.37 | fase5/E1_resumo.json | tabela.constante|validos|b2.razao_dp_sorteios_medio_sobre_dp_entre_celulas | fase5/votos_E1/veredito.json |
+| E1.constante.validos.b2.razao_sobre_holdout | 0.094 | fase5/E1_resumo.json | tabela.constante|validos|b2.razao_dp_medio_kfold_sobre_dp_medio_holdout | fase5/votos_E1/veredito.json |
+| E1.fspl.validos.b2.dp_sorteios_db | 0.46 | fase5/E1_resumo.json | tabela.fspl_b|validos|b2.dp_sorteios_medio_16 | fase5/votos_E1/veredito.json |
+| E1.fspl.validos.b2.razao_dp_sorteios_sobre_dp_celulas | 0.18 | fase5/E1_resumo.json | tabela.fspl_b|validos|b2.razao_dp_sorteios_medio_sobre_dp_entre_celulas | fase5/votos_E1/veredito.json |
+| E1.fspl.validos.b2.razao_sobre_holdout | 0.111 | fase5/E1_resumo.json | tabela.fspl_b|validos|b2.razao_dp_medio_kfold_sobre_dp_medio_holdout | fase5/votos_E1/veredito.json |
+| E1.constante.todos.b2.dp_sorteios_db | 0.18 | fase5/E1_resumo.json | tabela.constante|todos|b2.dp_sorteios_medio_16 | fase5/votos_E1/veredito.json |
+| E1.constante.todos.b2.razao_dp_sorteios_sobre_dp_celulas | 0.26 | fase5/E1_resumo.json | tabela.constante|todos|b2.razao_dp_sorteios_medio_sobre_dp_entre_celulas | fase5/votos_E1/veredito.json |
+| E1.constante.todos.b2.razao_sobre_holdout | 0.099 | fase5/E1_resumo.json | tabela.constante|todos|b2.razao_dp_medio_kfold_sobre_dp_medio_holdout | fase5/votos_E1/veredito.json |
+| E1.desenho | K-fold em blocos pontuado em conjunto: 6 folds de 22 blocos de 10 km (os mesmos blocos e permutacoes dos 60 sorteios do hold-out), cada no pontuado uma vez; sem buffer (b = 0) e com buffer do lado retido (b = 2 km); preditor constante = mediana do treino (-110 dBm em todos os folds); 16 celulas | criterios/criterio_E1_kfold_conjunto.json; fase5/E1_resumo.json | desenho; validacoes | fase5/votos_E1/veredito.json |
+| E1.constante.validos.b2.celulas_razao_lt_1 | 16 de 16 celulas com razao dp_sorteios/dp_entre_celulas < 1 (faixa por celula 0.24 a 0.50); 0 de 16 com dp >= 1/2 do hold-out; leitura do criterio: REFORCA F-3 | fase5/E1_resumo.json | limiares_do_criterio_contagem_mecanica | fase5/votos_E1/veredito.json |
+| E1.constante.validos.b2.vies_db | vies por celula contra a media do dominio de -0.84 a +1.57 dB (12 de 16 positivos; media dos modulos 0.59 dB; media com sinal +0.33); b = 0: 0.00 em todas | fase5/E1_resumo.json | vies.constante|validos|b2.por_celula.<cel>.vies_vs_mu_U_ref_seed42 | fase5/votos_E1/veredito.json (nao recalculado pelo voto; faixa confirmada no parecer fisico-matematico E1) |
+| E1.fspl.validos.b0.dp_sorteios_db | 0.156 | fase5/E1_resumo.json | tabela.fspl_b|validos|b0.dp_sorteios_medio_16 | fase5/votos_E1/veredito.json |
+| E1.holdout_b0_dp_db | 7.09 | fase5/E1_resumo.json (de fase4/R1_b0_por_sorteio.json) | tabela.constante|validos|b0.holdout | fase5/votos_E1/veredito.json |
+| E1.fracao_pontuada_b2 | 0.46 de todos os nos e 0.47 dos validos (faixa por sorteio 0.43 a 0.49) | fase5/E1_resumo.json | fracao_pontuada | fase5/votos_E1/veredito.json |
